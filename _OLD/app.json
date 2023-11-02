@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Pelops2.0",
-    "slug": "Pelops2.0",
+    "slug": "pelops20",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "622f7be2-6dd2-444b-9f42-44114a6abdee"
+      }
+    },
+    "owner": "bruno1388"
   }
 }
