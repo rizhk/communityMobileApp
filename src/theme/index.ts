@@ -1,4 +1,4 @@
-export * from "./color";
+export { color, ThemeColorType } from "./color";
 export * from "./flex";
 export * from "./shape";
 export * from "./spacing";

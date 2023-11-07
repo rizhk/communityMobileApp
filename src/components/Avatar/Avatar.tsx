@@ -1,7 +1,5 @@
 import { Image, View } from "react-native";
-import { Icon } from "components/Icon";
 import { GravityType, ResizeType, cloudinaryUrl } from "utils/helper";
-import { icons } from "components/Icon/icons";
 
 type AvatarProps = {
   source: string | number | undefined;
@@ -38,7 +36,8 @@ function Avatar({
           style={{ ...style, ...sx }}
         />
       )}
-      {!source && <Icon icon={icons["default-avatar"]} style={{ ...style, ...sx }} />}
+      {/* REPLACE BY NEW ICON */}
+      {/* {!source && <Icon icon={icons["default-avatar"]} style={{ ...style, ...sx }} />} */}
     </View>
   );
 }

@@ -13,8 +13,6 @@ export const color = {
   /**
    * The palette is available to use, but prefer using the name.
    */
-  palette,
-
   /**
    * A helper for making something see-thru. Use sparingly as many layers of transparency
    * can cause older Android devices to slow down due to the excessive compositing required
@@ -39,6 +37,7 @@ export const color = {
 
   white: palette.pelopsWhite,
   black: palette.black,
+
   /**
    * Secondary information.
    */

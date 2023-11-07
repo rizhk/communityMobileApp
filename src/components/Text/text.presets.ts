@@ -1,5 +1,5 @@
 import { TextStyle } from "react-native";
-import { color, typography } from "../../theme";
+import { color, text, typography } from "theme";
 
 /**
  * All text will start off looking like this.
@@ -29,7 +29,7 @@ export const presets = {
   /**
    * Large headers.
    */
-  header: { ...BASE, fontSize: 24, fontWeight: "bold" } as TextStyle,
+  header: { ...BASE, fontSize: text.lg, fontWeight: "bold", alignSelf: "center" } as TextStyle,
 
   /**
    * Field labels that appear on forms above the inputs.

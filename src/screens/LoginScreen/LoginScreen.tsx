@@ -1,34 +1,25 @@
 import { SafeAreaView, KeyboardAvoidingView, ScrollView } from "react-native";
 import styles from "./styles";
-import { color } from "theme";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useAuth } from "context/AuthContext";
 import { AuthNavigatorParamList } from "navigators/AuthStack/AuthStack";
 import { GButton } from "components/Button";
-import { translate } from "i18n";
-import { AddUser, PinOutline } from "assets/svg";
-import { Text } from "components/Text/Text";
+import { PinOutline } from "assets/svg";
+import { Icon } from "components/Icon";
+import Text from "components/Text/Text";
+import Button from "components/Button/Button";
 
 type Props = NativeStackScreenProps<AuthNavigatorParamList, "login">;
 
 export function LoginScreen({ navigation }: Props) {
   const { loginContext, setUser } = useAuth();
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: color.background }}>
+    <SafeAreaView>
       <ScrollView>
-        <KeyboardAvoidingView style={styles.main}>
-          {/* <Icon icon={"pin-pelops-menu"} style={styles.image} /> */}
-          <PinOutline
-            width={108}
-            height={108}
-            alignSelf="center"
-            marginTop={47}
-            color={color.white}
-          />
-          {/* <Text style={styles.header}>{translate("loginScreen.title")}</Text> */}
-          <Text tx="loginScreen.title" />
-          {/* <GIcon icon="arrow" color="primary" size="sm" /> */}
-          {/* <Chat width={50} height={50} fill="#f00" /> */}
+        {/* <KeyboardAvoidingView style={styles.main}> */}
+        <KeyboardAvoidingView>
+          <Icon icon={PinOutline} preset="title" />
+          <Text tx="loginScreen.title" preset="header" marginTop={51} />
           {/* <FormFromData
             formAction={loginContext}
             btnText={i18n.t("loginScreen.logInBtn")}
@@ -49,6 +40,7 @@ export function LoginScreen({ navigation }: Props) {
             sx={styles.buttonOutline}
           /> */}
           <GButton onPress={() => setUser("dsada")} label="test" />
+          <Button onPress={() => setUser("dsada")} text="test" />
         </KeyboardAvoidingView>
       </ScrollView>
     </SafeAreaView>

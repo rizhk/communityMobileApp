@@ -19,19 +19,19 @@ export const cardStyles = StyleSheet.create({
   },
   messageAvatar: {},
   avatarContainerBaseInactif: {
-    borderColor: color.palette.lightGrey,
+    borderColor: color.grey100,
   },
   notifDateInactif: {
-    color: palette.lightGrey,
+    color: color.grey100,
   },
   messageTitleInactif: {
-    color: palette.lightGrey,
+    color: color.grey100,
   },
   messageTextInactif: {
-    color: palette.lightGrey,
+    color: color.grey100,
   },
   messageUserInactif: {
-    color: palette.lightGrey,
+    color: color.grey100,
   },
   eventDetails: {
     display: "flex",
@@ -49,7 +49,7 @@ export const cardStyles = StyleSheet.create({
     alignItems: "flex-end",
   },
   eventText: {
-    color: palette.lightGrey,
+    color: color.grey100,
     fontSize: 12,
   },
   icon: {
@@ -82,7 +82,7 @@ export const createStyles = StyleSheet.create({
     flexDirection: "column-reverse",
   },
   innerContainer: {
-    backgroundColor: color.palette.darkGrey,
+    backgroundColor: color.grey400,
     height: "93%",
     width: "100%",
     diaplay: "flex",
@@ -99,7 +99,7 @@ export const createStyles = StyleSheet.create({
     marginBottom: 20,
   },
   title: {
-    color: color.palette.white,
+    color: color.white,
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
