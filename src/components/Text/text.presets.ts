@@ -30,7 +30,7 @@ export const presets = {
    * Large headers.
    */
   header: { ...BASE, fontSize: text.lg, fontWeight: "bold", alignSelf: "center" } as TextStyle,
-
+  button: { ...BASE, fontSize: text.md, fontWeight: "bold", alignSelf: "center" } as TextStyle,
   /**
    * Field labels that appear on forms above the inputs.
    */

@@ -23,11 +23,23 @@ export const icon = {
   sm: 12,
   md: 16,
   lg: 32,
-  xl: 64,
-  xxl: 108,
+  xl: 48,
+  xxl: 64,
+  xxxl: 80,
+  xxxxl: 112,
 };
 
 export type IconSizeTypes = keyof typeof icon;
+
+export const buttonSize = {
+  xs: 16,
+  sm: 32,
+  md: 48,
+  lg: 64,
+  xl: 80,
+};
+
+export type ButtonSizeTypes = keyof typeof buttonSize;
 /**
  * Text size
  */
@@ -35,7 +47,7 @@ export const text = {
   xxs: 12, // 9pt
   xs: 14, // 10pt
   sm: 16, // 12pt
-  md: 21, // 15pt
+  md: 20, // 15pt
   lg: 26, // 20pt
   xl: 40, // 30pt
   xxl: 66, // 50pt

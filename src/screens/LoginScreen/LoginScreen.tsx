@@ -3,7 +3,6 @@ import styles from "./styles";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useAuth } from "context/AuthContext";
 import { AuthNavigatorParamList } from "navigators/AuthStack/AuthStack";
-import { GButton } from "components/Button";
 import { PinOutline } from "assets/svg";
 import { Icon } from "components/Icon";
 import Text from "components/Text/Text";
@@ -19,7 +18,7 @@ export function LoginScreen({ navigation }: Props) {
         {/* <KeyboardAvoidingView style={styles.main}> */}
         <KeyboardAvoidingView>
           <Icon icon={PinOutline} preset="title" />
-          <Text tx="loginScreen.title" preset="header" marginTop={51} />
+          <Text tx="loginScreen.title" preset="header" style={{ marginTop: 51 }} />
           {/* <FormFromData
             formAction={loginContext}
             btnText={i18n.t("loginScreen.logInBtn")}
@@ -39,8 +38,13 @@ export function LoginScreen({ navigation }: Props) {
             color="primary"
             sx={styles.buttonOutline}
           /> */}
-          <GButton onPress={() => setUser("dsada")} label="test" />
-          <Button onPress={() => setUser("dsada")} text="test" />
+          <Button onPress={() => console.log("test")} tx="loginScreen.title" />
+          <Button onPress={() => console.log("test")} tx="loginScreen.title" preset="outlined" />
+          <Button onPress={() => console.log("test")} icon={PinOutline} text="ahah" />
+          <Button icon={PinOutline} rounded size="sm" />
+          <Button icon={PinOutline} rounded size="md" />
+          <Button icon={PinOutline} rounded size="lg" />
+          <Button icon={PinOutline} rounded size="xl" />
         </KeyboardAvoidingView>
       </ScrollView>
     </SafeAreaView>

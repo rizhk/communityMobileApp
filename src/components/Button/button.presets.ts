@@ -4,6 +4,8 @@ const BASE = {
   borderRadius: radius.xxl,
   padding: spacing.md,
   backgroundColor: color.primary,
+  gap: spacing.sm,
+  marginVertical: spacing.sm,
 };
 
 export const presets = {
@@ -11,7 +13,7 @@ export const presets = {
   outlined: {
     ...BASE,
     backgroundColor: color.transparent,
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: color.primary,
   },
   //ADD NEW PRESETS HERE
