@@ -26,6 +26,7 @@ export const icon = {
   xl: 64,
 };
 
+export type IconSizeTypes = keyof typeof icon;
 /**
  * Text size
  */

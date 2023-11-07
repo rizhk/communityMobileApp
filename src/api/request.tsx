@@ -1,7 +1,7 @@
-import qs from "qs";
 import axios from "axios";
 import { AxiosRequestHeaders } from "axios";
 import { API_URL } from "@env";
+import { qs } from "qs";
 axios.defaults.baseURL = `${API_URL}/api`;
 
 export type GetDataStrapi = {

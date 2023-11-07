@@ -1,18 +1,9 @@
 import { StyleSheet } from "react-native";
 
-import {
-  color,
-  LargeAvatarStyles,
-  MessageSectionStyles,
-  ApplicationStyles,
-  palette,
-  FlexStyles,
-  spacing,
-} from "../../theme";
+import { color, palette, spacing } from "../../theme";
 
 export const chatStyles = StyleSheet.create({
   mainContainer: {
-    ...ApplicationStyles.screen.mainContainerRounded,
     backgroundColor: "transparent",
   },
   search: {
@@ -21,8 +12,6 @@ export const chatStyles = StyleSheet.create({
 });
 
 export const cardStyles = StyleSheet.create({
-  ...MessageSectionStyles,
-  ...LargeAvatarStyles,
   messageHeader: {
     display: "flex",
     flexDirection: "row",
@@ -30,23 +19,18 @@ export const cardStyles = StyleSheet.create({
   },
   messageAvatar: {},
   avatarContainerBaseInactif: {
-    ...LargeAvatarStyles.avatarContainerBase,
     borderColor: color.palette.lightGrey,
   },
   notifDateInactif: {
-    ...MessageSectionStyles.notifDate,
     color: palette.lightGrey,
   },
   messageTitleInactif: {
-    ...MessageSectionStyles.messageTitle,
     color: palette.lightGrey,
   },
   messageTextInactif: {
-    ...MessageSectionStyles.messageText,
     color: palette.lightGrey,
   },
   messageUserInactif: {
-    ...MessageSectionStyles.messageUser,
     color: palette.lightGrey,
   },
   eventDetails: {
@@ -56,7 +40,6 @@ export const cardStyles = StyleSheet.create({
     alignItems: "flex-end",
   },
   eventDate: {
-    ...MessageSectionStyles.eventDate,
     alignSelf: "flex-end",
   },
   location: {
@@ -74,7 +57,6 @@ export const cardStyles = StyleSheet.create({
     height: 15,
   },
   border: {
-    ...MessageSectionStyles.border,
     marginTop: 10,
   },
 });

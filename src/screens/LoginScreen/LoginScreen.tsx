@@ -1,24 +1,34 @@
-import React from "react";
-import { Text, SafeAreaView, KeyboardAvoidingView, ScrollView } from "react-native";
+import { SafeAreaView, KeyboardAvoidingView, ScrollView } from "react-native";
 import styles from "./styles";
 import { color } from "theme";
-import { AuthNavigatorParamList } from "../../navigators";
-import { observer } from "mobx-react-lite";
-import { AuthStrategy, PelopsScreen } from "types";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useAuth } from "context/AuthContext";
-import i18n from "i18n-js";
-import Icon from "components/icon/Icon";
+import { AuthNavigatorParamList } from "navigators/AuthStack/AuthStack";
+import { GButton } from "components/Button";
+import { translate } from "i18n";
+import { AddUser, PinOutline } from "assets/svg";
+import { Text } from "components/Text/Text";
 
 type Props = NativeStackScreenProps<AuthNavigatorParamList, "login">;
-export const LoginScreen: PelopsScreen = observer(({ navigation }: Props) => {
-  const { loginContext } = useAuth();
+
+export function LoginScreen({ navigation }: Props) {
+  const { loginContext, setUser } = useAuth();
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: color.background }}>
       <ScrollView>
         <KeyboardAvoidingView style={styles.main}>
-          <Icon icon={"pin-pelops-menu"} style={styles.image} />
-          <Text style={styles.header}>{i18n.t("loginScreen.title")}</Text>
+          {/* <Icon icon={"pin-pelops-menu"} style={styles.image} /> */}
+          <PinOutline
+            width={108}
+            height={108}
+            alignSelf="center"
+            marginTop={47}
+            color={color.white}
+          />
+          {/* <Text style={styles.header}>{translate("loginScreen.title")}</Text> */}
+          <Text tx="loginScreen.title" />
+          {/* <GIcon icon="arrow" color="primary" size="sm" /> */}
+          {/* <Chat width={50} height={50} fill="#f00" /> */}
           {/* <FormFromData
             formAction={loginContext}
             btnText={i18n.t("loginScreen.logInBtn")}
@@ -38,8 +48,9 @@ export const LoginScreen: PelopsScreen = observer(({ navigation }: Props) => {
             color="primary"
             sx={styles.buttonOutline}
           /> */}
+          <GButton onPress={() => setUser("dsada")} label="test" />
         </KeyboardAvoidingView>
       </ScrollView>
     </SafeAreaView>
   );
-});
+}

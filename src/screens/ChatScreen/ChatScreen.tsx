@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { DeepNavParam } from "navigators/navigator.types";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import * as Localization from "expo-localization";
 import { chatStyles } from "./chat.styles";
@@ -12,15 +11,26 @@ import { useChat } from "context/ChatContext";
 import { ChannelCardProps } from "./chat.props";
 import CreateChat from "./CreateChat";
 // import SearchInput from "components/textinput/SearchInput";
-import { Tabs } from "components/tabs";
+import { MainStackParamList } from "navigators/MainStack/MainNavProps";
+import { Tabs } from "components/Tabs";
+import { MessageScreen } from "screens";
+import { View } from "react-native";
+import { Text } from "components/Text/Text";
 
 i18n.locale = Localization.locale;
 i18n.fallbacks = true;
 
-type Props = NativeStackScreenProps<DeepNavParam, "chats">;
+type Props = NativeStackScreenProps<MainStackParamList, "chats">;
 type ChatType = "private" | "group" | "event";
 
-export const ChatScreen: PelopsScreen = observer(({ navigation }: Props) => {
+export function ChatScreen({ navigation }: Props) {
+  return (
+    <View>
+      <Text>MessageScreen</Text>
+    </View>
+  );
+}
+export function ChatScreenTMP({ navigation }: Props) {
   const [chatType, setChatType] = useState<ChatType>("event");
   const [search, setSearch] = useState<string>("");
   const { myChannelUsers, joinChat } = useChat();
@@ -92,4 +102,4 @@ export const ChatScreen: PelopsScreen = observer(({ navigation }: Props) => {
       </Tabs.Body>
     </Tabs>
   );
-});
+}

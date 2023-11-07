@@ -1,0 +1,17 @@
+export { default as AddUser } from "./addUser.svg";
+export { default as Arrow } from "./arrow.svg";
+export { default as BurgerMenu } from "./burgerMenu.svg";
+export { default as Chat } from "./chat.svg";
+export { default as Compas } from "./compas.svg";
+export { default as Course } from "./course.svg";
+export { default as Echec } from "./echec.svg";
+export { default as Home } from "./home.svg";
+export { default as Notif } from "./notif.svg";
+export { default as Pin } from "./pin.svg";
+export { default as PinOutline } from "./pinOutline.svg";
+export { default as PinPlain } from "./pinPlain.svg";
+export { default as realsportColor } from "./realsportColor.svg";
+export { default as Search } from "./search.svg";
+export { default as Star } from "./star.svg";
+export { default as User } from "./user.svg";
+export { default as volley } from "./volley.svg";

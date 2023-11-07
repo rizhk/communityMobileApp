@@ -2,12 +2,12 @@ import { ColorValue, StyleSheet, TextStyle, View, ViewStyle } from "react-native
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import { color as colors, palette, radius, spacing } from "theme";
-import Icon, { IconType } from "react-native-dynamic-vector-icons";
+// import Icon, { IconType } from "react-native-dynamic-vector-icons";
 import { Text } from "react-native";
 
 export type ButtonIconProps = {
   iconName: string;
-  iconType: IconType;
+  // iconType: IconType;
   iconSize?: number;
   size?: number;
   scale?: number;
@@ -49,7 +49,7 @@ function GBaseButton({
   onPress,
   label = "",
   iconName = undefined,
-  iconType = undefined,
+  // iconType = undefined,
   icon = undefined,
   iconPosition = "left",
   iconSize = 32,
@@ -88,14 +88,14 @@ function GBaseButton({
       onPress={onPress}
     >
       {icon !== undefined && iconPosition === "left" && icon}
-      {iconName !== undefined && iconType !== undefined && (
+      {/* {iconName !== undefined && iconType !== undefined && (
         <Icon
           name={iconName}
           type={iconType}
           color={contentColor as string}
           size={iconSize * scale}
         />
-      )}
+      )} */}
       {label !== "" && (
         <Text style={{ ...styles.label, ...contentColorStyle, ...sxText }}>{label}</Text>
       )}

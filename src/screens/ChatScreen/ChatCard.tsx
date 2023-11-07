@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, TouchableOpacityProps } from "react-native";
 import { cardStyles } from "./chat.styles";
 import { Avatar } from "components/Avatar";
 import * as Location from "expo-location";
-import { Icon } from "components/icon";
 import { ChannelItem, MessageItem } from "types/message";
 import { formatDateFromToday } from "utils/formatDate";
+import { Icon } from "components/Icon";
 
 export interface ChannelCardProps extends TouchableOpacityProps {
   channel: ChannelItem;

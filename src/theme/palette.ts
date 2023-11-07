@@ -12,13 +12,14 @@ export const palette = {
   /**
    * Pelops theme
    */
-  red: "#AD3822",
-  tournamentPrimary: "#FF851B",
-  LightRed: "#c67464",
-  DarkRed: "#792718",
-  metal: "#747474",
-  darkGrey: "#161616",
-  grey: "#2B2B2B",
-  lightGrey: "#474c51",
-  lighterGrey: "#747474",
+  pelopsRed: "#AD3822",
+  pelopsOrange: "#FF851B",
+  pelopsLightRed: "#c67464",
+  pelopsDarkRed: "#792718",
+  pelopsMetal: "#747474",
+  pelopsGrey100: "#747474",
+  pelopsGrey200: "#474c51",
+  pelopsGrey300: "#2B2B2B",
+  pelopsGrey400: "#161616",
+  pelopsWhite: "#F4F5F9",
 };

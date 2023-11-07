@@ -1,24 +1,15 @@
-import * as React from "react";
-import { View, ImageStyle } from "react-native";
-import { AutoImage as Image } from "components/AutoImage";
-import { icons } from "./icons";
-import { IconProps } from "./icon.props";
+import { View, Text } from "react-native";
+import { ThemeColorType } from "theme";
 
-const ROOT: ImageStyle = {
-  resizeMode: "contain",
+type IconType = {
+  icon: JSX.Element;
+  size: number;
+  color: ThemeColorType;
 };
-
-function Icon(props: IconProps) {
-  const { style: styleOverride, icon, containerStyle } = props;
-  // console.log("icon", icon);
-  const source = typeof icon === "string" ? icons[icon] : icon;
-  // console.log("source", source)
-
+export default function Icon() {
   return (
-    <View style={containerStyle}>
-      <Image style={[ROOT, styleOverride]} source={source} />
+    <View>
+      <Text>Icon</Text>
     </View>
   );
 }
-
-export default Icon;

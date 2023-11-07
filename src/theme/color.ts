@@ -24,22 +24,25 @@ export const color = {
 
   background: palette.black,
 
-  primary: palette.red,
-  primaryLight: palette.LightRed,
-  tournamentPrimary: palette.tournamentPrimary,
-  primaryDark: palette.DarkRed,
+  primary: palette.pelopsRed,
+  primaryLight: palette.pelopsLightRed,
+  secondary: palette.pelopsOrange,
+  primaryDark: palette.pelopsDarkRed,
 
   line: palette.offWhite,
   text: palette.white,
 
-  grey: palette.grey,
-  lightGrey: palette.lightGrey,
-  darkGrey: palette.darkGrey,
+  grey100: palette.pelopsGrey100,
+  grey200: palette.pelopsGrey200,
+  grey300: palette.pelopsGrey300,
+  grey400: palette.pelopsGrey400,
 
+  white: palette.pelopsWhite,
+  black: palette.black,
   /**
    * Secondary information.
    */
-  dim: palette.lightGrey,
+  dim: palette.pelopsGrey200,
   /**
    * Error messages and icons.
    */
@@ -62,3 +65,5 @@ export const color = {
    */
   headercolor: palette.whitetext,
 };
+
+export type ThemeColorType = keyof typeof color;

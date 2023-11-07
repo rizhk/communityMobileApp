@@ -1,7 +1,7 @@
-import React, { Image, View } from "react-native";
+import { Image, View } from "react-native";
 import { Icon } from "components/Icon";
 import { GravityType, ResizeType, cloudinaryUrl } from "utils/helper";
-import { icons } from "components/icon/icons";
+import { icons } from "components/Icon/icons";
 
 type AvatarProps = {
   source: string | number | undefined;
