@@ -6,15 +6,18 @@ import { SVGAttributes } from "react";
 import { ButtonSizeTypes } from "theme";
 
 export interface ButtonProps extends TouchableOpacityProps {
-  iconPosition?: "left" | "right";
-  icon?: React.FunctionComponent<SVGAttributes<SVGElement>>;
-  preset?: ButtonPresets;
+  // text passed to Text component
   tx?: i18n.Scope;
   txOptions?: i18n.TranslateOptions;
   text?: string;
   textPreset?: TextPresets;
-  style?: StyleProp<ViewProps>;
+  // icon props
+  iconPosition?: "left" | "right";
+  icon?: React.FunctionComponent<SVGAttributes<SVGElement>>;
+  preset?: ButtonPresets;
   rounded?: boolean;
   // size of rounded button
   size?: ButtonSizeTypes;
+  // styles override
+  style?: StyleProp<ViewProps>;
 }

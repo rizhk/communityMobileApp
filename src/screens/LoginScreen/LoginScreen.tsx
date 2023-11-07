@@ -5,8 +5,8 @@ import { useAuth } from "context/AuthContext";
 import { AuthNavigatorParamList } from "navigators/AuthStack/AuthStack";
 import { PinOutline } from "assets/svg";
 import { Icon } from "components/Icon";
-import Text from "components/Text/Text";
-import Button from "components/Button/Button";
+import { Text } from "components/Text";
+import { Button } from "components/Button";
 
 type Props = NativeStackScreenProps<AuthNavigatorParamList, "login">;
 

@@ -1,11 +1,11 @@
 import { TouchableOpacity } from "react-native";
 import { ButtonProps } from "./button.props";
-import Text from "components/Text/Text";
+import { Text } from "components/Text";
 import { presets } from "./button.presets";
 import { Icon } from "components/Icon";
 import { IconSizeTypes, buttonSize, color } from "theme";
 
-export default function Button(props: ButtonProps) {
+export function Button(props: ButtonProps) {
   const {
     icon = undefined,
     iconPosition = "right",
