@@ -5,6 +5,7 @@ import AppNavigator from "navigators/AppNavigator";
 import { StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider, initialWindowMetrics } from "react-native-safe-area-context";
+import { color } from "theme";
 
 interface AppProps {
   hideSplashScreen: () => Promise<boolean>;
@@ -34,7 +35,7 @@ export default function App({ hideSplashScreen }: AppProps) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: color.background,
     alignItems: "center",
     justifyContent: "center",
   },

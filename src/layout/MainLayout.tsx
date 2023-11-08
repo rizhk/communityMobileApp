@@ -1,13 +1,9 @@
-import { Text } from "components/Text";
 import { View, ViewStyle } from "react-native";
 import { color, radius } from "theme";
+import { PropsWithChildren } from "react";
 
-export default function MapScreen() {
-  return (
-    <View style={page}>
-      <Text>MapScreen</Text>
-    </View>
-  );
+export function MainLayout({ children }: PropsWithChildren) {
+  return <View style={page}>{children}</View>;
 }
 
 const page = {

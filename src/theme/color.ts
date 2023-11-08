@@ -20,8 +20,8 @@ export const color = {
    */
   transparent: "rgba(0, 0, 0, 0)",
 
-  background: palette.black,
-
+  background: palette.pelopsGrey900,
+  backgroundLight: palette.pelopsGrey800,
   primary: palette.pelopsRed,
   primaryLight: palette.pelopsLightRed,
   secondary: palette.pelopsOrange,
@@ -34,9 +34,14 @@ export const color = {
   grey200: palette.pelopsGrey200,
   grey300: palette.pelopsGrey300,
   grey400: palette.pelopsGrey400,
+  grey500: palette.pelopsGrey500,
+  grey600: palette.pelopsGrey600,
+  grey700: palette.pelopsGrey700,
+  grey800: palette.pelopsGrey800,
+  grey900: palette.pelopsGrey900,
 
   white: palette.pelopsWhite,
-  black: palette.black,
+  black: palette.pelopsGrey900,
 
   /**
    * Secondary information.

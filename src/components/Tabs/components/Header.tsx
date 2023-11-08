@@ -13,7 +13,8 @@ type TabsHeaderProps = {
   containerStyle?: StyleProp<ViewStyle>;
 };
 
-export function TabsHeader({ value, tx, txOptions, text, containerStyle }: TabsHeaderProps) {
+export function TabsHeader(props: TabsHeaderProps) {
+  const { value, tx, txOptions, text, containerStyle } = props;
   const { selected, handleSelect } = useContext(TabContext);
   const { addValue } = useTabs();
   const textProps = { tx, txOptions, text };

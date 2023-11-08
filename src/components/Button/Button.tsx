@@ -22,6 +22,7 @@ export function Button(props: ButtonProps) {
   const textProps = { tx: tx, txOptions: txOptions, text: text, preset: textPreset };
   const styles = presets[preset];
   const textStyle = preset === "outlined" ? { color: color.primary } : {};
+
   return (
     <TouchableOpacity
       onPress={onPress}

@@ -1,5 +1,5 @@
 import { View, ViewStyle } from "react-native";
-import React, { PropsWithChildren, useState } from "react";
+import { PropsWithChildren, useState } from "react";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
 import { TabContext, TabsProps } from "./Tabs.props";
 import { color } from "theme";
@@ -11,7 +11,8 @@ Tabs.Header = TabsHeader;
 Tabs.Group = TabsGroup;
 Tabs.Body = TabsBody;
 
-export function Tabs({ children, selected, handleSelect, style }: PropsWithChildren<TabsProps>) {
+export function Tabs(props: PropsWithChildren<TabsProps>) {
+  const { children, selected, handleSelect, style } = props;
   const [values, setValues] = useState<any[]>([]);
 
   const addValue = (val: any) => {
