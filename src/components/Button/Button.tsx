@@ -3,7 +3,8 @@ import { ButtonProps } from "./button.props";
 import { Text } from "components/Text";
 import { presets } from "./button.presets";
 import { Icon } from "components/Icon";
-import { IconSizeTypes, buttonSize, color } from "theme";
+import { IconSizeTypes, buttonSize, color, text as textStyle } from "theme";
+import { TextSizeTypes } from "components/Text/text.props";
 
 export function Button({
   icon,
@@ -23,23 +24,27 @@ export function Button({
   const styles = presets[preset];
   const textStyle = preset === "outlined" ? { color: color.primary } : {};
 
-  // const sizeStyles = {
-  //   xs: {
-  //     /* Define styles for xs size here */
-  //   },
-  //   sm: {
-  //     /* Define styles for sm size here */
-  //   },
-  //   md: {
-  //     /* Define styles for md size here */
-  //   },
-  //   lg: {
-  //     /* Define styles for lg size here */
-  //   },
-  //   xl: {
-  //     /* Define styles for lg size here */
-  //   },
-  // }[size];
+  const sizeStyles = {
+    xxs: {
+      fontSize: 10,
+    },
+    xs: {
+      fontSize: textStyle[size as TextSizeTypes],
+    },
+    sm: {
+      fontSize: 12,
+    },
+    md: {
+      fontSize: 14,
+    },
+    lg: {
+      fontSize: 16,
+    },
+    xl: {
+      fontSize: 18,
+    },
+  }[size];
+  const textStyles = [textStyle, sizeStyles];
 
   return (
     <TouchableOpacity
@@ -55,7 +60,7 @@ export function Button({
       {icon !== undefined && iconPosition === "left" && (
         <Icon icon={icon} size={size as IconSizeTypes} preset="button" />
       )}
-      {(tx !== undefined || text !== undefined) && <Text {...textProps} style={textStyle} />}
+      {(tx !== undefined || text !== undefined) && <Text {...textProps} style={textStyles} />}
       {icon !== undefined && iconPosition === "right" && (
         <Icon icon={icon} size={size as IconSizeTypes} preset="button" />
       )}

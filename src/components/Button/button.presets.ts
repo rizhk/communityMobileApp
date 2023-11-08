@@ -1,11 +1,20 @@
-import { color, radius, spacing } from "theme";
+import { color, radius, spacing, text } from "theme";
 
 const BASE = {
-  borderRadius: radius.xxl,
-  padding: spacing.md,
-  backgroundColor: color.primary,
-  gap: spacing.sm,
-  marginVertical: spacing.xs,
+  buttonProps: {
+    borderRadius: radius.xxl,
+    padding: spacing.md,
+    backgroundColor: color.primary,
+    gap: spacing.sm,
+    marginVertical: spacing.xs,
+    "&:hover": {
+      padding: spacing.md,
+    },
+    // justifyContent: "center",
+    // alignItems: "center",
+    // flexDirection: "row",
+  },
+  textProps: {},
 };
 
 export const presets = {

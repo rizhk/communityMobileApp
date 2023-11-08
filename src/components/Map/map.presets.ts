@@ -5,6 +5,18 @@ const BASE = {
   height: "100%",
 };
 
+const TEXT_BASE = {
+  fontSize: 14,
+};
+
+export const textPresets = {
+  default: TEXT_BASE,
+  sd: {
+    text,
+  },
+  //ADD NEW TEXT PRESETS HERE
+};
+
 export const presets = {
   default: BASE,
   small: {
@@ -14,4 +26,4 @@ export const presets = {
   //ADD NEW PRESETS HERE
 };
 
-export type MapPresets = keyof typeof presets;
+export type MapPresets = keyof typeof presets & keyof typeof textPresets;

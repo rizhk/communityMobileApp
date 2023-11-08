@@ -32,6 +32,7 @@ export const icon = {
 export type IconSizeTypes = keyof typeof icon;
 
 export const buttonSize = {
+  xxs: 14,
   xs: 16,
   sm: 32,
   md: 48,
@@ -52,6 +53,8 @@ export const text = {
   xl: 32, // 30pt
   xxl: 66, // 50pt
 };
+
+export type TextSizeTypes = keyof typeof text;
 
 export const letterSpacing = {
   sm: 2,

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import MapView from "react-native-maps";
-import { MapPresets, presets } from "./map.presets";
+import { MapPresets, presets, textPresets } from "./map.presets";
 
 export interface MapRegion {
   latitude: number;
@@ -22,11 +22,16 @@ const MapComponent: React.FC<MapProps> = ({
   style,
   ...rest
 }: MapProps) => {
-  const styles = [presets[preset], style];
+  // const styles = [presets[preset], style];
+  const styles = {
+    // textStyles: [textPresets[preset], style],
+    textStyles: [textPresets[size], style],
+    viewStyles: [presets[preset], style],
+  };
 
   return (
     <>
-      <MapView style={styles} initialRegion={initialRegion} {...rest} />
+      <MapView style={styles.viewStyles} initialRegion={initialRegion} {...rest} />
     </>
   );
 };
