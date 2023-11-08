@@ -1,4 +1,4 @@
-import { color, radius, spacing, text } from "theme";
+import { color, radius, spacing, textSize } from "theme";
 
 const BASE = {
   buttonProps: {

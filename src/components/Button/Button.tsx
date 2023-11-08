@@ -3,7 +3,7 @@ import { ButtonProps } from "./button.props";
 import { Text } from "components/Text";
 import { presets } from "./button.presets";
 import { Icon } from "components/Icon";
-import { IconSizeTypes, buttonSize, color, text as textStyle } from "theme";
+import { IconSizeTypes, buttonSize, color, textSize as textStyle } from "theme";
 import { TextSizeTypes } from "components/Text/text.props";
 
 export function Button({

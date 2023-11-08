@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { color, typography, spacing, text, TextStyles } from "theme";
+import { color, typography, spacing, textSize, TextStyles } from "theme";
 
 const styles = StyleSheet.create({
   main: {
@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
   header: {
     color: color.headercolor,
-    fontSize: text.lg,
+    fontSize: textSize.lg,
     fontFamily: typography.primary,
     fontWeight: TextStyles.weight.bold.fontWeight,
     alignSelf: "center",

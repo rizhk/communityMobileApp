@@ -1,5 +1,5 @@
 import { TextStyle } from "react-native";
-import { color, text, typography } from "theme";
+import { color, textSize, typography } from "theme";
 
 /**
  * All text will start off looking like this.
@@ -7,7 +7,7 @@ import { color, text, typography } from "theme";
 const BASE: TextStyle = {
   fontFamily: typography.primary,
   color: color.text,
-  fontSize: text.sm,
+  fontSize: textSize.sm,
 };
 
 /**
@@ -29,8 +29,8 @@ export const presets = {
   /**
    * Large headers.
    */
-  header: { ...BASE, fontSize: text.lg, fontWeight: "bold", alignSelf: "center" } as TextStyle,
-  button: { ...BASE, fontSize: text.md, fontWeight: "bold", alignSelf: "center" } as TextStyle,
+  header: { ...BASE, fontSize: textSize.lg, fontWeight: "bold", alignSelf: "center" } as TextStyle,
+  button: { ...BASE, fontSize: textSize.md, fontWeight: "bold", alignSelf: "center" } as TextStyle,
   /**
    * Field labels that appear on forms above the inputs.
    */
@@ -43,7 +43,7 @@ export const presets = {
 
   inputLabel: {
     ...BASE,
-    fontSize: text.md,
+    fontSize: textSize.md,
     fontWeight: "bold",
     color: color.primary,
     textTransform: "uppercase",

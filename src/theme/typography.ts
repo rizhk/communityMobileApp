@@ -1,5 +1,5 @@
 import { Platform } from "react-native";
-import { text } from "./sizing";
+import { textSize } from "./sizing";
 
 /**
  * You can find a list of available fonts on both iOS and Android here:
@@ -33,21 +33,21 @@ export const typography = {
 
 export const TextStyles = {
   h1: {
-    fontSize: text.lg,
+    fontSize: textSize.lg,
   },
   h2: {
-    fontSize: text.md,
+    fontSize: textSize.md,
   },
   h3: {
-    fontSize: text.sm,
+    fontSize: textSize.sm,
   },
   h4: {
-    fontSize: text.xs,
+    fontSize: textSize.xs,
   },
   h5: {},
   h6: {},
   description: {
-    fontSize: text.md,
+    fontSize: textSize.md,
   },
   weight: {
     normal: {
