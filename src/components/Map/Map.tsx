@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import MapView from "react-native-maps";
+import { MapPresets, presets } from "./map.presets";
 
 export interface MapRegion {
   latitude: number;
@@ -11,37 +12,24 @@ export interface MapRegion {
 
 interface MapProps {
   initialRegion: MapRegion;
-  style: any;
+  style?: any;
+  preset?: MapPresets;
 }
 
-const MapComponent: React.FC<MapProps> = (props) => {
-  //   const { initialRegion, ...rest } = props;
+const MapComponent: React.FC<MapProps> = ({
+  preset = "default",
+  initialRegion,
+  style,
+  ...rest
+}: MapProps) => {
+  const styles = [presets[preset], style];
+  console.log(styles, "styles");
 
   return (
     <>
-      {/* <MapView initialRegion={initialRegion} style={styles.map} /> */}
-      <MapView
-        style={{ width: "100%", height: "100%" }}
-        initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-      />
+      <MapView style={styles} initialRegion={initialRegion} {...rest} />
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-  map: {
-    width: "100%",
-    height: "100%",
-  },
-});
 
 export default MapComponent;
