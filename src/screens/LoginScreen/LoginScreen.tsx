@@ -62,7 +62,7 @@ export function LoginScreen({ navigation }: Props) {
                 }}
                 submitTx="loginScreen.loginButton"
               >
-                <View style={{ paddingVertical: spacing.lg }}>
+                <View style={{ paddingVertical: spacing.md }}>
                   <GForm.TextInput
                     valName="email"
                     tx="loginScreen.email"
@@ -75,6 +75,7 @@ export function LoginScreen({ navigation }: Props) {
               <Button onPress={signIn} tx="loginScreen.signIn" preset="outlined" />
               <Button onPress={forget} tx="loginScreen.forgotPassword" preset="plainText" />
             </View>
+            <Button onPress={() => setUser("dsd")} text="Go home" />
           </ScrollView>
         </KeyboardAvoidingView>
       </View>

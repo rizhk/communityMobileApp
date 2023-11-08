@@ -33,7 +33,8 @@
     "activity": "Aktivitäten",
     "profil": "Profil",
     "chat": "Chat",
-    "pelops": "Pelops"
+    "pelops": "Pelops",
+    "messages": "Mitteilungen"
   },
   "loginScreen": {
     "title": "Anmeldung",

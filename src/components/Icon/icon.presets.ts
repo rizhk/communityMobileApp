@@ -10,6 +10,7 @@ export const presets = {
   //ADD NEW PRESETS HERE
   title: { ...BASE, size: icon.xxxxl, marginTop: 48, alignSelf: "center" },
   button: { ...BASE, size: icon.md },
+  bottomButton: { ...BASE },
 };
 
 export type IconPresets = keyof typeof presets;

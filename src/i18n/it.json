@@ -32,7 +32,8 @@
     "activity": "Attività",
     "profil": "Profilo",
     "chat": "Chat",
-    "pelops": "Pelops"
+    "pelops": "Pelops",
+    "messages": "Messagi"
   },
   "loginScreen": {
     "title": "Accedi",

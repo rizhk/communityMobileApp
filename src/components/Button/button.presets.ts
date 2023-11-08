@@ -5,7 +5,7 @@ const BASE = {
   padding: spacing.md,
   backgroundColor: color.primary,
   gap: spacing.sm,
-  marginVertical: spacing.sm,
+  marginVertical: spacing.xs,
 };
 
 export const presets = {
@@ -22,6 +22,7 @@ export const presets = {
     borderWidth: 0,
     borderColor: color.transparent,
     marginVertical: 0,
+    padding: 0,
   },
   //ADD NEW PRESETS HERE
 };

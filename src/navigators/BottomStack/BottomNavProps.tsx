@@ -1,13 +1,14 @@
-import { IconTypes } from "components/Icon/icons";
+import { Chat, Home, Pin, PinOutline, User } from "assets/svg";
 import { translate } from "i18n";
 import { NavType } from "navigators/NavType";
+import { SVGAttributes } from "react";
 import { ChatScreen } from "screens";
 import ActivitiesScreen from "screens/ActivitiesScreen/ActivitiesScreen";
 import MapScreen from "screens/MapScreen/MapScreen";
 import { ChannelUserItem } from "types/message";
 
 export interface BottomNavPropsType extends NavType<BottomTabParamList> {
-  activeIcon: IconTypes;
+  icon: React.FunctionComponent<SVGAttributes<SVGElement>>;
   tabBarBadge: number;
   iconSize: number;
   label: string;
@@ -26,7 +27,7 @@ export const BottomNavProps: BottomNavPropsType[] = [
     id: 1,
     route: "map",
     label: `${translate("screenTitle.pelops")}`,
-    activeIcon: "home-menu",
+    icon: Home,
     tabBarBadge: 0,
     iconSize: 26,
     component: MapScreen,
@@ -35,7 +36,7 @@ export const BottomNavProps: BottomNavPropsType[] = [
     id: 2,
     route: "activities",
     label: `${translate("screenTitle.activity")}`,
-    activeIcon: "pin-pelops-menu",
+    icon: PinOutline,
     tabBarBadge: 0,
     iconSize: 26,
     component: ActivitiesScreen,
@@ -43,19 +44,19 @@ export const BottomNavProps: BottomNavPropsType[] = [
   {
     id: 5,
     route: "messages",
-    label: "Messages",
-    activeIcon: "chat-menu",
+    label: `${translate("screenTitle.messages")}`,
+    icon: Chat,
     tabBarBadge: 0,
     iconSize: 26,
     component: ChatScreen,
   },
-  //   {
-  //     id: 3,
-  //     route: "profile",
-  //     label: `${i18n.t("screenTitle.profil")}`,
-  //     activeIcon: "profile",
-  //     tabBarBadge: 0,
-  //     iconSize: 26,
-  //     component: ProfileScreen,
-  //   },
+  // {
+  //   id: 3,
+  //   route: "profile",
+  //   label: `${i18n.t("screenTitle.profil")}`,
+  //   icon: User,
+  //   tabBarBadge: 0,
+  //   iconSize: 26,
+  //   component: ProfileScreen,
+  // },
 ];

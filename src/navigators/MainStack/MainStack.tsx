@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { MainNavProps, MainNavPropsType } from "./MainNavProps";
 import { BottomStack } from "navigators/BottomStack/BottomStack";
+import { color, text } from "theme";
 
 const Main = createNativeStackNavigator();
 

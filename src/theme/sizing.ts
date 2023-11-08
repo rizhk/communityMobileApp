@@ -22,9 +22,9 @@ export const icon = {
   xs: 10,
   sm: 12,
   md: 16,
-  lg: 32,
-  xl: 48,
-  xxl: 64,
+  lg: 24,
+  xl: 32,
+  xxl: 48,
   xxxl: 80,
   xxxxl: 112,
 };
@@ -48,8 +48,8 @@ export const text = {
   xs: 14, // 10pt
   sm: 16, // 12pt
   md: 20, // 15pt
-  lg: 26, // 20pt
-  xl: 40, // 30pt
+  lg: 24, // 20pt
+  xl: 32, // 30pt
   xxl: 66, // 50pt
 };
 

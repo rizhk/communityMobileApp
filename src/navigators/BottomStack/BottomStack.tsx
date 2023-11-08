@@ -1,20 +1,17 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { BottomNavProps, BottomNavPropsType } from "./BottomNavProps";
 import TabButton from "./TabButton.tsx";
+import { color, spacing, text } from "theme";
 
 const Bottom = createBottomTabNavigator();
 
 export function BottomStack() {
   return (
-    // <Bottom.Navigator tabBar={(props) => <BottomMenu {...props} />}>
     <Bottom.Navigator
       initialRouteName="map"
       screenOptions={() => ({
-        // tabBarStyle: navigationStyles.tabBarStyle,
-        // headerStyle: navigationStyles.headerStyle,
-        // headerTintColor: color.headercolor,
-        // headerTitleAlign: "center",
-        // headerTitleStyle: navigationStyles.headerTitleStyle,
+        headerTintColor: color.white,
+        headerTitleStyle: { fontWeight: "bold", fontSize: text.xl },
       })}
     >
       {BottomNavProps.map((tab: BottomNavPropsType) => (
@@ -23,7 +20,13 @@ export function BottomStack() {
           name={tab.label}
           component={tab.component}
           options={{
-            tabBarButton: (props) => <TabButton {...props} tab={tab} />,
+            tabBarButton: (props) => (
+              <TabButton
+                {...props}
+                tab={tab}
+                isLast={tab.id === BottomNavProps[BottomNavProps.length - 1].id}
+              />
+            ),
           }}
         />
       ))}
