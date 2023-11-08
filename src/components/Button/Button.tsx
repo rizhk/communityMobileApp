@@ -17,6 +17,7 @@ export function Button({
   style,
   rounded = false,
   size = "md",
+  ...rest
 }: ButtonProps) {
   const textProps = { tx: tx, txOptions: txOptions, text: text, preset: textPreset };
   const styles = presets[preset];
@@ -30,6 +31,7 @@ export function Button({
         rounded ? { width: buttonSize[size], height: buttonSize[size], borderRadius: 100 } : {},
         style,
       ]}
+      {...rest}
     >
       {icon !== undefined && iconPosition === "left" && (
         <Icon icon={icon} size={size as IconSizeTypes} preset="button" />
