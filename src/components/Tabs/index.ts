@@ -1,1 +1,1 @@
-export { default as Tabs } from "./Tabs";
+export { Tabs } from "./Tabs";

@@ -54,7 +54,7 @@ const button = {
 } as ViewStyle;
 
 const separator = {
-  backgroundColor: color.grey300,
+  backgroundColor: color.grey200,
   height: 30,
   width: 2,
   position: "absolute",

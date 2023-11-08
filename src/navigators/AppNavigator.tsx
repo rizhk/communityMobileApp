@@ -1,4 +1,4 @@
-import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { useAuth } from "context/AuthContext";
 import { MainStack } from "./MainStack/MainStack";
 import { AuthStack } from "./AuthStack/AuthStack";
@@ -10,10 +10,11 @@ export default function AppNavigator() {
     dark: true,
     colors: {
       primary: color.primary,
-      background: color.background,
+      background: color.grey300,
+      // background: color.background,
       card: color.background,
       text: color.text,
-      border: color.background,
+      border: color.transparent,
       notification: color.primary,
     },
   };
