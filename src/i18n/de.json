@@ -8,7 +8,8 @@
     "block": "Blockieren",
     "save": "speichern",
     "no": "Nein",
-    "yes": "Ja"
+    "yes": "Ja",
+    "submit": "Submit"
   },
   "errors": {
     "invalidEmail": "Ungültige E-Mail Adresse.",
@@ -38,10 +39,10 @@
     "title": "Anmeldung",
     "email": "E-mail",
     "password": "Passwort",
-    "logInBtn": "Sich anmelden",
+    "loginButton": "Sich anmelden",
     "signIn": "registrieren",
     "forgotPassword": "Passwort vergessen ?",
-    "forgotPasswordBtn": "Passwort vergessen",
+    "forgotPasswordButton": "Passwort vergessen",
     "enterEmail": "Geben Sie Ihre E-Mail-Adresse ein"
   },
   "registrationScreen": {

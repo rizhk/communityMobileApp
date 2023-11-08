@@ -1,41 +1,24 @@
 import { Formik, FormikConfig, FormikValues } from "formik";
 import { PropsWithChildren } from "react";
-import { KeyboardAvoidingView, Platform, ScrollView } from "react-native";
-import { AppButton } from "styles";
+import { KeyboardAvoidingView, Platform, ScrollView, View } from "react-native";
+import { Button } from "components/Button";
 
-// import GDate from './GDate'
 import { GFormContext, GFormProps } from "./GForm.props";
-// import GIconInput from './GIconInput'
-// import GImagePicker from './GImagePicker'
-import GInput from "./GInput";
-import React from "react";
-// import GSelect from './GSelect'
-// import GStack from './GStack'
-// import GSwitch from './GSwitch'
+import SubmitButton from "./components/SubmitButton";
+import TextInput from "./components/TextInput";
 
-// GForm.IconInput = GIconInput
-GForm.Input = GInput;
-// GForm.DatePicker = GDate
-// GForm.Select = GSelect
-// GForm.Stack = GStack
-// GForm.ImagePicker = GImagePicker
-// GForm.Switch = GSwitch
+GForm.SubmitButton = SubmitButton;
+GForm.TextInput = TextInput;
 
 export default function GForm<Values extends FormikValues = FormikValues>({
-  submitLabel,
-  submitIcon = undefined,
+  submitTx = "common.submit",
+  submitText,
+  submitIcon,
+  containerStyle,
   children,
   ...props
 }: PropsWithChildren<FormikConfig<Values> & GFormProps>) {
-  // useEffect(() => {
-  //   if (status === 'submitting') {
-  //     const timer = setTimeout(() => setStatus('off'), 2000)
-  //     return () => {
-  //       clearTimeout(timer)
-  //     }
-  //   }
-  // }, [status])
-  // console.log('test', props.onSubmit)
+  const submitButtonProps = { tx: submitTx, text: submitText };
   return (
     <Formik validateOnChange={false} {...props}>
       {({
@@ -46,47 +29,24 @@ export default function GForm<Values extends FormikValues = FormikValues>({
         values,
         errors,
         validateField,
-        isSubmitting,
         setFieldError,
       }) => (
-        <Form
-          gap={8}
-          jc="space-between"
-          width="100%"
-          flexShrink={1}
-          flexGrow={1}
-          onSubmit={handleSubmit}
-        >
-          <KeyboardAvoidingView
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
-            keyboardVerticalOffset={Platform.OS === "ios" ? 125 : 20}
-            style={{ flex: 1 }}
+        <View style={containerStyle}>
+          <GFormContext.Provider
+            value={{
+              handleChange,
+              handleSubmit,
+              handleBlur,
+              setFieldValue,
+              values,
+              errors,
+              validateField,
+              setFieldError,
+            }}
           >
-            <ScrollView showsVerticalScrollIndicator={false}>
-              <YStack gap="$2">
-                <GFormContext.Provider
-                  value={{
-                    handleChange,
-                    handleSubmit,
-                    handleBlur,
-                    setFieldValue,
-                    values,
-                    errors,
-                    validateField,
-                    setFieldError,
-                  }}
-                >
-                  {children}
-                </GFormContext.Provider>
-              </YStack>
-            </ScrollView>
-          </KeyboardAvoidingView>
-          <AppButton
-            iconAfter={isSubmitting ? () => <Spinner color="$color11" /> : submitIcon ?? undefined}
-          >
-            {!isSubmitting && submitLabel}
-          </AppButton>
-        </Form>
+            {children}
+          </GFormContext.Provider>
+        </View>
       )}
     </Formik>
   );

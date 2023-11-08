@@ -40,9 +40,12 @@
  */
 export const spacing = {
   none: 0,
-  xs: 4, // 3pt
-  sm: 8, // 6pt
-  md: 18, // 13pt
-  lg: 26, // 20pt
-  xl: 32, // 24pt
+  xxs: 4,
+  xs: 8,
+  sm: 12,
+  md: 16,
+  lg: 24,
+  xl: 32,
+  xxl: 40,
+  xxxl: 48,
 };

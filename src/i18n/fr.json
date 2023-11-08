@@ -9,7 +9,8 @@
     "block": "Bloquer",
     "save": "sauvegarder",
     "no": "Non",
-    "yes": "Oui"
+    "yes": "Oui",
+    "submit": "Soumettre"
   },
   "errors": {
     "invalidEmail": "Adresse e-mail invalide"
@@ -37,10 +38,10 @@
     "title": "Connection",
     "email": "E-mail",
     "password": "Mot de passe",
-    "logInBtn": "Connexion",
+    "loginButton": "Connexion",
     "signIn": "S'inscrire",
     "forgotPassword": "Mot de passe oublié ?",
-    "forgotPasswordBtn": "Mot de passe oublié",
+    "forgotPasswordButton": "Mot de passe oublié",
     "enterEmail": "Saisissez votre adresse e-mail",
     "follow": "Suivre",
     "unfollow": "Ne plus suivre",

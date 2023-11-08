@@ -8,7 +8,8 @@
     "block": "Bloccare",
     "save": "salvare",
     "no": "No",
-    "yes": "Sì"
+    "yes": "Sì",
+    "submit": "Submit"
   },
   "errors": {
     "invalidEmail": "Indirizzo e-mail non valido.",
@@ -37,10 +38,10 @@
     "title": "Accedi",
     "email": "E-mail",
     "password": "Password",
-    "logInBtn": "Accedi",
+    "loginButton": "Accedi",
     "signIn": "Iscriviti",
     "forgotPassword": "Avete dimenticato la password?",
-    "forgotPasswordBtn": "Avete dimenticato la password",
+    "forgotPasswordButton": "Avete dimenticato la password",
     "enterEmail": "Inserire l'indirizzo e-mail",
     "follow": "Segui",
     "unfollow": "Non seguire",

@@ -8,7 +8,8 @@
     "block": "Block",
     "save": "save",
     "no": "No",
-    "yes": "Yes"
+    "yes": "Yes",
+    "submit": "Submit"
   },
   "errors": {
     "invalidEmail": "Invalid email address.",
@@ -37,10 +38,10 @@
     "title": "Log in",
     "email": "E-mail",
     "password": "Password",
-    "logInBtn": "Log in",
+    "loginButton": "Log in",
     "signIn": "Sign up",
     "forgotPassword": "Forgot password ?",
-    "forgotPasswordBtn": "Forgot password",
+    "forgotPasswordButton": "Forgot password",
     "enterEmail": "Enter your e-mail address"
   },
   "registrationScreen": {

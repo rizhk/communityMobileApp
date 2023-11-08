@@ -7,7 +7,7 @@ import { color, text, typography } from "theme";
 const BASE: TextStyle = {
   fontFamily: typography.primary,
   color: color.text,
-  fontSize: 15,
+  fontSize: text.sm,
 };
 
 /**
@@ -40,6 +40,15 @@ export const presets = {
    * A smaller piece of secondary information.
    */
   secondary: { ...BASE, fontSize: 9, color: color.dim } as TextStyle,
+
+  inputLabel: {
+    ...BASE,
+    fontSize: text.md,
+    fontWeight: "bold",
+    color: color.primary,
+    textTransform: "uppercase",
+  } as TextStyle,
+  fieldError: { ...BASE, fontSize: 9, color: color.error } as TextStyle,
 };
 
 /**
