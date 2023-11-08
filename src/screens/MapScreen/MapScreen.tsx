@@ -1,3 +1,4 @@
+import { Button } from "components/Button";
 import MapComponent from "components/Map/Map";
 import { View, StyleSheet, Text } from "react-native";
 
@@ -15,7 +16,7 @@ export default function MapScreen() {
 
   return (
     <View>
-      <MapComponent preset="small" style={styles.map} initialRegion={initialRegion} />
+      {/* <MapComponent preset="small" style={styles.map} initialRegion={initialRegion} /> */}
     </View>
   );
 }

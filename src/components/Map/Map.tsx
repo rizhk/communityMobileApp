@@ -23,7 +23,6 @@ const MapComponent: React.FC<MapProps> = ({
   ...rest
 }: MapProps) => {
   const styles = [presets[preset], style];
-  console.log(styles, "styles");
 
   return (
     <>
