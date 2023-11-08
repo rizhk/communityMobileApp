@@ -16,8 +16,8 @@ export default function MapScreen() {
 
   return (
     <View>
-      <Button size="md" color="primary" preset="outlined" text="Hello" />
-      {/* <MapComponent preset="small" style={styles.map} initialRegion={initialRegion} /> */}
+      {/* <Button size="md" color="primary" preset="outlined" text="Hello" /> */}
+      <MapComponent preset="small" style={styles.map} initialRegion={initialRegion} />
     </View>
   );
 }
