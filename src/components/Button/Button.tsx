@@ -5,20 +5,19 @@ import { presets } from "./button.presets";
 import { Icon } from "components/Icon";
 import { IconSizeTypes, buttonSize, color } from "theme";
 
-export function Button(props: ButtonProps) {
-  const {
-    icon = undefined,
-    iconPosition = "right",
-    preset = "default",
-    onPress,
-    tx = undefined,
-    txOptions = undefined,
-    text = undefined,
-    textPreset = "button",
-    style,
-    rounded = false,
-    size = "md",
-  } = props;
+export function Button({
+  icon,
+  iconPosition = "right",
+  preset = "default",
+  onPress,
+  tx,
+  txOptions,
+  text,
+  textPreset = "button",
+  style,
+  rounded = false,
+  size = "md",
+}: ButtonProps) {
   const textProps = { tx: tx, txOptions: txOptions, text: text, preset: textPreset };
   const styles = presets[preset];
   const textStyle = preset === "outlined" ? { color: color.primary } : {};
