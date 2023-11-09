@@ -74,14 +74,14 @@ export async function fetchAPI(path: string) {
 }
 
 // Helper to make GET requests to Strapi with axios
-export async function fetchAxiosAPI(path: string, userToken?: string | null) {
+export async function fetchAxiosAPI(path: string, userToken?: string | null, params?: any) {
   const headers: any = {};
 
   if (userToken) {
     headers.Authorization = `Bearer ${userToken}`;
   }
   try {
-    const response = await axios.get(`${path}`, { headers });
+    const response = await axios.get(`${path}`, { headers, params });
     return response;
   } catch (err) {
     console.error(err, "fetchAxiosAPI fetching error, path:", path);

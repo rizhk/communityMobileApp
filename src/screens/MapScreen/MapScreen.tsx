@@ -5,65 +5,17 @@ import { useEffect, useState } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { useQuery } from "react-query";
 import axios from "axios";
+import { fetchActivities } from "api/api";
 
 export default function MapScreen() {
   //useState
 
   //useEffect / FetchData / useQuery
   //FetchActivities
-  async function fetchActivitiesQS() {
-    try {
-      const res = await fetchAPIqs(
-        `/activities`,
-        {
-          populate: [
-            "cover",
-            "author",
-            "author.avatar",
-            "author.blockedUsers",
-            "participants",
-            "participants.avatar",
-            "sport",
-            "sport.icon",
-            "sport.localizations",
-            "channel",
-            "blockedUsers",
-          ],
-        },
-        {}
-      );
 
-      console.log("res", res);
-
-      return res;
-    } catch (err) {
-      console.error(err, "Fetching activities qs error");
-    }
-  }
-
-  const [activities, setActivities] = useState();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get("activities");
-        setActivities(res.data);
-      } catch (err) {
-        console.error(err, "Fetching activities error");
-      }
-    };
-
-    fetchData();
-  }, []);
-  const { data, error, isLoading } = useQuery("activities", async () => {
-    try {
-      const res = await axios.get("activities");
-      return res.data;
-    } catch (err) {
-      console.error(err, "Fetching activities error");
-    }
-  });
-  console.log("data :", data); // fetchFields est une fonction pour récupérer les données
+  const { data, error, isLoading } = useQuery("activities", () => fetchActivities());
+  console.log("datas: ", data);
+  console.log("data lengh:", data ? data.data?.length : 0);
 
   const initialRegion = {
     latitude: 37.783333,
@@ -71,6 +23,10 @@ export default function MapScreen() {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   };
+
+  if (isLoading) {
+    return <Text>Loading...</Text>;
+  }
 
   return (
     <View>
