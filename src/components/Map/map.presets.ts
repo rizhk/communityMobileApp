@@ -1,12 +1,8 @@
-import { color, radius, spacing, textSize } from "theme";
+import { textSize } from "theme";
 
 const BASE = {
   width: "100%",
   height: "100%",
-};
-
-const TEXT_BASE = {
-  fontSize: 14,
 };
 
 // export const textPresets = {
@@ -32,17 +28,9 @@ const TEXT_BASE = {
 //     fontSize: textSize.xxl,
 //   },
 // };
-// export const textPresets = {};
 
-// for (const key in textSize) {
-//   if (Object.hasOwnProperty.call(textSize, key)) {
-//     textPresets[key] = {
-//       fontSize: textSize[key],
-//     };
-//   }
-// }
-
-export const textPresets: Record<string, { fontSize: number }> = Object.fromEntries(
+//Add a loop here to create the textPresets object
+export const textPresets = Object.fromEntries(
   Object.entries(textSize).map(([key, fontSize]) => [key, { fontSize }])
 );
 

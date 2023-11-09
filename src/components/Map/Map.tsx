@@ -26,8 +26,9 @@ const MapComponent: React.FC<MapProps> = ({
   ...rest
 }: MapProps) => {
   // const styles = [presets[preset], style];
+
+  //Then create a second presets for the text
   const styles = {
-    // textStyles: [textPresets[preset], style],
     textStyles: [textPresets[size], style],
     viewStyles: [presets[preset], style],
   };
