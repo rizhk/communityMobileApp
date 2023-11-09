@@ -35,13 +35,13 @@ export async function fetchActivities(userToken?: string | null) {
         "blockedUsers",
       ],
       //   sort: ["title:asc"],
-      filters: {
-        author: {
-          firstName: {
-            $eq: "Theo",
-          },
-        },
-      },
+      //   filters: {
+      //     author: {
+      //       firstName: {
+      //         $eq: "Theo",
+      //       },
+      //     },
+      //   },
     },
     userToken
   );

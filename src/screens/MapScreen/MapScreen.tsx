@@ -14,8 +14,7 @@ export default function MapScreen() {
   //FetchActivities
 
   const { data, error, isLoading } = useQuery("activities", () => fetchActivities());
-  console.log("datas: ", data);
-  console.log("data lengh:", data ? data.data?.length : 0);
+  console.log("data", data);
 
   const initialRegion = {
     latitude: 37.783333,
