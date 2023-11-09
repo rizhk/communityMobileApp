@@ -40,15 +40,14 @@ const container = {
 const inner = {
   backgroundColor: color.grey900,
   height: "85%",
+  width: "100%",
   padding: spacing.md,
   paddingTop: spacing.xl,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
   borderRadius: radius.xxl,
 } as ViewStyle;
 
 const closeBtn = {
+  alignSelf: "center",
   position: "absolute",
   top: -30,
 } as ViewStyle;

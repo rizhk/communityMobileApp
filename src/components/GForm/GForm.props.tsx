@@ -7,6 +7,7 @@ import { StyleProp, ViewStyle } from "react-native";
 export type GFieldProps = {
   valName: string;
   tx?: I18n.Scope;
+  text?: string;
 };
 
 export type GFormProps = {

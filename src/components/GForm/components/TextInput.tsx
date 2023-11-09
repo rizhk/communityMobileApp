@@ -18,6 +18,7 @@ export default function TextInput({
   containerStyle,
   valName,
   tx,
+  text,
   inputStyle = {},
   ...props
 }: TextInputProps & RnTextInputProps) {
@@ -25,7 +26,7 @@ export default function TextInput({
 
   return (
     <View style={[container, containerStyle]}>
-      <Text tx={tx} preset="inputLabel" />
+      <Text tx={tx} text={text} preset="inputLabel" />
       <RNTextInput
         onChangeText={(text) => setFieldValue(valName, text)}
         onBlur={handleBlur(valName)}

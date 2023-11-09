@@ -11,7 +11,7 @@ export function BottomStack() {
       initialRouteName="map"
       screenOptions={() => ({
         headerTintColor: color.white,
-        headerTitleStyle: { fontWeight: "bold", fontSize: text.xl },
+        headerTitleStyle: { fontWeight: "bold", fontSize: text.lg },
         tabBarStyle: { backgroundColor: color.backgroundLight, height: 80 },
       })}
     >
