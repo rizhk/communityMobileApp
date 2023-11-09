@@ -1,5 +1,6 @@
 export { default as AddUser } from "./addUser.svg";
-export { default as Arrow } from "./arrow.svg";
+export { default as LeftArrow } from "./leftArrow.svg";
+export { default as DownArrow } from "./downArrow.svg";
 export { default as BurgerMenu } from "./burgerMenu.svg";
 export { default as Chat } from "./chat.svg";
 export { default as Compas } from "./compas.svg";

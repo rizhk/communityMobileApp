@@ -1,4 +1,4 @@
-import { StyleProp, TouchableOpacityProps, ViewProps } from "react-native";
+import { StyleProp, TouchableOpacityProps, ViewProps, ViewStyle } from "react-native";
 import { ButtonPresets } from "./button.presets";
 import i18n from "i18n-js";
 import { TextPresets } from "components/Text/text.presets";
@@ -14,11 +14,12 @@ export interface ButtonProps extends TouchableOpacityProps {
   // icon props
   iconPosition?: "left" | "right";
   icon?: React.FunctionComponent<SVGAttributes<SVGElement>>;
+  iconScale?: number;
   preset?: ButtonPresets;
   rounded?: boolean;
   // size of rounded button
   size?: ButtonSizeTypes;
   // styles override
-  style?: StyleProp<ViewProps>;
+  style?: StyleProp<ViewStyle>;
   color?: ThemeColorType;
 }

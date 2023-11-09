@@ -3,12 +3,13 @@ import { ButtonProps } from "./button.props";
 import { Text } from "components/Text";
 import { presets } from "./button.presets";
 import { Icon } from "components/Icon";
-import { IconSizeTypes, buttonSize, color as themeColor } from "theme";
+import { IconSizeTypes, buttonSize, color as themeColor, icon as iconSize } from "theme";
 
 export function Button(props: ButtonProps) {
   const {
     icon,
     iconPosition = "right",
+    iconScale = 1.5,
     preset = "default",
     tx,
     txOptions,
@@ -16,7 +17,7 @@ export function Button(props: ButtonProps) {
     textPreset = "button",
     style,
     rounded = false,
-    size,
+    size = "md",
     color = "primary",
     ...rest
   } = props;
@@ -28,17 +29,18 @@ export function Button(props: ButtonProps) {
   const buttonStyle = [presets[preset](color), roundStyle, style];
   const textStyle = preset === "outlined" ? { color: themeColor[color] } : {};
 
+  function ButtonIcon() {
+    if (icon === undefined) return null;
+    return <Icon icon={icon} size={iconScale * iconSize[size]} preset="button" />;
+  }
+
   return (
     <TouchableOpacity style={buttonStyle} {...rest}>
-      {icon !== undefined && iconPosition === "left" && (
-        <Icon icon={icon} size={size as IconSizeTypes} preset="button" />
-      )}
+      {icon !== undefined && iconPosition === "left" && <ButtonIcon />}
       {(tx !== undefined || text !== undefined) && (
         <Text {...textProps} size={size} style={textStyle} />
       )}
-      {icon !== undefined && iconPosition === "right" && (
-        <Icon icon={icon} size={size as IconSizeTypes} preset="button" />
-      )}
+      {icon !== undefined && iconPosition === "right" && <ButtonIcon />}
     </TouchableOpacity>
   );
 }
