@@ -6,6 +6,7 @@ import { View, StyleSheet, Text } from "react-native";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { fetchActivities } from "api/api";
+import useSWR from "swr";
 
 export default function MapScreen() {
   //useState
@@ -14,7 +15,14 @@ export default function MapScreen() {
   //FetchActivities
 
   const { data, error, isLoading } = useQuery("activities", () => fetchActivities());
-  console.log("data", data);
+  const {
+    data: dataSwr,
+    error: errorSwr,
+    isLoading: isLoadingSwr,
+  } = useSWR("activities", () => fetchActivities());
+
+  // console.log("data", data);
+  console.log("dataSwr", dataSwr);
 
   const initialRegion = {
     latitude: 37.783333,
