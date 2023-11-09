@@ -49,3 +49,5 @@ export const spacing = {
   xxl: 40,
   xxxl: 48,
 };
+
+export type SpacingTypes = keyof typeof spacing;

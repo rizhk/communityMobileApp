@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { BottomNavProps, BottomNavPropsType } from "./BottomNavProps";
 import TabButton from "./TabButton.tsx";
-import { color, spacing, text } from "theme";
+import { color, text } from "theme";
 
 const Bottom = createBottomTabNavigator();
 

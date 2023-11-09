@@ -53,6 +53,8 @@ export const text = {
   xxl: 66, // 50pt
 };
 
+export type TextSizeTypes = keyof typeof text;
+
 export const letterSpacing = {
   sm: 2,
   md: 5,

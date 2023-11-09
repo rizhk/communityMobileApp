@@ -3,7 +3,7 @@ import { ButtonPresets } from "./button.presets";
 import i18n from "i18n-js";
 import { TextPresets } from "components/Text/text.presets";
 import { SVGAttributes } from "react";
-import { ButtonSizeTypes } from "theme";
+import { ButtonSizeTypes, ThemeColorType } from "theme";
 
 export interface ButtonProps extends TouchableOpacityProps {
   // text passed to Text component
@@ -20,4 +20,5 @@ export interface ButtonProps extends TouchableOpacityProps {
   size?: ButtonSizeTypes;
   // styles override
   style?: StyleProp<ViewProps>;
+  color?: ThemeColorType;
 }

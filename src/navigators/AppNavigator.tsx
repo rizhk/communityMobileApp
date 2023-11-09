@@ -10,7 +10,7 @@ export default function AppNavigator() {
     dark: true,
     colors: {
       primary: color.primary,
-      background: color.backgroundLight,
+      background: color.background,
       card: color.background,
       text: color.text,
       border: color.transparent,

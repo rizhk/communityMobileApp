@@ -1,5 +1,5 @@
 import { TextStyle } from "react-native";
-import { color, text, typography } from "theme";
+import { color, spacing, text, typography } from "theme";
 
 /**
  * All text will start off looking like this.
@@ -34,18 +34,15 @@ export const presets = {
     textAlign: "center",
     fontSize: text.sm,
     color: color.grey200,
-    padding: 15,
+    padding: spacing.md,
   } as TextStyle,
 
   tabHeaderActive: {
     textAlign: "center",
     fontSize: text.sm,
     color: color.white,
-    padding: 15,
+    padding: spacing.md,
   } as TextStyle,
 };
 
-/**
- * A list of preset names.
- */
 export type TextPresets = keyof typeof presets;

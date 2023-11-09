@@ -25,6 +25,7 @@ export const color = {
   primary: palette.pelopsRed,
   primaryLight: palette.pelopsLightRed,
   secondary: palette.pelopsOrange,
+  tertiary: palette.deepPurple,
   primaryDark: palette.pelopsDarkRed,
 
   line: palette.offWhite,

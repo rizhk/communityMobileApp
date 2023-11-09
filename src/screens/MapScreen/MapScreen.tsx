@@ -1,22 +1,11 @@
+import { Button } from "components/Button";
 import { Text } from "components/Text";
-import { View, ViewStyle } from "react-native";
-import { color, radius } from "theme";
+import { MainLayout } from "layout";
 
 export default function MapScreen() {
   return (
-    <View style={page}>
+    <MainLayout>
       <Text>MapScreen</Text>
-    </View>
+    </MainLayout>
   );
 }
-
-const page = {
-  backgroundColor: color.background,
-  height: "100%",
-  borderBottomLeftRadius: radius.xxl,
-  borderBottomRightRadius: radius.xxl,
-  shadowRadius: 5,
-  shadowColor: "#000",
-  shadowOpacity: 1,
-  overflow: "hidden",
-} as ViewStyle;

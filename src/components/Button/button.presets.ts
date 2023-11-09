@@ -1,30 +1,41 @@
-import { color, radius, spacing } from "theme";
+import { ViewStyle } from "react-native";
+import { ThemeColorType, color as themeColor, radius, spacing } from "theme";
 
-const BASE = {
-  borderRadius: radius.xxl,
-  padding: spacing.md,
-  backgroundColor: color.primary,
-  gap: spacing.sm,
-  marginVertical: spacing.xs,
+const BASE = (color: ThemeColorType) => {
+  return {
+    borderRadius: radius.xxl,
+    padding: spacing.md,
+    backgroundColor: themeColor[color],
+    gap: spacing.sm,
+    marginVertical: spacing.xs,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  };
 };
 
 export const presets = {
-  default: BASE,
-  outlined: {
-    ...BASE,
-    backgroundColor: color.transparent,
-    borderWidth: 2,
-    borderColor: color.primary,
+  default: (color: ThemeColorType) => {
+    return BASE(color) as ViewStyle;
   },
-  plainText: {
-    ...BASE,
-    backgroundColor: color.transparent,
-    borderWidth: 0,
-    borderColor: color.transparent,
-    marginVertical: 0,
-    padding: 0,
+  outlined: (color: ThemeColorType) => {
+    return {
+      ...BASE(color),
+      backgroundColor: themeColor.transparent,
+      borderWidth: 2,
+      borderColor: themeColor[color],
+    } as ViewStyle;
   },
-  //ADD NEW PRESETS HERE
+  plainText: (color: ThemeColorType) => {
+    return {
+      ...BASE(color),
+      backgroundColor: themeColor.transparent,
+      borderWidth: 0,
+      borderColor: themeColor.transparent,
+      marginVertical: 0,
+      padding: 0,
+    } as ViewStyle;
+  },
 };
 
 export type ButtonPresets = keyof typeof presets;

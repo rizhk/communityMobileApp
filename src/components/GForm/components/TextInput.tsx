@@ -45,7 +45,7 @@ const container = {
 } as ViewStyle;
 
 const input = {
-  backgroundColor: color.grey200,
+  backgroundColor: color.grey600,
   padding: spacing.sm,
   borderRadius: radius.md,
   color: color.white,

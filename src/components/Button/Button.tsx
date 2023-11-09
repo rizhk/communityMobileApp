@@ -3,40 +3,39 @@ import { ButtonProps } from "./button.props";
 import { Text } from "components/Text";
 import { presets } from "./button.presets";
 import { Icon } from "components/Icon";
-import { IconSizeTypes, buttonSize, color } from "theme";
+import { IconSizeTypes, buttonSize, color as themeColor } from "theme";
 
 export function Button(props: ButtonProps) {
   const {
-    icon = undefined,
+    icon,
     iconPosition = "right",
     preset = "default",
-    onPress,
-    tx = undefined,
-    txOptions = undefined,
-    text = undefined,
+    tx,
+    txOptions,
+    text,
     textPreset = "button",
     style,
     rounded = false,
-    size = "md",
+    size,
+    color = "primary",
+    ...rest
   } = props;
+
   const textProps = { tx: tx, txOptions: txOptions, text: text, preset: textPreset };
-  const styles = presets[preset];
-  const textStyle = preset === "outlined" ? { color: color.primary } : {};
+  const roundStyle = rounded
+    ? { width: buttonSize[size ?? "md"], height: buttonSize[size ?? "md"], borderRadius: 100 }
+    : {};
+  const buttonStyle = [presets[preset](color), roundStyle, style];
+  const textStyle = preset === "outlined" ? { color: themeColor[color] } : {};
 
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={[
-        { flexDirection: "row", justifyContent: "center", alignItems: "center" },
-        styles,
-        rounded ? { width: buttonSize[size], height: buttonSize[size], borderRadius: 100 } : {},
-        style,
-      ]}
-    >
+    <TouchableOpacity style={buttonStyle} {...rest}>
       {icon !== undefined && iconPosition === "left" && (
         <Icon icon={icon} size={size as IconSizeTypes} preset="button" />
       )}
-      {(tx !== undefined || text !== undefined) && <Text {...textProps} style={textStyle} />}
+      {(tx !== undefined || text !== undefined) && (
+        <Text {...textProps} size={size} style={textStyle} />
+      )}
       {icon !== undefined && iconPosition === "right" && (
         <Icon icon={icon} size={size as IconSizeTypes} preset="button" />
       )}
