@@ -7,9 +7,15 @@ import { Validations } from "constants/Validations";
 import { MainLayout } from "layout";
 import { useState } from "react";
 import { View } from "react-native";
+import { range } from "utils/rangeItem";
 import * as Yup from "yup";
 
-const initialValues = {
+type ValuesType = {
+  name: string;
+  nbParticipants: number;
+};
+
+const initialValues: ValuesType = {
   name: "",
   nbParticipants: 0,
 };
@@ -31,12 +37,19 @@ export default function ActivitiesScreen() {
         style={{ width: 150, alignSelf: "center" }}
       />
       <Modal visible={open} setVisible={setOpen}>
+        <Text text="test ∞" />
         <GForm
           initialValues={initialValues}
           validationSchema={validations}
-          onSubmit={(values) => console.log(values)}
+          onSubmit={(values: ValuesType) => console.log(values)}
         >
-          <GForm.TextInput valName="name" text="test" />
+          <GForm.TextInput valName="name" text="name" />
+          <GForm.NumberPicker
+            values={range(0, 10, 1, true)}
+            selectedIndex={0}
+            valName="nbParticipants"
+            text="nb participant"
+          />
           <GForm.SubmitButton text="test" />
         </GForm>
       </Modal>

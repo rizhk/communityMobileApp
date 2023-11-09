@@ -8,6 +8,7 @@ export type GFieldProps = {
   valName: string;
   tx?: I18n.Scope;
   text?: string;
+  containerStyle?: StyleProp<ViewStyle>;
 };
 
 export type GFormProps = {

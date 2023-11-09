@@ -38,7 +38,7 @@ const container = {
 } as ViewStyle;
 
 const inner = {
-  backgroundColor: color.grey900,
+  backgroundColor: color.black,
   height: "85%",
   width: "100%",
   padding: spacing.md,

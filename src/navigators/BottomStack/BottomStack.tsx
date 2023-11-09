@@ -12,7 +12,10 @@ export function BottomStack() {
       screenOptions={() => ({
         headerTintColor: color.white,
         headerTitleStyle: { fontWeight: "bold", fontSize: text.lg },
-        tabBarStyle: { backgroundColor: color.backgroundLight, height: 80 },
+        tabBarStyle: {
+          backgroundColor: color.backgroundLight,
+          height: 80,
+        },
       })}
     >
       {BottomNavProps.map((tab: BottomNavPropsType) => (

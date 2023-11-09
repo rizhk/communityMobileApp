@@ -1,13 +1,14 @@
 import { Formik, FormikConfig, FormikValues } from "formik";
 import { PropsWithChildren } from "react";
-import { View } from "react-native";
 
 import { GFormContext, GFormProps } from "./GForm.props";
 import SubmitButton from "./components/SubmitButton";
 import TextInput from "./components/TextInput";
+import NumberPicker from "./components/NumberPicker";
 
 GForm.SubmitButton = SubmitButton;
 GForm.TextInput = TextInput;
+GForm.NumberPicker = NumberPicker;
 
 export default function GForm<Values extends FormikValues = FormikValues>({
   submitTx = "common.submit",

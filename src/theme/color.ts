@@ -42,8 +42,9 @@ export const color = {
   grey900: palette.pelopsGrey900,
 
   white: palette.pelopsWhite,
-  black: palette.pelopsGrey900,
+  black: palette.black,
 
+  inputBackground: palette.pelopsGrey600,
   /**
    * Secondary information.
    */
