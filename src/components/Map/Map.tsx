@@ -11,6 +11,9 @@ export interface MapRegion {
   longitudeDelta: number;
 }
 
+//TODO: - Display activities on the map
+//TODO: - Display fields on the map
+
 interface MapProps {
   initialRegion: MapRegion;
   style?: any;
@@ -35,7 +38,7 @@ const MapComponent: React.FC<MapProps> = ({
 
   return (
     <>
-      <Text style={styles.textStyles}>Map Component</Text>
+      {/* <Text style={styles.textStyles}>Map Component</Text> */}
       <MapView style={styles.viewStyles} initialRegion={initialRegion} {...rest} />
     </>
   );

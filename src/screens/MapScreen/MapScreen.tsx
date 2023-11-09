@@ -6,6 +6,7 @@ export default function MapScreen() {
   //useState
 
   //useEffect / FetchData / useQuery
+  //FetchActivities
 
   const initialRegion = {
     latitude: 37.783333,

@@ -1,13 +1,14 @@
-import { textSize } from "theme";
+import { spacing, textSize } from "theme";
 
-const BASE = {
-  width: "100%",
-  height: "100%",
-};
+//Example how to extend presets with auto values
+export const textPresets = Object.fromEntries(
+  Object.entries(textSize).map(([key, fontSize]) => [key, { fontSize }])
+);
 
-// export const textPresets = {
+// export const textPresets2 = {
 //   xxs: {
 //     fontSize: textSize.xxs,
+//     paddingY: spacing.xs,
 //   },
 //   xs: {
 //     fontSize: textSize.xs,
@@ -29,10 +30,10 @@ const BASE = {
 //   },
 // };
 
-//Add a loop here to create the textPresets object
-export const textPresets = Object.fromEntries(
-  Object.entries(textSize).map(([key, fontSize]) => [key, { fontSize }])
-);
+const BASE = {
+  width: "100%",
+  height: "100%",
+};
 
 export const presets = {
   default: BASE,
