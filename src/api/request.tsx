@@ -13,6 +13,8 @@ export function getApiUrl(path = "") {
   return `${API_URL || "http://localhost:1337"}${path}`;
 }
 
+console.log(API_URL, "is API_URL");
+
 /**
  * Helper to make GET requests to Strapi API endpoints
  * @param {string} path Path of the API route
