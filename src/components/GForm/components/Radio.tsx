@@ -4,14 +4,13 @@ import { BaseField } from "./BaseField";
 import { useEffect, useState } from "react";
 import I18n from "i18n-js";
 import { Text } from "components/Text";
-import { styleDirection, styleJustifyContent } from "utils/formHelper";
+import { styleDirection } from "utils/formHelper";
 import { color, spacing } from "theme";
 
 export interface RadioProps extends GFieldProps {
   items: GFieldItemType<string, I18n.Scope>[];
   radioDirection?: "row" | "column";
   groupDirection?: "row" | "column";
-  //   groupJustify?: "center" | "left";
 }
 
 type RadioButtonProps = {
@@ -21,6 +20,7 @@ type RadioButtonProps = {
   label: I18n.Scope;
   direction?: "row" | "column";
 };
+
 function RadioButton(props: RadioButtonProps) {
   const { selected, setSelected, value, label, direction } = props;
   const containerDirection = styleDirection(direction);
@@ -48,10 +48,8 @@ export default function Radio(props: RadioProps) {
     items,
     radioDirection,
     groupDirection = "row",
-    // groupJustify,
   } = props;
   const { handleChange, values } = useGForm();
-  const [selected, setSelected] = useState(values[valName]);
   const containerPropStyle = [
     styleDirection(groupDirection),
     { justifyContent: groupDirection === "column" ? "flex-start" : "space-around" } as ViewStyle,

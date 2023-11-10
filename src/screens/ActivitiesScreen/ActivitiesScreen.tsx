@@ -28,6 +28,7 @@ const initialValues = {
   name: "",
   nbParticipants: INFINIT_PARTICIPANTS,
   sport: "kikou",
+  switch: true,
 };
 
 const validations = Yup.object().shape({
@@ -60,13 +61,7 @@ export default function ActivitiesScreen() {
             text="nb participant"
           />
           <GForm.Radio items={testVals} valName="kikou" text="Radio Field" />
-          <GForm.Radio items={testVals} valName="kikou" text="Radio Field" radioDirection="row" />
-          <GForm.Radio
-            items={testVals}
-            valName="kikou"
-            text="Radio Field"
-            groupDirection="column"
-          />
+          <GForm.Switch valName="switch" text="Switch" />
           <GForm.SubmitButton text="test" />
         </GForm>
       </Modal>

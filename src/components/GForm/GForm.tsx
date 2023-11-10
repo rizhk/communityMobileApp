@@ -6,11 +6,13 @@ import SubmitButton from "./components/SubmitButton";
 import TextInput from "./components/TextInput";
 import NumberPicker from "./components/NumberPicker";
 import Radio from "./components/Radio";
+import Switch from "./components/Switch";
 
 GForm.SubmitButton = SubmitButton;
 GForm.TextInput = TextInput;
 GForm.NumberPicker = NumberPicker;
 GForm.Radio = Radio;
+GForm.Switch = Switch;
 
 export default function GForm<Values extends FormikValues = FormikValues>({
   submitTx = "common.submit",

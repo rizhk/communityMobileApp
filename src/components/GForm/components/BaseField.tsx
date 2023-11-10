@@ -2,7 +2,6 @@ import { View, ViewProps, ViewStyle } from "react-native";
 import { useGForm } from "../GForm.props";
 import { Text } from "components/Text";
 import { spacing } from "theme";
-import { PropsWithChildren } from "react";
 import { TextProps } from "components/Text/text.props";
 
 function Label(props: TextProps) {
