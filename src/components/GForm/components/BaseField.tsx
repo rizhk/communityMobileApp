@@ -6,7 +6,7 @@ import { PropsWithChildren } from "react";
 import { TextProps } from "components/Text/text.props";
 
 function Label(props: TextProps) {
-  return <Text preset="inputLabel" {...props} />;
+  return <Text preset="fieldLabel" {...props} />;
 }
 
 function ErrorLabel({ valName, ...props }: TextProps & { valName: string }) {

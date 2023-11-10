@@ -1,0 +1,1 @@
+export const INFINIT_PARTICIPANTS = 99999;

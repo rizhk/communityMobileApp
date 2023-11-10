@@ -20,6 +20,7 @@ export function Modal(props: PropsWithChildren<ModalProps>) {
             size="md"
             onPress={() => setVisible(false)}
             rounded
+            iconScale={2.5}
             style={closeBtn}
           />
           {children}

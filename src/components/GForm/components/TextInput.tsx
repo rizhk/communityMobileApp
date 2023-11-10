@@ -5,8 +5,9 @@ import {
   TextInputProps as RnTextInputProps,
 } from "react-native";
 import { GFieldProps, useGForm } from "../GForm.props";
-import { color, radius, spacing } from "theme";
+import { color } from "theme";
 import { BaseField } from "./BaseField";
+import { inputFieldStyle } from "theme";
 
 export interface TextInputProps extends GFieldProps {
   inputStyle?: StyleProp<ViewStyle>;
@@ -33,8 +34,5 @@ export default function TextInput(props: TextInputProps & RnTextInputProps) {
 }
 
 const input = {
-  backgroundColor: color.inputBackground,
-  padding: spacing.sm,
-  borderRadius: radius.md,
-  color: color.white,
+  ...inputFieldStyle,
 } as ViewStyle;

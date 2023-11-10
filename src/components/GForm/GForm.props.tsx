@@ -4,6 +4,11 @@ import i18n from "i18n-js";
 import { SVGAttributes, createContext, useContext } from "react";
 import { StyleProp, ViewStyle } from "react-native";
 
+export type GFieldItemType<T1, T2> = {
+  value: T1;
+  label: T2;
+};
+
 export type GFieldProps = {
   valName: string;
   tx?: I18n.Scope;

@@ -3,13 +3,8 @@ import { presets } from "./text.presets";
 import { TextProps } from "./text.props";
 import { translate } from "../../i18n";
 import { color as themeColor, text as themeText } from "theme";
-/**
- * For your text displaying needs.
- *
- * This component is a HOC over the built-in React Native one.
- */
+
 export function Text(props: TextProps) {
-  // grab the props
   const {
     preset = "default",
     tx,
@@ -22,7 +17,6 @@ export function Text(props: TextProps) {
     ...rest
   } = props;
 
-  // figure out which content to use
   const i18nText = tx && translate(tx, txOptions);
   const content = i18nText || text || children;
 
