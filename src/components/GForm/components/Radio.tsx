@@ -1,7 +1,6 @@
 import { TouchableOpacity, View, ViewStyle } from "react-native";
 import { GFieldItemType, GFieldProps, useGForm } from "../GForm.props";
 import { BaseField } from "./BaseField";
-import { useEffect, useState } from "react";
 import I18n from "i18n-js";
 import { Text } from "components/Text";
 import { styleDirection } from "utils/formHelper";
@@ -11,6 +10,7 @@ export interface RadioProps extends GFieldProps {
   items: GFieldItemType<string, I18n.Scope>[];
   radioDirection?: "row" | "column";
   groupDirection?: "row" | "column";
+  radioWidth?: number;
 }
 
 type RadioButtonProps = {
@@ -19,20 +19,19 @@ type RadioButtonProps = {
   value: string;
   label: I18n.Scope;
   direction?: "row" | "column";
+  width?: number;
 };
 
 function RadioButton(props: RadioButtonProps) {
-  const { selected, setSelected, value, label, direction } = props;
-  const containerDirection = styleDirection(direction);
+  const { selected, setSelected, value, label, direction, width = 100 } = props;
   const buttonStyle = {
+    ...styleDirection(direction),
     justifyContent: direction === "row" ? "flex-start" : "center",
+    width: width,
   } as ViewStyle;
 
   return (
-    <TouchableOpacity
-      style={[containerDirection, buttonStyle, radioButton]}
-      onPress={() => setSelected(value)}
-    >
+    <TouchableOpacity style={[buttonStyle, radioButton]} onPress={() => setSelected(value)}>
       <View style={radioOuter}>{selected === value && <View style={radioInner} />}</View>
       <Text tx={label} preset="radioLabel" />
     </TouchableOpacity>
@@ -48,6 +47,7 @@ export default function Radio(props: RadioProps) {
     items,
     radioDirection,
     groupDirection = "row",
+    radioWidth,
   } = props;
   const { handleChange, values } = useGForm();
   const containerPropStyle = [
@@ -68,6 +68,7 @@ export default function Radio(props: RadioProps) {
             direction={
               radioDirection ? radioDirection : groupDirection === "column" ? "row" : "column"
             }
+            width={radioWidth}
             key={index}
           />
         ))}
