@@ -7,13 +7,14 @@ import { Validations } from "constants/Validations";
 import { INFINIT_PARTICIPANTS } from "constants/global";
 import { MainLayout } from "layout";
 import { useState } from "react";
-import { range } from "utils/formHelper";
+import { rangedItems } from "utils/formHelper";
 import * as Yup from "yup";
 
 type ValuesType = {
   name: string;
   nbParticipants: number;
   sport: string;
+  date: Date;
 };
 
 const testVals = [
@@ -29,6 +30,7 @@ const initialValues = {
   nbParticipants: INFINIT_PARTICIPANTS,
   sport: "kikou",
   switch: true,
+  date: new Date(),
 };
 
 const validations = Yup.object().shape({
@@ -41,6 +43,10 @@ export default function ActivitiesScreen() {
   return (
     <MainLayout>
       <Text>MapScreen</Text>
+      <Text>{new Date(2002, 1, 1).toDateString()}</Text>
+      <Text>{new Date(2002, 3, 1).toDateString()}</Text>
+      <Text>{new Date(2002, 1, 1).toDateString()}</Text>
+      <Text>{new Date(2002, 1, 1).toDateString()}</Text>
       <Button
         text="test"
         icon={PinOutline}
@@ -48,15 +54,16 @@ export default function ActivitiesScreen() {
         style={{ width: 150, alignSelf: "center" }}
       />
       <Modal visible={open} setVisible={setOpen}>
-        <Text text="test ∞" />
+        {/* <Text text="test ∞" /> */}
         <GForm
           initialValues={initialValues}
           validationSchema={validations}
           onSubmit={(values: ValuesType) => console.log(values)}
         >
           <GForm.TextInput valName="name" text="name" />
+          <GForm.DateTimePicker text="DatePicker" valName="date" />
           <GForm.NumberPicker
-            items={range(0, 10, 1, true)}
+            items={rangedItems(0, 10, 1, true)}
             valName="nbParticipants"
             text="nb participant"
           />

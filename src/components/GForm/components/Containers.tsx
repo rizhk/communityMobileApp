@@ -25,7 +25,7 @@ export function KeyboardAvoiding({
 
 export function Scroll({ children, ...props }: PropsWithChildren<ScrollViewProps>) {
   return (
-    <ScrollView showsVerticalScrollIndicator={false} {...props}>
+    <ScrollView nestedScrollEnabled={true} showsVerticalScrollIndicator={false} {...props}>
       {children}
     </ScrollView>
   );

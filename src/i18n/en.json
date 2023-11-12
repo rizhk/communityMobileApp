@@ -79,21 +79,7 @@
     "dateFilter2Weeks": "two weeks",
     "dateFilterMonth": "a month",
     "distFilterLabel": "By distance",
-    "showFields": "Show fields ?",
-    "months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "Jully",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ]
+    "showFields": "Show fields ?"
   },
   "notifScreen": {
     "newFriendRequest": "sent you a friend request",
@@ -392,5 +378,19 @@
     "type": "Type a message",
     "yesterday": "Yesterday",
     "today": "Today"
+  },
+  "month": {
+    "january": "January",
+    "february": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June",
+    "jully": "Jully",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December"
   }
 }

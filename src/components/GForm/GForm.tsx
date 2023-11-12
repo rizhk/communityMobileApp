@@ -7,12 +7,15 @@ import TextInput from "./components/TextInput";
 import NumberPicker from "./components/NumberPicker";
 import Radio from "./components/Radio";
 import Switch from "./components/Switch";
+import { DateTimePicker } from "./components/DateTimePicker/DateTimePicker";
+import { Scroll } from "./components/Containers";
 
 GForm.SubmitButton = SubmitButton;
 GForm.TextInput = TextInput;
 GForm.NumberPicker = NumberPicker;
 GForm.Radio = Radio;
 GForm.Switch = Switch;
+GForm.DateTimePicker = DateTimePicker;
 
 export default function GForm<Values extends FormikValues = FormikValues>({
   submitTx = "common.submit",
@@ -47,7 +50,7 @@ export default function GForm<Values extends FormikValues = FormikValues>({
             setFieldError,
           }}
         >
-          {children}
+          <Scroll>{children}</Scroll>
         </GFormContext.Provider>
       )}
     </Formik>

@@ -6,7 +6,7 @@ import { differenceInCalendarDays, format } from "date-fns";
 import { MessageItem } from "types/message";
 import { Avatar } from "components/Avatar";
 import { useAuth } from "context/AuthContext";
-import { formatDateFromToday } from "utils/formatDate";
+import { formatDateFromToday } from "utils/Date";
 
 export type MessageProps = {
   message: MessageItem;

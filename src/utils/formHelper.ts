@@ -1,11 +1,12 @@
 import { INFINIT_PARTICIPANTS } from "constants/global";
 import { ViewStyle } from "react-native";
 
-export function range(min: number, max: number, step = 1, hasUnlimited = false) {
+export function rangedItems(min: number, max: number, padding = 0, step = 1, hasUnlimited = false) {
   const length = Math.floor((max - min) / step) + 1 + (hasUnlimited ? 1 : 0);
   const arr = Array.from({ length }, (_, i) => {
-    const n = min + i * step;
-    return { value: n.toString(), label: n.toString() };
+    const val = (min + i * step).toString();
+    const label = val.length > padding ? val : val.padStart(padding, "0");
+    return { value: val, label: label };
   });
   if (hasUnlimited) arr.unshift({ value: INFINIT_PARTICIPANTS.toString(), label: " ∞ " });
   return arr;
