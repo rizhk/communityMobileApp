@@ -54,7 +54,6 @@ export default function ActivitiesScreen() {
         style={{ width: 150, alignSelf: "center" }}
       />
       <Modal visible={open} setVisible={setOpen}>
-        {/* <Text text="test ∞" /> */}
         <GForm
           initialValues={initialValues}
           validationSchema={validations}
@@ -62,14 +61,14 @@ export default function ActivitiesScreen() {
         >
           <GForm.TextInput valName="name" text="name" />
           <GForm.DateTimePicker text="DatePicker" valName="date" />
-          <GForm.NumberPicker
-            items={rangedItems(0, 10, 1, true)}
+          {/* <GForm.NumberPicker
+            items={rangedItems(0, 10, 0, 1, true)}
             valName="nbParticipants"
             text="nb participant"
           />
           <GForm.Radio items={testVals} valName="kikou" text="Radio Field" />
-          <GForm.Switch valName="switch" text="Switch" />
-          <GForm.SubmitButton text="test" />
+          <GForm.Switch valName="switch" text="Switch" /> */}
+          {/* <GForm.SubmitButton text="test" /> */}
         </GForm>
       </Modal>
     </MainLayout>

@@ -50,7 +50,7 @@ export default function GForm<Values extends FormikValues = FormikValues>({
             setFieldError,
           }}
         >
-          <Scroll>{children}</Scroll>
+          {children}
         </GFormContext.Provider>
       )}
     </Formik>

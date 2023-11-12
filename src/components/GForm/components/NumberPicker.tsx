@@ -1,7 +1,6 @@
 import { View, ViewStyle } from "react-native";
 import { GFieldItemType, GFieldProps, useGForm } from "../GForm.props";
 import { BaseField } from "./BaseField";
-// import WheelPicker from "react-native-wheely";
 import { color, text } from "theme";
 import { useMemo, useState } from "react";
 import { inputFieldStyle } from "theme";

@@ -68,7 +68,6 @@ export default function DatePicker(props: DatePickerProps) {
           <Wheel value={year} setValue={setYear} items={yearItems} itemWidth={80} />
         </View>
       </View>
-      <Button text="DatePicker Test" onPress={test} />
     </View>
   );
 }
