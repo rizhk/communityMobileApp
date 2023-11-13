@@ -1,13 +1,13 @@
 import { PinOutline } from "assets/svg";
 import { Button } from "components/Button";
 import GForm from "components/GForm/GForm";
+import { Scroll } from "components/GForm/components/containers/Scroll";
 import { Modal } from "components/Modal";
 import { Text } from "components/Text";
 import { Validations } from "constants/Validations";
 import { INFINIT_PARTICIPANTS } from "constants/global";
-import { MainLayout } from "layout";
+import { MainLayout } from "layouts";
 import { useState } from "react";
-import { rangedItems } from "utils/formHelper";
 import * as Yup from "yup";
 
 type ValuesType = {
@@ -59,16 +59,18 @@ export default function ActivitiesScreen() {
           validationSchema={validations}
           onSubmit={(values: ValuesType) => console.log(values)}
         >
-          <GForm.TextInput valName="name" text="name" />
-          <GForm.DateTimePicker text="DatePicker" valName="date" />
-          {/* <GForm.NumberPicker
-            items={rangedItems(0, 10, 0, 1, true)}
-            valName="nbParticipants"
-            text="nb participant"
-          />
-          <GForm.Radio items={testVals} valName="kikou" text="Radio Field" />
-          <GForm.Switch valName="switch" text="Switch" /> */}
-          {/* <GForm.SubmitButton text="test" /> */}
+          <Scroll>
+            <GForm.TextInput valName="name" text="name" />
+            <GForm.DateTimePicker text="DatePicker" valName="date" />
+            {/* <GForm.NumberPicker
+              items={rangedItems(0, 10, 0, 1, true)}
+              valName="nbParticipants"
+              text="nb participant"
+            /> */}
+            <GForm.Radio items={testVals} valName="kikou" text="Radio Field" />
+            <GForm.Switch valName="switch" text="Switch" />
+            <GForm.SubmitButton text="test" />
+          </Scroll>
         </GForm>
       </Modal>
     </MainLayout>

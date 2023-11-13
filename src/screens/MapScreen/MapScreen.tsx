@@ -1,5 +1,5 @@
 import { Text } from "components/Text";
-import { MainLayout } from "layout";
+import { MainLayout } from "layouts";
 
 export default function MapScreen() {
   return (

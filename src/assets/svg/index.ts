@@ -18,3 +18,5 @@ export { default as Search } from "./search.svg";
 export { default as Star } from "./star.svg";
 export { default as User } from "./user.svg";
 export { default as volley } from "./volley.svg";
+export { default as Edit } from "./edit.svg";
+export { default as Cross } from "./cross.svg";

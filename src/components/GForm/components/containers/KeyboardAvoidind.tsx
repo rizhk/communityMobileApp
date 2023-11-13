@@ -1,11 +1,5 @@
 import { PropsWithChildren } from "react";
-import {
-  KeyboardAvoidingView,
-  KeyboardAvoidingViewProps,
-  Platform,
-  ScrollViewProps,
-} from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import { KeyboardAvoidingView, KeyboardAvoidingViewProps, Platform } from "react-native";
 
 export function KeyboardAvoiding({
   children,
@@ -20,13 +14,5 @@ export function KeyboardAvoiding({
     >
       {children}
     </KeyboardAvoidingView>
-  );
-}
-
-export function Scroll({ children, ...props }: PropsWithChildren<ScrollViewProps>) {
-  return (
-    <ScrollView nestedScrollEnabled={true} showsVerticalScrollIndicator={false} {...props}>
-      {children}
-    </ScrollView>
   );
 }

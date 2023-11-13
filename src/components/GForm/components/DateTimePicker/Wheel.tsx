@@ -16,10 +16,20 @@ type WheelProps = {
   itemHeight?: number;
   itemWidth?: number;
   style?: ViewStyle;
+  scrollEnable?: boolean;
 };
 
 export default function Wheel(props: WheelProps) {
-  const { value, setValue, items, nbItems = 3, itemHeight = 30, itemWidth = 40, style } = props;
+  const {
+    value,
+    setValue,
+    items,
+    nbItems = 3,
+    itemHeight = 28,
+    itemWidth = 40,
+    style,
+    scrollEnable = false,
+  } = props;
   const [selectedIndex, setSelectedIndex] = useState(() => {
     const i = items.findIndex((item) => {
       return item.value == value;
@@ -34,6 +44,7 @@ export default function Wheel(props: WheelProps) {
     console.log("indexSelected : ", index);
     console.log(items[index].value);
   };
+
   return (
     <View
       style={{
@@ -53,6 +64,7 @@ export default function Wheel(props: WheelProps) {
         itemHeight={itemHeight}
         itemTextStyle={itemText}
         containerStyle={{ top: -nbItems * itemHeight, ...wheelStyle }}
+        flatListProps={{ scrollEnabled: scrollEnable }}
       />
     </View>
   );
@@ -82,5 +94,5 @@ const item = {
 const itemText = {
   color: "white",
   fontWeight: "900",
-  fontSize: 20,
+  fontSize: 18,
 } as TextStyle;

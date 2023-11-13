@@ -1,11 +1,12 @@
-import { Button } from "components/Button";
 import { getDate, getDaysInMonth, getMonth, getYear } from "date-fns";
 import { translate } from "i18n";
 import { useEffect, useMemo, useState } from "react";
-import { Text, View, ViewStyle } from "react-native";
-import { color, inputFieldStyle } from "theme";
+import { View, ViewStyle } from "react-native";
+import { color } from "theme";
 import Wheel from "./Wheel";
 import { rangedItems } from "utils/formHelper";
+import { inputContainer, outerContainer } from "./DateTimePicker.style";
+import { GrowingView } from "../containers/GrowingView";
 
 const months = [
   { value: "0", label: translate("month.january") },
@@ -25,15 +26,17 @@ const months = [
 type DatePickerProps = {
   date: Date;
   setDate: (date: any) => void;
+  enable?: boolean;
 };
 
 export default function DatePicker(props: DatePickerProps) {
-  const { date, setDate } = props;
+  const { date, setDate, enable = true } = props;
   const now = new Date();
   const [day, setDay] = useState<number>(getDate(date));
   const [month, setMonth] = useState<number>(getMonth(date));
   const [year, setYear] = useState<number>(getYear(date));
   const [key, setKey] = useState(0);
+
   const dayItems = useMemo(
     () => rangedItems(1, getDaysInMonth(new Date(year, month)), 2),
     [month, year]
@@ -57,36 +60,44 @@ export default function DatePicker(props: DatePickerProps) {
   }, [day, month, year]);
 
   return (
-    <View style={container}>
-      <Text style={{ color: "white" }}>{test()}</Text>
-      <View style={{ height: 90 }}>
+    <View style={outerContainer}>
+      <GrowingView open={enable} from={32} to={80} style={{ overflow: "hidden" }}>
         <View style={inputContainer}>
-          <Wheel value={day} setValue={setDay} items={dayItems} itemWidth={60} key={key} />
+          <Wheel
+            value={day}
+            setValue={setDay}
+            items={dayItems}
+            itemWidth={45}
+            key={key}
+            scrollEnable={enable}
+          />
           <View style={separator} />
-          <Wheel value={month} setValue={setMonth} items={months} itemWidth={150} />
+          <Wheel
+            value={month}
+            setValue={setMonth}
+            items={months}
+            itemWidth={150}
+            scrollEnable={enable}
+          />
           <View style={separator} />
-          <Wheel value={year} setValue={setYear} items={yearItems} itemWidth={80} />
+          <Wheel
+            value={year}
+            setValue={setYear}
+            items={yearItems}
+            itemWidth={80}
+            scrollEnable={enable}
+          />
         </View>
-      </View>
+      </GrowingView>
     </View>
   );
 }
 
-const container = {
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-} as ViewStyle;
-const inputContainer = {
-  ...inputFieldStyle,
-  flexDirection: "row",
-  borderRadius: 50,
-  height: 30,
-  paddingTop: 0,
-} as ViewStyle;
 const separator = {
+  borderRadius: 2,
   width: 2,
   height: 15,
   backgroundColor: color.grey300,
   top: 8,
+  marginHorizontal: 2,
 } as ViewStyle;

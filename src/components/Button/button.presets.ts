@@ -6,7 +6,7 @@ const BASE = (color: ThemeColorType) => {
     borderRadius: radius.xxl,
     padding: spacing.md,
     backgroundColor: themeColor[color],
-    gap: spacing.sm,
+    gap: spacing.xs,
     marginVertical: spacing.xs,
     flexDirection: "row",
     justifyContent: "center",
@@ -34,6 +34,14 @@ export const presets = {
       borderColor: themeColor.transparent,
       marginVertical: 0,
       padding: 0,
+    } as ViewStyle;
+  },
+  small: (color: ThemeColorType) => {
+    return {
+      ...BASE(color),
+      height: 30,
+      padding: 0,
+      paddingHorizontal: spacing.sm,
     } as ViewStyle;
   },
 };

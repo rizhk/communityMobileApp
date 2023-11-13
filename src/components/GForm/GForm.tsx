@@ -8,7 +8,7 @@ import NumberPicker from "./components/NumberPicker";
 import Radio from "./components/Radio";
 import Switch from "./components/Switch";
 import { DateTimePicker } from "./components/DateTimePicker/DateTimePicker";
-import { Scroll } from "./components/Containers";
+import { Scroll } from "./components/containers/Scroll";
 
 GForm.SubmitButton = SubmitButton;
 GForm.TextInput = TextInput;

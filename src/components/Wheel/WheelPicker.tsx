@@ -125,9 +125,9 @@ const WheelPicker: React.FC<Props> = ({
         ]}
       />
       <Animated.FlatList<string | null>
-        nestedScrollEnabled
         {...flatListProps}
         ref={flatListRef}
+        nestedScrollEnabled={true}
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], {

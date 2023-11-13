@@ -3,13 +3,13 @@ import { ButtonProps } from "./button.props";
 import { Text } from "components/Text";
 import { presets } from "./button.presets";
 import { Icon } from "components/Icon";
-import { IconSizeTypes, buttonSize, color as themeColor, icon as iconSize } from "theme";
+import { buttonSize, color as themeColor, icon as iconSize } from "theme";
 
 export function Button(props: ButtonProps) {
   const {
     icon,
     iconPosition = "right",
-    iconScale = 1.5,
+    iconScale = 1,
     preset = "default",
     tx,
     txOptions,
