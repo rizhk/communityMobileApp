@@ -15,6 +15,7 @@ export function Button(props: ButtonProps) {
     txOptions,
     text,
     textPreset = "button",
+    textStyle,
     style,
     rounded = false,
     size = "md",
@@ -27,7 +28,7 @@ export function Button(props: ButtonProps) {
     ? { width: buttonSize[size ?? "md"], height: buttonSize[size ?? "md"], borderRadius: 100 }
     : {};
   const buttonStyle = [presets[preset](color), roundStyle, style];
-  const textStyle = preset === "outlined" ? { color: themeColor[color] } : {};
+  const textStyles = [preset === "outlined" ? { color: themeColor[color] } : {}, textStyle];
 
   function ButtonIcon() {
     if (icon === undefined) return null;
@@ -38,7 +39,7 @@ export function Button(props: ButtonProps) {
     <TouchableOpacity style={buttonStyle} {...rest}>
       {icon !== undefined && iconPosition === "left" && <ButtonIcon />}
       {(tx !== undefined || text !== undefined) && (
-        <Text {...textProps} size={size} style={textStyle} />
+        <Text {...textProps} size={size} style={textStyles} />
       )}
       {icon !== undefined && iconPosition === "right" && <ButtonIcon />}
     </TouchableOpacity>

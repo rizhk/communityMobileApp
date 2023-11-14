@@ -11,7 +11,7 @@ function Label(props: TextProps) {
 function ErrorLabel({ valName, ...props }: TextProps & { valName: string }) {
   const { errors } = useGForm();
   if (errors[valName] === undefined) return null;
-  return <Text text={errors[valName]} preset="fieldError" {...props} />;
+  return <Text color="pink" text={errors[valName]} preset="fieldError" {...props} />;
 }
 
 BaseField.Label = Label;

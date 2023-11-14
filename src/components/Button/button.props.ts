@@ -1,4 +1,4 @@
-import { StyleProp, TouchableOpacityProps, ViewProps, ViewStyle } from "react-native";
+import { StyleProp, TextStyle, TouchableOpacityProps, ViewProps, ViewStyle } from "react-native";
 import { ButtonPresets } from "./button.presets";
 import i18n from "i18n-js";
 import { TextPresets } from "components/Text/text.presets";
@@ -11,6 +11,7 @@ export interface ButtonProps extends TouchableOpacityProps {
   txOptions?: i18n.TranslateOptions;
   text?: string;
   textPreset?: TextPresets;
+  textStyle?: TextStyle;
   // icon props
   iconPosition?: "left" | "right";
   icon?: React.FunctionComponent<SVGAttributes<SVGElement>>;
