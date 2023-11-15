@@ -1,5 +1,4 @@
 import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { LeftArrow, Pin } from "assets/svg";
 import { Button } from "components/Button";
 import { Icon } from "components/Icon";
@@ -18,7 +17,9 @@ export default function AuthLayout({ route, title, children }: PropsWithChildren
   const navigation = useNavigation();
   return (
     <ImageBackground style={image} source={require("assets/image/tile.png")}>
-      {route !== "login" && <Button icon={LeftArrow} onPress={() => navigation.goBack()} />}
+      {route !== "login" && (
+        <Button icon={LeftArrow} onPress={() => navigation.goBack()} style={goBack} />
+      )}
       <View style={container}>
         <Icon icon={Pin} preset="title" />
         <Text text="Pelops" style={titleStyle} />
@@ -28,6 +29,12 @@ export default function AuthLayout({ route, title, children }: PropsWithChildren
     </ImageBackground>
   );
 }
+
+const goBack = {
+  position: "absolute",
+  top: 50,
+  left: 50,
+} as ViewStyle;
 
 const container = {
   padding: spacing.md,
@@ -47,4 +54,5 @@ const image = {
   flex: 1,
   justifyContent: "center",
   alignItems: "center",
+  position: "relative",
 } as ImageStyle;

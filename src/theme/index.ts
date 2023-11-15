@@ -7,4 +7,3 @@ export * from "./metrix";
 export * from "./typography";
 export * from "./timing";
 export * from "./palette";
-export * from "./styles";

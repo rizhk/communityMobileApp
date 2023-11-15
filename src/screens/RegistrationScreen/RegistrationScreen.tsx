@@ -41,18 +41,12 @@ export default function RegistrationScreen(props: Props) {
         submitTx="loginScreen.loginButton"
       >
         <View style={{ paddingVertical: spacing.md }}>
-          <GForm.TextInput
-            valName="email"
-            placeholderTx="loginScreen.email"
-            inputStyle={inputStyle}
-            containerStyle={inputContainer}
-          />
+          <GForm.TextInput valName="email" placeholderTx="loginScreen.email" preset="thin" />
           <GForm.TextInput
             valName="password"
             placeholderTx="loginScreen.password"
             secureTextEntry
-            inputStyle={inputStyle}
-            containerStyle={inputContainer}
+            preset="thin"
           />
         </View>
         <GForm.SubmitButton tx="loginScreen.loginButton" style={submitButton} />
@@ -60,17 +54,6 @@ export default function RegistrationScreen(props: Props) {
     </AuthLayout>
   );
 }
-
-const inputContainer = {
-  paddingVertical: spacing.xxs,
-  paddingHorizontal: spacing.sm,
-} as ViewStyle;
-
-const inputStyle = {
-  height: 35,
-  backgroundColor: color.grey800,
-  width: "100%",
-} as ViewStyle;
 
 const submitButton = {
   alignSelf: "center",

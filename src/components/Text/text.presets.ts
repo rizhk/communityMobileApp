@@ -27,7 +27,7 @@ export const presets = {
     color: color.primary,
     textTransform: "uppercase",
   } as TextStyle,
-  fieldError: { ...BASE, fontSize: 9, color: color.error } as TextStyle,
+  fieldError: { ...BASE, fontSize: text.sm, color: color.error } as TextStyle,
 
   tabHeader: {
     textAlign: "center",

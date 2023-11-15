@@ -3,6 +3,7 @@ import { useGForm } from "../GForm.props";
 import { Text } from "components/Text";
 import { spacing } from "theme";
 import { TextProps } from "components/Text/text.props";
+import { useEffect } from "react";
 
 function Label(props: TextProps) {
   return <Text preset="fieldLabel" {...props} />;
@@ -10,8 +11,9 @@ function Label(props: TextProps) {
 
 function ErrorLabel({ valName, ...props }: TextProps & { valName: string }) {
   const { errors } = useGForm();
+  useEffect(() => console.log(errors), [errors]);
   if (errors[valName] === undefined) return null;
-  return <Text color="pink" text={errors[valName]} preset="fieldError" {...props} />;
+  return <Text text={errors[valName]} preset="fieldError" {...props} />;
 }
 
 BaseField.Label = Label;

@@ -31,8 +31,9 @@ const initialValues: ValuesType = {
 };
 
 const validations = Yup.object().shape({
-  name: Validations.text,
-  nbParticipants: Validations.number,
+  // name: Validations.emailRequired,
+  textInput: Validations.name,
+  numberPicker: Validations.number,
 });
 
 type CreateActivityProps = {
@@ -47,7 +48,9 @@ export default function CreateActivity(props: CreateActivityProps) {
       <GForm
         initialValues={initialValues}
         validationSchema={validations}
-        onSubmit={(values: ValuesType) => console.log(values)}
+        onSubmit={(values: ValuesType) => {
+          console.log(values);
+        }}
       >
         <Scroll>
           <GForm.TextInput text="TextInputFIeld" valName="textInput" />

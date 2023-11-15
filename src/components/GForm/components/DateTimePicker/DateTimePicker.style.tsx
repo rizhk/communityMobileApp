@@ -1,4 +1,4 @@
-import { inputFieldStyle } from "theme";
+import { inputFieldStyle } from "../styles";
 import { ViewStyle } from "react-native";
 
 export const outerContainer = {
