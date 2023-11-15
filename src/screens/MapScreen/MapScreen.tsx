@@ -8,17 +8,11 @@ import { fetchActivities } from "api/api";
 import useSWR from "swr";
 import { Text } from "components/Text";
 import { MainLayout } from "layouts";
+import { ActivityIndicator } from "react-native";
+import { Region } from "react-native-maps";
 
 export default function MapScreen() {
-  //useState
-
-  //useEffect / FetchData / useQuery
-  //FetchActivities
-
-  const { data, error, isLoading } = useSWR("activities", () => fetchActivities());
-
-  console.log("data", data);
-
+  //TODO: ADD setUserLocation
   const initialRegion = {
     latitude: 37.783333,
     longitude: -122.416667,
@@ -26,8 +20,17 @@ export default function MapScreen() {
     longitudeDelta: 0.0421,
   };
 
+  //useState
+
+  //useEffect
+
+  /////FETCH
+  const { data, error, isLoading } = useSWR("activities", () => fetchActivities());
+  // fetchFields();
+  // fetchTournaments();
+
   if (isLoading) {
-    return <Text>Loading...</Text>;
+    return <ActivityIndicator />;
   }
 
   if (error) {
@@ -36,7 +39,7 @@ export default function MapScreen() {
 
   return (
     <MainLayout>
-      <MapComponent initialRegion={initialRegion} />
+      <MapComponent activities={data} initialRegion={initialRegion} />
     </MainLayout>
   );
 }
