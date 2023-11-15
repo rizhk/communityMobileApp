@@ -45,7 +45,7 @@ export default function TextInput(props: TextInputProps & RnTextInputProps) {
           setFieldValue(valName, text);
           if (errors[valName]) validateField(valName);
         }}
-        onBlur={handleBlur(valName)}
+        // onBlur={handleBlur(valName)}
         value={values[valName]}
         placeholderTextColor={color.grey100}
         style={inputStyles}

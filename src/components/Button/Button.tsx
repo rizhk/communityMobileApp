@@ -38,9 +38,7 @@ export function Button(props: ButtonProps) {
   return (
     <TouchableOpacity style={buttonStyle} {...rest}>
       {icon !== undefined && iconPosition === "left" && <ButtonIcon />}
-      {(tx !== undefined || text !== undefined) && (
-        <Text {...textProps} size={size} style={textStyles} />
-      )}
+      {(tx !== undefined || text !== undefined) && <Text {...textProps} size={size} style={textStyles} />}
       {icon !== undefined && iconPosition === "right" && <ButtonIcon />}
     </TouchableOpacity>
   );

@@ -54,6 +54,7 @@
     "title": "Créer un compte",
     "firstName": "Prénom",
     "lastName": "Nom",
+    "confirmPassword": "Comfirmer votre mot de passe",
     "favoriteSport": "Choisis tes sports favoris",
     "biographyLabel": "Bio",
     "biographyPlaceholder": "Ecrivez quelque chose sur vous..."
