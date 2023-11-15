@@ -33,7 +33,8 @@
     "profil": "Profile",
     "chat": "Chat",
     "pelops": "Pelops",
-    "messages": "Messages"
+    "messages": "Messages",
+    "designSystem": "Design System"
   },
   "loginScreen": {
     "title": "Log in",

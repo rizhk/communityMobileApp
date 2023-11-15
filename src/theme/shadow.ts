@@ -30,14 +30,13 @@ export const shadow = {
     elevation: 8,
   },
   sm: {
-    shadowColor: color.white,
+    shadowColor: color.black,
     shadowOffset: {
       width: 0,
       height: 12,
     },
     shadowOpacity: 0.58,
     shadowRadius: 16.0,
-
     elevation: 24,
   },
   // ... Continue with md, lg, xl, xxl, xxxl

@@ -13,46 +13,28 @@ import { Region } from "react-native-maps";
 import { Text } from "components/Text";
 import { shadow, color } from "theme";
 
-export default function MapScreen() {
-  //TODO: ADD setUserLocation
-  const INITIAL_REGION = {
-    latitude: 46.806,
-    longitude: 7.153,
-    latitudeDelta: 0.1,
-    longitudeDelta: 0.1,
-  };
-  //useState
-
-  //useEffect
-
-  /////FETCH
-  const { data, error, isLoading } = useSWR("activities", () => fetchActivities());
-  // fetchFields();
-  // fetchTournaments();
-
-  if (isLoading) {
-    return <ActivityIndicator />;
-  }
-
-  if (error) {
-    return <Text>error...</Text>;
-  }
-
+export default function DesignSystemScreen() {
   return (
     <MainLayout>
-      <View style={shadowView}>
-        <Text>Test</Text>
-      </View>
-      <View style={[styles.card, styles.shadowProp]}>
-        <View>
-          <Text style={styles.heading}>React Native Box Shadow (Shadow Props)</Text>
+      <View style={bg}>
+        <View style={shadowView}>
+          <Text>Test</Text>
         </View>
-        <Text>Using the elevation style prop to apply box-shadow for iOS devices</Text>
+        <View style={[styles.card, styles.shadowProp]}>
+          <View>
+            <Text style={styles.heading}>React Native Box Shadow (Shadow Props)</Text>
+          </View>
+          <Text>Using the elevation style prop to apply box-shadow for iOS devices</Text>
+        </View>
       </View>
-      <MapComponent activities={data} initialRegion={INITIAL_REGION} />
     </MainLayout>
   );
 }
+
+const bg = {
+  backgroundColor: color.white,
+  height: "100%",
+} as ViewStyle;
 
 const styles2 = StyleSheet.create({
   map: {
