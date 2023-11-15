@@ -23,6 +23,10 @@ export const presets = {
       height: 35,
       backgroundColor: color.grey800,
       width: "100%",
+      shadowColor: color.black,
+      shadowOffset: { width: 5, height: 5 },
+      shadowOpacity: 0.8,
+      elevation: 5,
     } as ViewStyle,
   },
 };

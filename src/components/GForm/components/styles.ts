@@ -6,6 +6,6 @@ import { spacing } from "theme/spacing";
 export const inputFieldStyle = {
   backgroundColor: color.inputBackground,
   borderRadius: radius.md,
-  padding: spacing.sm,
+  paddingHorizontal: spacing.sm,
   color: color.white,
 } as ViewStyle;

@@ -6,7 +6,7 @@ import { Button } from "components/Button";
 import GForm from "components/GForm/GForm";
 import * as Yup from "yup";
 import { Validations } from "constants/Validations";
-import { color, spacing } from "theme";
+import { spacing } from "theme";
 import AuthLayout from "layouts/AuthLayout";
 import { AuthStrategy } from "types";
 
@@ -28,8 +28,7 @@ const initialValues: LoginValues = {
 };
 
 export function LoginScreen({ navigation, route }: Props) {
-  const { loginContext, setUser } = useAuth();
-
+  const { setUser } = useAuth();
   const signIn = () => {
     console.log("signIn");
   };
