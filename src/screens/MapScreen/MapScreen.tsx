@@ -15,15 +15,9 @@ export default function MapScreen() {
   //useEffect / FetchData / useQuery
   //FetchActivities
 
-  const { data, error, isLoading } = useQuery("activities", () => fetchActivities());
-  const {
-    data: dataSwr,
-    error: errorSwr,
-    isLoading: isLoadingSwr,
-  } = useSWR("activities", () => fetchActivities());
+  const { data, error, isLoading } = useSWR("activities", () => fetchActivities());
 
-  // console.log("data", data);
-  console.log("dataSwr", dataSwr);
+  console.log("data", data);
 
   const initialRegion = {
     latitude: 37.783333,
@@ -36,10 +30,13 @@ export default function MapScreen() {
     return <Text>Loading...</Text>;
   }
 
+  if (error) {
+    return <Text>error...</Text>;
+  }
+
   return (
     <MainLayout>
-      <Text>MapScreen</Text>
-      <MapComponent preset="small" style={styles.map} initialRegion={initialRegion} />
+      <MapComponent initialRegion={initialRegion} />
     </MainLayout>
   );
 }
