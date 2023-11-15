@@ -1,6 +1,7 @@
 import { Icon } from "components/Icon";
 import React from "react";
-import { Text, StyleSheet, View, TouchableOpacity, Platform } from "react-native";
+import { StyleSheet, View, TouchableOpacity, Platform } from "react-native";
+import { Text } from "components/Text";
 
 import { Image } from "react-native";
 import { color, radius, spacing, TextStyles, shadow } from "theme";
@@ -38,161 +39,53 @@ export function CustomMarker({
   const pinType = type ? `pin-${type}` : "pin-activity";
 
   return (
-    <TouchableOpacity
-      activeOpacity={0.95}
-      //   style={[
-      //     styles.pinWrapper,
-      //     {
-      //       width: 60,
-      //       height: 60,
-      //       marginBottom: Platform.OS === "ios" ? 60 : 0,
-      //       marginTop: Platform.OS === "android" ? 20 : 0,
-      //     },
-      //   ]}
-    >
-      {/* participants number */}
-      {/* {participantCount !== undefined && participantCount >= 0 && (
-        <View style={styles.pinContainer}>
-          <Text style={styles.pinNotifCount}>{participantCount}</Text>
-        </View>
-      )} */}
-
-      <View style={styles.pinContainer}>
-        <Text style={styles.pinNotifCount}>112</Text>
-      </View>
-
+    <TouchableOpacity activeOpacity={1} style={styles.pinWrapper}>
       <View style={styles.pinContainer}>
         <PinIcon />
         {image && <Image source={{ uri: image }} resizeMode="contain" style={styles.pinImage} />}
+        <View style={styles.notificationBubble}>
+          <Text style={styles.notificationText}>{participantCount}</Text>
+        </View>
       </View>
     </TouchableOpacity>
   );
 }
 
+// const pin;
+
 const styles = StyleSheet.create({
+  pinWrapper: {
+    paddingVertical: spacing.md,
+    paddingHorizontal: spacing.md,
+  },
   pinContainer: {
-    // ...shadow.sm,
-    // alignItems: "center",
-    // justifyContent: "center",
-  },
-  pinNotifContainer: {
-    backgroundColor: color.white,
-    position: "absolute" as const,
-    zIndex: 1,
-    elevation: 1,
-    right: "10%",
-    top: "-15%",
-    borderRadius: radius.full,
-  },
-  pinNotifCount: {
-    // ...TextStyles.weight.bold,
-    // ...TextStyles.h6,
-    color: color.text,
-    paddingHorizontal: 4,
+    alignItems: "center",
+    justifyContent: "center",
+    // position: "relative",
   },
   pinImage: {
     width: 30,
     height: 30,
-    top: 16,
-    left: 16,
     position: "absolute",
+    top: 16,
+    left: 14,
   },
-});
-
-const PinStyles = {
-  pin: {
-    front: {
-      position: "absolute" as const,
-      zIndex: 1,
-      elevation: 1,
-      Padding: 20,
-      top: "12%",
-      left: "25%",
-      width: "50%",
-      height: "50%",
-    },
-    back: {
-      position: "relative" as const,
-      zIndex: 0,
-      elevation: 0,
-      flex: 1,
-    },
-  },
-  text: {
-    date: {
-      marginTop: spacing.sm,
-      color: color.text,
-      textAlign: "center" as const,
-    },
-    time: {
-      ...TextStyles.weight.bold,
-      marginTop: spacing.xs,
-      color: color.text,
-      textAlign: "center" as const,
-    },
-  },
-};
-
-const styles2 = StyleSheet.create({
-  pinWrapper: {
-    position: "relative" as const,
-    zIndex: 0,
-    // marginTop: 20,
-    // backgroundColor: "red"
-    //paddingBottom: 20,
-  },
-  pinNotifContainer: {
+  notificationBubble: {
+    position: "absolute",
+    top: 8,
+    right: -12,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
     backgroundColor: color.white,
-    position: "absolute" as const,
-    zIndex: 1,
-    elevation: 1,
-    right: "10%",
-    top: "-15%",
-    borderRadius: radius.full,
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 1, // Make sure it overlays the pin
+    ...shadow.sm,
   },
-  pinNotifCount: {
-    ...TextStyles.weight.bold,
-    ...TextStyles.h6,
-    paddingHorizontal: 4,
-  },
-  pinEvent: {
-    position: "relative" as const,
-    width: 70,
-  },
-  pinEventFront: {
-    position: "absolute" as const,
-    zIndex: 1,
-    elevation: 1,
-    padding: 20,
-    top: "12%",
-    left: "25%",
-    width: "50%",
-    height: "50%",
-  },
-  pinEventFrontOpac: {
-    ...PinStyles.pin.front,
-    opacity: 0.5,
-  },
-  pinEventBack: {
-    ...PinStyles.pin.back,
-  },
-  pinEventBackOpac: {
-    ...PinStyles.pin.back,
-    opacity: 0.5,
-  },
-  pinEventBackground: {
-    width: "100%",
-    height: "100%",
-  },
-  pinEventImageActivity: {
-    width: "100%",
-    height: "100%",
-    // backgroundColor: "green",
-  },
-  pinEventDate: {
-    ...PinStyles.text.date,
-  },
-  pinEventTime: {
-    ...PinStyles.text.time,
+  notificationText: {
+    color: color.black,
+    fontSize: 12,
+    fontWeight: "bold",
   },
 });
