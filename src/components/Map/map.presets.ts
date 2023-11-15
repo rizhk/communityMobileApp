@@ -1,32 +1,32 @@
-import { spacing, textSize } from "theme";
+import { spacing, text } from "theme";
 
 //Example how to extend presets with auto values
 export const textPresets = Object.fromEntries(
-  Object.entries(textSize).map(([key, fontSize]) => [key, { fontSize }])
+  Object.entries(text).map(([key, fontSize]) => [key, { fontSize }])
 );
 
 // export const textPresets2 = {
 //   xxs: {
-//     fontSize: textSize.xxs,
+//     fontSize: text.xxs,
 //     paddingY: spacing.xs,
 //   },
 //   xs: {
-//     fontSize: textSize.xs,
+//     fontSize: text.xs,
 //   },
 //   sm: {
-//     fontSize: textSize.sm,
+//     fontSize: text.sm,
 //   },
 //   md: {
-//     fontSize: textSize.md,
+//     fontSize: text.md,
 //   },
 //   lg: {
-//     fontSize: textSize.lg,
+//     fontSize: text.lg,
 //   },
 //   xl: {
-//     fontSize: textSize.xl,
+//     fontSize: text.xl,
 //   },
 //   xxl: {
-//     fontSize: textSize.xxl,
+//     fontSize: text.xxl,
 //   },
 // };
 

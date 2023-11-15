@@ -83,11 +83,11 @@ export function ChatScreenTMP({ navigation }: Props) {
   return (
     <Tabs selected={chatType} handleSelect={handleTypeChange}>
       <Tabs.Group>
-        <Tabs.Header value="event" label={i18n.t("chat.eventMsg")} />
-        <Tabs.Header value="group" label={i18n.t("chat.groupMsg")} />
-        <Tabs.Header value="private" label={i18n.t("chat.privateMsg")} />
+        <Tabs.Header value="event" tx="chat.eventMsg" />
+        <Tabs.Header value="group" tx="chat.groupMsg" />
+        <Tabs.Header value="private" tx="chat.privateMsg" />
       </Tabs.Group>
-      <Tabs.Body sx={{ position: "relative" }}>
+      <Tabs.Body style={{ position: "relative" }}>
         {/* <SearchInput search={search} handleSearch={handleSearch} sx={chatStyles.search} /> */}
         <FlatList
           data={filteredChannels}

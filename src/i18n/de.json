@@ -80,21 +80,7 @@
     "dateFilter2Weeks": "zwei Wochen",
     "dateFilterMonth": "ein Monat",
     "distFilterLabel": "Nach Distanz",
-    "showFields": "Felder zeigen ?",
-    "months": [
-      "Januar",
-      "Februar",
-      "März",
-      "April",
-      "Mai",
-      "Juni",
-      "Juli",
-      "August",
-      "September",
-      "Oktober",
-      "November",
-      "Dezember"
-    ]
+    "showFields": "Felder zeigen ?"
   },
   "notifScreen": {
     "newFriendRequest": "hat Ihnen eine Freundschaftsanfrage geschickt",
@@ -376,5 +362,19 @@
     "p8": "Wir behalten uns das Recht vor, die Anwendung sowie die vorliegenden Nutzungsbedingungen jederzeit zu ändern oder auszusetzen. Wir empfehlen Ihnen, die CGU regelmäßig zu überprüfen, um sich über etwaige Änderungen zu informieren. Wenn Sie die Anwendung nach der Veröffentlichung von Änderungen der CGU weiterhin nutzen, bedeutet dies, dass Sie die neuen CGU akzeptieren.",
     "sub9": "9. Anwendbares Recht und zuständige Gerichtsbarkeit",
     "p9": "Diese CGU unterliegen dem Schweizer Recht. Alle Streitigkeiten, die sich aus der Nutzung der Anwendung ergeben, unterliegen der ausschließlichen Zuständigkeit der Schweizer Gerichte.ãWenn Sie Fragen oder Bedenken bezüglich dieser CGU haben, kontaktieren Sie uns bitte unter pelops.ch@gmail.com."
+  },
+  "month": {
+    "january": "Januar",
+    "february": "Februar",
+    "march": "März",
+    "april": "April",
+    "may": "Mai",
+    "june": "Juni",
+    "jully": "Juli",
+    "august": "August",
+    "september": "September",
+    "october": "Oktober",
+    "november": "November",
+    "december": "Dezember"
   }
 }

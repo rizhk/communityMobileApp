@@ -30,5 +30,5 @@ import i18n from "i18n-js";
 // }
 
 export function translate(key: i18n.Scope, options?: i18n.TranslateOptions) {
-  return key ? i18n.t(key, options) : null;
+  return key ? i18n.t(key, options) : `Missing key: ${key}`;
 }

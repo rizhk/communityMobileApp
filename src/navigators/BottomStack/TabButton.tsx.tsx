@@ -3,7 +3,7 @@ import { BottomNavPropsType } from "./BottomNavProps";
 import { Icon } from "components/Icon";
 import { TouchableOpacity, ViewStyle } from "react-native";
 import { View } from "react-native-animatable";
-import { buttonSize, color, icon, radius } from "theme";
+import { buttonSize, color } from "theme";
 import * as Animatable from "react-native-animatable";
 
 export interface TabButtonProps {
@@ -54,12 +54,12 @@ const button = {
 } as ViewStyle;
 
 const separator = {
-  backgroundColor: color.grey300,
-  height: 30,
+  backgroundColor: color.grey600,
+  height: 24,
   width: 2,
   position: "absolute",
   right: -1,
-  top: 12,
+  top: 20,
   borderRadius: 5,
 } as ViewStyle;
 

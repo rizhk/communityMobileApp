@@ -1,5 +1,8 @@
 export { default as AddUser } from "./addUser.svg";
-export { default as Arrow } from "./arrow.svg";
+export { default as LeftArrow } from "./arrowLeft.svg";
+export { default as RightArrow } from "./arrowRight.svg";
+export { default as UpArrow } from "./arrowUp.svg";
+export { default as DownArrow } from "./arrowDown.svg";
 export { default as BurgerMenu } from "./burgerMenu.svg";
 export { default as Chat } from "./chat.svg";
 export { default as Compas } from "./compas.svg";
@@ -15,3 +18,5 @@ export { default as Search } from "./search.svg";
 export { default as Star } from "./star.svg";
 export { default as User } from "./user.svg";
 export { default as volley } from "./volley.svg";
+export { default as Edit } from "./edit.svg";
+export { default as Cross } from "./cross.svg";

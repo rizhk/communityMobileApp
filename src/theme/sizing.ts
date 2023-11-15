@@ -44,7 +44,7 @@ export type ButtonSizeTypes = keyof typeof buttonSize;
 /**
  * Text size
  */
-export const textSize = {
+export const text = {
   xxs: 12, // 9pt
   xs: 14, // 10pt
   sm: 16, // 12pt
@@ -54,7 +54,7 @@ export const textSize = {
   xxl: 66, // 50pt
 };
 
-export type TextSizeTypes = keyof typeof textSize;
+export type TextSizeTypes = keyof typeof text;
 
 export const letterSpacing = {
   sm: 2,

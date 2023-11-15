@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { BottomNavProps, BottomNavPropsType } from "./BottomNavProps";
 import TabButton from "./TabButton.tsx";
-import { color, spacing, textSize } from "theme";
+import { color, text } from "theme";
 
 const Bottom = createBottomTabNavigator();
 
@@ -11,7 +11,11 @@ export function BottomStack() {
       initialRouteName="map"
       screenOptions={() => ({
         headerTintColor: color.white,
-        headerTitleStyle: { fontWeight: "bold", fontSize: textSize.xl },
+        headerTitleStyle: { fontWeight: "bold", fontSize: text.lg },
+        tabBarStyle: {
+          backgroundColor: color.backgroundLight,
+          height: 80,
+        },
       })}
     >
       {BottomNavProps.map((tab: BottomNavPropsType) => (

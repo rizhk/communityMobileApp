@@ -1,14 +1,21 @@
 import { Formik, FormikConfig, FormikValues } from "formik";
 import { PropsWithChildren } from "react";
-import { KeyboardAvoidingView, Platform, ScrollView, View } from "react-native";
-import { Button } from "components/Button";
 
 import { GFormContext, GFormProps } from "./GForm.props";
 import SubmitButton from "./components/SubmitButton";
 import TextInput from "./components/TextInput";
+import NumberPicker from "./components/NumberPicker";
+import Radio from "./components/Radio";
+import Switch from "./components/Switch";
+import { DateTimePicker } from "./components/DateTimePicker/DateTimePicker";
+import { Scroll } from "./components/containers/Scroll";
 
 GForm.SubmitButton = SubmitButton;
 GForm.TextInput = TextInput;
+GForm.NumberPicker = NumberPicker;
+GForm.Radio = Radio;
+GForm.Switch = Switch;
+GForm.DateTimePicker = DateTimePicker;
 
 export default function GForm<Values extends FormikValues = FormikValues>({
   submitTx = "common.submit",
@@ -31,22 +38,20 @@ export default function GForm<Values extends FormikValues = FormikValues>({
         validateField,
         setFieldError,
       }) => (
-        <View style={containerStyle}>
-          <GFormContext.Provider
-            value={{
-              handleChange,
-              handleSubmit,
-              handleBlur,
-              setFieldValue,
-              values,
-              errors,
-              validateField,
-              setFieldError,
-            }}
-          >
-            {children}
-          </GFormContext.Provider>
-        </View>
+        <GFormContext.Provider
+          value={{
+            handleChange,
+            handleSubmit,
+            handleBlur,
+            setFieldValue,
+            values,
+            errors,
+            validateField,
+            setFieldError,
+          }}
+        >
+          {children}
+        </GFormContext.Provider>
       )}
     </Formik>
   );

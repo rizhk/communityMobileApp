@@ -84,21 +84,7 @@
     "dateFilter2Weeks": "deux semaines",
     "dateFilterMonth": "un mois",
     "distFilterLabel": "Par distance",
-    "showFields": "Afficher les terrains ?",
-    "months": [
-      "Janvier",
-      "Février",
-      "Mars",
-      "Avril",
-      "Mai",
-      "Juin",
-      "Juillet",
-      "Août",
-      "Septembre",
-      "Octobre",
-      "Novembre",
-      "Décembre"
-    ]
+    "showFields": "Afficher les terrains ?"
   },
   "notifScreen": {
     "newFriendRequest": "Vous a envoyé une demande d'ami.e",
@@ -383,5 +369,19 @@
     "type": "Type a message",
     "yesterday": "Hier",
     "today": "Aujourd'hui"
+  },
+  "month": {
+    "january": "Janvier",
+    "february": "Février",
+    "march": "Mars",
+    "april": "Avril",
+    "may": "Mai",
+    "june": "Juin",
+    "jully": "Juillet",
+    "august": "Août",
+    "september": "Septembre",
+    "october": "Octobre",
+    "november": "Novembre",
+    "december": "Décembre"
   }
 }

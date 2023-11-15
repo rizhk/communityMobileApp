@@ -36,6 +36,7 @@
     "react-native-screens": "~3.22.0",
     "react-native-svg": "13.9.0",
     "react-query": "^3.39.3",
+    "react-native-wheely": "^0.6.0",
     "schema-to-yup": "^1.12.17",
     "socket.io-client": "^4.7.2",
     "swr": "^2.2.4",

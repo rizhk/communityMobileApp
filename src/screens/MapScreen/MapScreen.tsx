@@ -2,11 +2,12 @@ import { fetchAPIqs } from "api/request";
 import { Button } from "components/Button";
 import MapComponent from "components/Map/Map";
 import { useEffect, useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { useQuery } from "react-query";
-import axios from "axios";
 import { fetchActivities } from "api/api";
 import useSWR from "swr";
+import { Text } from "components/Text";
+import { MainLayout } from "layouts";
 
 export default function MapScreen() {
   //useState
@@ -36,10 +37,10 @@ export default function MapScreen() {
   }
 
   return (
-    <View>
-      {/* <Button size="md" color="primary" preset="outlined" text="Hello" /> */}
+    <MainLayout>
+      <Text>MapScreen</Text>
       <MapComponent preset="small" style={styles.map} initialRegion={initialRegion} />
-    </View>
+    </MainLayout>
   );
 }
 

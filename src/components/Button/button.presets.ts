@@ -1,39 +1,49 @@
-import { color, radius, spacing, textSize } from "theme";
+import { ViewStyle } from "react-native";
+import { ThemeColorType, color as themeColor, radius, spacing } from "theme";
 
-const BASE = {
-  buttonProps: {
+const BASE = (color: ThemeColorType) => {
+  return {
     borderRadius: radius.xxl,
     padding: spacing.md,
-    backgroundColor: color.primary,
-    gap: spacing.sm,
+    backgroundColor: themeColor[color],
+    gap: spacing.xs,
     marginVertical: spacing.xs,
-    "&:hover": {
-      padding: spacing.md,
-    },
-    // justifyContent: "center",
-    // alignItems: "center",
-    // flexDirection: "row",
-  },
-  textProps: {},
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  };
 };
 
 export const presets = {
-  default: BASE,
-  outlined: {
-    ...BASE,
-    backgroundColor: color.transparent,
-    borderWidth: 2,
-    borderColor: color.primary,
+  default: (color: ThemeColorType) => {
+    return BASE(color) as ViewStyle;
   },
-  plainText: {
-    ...BASE,
-    backgroundColor: color.transparent,
-    borderWidth: 0,
-    borderColor: color.transparent,
-    marginVertical: 0,
-    padding: 0,
+  outlined: (color: ThemeColorType) => {
+    return {
+      ...BASE(color),
+      backgroundColor: themeColor.transparent,
+      borderWidth: 2,
+      borderColor: themeColor[color],
+    } as ViewStyle;
   },
-  //ADD NEW PRESETS HERE
+  plainText: (color: ThemeColorType) => {
+    return {
+      ...BASE(color),
+      backgroundColor: themeColor.transparent,
+      borderWidth: 0,
+      borderColor: themeColor.transparent,
+      marginVertical: 0,
+      padding: 0,
+    } as ViewStyle;
+  },
+  small: (color: ThemeColorType) => {
+    return {
+      ...BASE(color),
+      height: 30,
+      padding: 0,
+      paddingHorizontal: spacing.sm,
+    } as ViewStyle;
+  },
 };
 
 export type ButtonPresets = keyof typeof presets;

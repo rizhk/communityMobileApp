@@ -4,7 +4,7 @@ import { cardStyles } from "./chat.styles";
 import { Avatar } from "components/Avatar";
 import * as Location from "expo-location";
 import { ChannelItem, MessageItem } from "types/message";
-import { formatDateFromToday } from "utils/formatDate";
+import { formatDateFromToday } from "utils/Date";
 // import { Icon } from "components/Icon";
 
 export interface ChannelCardProps extends TouchableOpacityProps {

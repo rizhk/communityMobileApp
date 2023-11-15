@@ -1,67 +1,27 @@
-import { View, Text, TouchableOpacity, ViewStyle } from "react-native";
-import React, { PropsWithChildren, useContext, useEffect } from "react";
-import { createContext } from "react";
+import { View, ViewStyle } from "react-native";
+import { PropsWithChildren, useState } from "react";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
-import { styles } from "./styles";
-
-type TabsProps = {
-  selected: any;
-  handleSelect: (val: any) => void;
-  sx?: ViewStyle;
-};
-
-type ContextProps = {
-  addValue: (val: any) => void;
-};
-
-const TabContext = createContext({} as TabsProps & ContextProps);
-
-type TabsHeaderProps = {
-  value: any;
-  label: string;
-  sx?: ViewStyle;
-};
-
-function TabsGroup({ children, sx = {} }: PropsWithChildren<{ sx?: ViewStyle }>) {
-  return <View style={{ ...styles.tabContainer, ...sx }}>{children}</View>;
-}
-
-function TabsHeader({ value, label, sx = {} }: TabsHeaderProps) {
-  const { selected, handleSelect } = useContext(TabContext);
-  const { addValue } = useContext(TabContext);
-
-  useEffect(() => {
-    addValue(value);
-  }, []);
-
-  return (
-    <TouchableOpacity
-      style={{ ...styles.tab, ...(selected === value ? styles.selectedTab : {}), ...sx }}
-      onPress={() => handleSelect(value)}
-    >
-      <Text style={{ ...styles.text, ...(value === selected ? styles.selectedText : {}) }}>
-        {label}
-      </Text>
-    </TouchableOpacity>
-  );
-}
-
-function TabsBody({ children, sx = {} }: PropsWithChildren<{ sx?: ViewStyle }>) {
-  return <View style={{ ...styles.body, ...sx }}>{children}</View>;
-}
+import { TabContext, TabsProps } from "./Tabs.props";
+import { color } from "theme";
+import { TabsBody } from "./components/Body";
+import { TabsGroup } from "./components/Group";
+import { TabsHeader } from "./components/Header";
 
 Tabs.Header = TabsHeader;
 Tabs.Group = TabsGroup;
 Tabs.Body = TabsBody;
 
-function Tabs({ children, selected, handleSelect, sx = {} }: PropsWithChildren<TabsProps>) {
-  const [values, setValues] = React.useState<any[]>([]);
+export function Tabs(props: PropsWithChildren<TabsProps>) {
+  const { children, selected, handleSelect, style } = props;
+  const [values, setValues] = useState<any[]>([]);
+
   const addValue = (val: any) => {
     setValues((prev) => {
       if (prev.includes(val)) return prev;
       return [...prev, val];
     });
   };
+
   function gestureHandler(event: any) {
     if (event.nativeEvent.state !== State.ACTIVE) return;
     const translationX = event.nativeEvent.translationX;
@@ -72,7 +32,7 @@ function Tabs({ children, selected, handleSelect, sx = {} }: PropsWithChildren<T
 
   return (
     <PanGestureHandler onHandlerStateChange={gestureHandler}>
-      <View style={{ ...styles.main, ...sx }}>
+      <View style={[main, style]}>
         <TabContext.Provider value={{ selected, handleSelect, addValue }}>
           {children}
         </TabContext.Provider>
@@ -81,4 +41,10 @@ function Tabs({ children, selected, handleSelect, sx = {} }: PropsWithChildren<T
   );
 }
 
-export default Tabs;
+const main = {
+  backgroundColor: color.background,
+  display: "flex",
+  flexDirection: "column",
+  height: "100%",
+  flexShrink: 1,
+} as ViewStyle;
