@@ -60,7 +60,7 @@ export const cloudinaryUrl = (
   return `https://res.cloudinary.com/duhdurytr/image/upload/${gravity}c_${resizeType},h_${height},w_${width},q_auto:best,f_auto/${publicId}`;
 };
 
-// //TODO: improve cloudinaryUrl
+// //TODO: improve cloudinaryUrl and replace by https://www.npmjs.com/package/@cloudinary/url-gen
 // export const cloudinaryUrl = (
 //   publicId = "duhdurytr",
 //   width: number,

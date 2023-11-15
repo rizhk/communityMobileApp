@@ -13,13 +13,12 @@ import { Region } from "react-native-maps";
 
 export default function MapScreen() {
   //TODO: ADD setUserLocation
-  const initialRegion = {
-    latitude: 37.783333,
-    longitude: -122.416667,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
+  const INITIAL_REGION = {
+    latitude: 46.806,
+    longitude: 7.153,
+    latitudeDelta: 0.1,
+    longitudeDelta: 0.1,
   };
-
   //useState
 
   //useEffect
@@ -39,7 +38,7 @@ export default function MapScreen() {
 
   return (
     <MainLayout>
-      <MapComponent activities={data} initialRegion={initialRegion} />
+      <MapComponent activities={data} initialRegion={INITIAL_REGION} />
     </MainLayout>
   );
 }

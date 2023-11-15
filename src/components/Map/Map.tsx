@@ -3,6 +3,8 @@ import { View, StyleSheet } from "react-native";
 import MapView, { Marker, Region } from "react-native-maps";
 import { MapPresets, presets } from "./map.presets";
 import { Text } from "components/Text";
+import { ActivitiesData } from "types/activity";
+import { CustomMarker } from "./components/Marker";
 
 export interface MapRegion {
   latitude: number;
@@ -18,7 +20,7 @@ interface MapProps {
   initialRegion: MapRegion;
   style?: any;
   preset?: MapPresets;
-  activities?: any;
+  activities?: ActivitiesData;
 }
 
 const MapComponent: React.FC<MapProps> = ({
@@ -30,17 +32,9 @@ const MapComponent: React.FC<MapProps> = ({
 }: MapProps) => {
   const styles = [presets[preset], style];
 
-  const [markerPosition, setMarkerPosition] = useState<Region | null>({
-    latitude: 0,
-    longitude: 0,
-    latitudeDelta: 0,
-    longitudeDelta: 0,
-  });
-
   return (
     <>
       <MapView style={styles} initialRegion={initialRegion} {...rest}>
-        {markerPosition && <Marker coordinate={markerPosition} />}
         {activities?.data &&
           activities.data.map((activity, index) => {
             const participantsCount = activity?.attributes?.participants?.data?.length;
@@ -62,12 +56,12 @@ const MapComponent: React.FC<MapProps> = ({
                 //     });
                 // }}
               >
-                {/* <CustomMarker
+                <CustomMarker
                   activityID={activity.id}
                   participantCount={participantsCount}
                   image={cloudinaryUrl}
                   type="activity"
-                /> */}
+                />
               </Marker>
             );
           })}
