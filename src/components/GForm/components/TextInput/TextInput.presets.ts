@@ -7,6 +7,7 @@ const BASE = {
   container: {} as ViewStyle,
   inputField: {
     ...inputFieldStyle,
+    padding: spacing.xs,
   } as ViewStyle,
 };
 

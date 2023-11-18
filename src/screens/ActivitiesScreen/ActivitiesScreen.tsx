@@ -26,46 +26,16 @@ export default function ActivitiesScreen({ navigation }: Props) {
           onPress={() => setOpen(true)}
           style={{ width: 150, alignSelf: "center" }}
         />
-        <Button
-          text="go To activity"
-          onPress={() => navigation.navigate("activity", { activityId: 0 })}
-        />
-        <Button
-          text="go To activity"
-          onPress={() => navigation.navigate("activity", { activityId: 0 })}
-        />
-        <Button
-          text="go To activity"
-          onPress={() => navigation.navigate("activity", { activityId: 0 })}
-        />
-        <Button
-          text="go To activity"
-          onPress={() => navigation.navigate("activity", { activityId: 0 })}
-        />
-        <Button
-          text="go To activity"
-          onPress={() => navigation.navigate("activity", { activityId: 0 })}
-        />
-        <Button
-          text="go To activity"
-          onPress={() => navigation.navigate("activity", { activityId: 0 })}
-        />
-        <Button
-          text="go To activity"
-          onPress={() => navigation.navigate("activity", { activityId: 0 })}
-        />
-        <Button
-          text="go To activity"
-          onPress={() => navigation.navigate("activity", { activityId: 0 })}
-        />
-        <Button
-          text="go To activity"
-          onPress={() => navigation.navigate("activity", { activityId: 0 })}
-        />
-        <Button
-          text="go To activity"
-          onPress={() => navigation.navigate("activity", { activityId: 0 })}
-        />
+        <Button text="go To activity" onPress={() => navigation.navigate("activity", { activityId: 0 })} />
+        <Button text="go To activity" onPress={() => navigation.navigate("activity", { activityId: 0 })} />
+        <Button text="go To activity" onPress={() => navigation.navigate("activity", { activityId: 0 })} />
+        <Button text="go To activity" onPress={() => navigation.navigate("activity", { activityId: 0 })} />
+        <Button text="go To activity" onPress={() => navigation.navigate("activity", { activityId: 0 })} />
+        <Button text="go To activity" onPress={() => navigation.navigate("activity", { activityId: 0 })} />
+        <Button text="go To activity" onPress={() => navigation.navigate("activity", { activityId: 0 })} />
+        <Button text="go To activity" onPress={() => navigation.navigate("activity", { activityId: 0 })} />
+        <Button text="go To activity" onPress={() => navigation.navigate("activity", { activityId: 0 })} />
+        <Button text="go To activity" onPress={() => navigation.navigate("activity", { activityId: 0 })} />
         <CreateActivity open={open} setOpen={setOpen} />
       </ScrollView>
     </MainLayout>

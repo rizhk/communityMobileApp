@@ -17,9 +17,5 @@ export default function AppNavigator() {
       notification: color.primary,
     },
   };
-  return (
-    <NavigationContainer theme={AppTheme}>
-      {user ? <MainStack /> : <AuthStack />}
-    </NavigationContainer>
-  );
+  return <NavigationContainer theme={AppTheme}>{user ? <MainStack /> : <AuthStack />}</NavigationContainer>;
 }

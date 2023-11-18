@@ -33,7 +33,7 @@ export default function Picker(props: PickerProps) {
           selectedIndex={index}
           options={options}
           onChange={onChange}
-          selectedIndicatorStyle={test}
+          selectedIndicatorStyle={container}
           itemTextStyle={item}
           visibleRest={0}
         />
@@ -48,7 +48,7 @@ const line = {
   alignItems: "center",
 } as ViewStyle;
 
-const test = {
+const container = {
   ...inputFieldStyle,
 } as ViewStyle;
 
