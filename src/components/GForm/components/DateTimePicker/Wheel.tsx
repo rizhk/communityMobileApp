@@ -53,8 +53,8 @@ export default function Wheel(props: WheelProps) {
         ...style,
       }}
     >
-      <AppWheel value={value} setValue={setValue} items={items} />
-      {/* <WheelPicker
+      {/* <AppWheel value={value} setValue={setValue} items={items} enableScroll={scrollEnable} /> */}
+      <WheelPicker
         selectedIndex={selectedIndex}
         options={options}
         onChange={onChange}
@@ -65,7 +65,7 @@ export default function Wheel(props: WheelProps) {
         itemTextStyle={itemText}
         containerStyle={{ top: -nbItems * itemHeight, ...wheelStyle }}
         flatListProps={{ scrollEnabled: scrollEnable }}
-      /> */}
+      />
     </View>
   );
 }
