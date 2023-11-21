@@ -2,7 +2,7 @@ import { Button } from "components/Button";
 import { Scroll, useScrollContext } from "components/GForm/components/containers/Scroll";
 import { Text } from "components/Text";
 import { MainLayout } from "layouts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FlatList, ScrollView } from "react-native";
 import AppWheel, { item } from "./AppWheel";
 import { View } from "react-native-animatable";
@@ -19,6 +19,10 @@ const items: item[] = [
 ];
 export default function MapScreen() {
   const [val, setVal] = useState("1");
+
+  useEffect(() => {
+    console.log("val", val);
+  }, [val]);
   return (
     <MainLayout>
       <Text>MapScreen</Text>

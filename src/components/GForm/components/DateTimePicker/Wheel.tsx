@@ -1,6 +1,7 @@
 import WheelPicker from "components/Wheel";
 import { useMemo, useState } from "react";
 import { View, ViewStyle, TextStyle } from "react-native";
+import AppWheel from "screens/MapScreen/AppWheel";
 // import WheelPicker from "react-native-wheely";
 
 type ItemType = {
@@ -52,7 +53,8 @@ export default function Wheel(props: WheelProps) {
         ...style,
       }}
     >
-      <WheelPicker
+      <AppWheel value={value} setValue={setValue} items={items} />
+      {/* <WheelPicker
         selectedIndex={selectedIndex}
         options={options}
         onChange={onChange}
@@ -63,7 +65,7 @@ export default function Wheel(props: WheelProps) {
         itemTextStyle={itemText}
         containerStyle={{ top: -nbItems * itemHeight, ...wheelStyle }}
         flatListProps={{ scrollEnabled: scrollEnable }}
-      />
+      /> */}
     </View>
   );
 }

@@ -1,6 +1,6 @@
 import { Text } from "components/Text";
 import { useRef, useState } from "react";
-import { ScrollView, TextStyle, View, ViewStyle } from "react-native";
+import { Platform, ScrollView, TextStyle, View, ViewStyle } from "react-native";
 import { color, radius, spacing } from "theme";
 
 export type item = { value: string; label: string };
@@ -9,18 +9,27 @@ export type AppWheelProps = {
   style?: ViewStyle;
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
+  itemSize?: number;
+  itemStyle?: TextStyle;
 };
 
-const itemSize = 24;
-export default function AppWheel({ items, style = {} }: AppWheelProps) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+export default function AppWheel({ items, value, setValue, style, itemSize = 28, itemStyle }: AppWheelProps) {
+  const [selectedIndex, setSelectedIndex] = useState(() => {
+    const i = items.findIndex((item) => {
+      return item.value == value;
+    });
+    if (i !== -1) return i;
+    return 0;
+  });
   const ref = useRef<ScrollView>(null);
+  const offsetPlatform = Platform.OS === "ios" ? 0 : -3;
+  const getIndex = (e: any) => Math.round(e.nativeEvent.contentOffset.y / itemSize);
 
   const handleScroll = (e: any) => {
-    console.log(e.nativeEvent.contentOffset.y);
-    const index = Math.round(e.nativeEvent.contentOffset.y / itemSize);
+    const index = getIndex(e);
+    if (index < 0 || index > items.length - 1) return;
     setSelectedIndex(index);
-    ref.current?.scrollTo({ y: index * itemSize, animated: true });
+    setValue(items[index].value);
   };
 
   return (
@@ -28,19 +37,29 @@ export default function AppWheel({ items, style = {} }: AppWheelProps) {
       <ScrollView
         style={scroll}
         showsVerticalScrollIndicator={false}
-        // onScroll={handleScroll}
+        onScroll={handleScroll}
         scrollEventThrottle={16}
         onScrollEndDrag={(e) => {
-          const index = Math.round(e.nativeEvent.contentOffset.y / itemSize);
-          setSelectedIndex(index);
           handleScroll(e);
-          ref.current?.scrollTo({ y: index * itemSize, animated: true });
+          ref.current?.scrollTo({ y: getIndex(e) * itemSize, animated: true });
         }}
         ref={ref}
       >
         <View style={inner}>
           {items.map((item: item, i) => (
-            <Text text={item.label} style={[itemStyle, i == selectedIndex ? selectedItem : {}]} />
+            <Text
+              text={item.label}
+              style={[
+                itemDefaultStyle,
+                itemStyle,
+                {
+                  transform: [{ translateY: offsetPlatform }],
+                  height: itemSize,
+                  fontSize: 18,
+                  opacity: (1 - Math.abs(i - selectedIndex) * 0.2) ** 2,
+                },
+              ]}
+            />
           ))}
         </View>
       </ScrollView>
@@ -57,29 +76,24 @@ const container = {
   justifyContent: "center",
   position: "relative",
   height: 34,
+  width: 80,
 } as ViewStyle;
 
 const scroll = {
   position: "absolute",
-  height: 90,
+  height: 150,
 } as ViewStyle;
 
 const inner = {
-  marginVertical: 34,
+  marginVertical: 63,
   justifyContent: "center",
   alignItems: "center",
-  //   gap: 4,
 } as ViewStyle;
 
-const selectedItem = {
-  fontWeight: "900",
+const itemDefaultStyle = {
   color: color.white,
-} as TextStyle;
-
-const itemStyle = {
   textAlign: "center",
   textAlignVertical: "center",
-  height: 24,
   fontWeight: "900",
-  color: color.grey600,
+  fontFamily: "",
 } as TextStyle;
