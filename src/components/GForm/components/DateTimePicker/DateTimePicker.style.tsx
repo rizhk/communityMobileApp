@@ -13,5 +13,4 @@ export const inputContainer = {
   flexDirection: "row",
   borderRadius: 50,
   height: 32,
-  paddingTop: 2,
 } as ViewStyle;

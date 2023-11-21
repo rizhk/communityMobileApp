@@ -11,9 +11,11 @@ export type AppWheelProps = {
   setValue: React.Dispatch<React.SetStateAction<string>>;
   itemSize?: number;
   itemStyle?: TextStyle;
+  enableScroll?: boolean;
 };
 
-export default function AppWheel({ items, value, setValue, style, itemSize = 28, itemStyle }: AppWheelProps) {
+export default function AppWheel(props: AppWheelProps) {
+  const { items, value, setValue, style, itemSize = 28, itemStyle, enableScroll = true } = props;
   const [selectedIndex, setSelectedIndex] = useState(() => {
     const i = items.findIndex((item) => {
       return item.value == value;
@@ -35,13 +37,17 @@ export default function AppWheel({ items, value, setValue, style, itemSize = 28,
   return (
     <View style={[container, style]}>
       <ScrollView
+        scrollEnabled={enableScroll}
         style={scroll}
         showsVerticalScrollIndicator={false}
         onScroll={handleScroll}
         scrollEventThrottle={16}
         onScrollEndDrag={(e) => {
           handleScroll(e);
-          ref.current?.scrollTo({ y: getIndex(e) * itemSize, animated: true });
+          let y = getIndex(e) * itemSize;
+          if (y > itemSize * (items.length - 1)) y = itemSize * (items.length - 1);
+          ref.current?.scrollTo({ y: y, animated: true });
+          console.log("y:", y);
         }}
         ref={ref}
       >
@@ -68,15 +74,10 @@ export default function AppWheel({ items, value, setValue, style, itemSize = 28,
 }
 
 const container = {
-  backgroundColor: color.inputBackground,
-  borderRadius: radius.md,
-  paddingHorizontal: spacing.sm,
-  color: color.white,
   alignItems: "center",
   justifyContent: "center",
   position: "relative",
-  height: 34,
-  width: 80,
+  transform: [{ translateY: 17 }],
 } as ViewStyle;
 
 const scroll = {
