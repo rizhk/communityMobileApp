@@ -40,7 +40,7 @@ export default function MapScreen() {
 
   return (
     <MainLayout>
-      <View style={shadowView}>
+      {/* <View style={shadowView}>
         <Text>Test</Text>
       </View>
       <View style={[styles.card, styles.shadowProp]}>
@@ -48,37 +48,37 @@ export default function MapScreen() {
           <Text style={styles.heading}>React Native Box Shadow (Shadow Props)</Text>
         </View>
         <Text>Using the elevation style prop to apply box-shadow for iOS devices</Text>
-      </View>
+      </View> */}
       <MapComponent activities={data} initialRegion={INITIAL_REGION} />
     </MainLayout>
   );
 }
 
-const styles2 = StyleSheet.create({
-  map: {
-    height: "50%",
-  },
-});
+// const styles2 = StyleSheet.create({
+//   map: {
+//     height: "50%",
+//   },
+// });
 
-const shadowView = {
-  height: 100,
-  width: 100,
-  margin: 10,
+// const shadowView = {
+//   height: 100,
+//   width: 100,
+//   margin: 10,
 
-  // backgroundColor: "white",
-  ...shadow.sm,
-} as ViewStyle;
+//   // backgroundColor: "white",
+//   ...shadow.sm,
+// } as ViewStyle;
 
-const styles = StyleSheet.create({
-  heading: {
-    fontSize: 18,
-    fontWeight: "600",
-    marginBottom: 13,
-  },
-  card: {
-    backgroundColor: "white",
-    margin: 8,
-    ...shadow.sm,
-  },
-  shadowProp: {},
-});
+// const styles = StyleSheet.create({
+//   heading: {
+//     fontSize: 18,
+//     fontWeight: "600",
+//     marginBottom: 13,
+//   },
+//   card: {
+//     backgroundColor: "white",
+//     margin: 8,
+//     ...shadow.sm,
+//   },
+//   shadowProp: {},
+// });

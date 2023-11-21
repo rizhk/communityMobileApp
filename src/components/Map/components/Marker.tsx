@@ -4,17 +4,17 @@ import { StyleSheet, View, TouchableOpacity, Platform } from "react-native";
 import { Text } from "components/Text";
 
 import { Image } from "react-native";
-import { color, radius, spacing, TextStyles, shadow } from "theme";
+import { color, radius, spacing, TextStyles, shadow, text } from "theme";
 
 import Svg, { Path } from "react-native-svg";
 
-const PinIcon = () => {
+const PinIcon = ({ bgColor = color.primary }) => {
   return (
     <Svg width="60.435" height="80.101" viewBox="0 0 60.435 80.101">
       <Path
         d="M-548.5-413.5a21.2,21.2,0,0,1,21.2-21.2,21.2,21.2,0,0,1,21.2,21.2,21.2,21.2,0,0,1-21.2,21.2h0v19.7C-540.131-384.143-549.187-397.011-548.5-413.5Z"
         transform="translate(557.54 443.7)"
-        fill="#ad3822"
+        fill={bgColor}
       />
     </Svg>
   );
@@ -80,12 +80,13 @@ const styles = StyleSheet.create({
     backgroundColor: color.white,
     justifyContent: "center",
     alignItems: "center",
-    zIndex: 1, // Make sure it overlays the pin
+    zIndex: 1,
     ...shadow.sm,
   },
   notificationText: {
     color: color.black,
-    fontSize: 12,
-    fontWeight: "bold",
+    fontSize: text.xxs,
+    // fontWeight: TextStyles.weight.bold.fontWeight,
+    ...TextStyles.weight.bold,
   },
 });
