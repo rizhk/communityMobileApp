@@ -9,21 +9,25 @@ import { Button } from "components/Button";
 import { useScrollContext } from "../containers/Scroll";
 import { Edit } from "assets/svg";
 
-export interface DateTimePickerProps extends GFieldProps {
+export interface DateTimePickerProps extends Omit<GFieldProps, "valName"> {
   type?: "date" | "datetime";
   interval?: boolean;
   minDate?: Date;
+  valNames: { start: string; end: string };
 }
 
 export function DateTimePicker(props: DateTimePickerProps) {
-  const { type, interval, minDate, valName, tx, text, containerStyle } = props;
+  const { type, interval, minDate, valNames, tx, text, containerStyle } = props;
   const { handleChange, setFieldValue, values } = useGForm();
-  const [date, setDate] = useState(values[valName]);
-  //   console.log("DateTimePicker : ", date);
+  const [date, setDate] = useState(values[valNames.start]);
+  const [startDate, setStartDate] = useState(values[valNames.start]);
+  const [endDate, setEndDate] = useState(values[valNames.end]);
   const { enable, setEnable } = useScrollContext();
+
   const toggleEnable = () => {
     setEnable(!enable);
   };
+
   return (
     <BaseField style={containerStyle}>
       <View style={header}>
@@ -37,16 +41,12 @@ export function DateTimePicker(props: DateTimePickerProps) {
           iconPosition="left"
         />
       </View>
-      <DatePicker
-        date={values[valName]}
-        setDate={(date) => setFieldValue(valName, date)}
-        enable={!enable}
-      />
+      <DatePicker date={date} setDate={(date) => setFieldValue(date, date)} enable={!enable} />
       <View style={timeLine}>
         <Text tx="timePicker.from" style={timeLabel} />
-        <TimePicker enable={!enable} />
+        <TimePicker date={startDate} setDate={setEndDate} enable={!enable} />
         <Text tx="timePicker.to" style={timeLabel} />
-        <TimePicker enable={!enable} />
+        <TimePicker date={endDate} setDate={setEndDate} enable={!enable} />
       </View>
     </BaseField>
   );

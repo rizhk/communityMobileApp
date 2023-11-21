@@ -1,6 +1,6 @@
 import WheelPicker from "components/Wheel";
 import { useMemo, useState } from "react";
-import { View, Text, ViewStyle, TextStyle } from "react-native";
+import { View, ViewStyle, TextStyle } from "react-native";
 // import WheelPicker from "react-native-wheely";
 
 type ItemType = {
@@ -41,8 +41,6 @@ export default function Wheel(props: WheelProps) {
   const onChange = (index: number) => {
     setSelectedIndex(index);
     setValue(items[index].value);
-    console.log("indexSelected : ", index);
-    console.log(items[index].value);
   };
 
   return (
