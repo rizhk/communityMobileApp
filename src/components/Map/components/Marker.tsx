@@ -21,7 +21,6 @@ const PinIcon = ({ bgColor = color.primary }) => {
 };
 
 interface CustomMarkerProps {
-  activityID: number;
   participantCount: number | undefined;
   image: ImageUpload;
   //   pinImage?: IconTypes | ImageRequireSource;
@@ -31,7 +30,7 @@ interface CustomMarkerProps {
 
 export function CustomMarker({
   type,
-  activityID,
+
   participantCount,
   image,
   pinImage,

@@ -1,4 +1,5 @@
-import { SportItem, ActivityItem } from "./activity";
+import { ActivityItem } from "./activity";
+import { SportItem } from "./sport";
 
 export interface UserItem {
   id: number;

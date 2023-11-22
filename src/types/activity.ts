@@ -1,3 +1,6 @@
+import { SportItem } from "./sport";
+import { UserItem } from "./user";
+
 export interface ActivityItem {
   id: number;
   name: string;
@@ -14,19 +17,6 @@ export interface ActivityItem {
   blockedUsers: { data: UserItem[] };
   sport: SportItem;
   channel: any;
-}
-export interface SportItem {
-  id: number;
-  name: string;
-  icon?: ImageItemStrapi;
-  data?: any;
-}
-
-export interface UserItem {
-  data?: {
-    id: number;
-  };
-  id?: number;
 }
 
 export interface FieldItem {
