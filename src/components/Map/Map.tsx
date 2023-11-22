@@ -39,8 +39,7 @@ const MapComponent: React.FC<MapProps> = ({
           activities.data.map((activity, index) => {
             const participantsCount = activity?.attributes?.participants?.data?.length;
 
-            const cloudinaryUrl =
-              activity?.attributes?.sport?.data?.attributes?.icon?.data?.attributes?.url;
+            const cloudinaryUrl = activity?.attributes?.sport?.data?.attributes?.icon?.data?.attributes?.url;
 
             return (
               <Marker
@@ -56,12 +55,7 @@ const MapComponent: React.FC<MapProps> = ({
                 //     });
                 // }}
               >
-                <CustomMarker
-                  activityID={activity.id}
-                  participantCount={participantsCount}
-                  image={cloudinaryUrl}
-                  type="activity"
-                />
+                <CustomMarker participantCount={participantsCount} image={cloudinaryUrl} type="activity" />
               </Marker>
             );
           })}
