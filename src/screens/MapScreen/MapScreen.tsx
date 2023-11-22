@@ -13,6 +13,34 @@ import { Region } from "react-native-maps";
 import { Text } from "components/Text";
 import { shadow, color } from "theme";
 
+import styled from "styled-components/native";
+
+const StyledView = styled.View`
+  background-color: papayawhip;
+`;
+
+const StyledText = styled.Text`
+  color: palevioletred;
+`;
+
+const RotatedBox = styled.View`
+  transform: rotate(45deg);
+  text-shadow-offset: 10px 5px;
+  font-variant: small-caps;
+  margin: 100px 0 0 0;
+  height: 100px;
+  background-color: ${color.white};
+`;
+
+const RotatedBox2 = {
+  transform: [{ rotate: "45deg" }],
+  textShadowOffset: { width: 10, height: 5 },
+  fontVariant: ["small-caps"],
+  marginTop: 100,
+  height: 100,
+  backgroundColor: color.white,
+} as ViewStyle;
+
 export default function MapScreen() {
   //TODO: ADD setUserLocation
   const INITIAL_REGION = {
@@ -40,6 +68,11 @@ export default function MapScreen() {
 
   return (
     <MainLayout>
+      <StyledView>
+        <StyledText>Hello World!</StyledText>
+      </StyledView>
+      <RotatedBox />
+      <View style={RotatedBox2} />
       {/* <View style={shadowView}>
         <Text>Test</Text>
       </View>
@@ -49,7 +82,7 @@ export default function MapScreen() {
         </View>
         <Text>Using the elevation style prop to apply box-shadow for iOS devices</Text>
       </View> */}
-      <MapComponent activities={data} initialRegion={INITIAL_REGION} />
+      {/* <MapComponent activities={data} initialRegion={INITIAL_REGION} /> */}
     </MainLayout>
   );
 }
