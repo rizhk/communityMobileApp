@@ -1,4 +1,4 @@
-import { inputFieldStyle } from "theme";
+import { inputFieldStyle } from "../styles";
 import { ViewStyle } from "react-native";
 
 export const outerContainer = {
@@ -13,5 +13,4 @@ export const inputContainer = {
   flexDirection: "row",
   borderRadius: 50,
   height: 32,
-  paddingTop: 2,
 } as ViewStyle;

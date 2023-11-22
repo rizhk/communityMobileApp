@@ -1,4 +1,4 @@
-import { Switch as RNSwitch, Text, ViewStyle } from "react-native";
+import { Switch as RNSwitch, ViewStyle } from "react-native";
 import { GFieldProps, useGForm } from "../GForm.props";
 import { BaseField } from "./BaseField";
 import { color } from "theme";

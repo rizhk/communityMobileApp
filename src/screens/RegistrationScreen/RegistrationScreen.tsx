@@ -1,9 +1,79 @@
-import { Text, View } from "react-native";
+import { View, ViewStyle } from "react-native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { useAuth } from "context/AuthContext";
+import { AuthNavigatorParamList } from "navigators/AuthStack/AuthStack";
+import { Button } from "components/Button";
+import GForm from "components/GForm/GForm";
+import * as Yup from "yup";
+import { Validations } from "constants/Validations";
+import { spacing } from "theme";
+import AuthLayout from "layouts/AuthLayout";
 
-export default function RegistrationScreen() {
+type Props = NativeStackScreenProps<AuthNavigatorParamList, "registration">;
+
+type RegistrationValues = {
+  email: string;
+  name: string;
+  lastName: string;
+  password: string;
+  confirmPassword: string;
+};
+
+const validationSchema = Yup.object({
+  email: Validations.emailRequired,
+  name: Validations.name,
+  lastName: Validations.name,
+  password: Validations.password,
+  confirmPassword: Validations.confirmPassword,
+});
+
+const initialValues: RegistrationValues = {
+  email: "",
+  name: "",
+  lastName: "",
+  password: "",
+  confirmPassword: "",
+};
+
+export default function RegistrationScreen(props: Props) {
+  const handleSubmit = (values: RegistrationValues) => {};
+
   return (
-    <View>
-      <Text>RegistrationScreen</Text>
-    </View>
+    <AuthLayout title="registrationScreen.title">
+      <GForm
+        validationSchema={validationSchema}
+        initialValues={initialValues}
+        onSubmit={(values) => {
+          handleSubmit(values);
+        }}
+        submitTx="loginScreen.loginButton"
+      >
+        <View style={{ paddingVertical: spacing.md }}>
+          <GForm.TextInput valName="name" placeholderTx="registrationScreen.firstName" preset="thin" />
+          <GForm.TextInput valName="lastName" placeholderTx="registrationScreen.lastName" preset="thin" />
+          <GForm.TextInput valName="email" placeholderTx="loginScreen.email" preset="thin" />
+          <GForm.TextInput
+            valName="password"
+            placeholderTx="loginScreen.password"
+            secureTextEntry
+            preset="thin"
+          />
+          <GForm.TextInput
+            valName="confirmPassword"
+            placeholderTx="registrationScreen.confirmPassword"
+            secureTextEntry
+            preset="thin"
+          />
+        </View>
+        <GForm.SubmitButton tx="loginScreen.loginButton" style={submitButton} />
+      </GForm>
+    </AuthLayout>
   );
 }
+
+const submitButton = {
+  alignSelf: "center",
+  height: 45,
+  paddingHorizontal: spacing.lg,
+  paddingVertical: spacing.sm,
+} as ViewStyle;

@@ -1,7 +1,7 @@
-import { translate } from "i18n-js";
 import { NavType } from "navigators/NavType";
 import { Region } from "react-native-maps";
 import { MessageScreen } from "screens";
+import ActivityScreen from "screens/ActivityScreen/ActivityScreen";
 import { ActivityItemStrapi, FieldItemStrapi } from "types/activity";
 import { ChannelUserItem } from "types/message";
 
@@ -10,9 +10,14 @@ export interface MainNavPropsType extends NavType<MainStackParamList> {
 }
 
 export type MainStackParamList = {
+  map: undefined;
+  activities: undefined;
+  chat: undefined;
+  profile: undefined;
   message: { channelUser: ChannelUserItem };
   chats: undefined;
-  //   activity: { activity: ActivityItemStrapi };
+  activity: { activityId: number };
+  // activity: { activity: ActivityItemStrapi };
   //   activities: undefined;
   //   "create-activity": { coordinate: Region | null; fieldId: number | null };
   //   "edit-profile": any;
@@ -29,6 +34,11 @@ export type MainStackParamList = {
 };
 
 export const MainNavProps: MainNavPropsType[] = [
+  {
+    id: 1,
+    route: "activity",
+    component: ActivityScreen,
+  },
   {
     id: 1,
     route: "message",

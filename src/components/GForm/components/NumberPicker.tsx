@@ -3,7 +3,7 @@ import { GFieldItemType, GFieldProps, useGForm } from "../GForm.props";
 import { BaseField } from "./BaseField";
 import { color, text } from "theme";
 import { useMemo, useState } from "react";
-import { inputFieldStyle } from "theme";
+import { inputFieldStyle } from "./styles";
 import WheelPicker from "components/Wheel";
 
 export interface PickerProps extends GFieldProps {

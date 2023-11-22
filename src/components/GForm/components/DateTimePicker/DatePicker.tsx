@@ -37,10 +37,7 @@ export default function DatePicker(props: DatePickerProps) {
   const [year, setYear] = useState<number>(getYear(date));
   const [key, setKey] = useState(0);
 
-  const dayItems = useMemo(
-    () => rangedItems(1, getDaysInMonth(new Date(year, month)), 2),
-    [month, year]
-  );
+  const dayItems = useMemo(() => rangedItems(1, getDaysInMonth(new Date(year, month)), 2), [month, year]);
   const yearItems = rangedItems(getYear(now), getYear(now) + 3);
   const test = () => {
     const testDate = `Test: ${day} / ${month} / ${year}`;
@@ -55,7 +52,7 @@ export default function DatePicker(props: DatePickerProps) {
   }, [month, year]);
 
   useEffect(() => {
-    console.log("TEEEEEST  ", year, month, day);
+    // console.log("TEEEEEST  ", year, month, day);
     setDate(new Date(year, month, Number(day) + 1));
   }, [day, month, year]);
 
@@ -72,21 +69,9 @@ export default function DatePicker(props: DatePickerProps) {
             scrollEnable={enable}
           />
           <View style={separator} />
-          <Wheel
-            value={month}
-            setValue={setMonth}
-            items={months}
-            itemWidth={150}
-            scrollEnable={enable}
-          />
+          <Wheel value={month} setValue={setMonth} items={months} itemWidth={150} scrollEnable={enable} />
           <View style={separator} />
-          <Wheel
-            value={year}
-            setValue={setYear}
-            items={yearItems}
-            itemWidth={80}
-            scrollEnable={enable}
-          />
+          <Wheel value={year} setValue={setYear} items={yearItems} itemWidth={80} scrollEnable={enable} />
         </View>
       </GrowingView>
     </View>

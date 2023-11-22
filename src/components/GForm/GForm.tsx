@@ -3,7 +3,7 @@ import { PropsWithChildren } from "react";
 
 import { GFormContext, GFormProps } from "./GForm.props";
 import SubmitButton from "./components/SubmitButton";
-import TextInput from "./components/TextInput";
+import TextInput from "./components/TextInput/TextInput";
 import NumberPicker from "./components/NumberPicker";
 import Radio from "./components/Radio";
 import Switch from "./components/Switch";

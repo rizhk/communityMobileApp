@@ -37,12 +37,12 @@
     "designSystem": "Design System"
   },
   "loginScreen": {
-    "title": "Connection",
+    "title": "Se Connecter",
     "email": "E-mail",
     "password": "Mot de passe",
     "loginButton": "Connexion",
-    "signIn": "S'inscrire",
-    "forgotPassword": "Mot de passe oublié ?",
+    "signIn": "Je n'ai pas encore de compte",
+    "forgotPassword": "Mot de passe oublié",
     "forgotPasswordButton": "Mot de passe oublié",
     "enterEmail": "Saisissez votre adresse e-mail",
     "follow": "Suivre",
@@ -55,6 +55,7 @@
     "title": "Créer un compte",
     "firstName": "Prénom",
     "lastName": "Nom",
+    "confirmPassword": "Comfirmer votre mot de passe",
     "favoriteSport": "Choisis tes sports favoris",
     "biographyLabel": "Bio",
     "biographyPlaceholder": "Ecrivez quelque chose sur vous..."
