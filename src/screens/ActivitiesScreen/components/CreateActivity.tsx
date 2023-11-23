@@ -11,7 +11,8 @@ type ValuesType = {
   numberPicker: number;
   radioInput: string;
   switch: boolean;
-  datetimePicker: Date;
+  dateStart: Date;
+  dateEnd: Date;
 };
 
 const testVals = [
@@ -27,7 +28,8 @@ const initialValues: ValuesType = {
   numberPicker: INFINIT_PARTICIPANTS,
   radioInput: "kikou",
   switch: true,
-  datetimePicker: new Date(),
+  dateStart: new Date(2022, 2, 22),
+  dateEnd: new Date(),
 };
 
 const validations = Yup.object().shape({
@@ -54,7 +56,7 @@ export default function CreateActivity(props: CreateActivityProps) {
       >
         <Scroll>
           <GForm.TextInput text="TextInputFIeld" valName="textInput" />
-          <GForm.DateTimePicker text="DateTimePicker" valName="datetimePicker" />
+          <GForm.DateTimePicker text="DateTimePicker" valNames={{ start: "dateStart", end: "dateEnd" }} />
           <GForm.NumberPicker
             items={rangedItems(0, 10, 0, 1, true)}
             text="numberPicker"

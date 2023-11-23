@@ -44,7 +44,8 @@ const inner = {
   width: "100%",
   padding: spacing.md,
   paddingTop: spacing.xl,
-  borderRadius: radius.xxl,
+  // borderRadius: radius.xxl,
+  borderTopEndRadius: radius.xxl,
 } as ViewStyle;
 
 const closeBtn = {
