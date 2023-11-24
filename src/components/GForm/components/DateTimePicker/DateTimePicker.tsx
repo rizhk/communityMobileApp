@@ -2,13 +2,11 @@ import { GFieldProps, useGForm } from "components/GForm/GForm.props";
 import { TextStyle, View, ViewStyle } from "react-native";
 import { BaseField } from "../BaseField";
 import DatePicker from "./DatePicker";
-import { useState } from "react";
 import { Text } from "components/Text";
 import TimePicker from "./TimePicker";
 import { Button } from "components/Button";
 import { useScrollContext } from "../containers/Scroll";
 import { Edit } from "assets/svg";
-import { format, getDate } from "date-fns";
 
 export interface DateTimePickerProps extends Omit<GFieldProps, "valName"> {
   type?: "date" | "datetime";
@@ -19,19 +17,18 @@ export interface DateTimePickerProps extends Omit<GFieldProps, "valName"> {
 
 export function DateTimePicker(props: DateTimePickerProps) {
   const { type, interval, minDate, valNames, tx, text, containerStyle } = props;
-  const { handleChange, setFieldValue, values } = useGForm();
+  const { setFieldValue, values } = useGForm();
   const { enable, setEnable } = useScrollContext();
 
   const toggleEnable = () => {
     setEnable(!enable);
   };
-  const now = new Date();
+
   return (
     <BaseField style={containerStyle}>
-      <Text>Today: {values[valNames.start].toString()}</Text>
-      <Text>day: {getDate(values[valNames.start])}</Text>
-      <Text>{values[valNames.start].toString()}</Text>
-      <Text>{format(values[valNames.start], "dd/MM/yyyy")}</Text>
+      <Text>Start: {values[valNames.start].toString()}</Text>
+      <Text>end: {values[valNames.end].toString()}</Text>
+
       <View style={header}>
         <BaseField.Label tx={tx} text={text} />
         <Button
@@ -50,9 +47,17 @@ export function DateTimePicker(props: DateTimePickerProps) {
       />
       <View style={timeLine}>
         <Text tx="timePicker.from" style={timeLabel} />
-        <TimePicker enable={!enable} />
+        <TimePicker
+          date={values[valNames.start]}
+          setDate={(date) => setFieldValue(valNames.start, date)}
+          enable={!enable}
+        />
         <Text tx="timePicker.to" style={timeLabel} />
-        <TimePicker enable={!enable} />
+        <TimePicker
+          date={values[valNames.end]}
+          setDate={(date) => setFieldValue(valNames.end, date)}
+          enable={!enable}
+        />
       </View>
     </BaseField>
   );

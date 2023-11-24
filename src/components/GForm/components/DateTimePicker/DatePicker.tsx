@@ -47,11 +47,16 @@ export default function DatePicker(props: DatePickerProps) {
   const yearItems = rangedItems(getYear(now), getYear(now) + 3);
 
   // force to rerender days picker with setKey to handle difference number of days in month
+  //optimize this later
   useEffect(() => {
     const maxDays = getDaysInMonth(new Date(year, month));
     if (day > maxDays) setDay(maxDays);
     setKey((prev) => prev + 1);
   }, [month, year]);
+
+  useEffect(() => {
+    setDate(new Date(year, month, day));
+  }, [day, month, year]);
 
   return (
     <View style={outerContainer}>

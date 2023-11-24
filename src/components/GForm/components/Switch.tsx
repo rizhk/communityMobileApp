@@ -7,7 +7,6 @@ export default function Switch(props: GFieldProps) {
   const { handleChange, values } = useGForm();
   const { tx, text, valName } = props;
   const onChange = (value: boolean) => {
-    console.log(value);
     handleChange(valName)(value ? "true" : "false");
   };
   return (

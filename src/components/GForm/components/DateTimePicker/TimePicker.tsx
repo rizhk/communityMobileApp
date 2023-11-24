@@ -1,34 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TextStyle, View } from "react-native";
 import Wheel from "./Wheel";
 import { rangedItems } from "utils/formHelper";
 import { Text } from "components/Text";
 import { inputContainer, outerContainer } from "./DateTimePicker.style";
 import { GrowingView } from "../containers/GrowingView";
+import { getHours, getMinutes } from "date-fns";
 
 type TimePickerProps = {
+  date: Date;
+  setDate: (date: any) => void;
   enable?: boolean;
 };
 
 export default function TimePicker(props: TimePickerProps) {
-  const { enable = true } = props;
-  const [hours, setHours] = useState(0);
-  const [minutes, setMinutes] = useState(0);
+  const { date, setDate, enable = true } = props;
+  const [hours, setHours] = useState(getHours(date));
+  const [minutes, setMinutes] = useState(getMinutes(date));
 
   const hourItems = rangedItems(0, 23, 2);
   const minuteItems = rangedItems(0, 59, 2);
+
+  useEffect(() => {
+    setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate(), hours, minutes));
+  }, [hours, minutes]);
 
   return (
     <View style={outerContainer}>
       <GrowingView open={enable} from={32} to={80} style={{ overflow: "hidden" }}>
         <View style={inputContainer}>
-          <Wheel
-            value={hours}
-            setValue={setHours}
-            items={hourItems}
-            itemWidth={38}
-            scrollEnable={enable}
-          />
+          <Wheel value={hours} setValue={setHours} items={hourItems} itemWidth={38} scrollEnable={enable} />
           <Text text=":" style={dots} />
           <Wheel value={minutes} setValue={setMinutes} items={minuteItems} scrollEnable={enable} />
         </View>

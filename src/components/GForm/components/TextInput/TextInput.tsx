@@ -36,7 +36,6 @@ export default function TextInput(props: TextInputProps & RnTextInputProps) {
     errors[valName] === undefined ? {} : inputError,
   ];
   const containerStyles = [presets[preset].container, containerStyle];
-  console.log(inputStyles);
   return (
     <BaseField style={containerStyles}>
       {(tx !== undefined || text !== undefined) && <BaseField.Label tx={tx} text={text} />}

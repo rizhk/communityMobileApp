@@ -23,13 +23,19 @@ const testVals = [
   { value: "soccer", label: "sports.Soccer" },
 ];
 
+const nowMoreOneHour = () => {
+  const now = new Date();
+  now.setHours(now.getHours() + 1);
+  return now;
+};
+
 const initialValues: ValuesType = {
   textInput: "",
   numberPicker: INFINIT_PARTICIPANTS,
   radioInput: "kikou",
   switch: true,
-  dateStart: new Date(2022, 2, 22),
-  dateEnd: new Date(),
+  dateStart: new Date(),
+  dateEnd: nowMoreOneHour(),
 };
 
 const validations = Yup.object().shape({
