@@ -46,7 +46,7 @@ export default function TextInput(props: TextInputProps & RnTextInputProps) {
         }}
         // onBlur={handleBlur(valName)}
         value={values[valName]}
-        placeholderTextColor={color.grey100}
+        placeholderTextColor={color.placeholder}
         style={inputStyles}
         placeholder={placeholderTx ? translate(placeholderTx) : undefined}
         {...rest}

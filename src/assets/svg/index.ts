@@ -20,3 +20,4 @@ export { default as User } from "./user.svg";
 export { default as volley } from "./volley.svg";
 export { default as Edit } from "./edit.svg";
 export { default as Cross } from "./cross.svg";
+export { default as Tick } from "./tick.svg";

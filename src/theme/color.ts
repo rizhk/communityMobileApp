@@ -30,6 +30,7 @@ export const color = {
 
   line: palette.offWhite,
   text: palette.white,
+  placeholder: palette.pelopsGrey100,
 
   grey100: palette.pelopsGrey100,
   grey200: palette.pelopsGrey200,

@@ -30,7 +30,6 @@ export function DateTimePicker(props: DateTimePickerProps) {
     <BaseField style={containerStyle}>
       <Text>Start: {values[valNames.start].toString()}</Text>
       <Text>end: {values[valNames.end].toString()}</Text>
-
       <View style={header}>
         <BaseField.Label tx={tx} text={text} />
         <Button
