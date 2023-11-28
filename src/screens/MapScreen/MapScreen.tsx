@@ -12,51 +12,39 @@ import { ActivityIndicator } from "react-native";
 import { Region } from "react-native-maps";
 import { Text } from "components/Text";
 import { shadow, color } from "theme";
-
-import styled from "styled-components/native";
-
-const StyledView = styled.View`
-  background-color: papayawhip;
-`;
-
-const StyledText = styled.Text`
-  color: palevioletred;
-`;
-
-const RotatedBox = styled.View`
-  transform: rotate(45deg);
-  text-shadow-offset: 10px 5px;
-  font-variant: small-caps;
-  margin: 100px 0 0 0;
-  height: 100px;
-  background-color: ${color.white};
-`;
-
-const RotatedBox2 = {
-  transform: [{ rotate: "45deg" }],
-  textShadowOffset: { width: 10, height: 5 },
-  fontVariant: ["small-caps"],
-  marginTop: 100,
-  height: 100,
-  backgroundColor: color.white,
-} as ViewStyle;
+import * as Location from "expo-location";
 
 export default function MapScreen() {
-  //TODO: ADD setUserLocation
   const INITIAL_REGION = {
     latitude: 46.806,
     longitude: 7.153,
     latitudeDelta: 0.1,
     longitudeDelta: 0.1,
   };
-  //useState
+  //TODO: Center Map on User location if available or INITIAL_REGION
+  const [region, setRegion] = useState<Region>(INITIAL_REGION);
 
-  //useEffect
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        console.error("Permission to access location was denied");
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setRegion({
+        ...region,
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+      });
+    })();
+  }, []);
+
+  console.log(region, "region");
 
   /////FETCH
   const { data, error, isLoading } = useSWR("activities", () => fetchActivities());
-  // fetchFields();
-  // fetchTournaments();
 
   if (isLoading) {
     return <ActivityIndicator />;
@@ -68,50 +56,7 @@ export default function MapScreen() {
 
   return (
     <MainLayout>
-      <StyledView>
-        <StyledText>Hello World!</StyledText>
-      </StyledView>
-      <RotatedBox />
-      <View style={RotatedBox2} />
-      {/* <View style={shadowView}>
-        <Text>Test</Text>
-      </View>
-      <View style={[styles.card, styles.shadowProp]}>
-        <View>
-          <Text style={styles.heading}>React Native Box Shadow (Shadow Props)</Text>
-        </View>
-        <Text>Using the elevation style prop to apply box-shadow for iOS devices</Text>
-      </View> */}
-      {/* <MapComponent activities={data} initialRegion={INITIAL_REGION} /> */}
+      <MapComponent key={region.latitude + region.longitude} activities={data} initialRegion={region} />
     </MainLayout>
   );
 }
-
-// const styles2 = StyleSheet.create({
-//   map: {
-//     height: "50%",
-//   },
-// });
-
-// const shadowView = {
-//   height: 100,
-//   width: 100,
-//   margin: 10,
-
-//   // backgroundColor: "white",
-//   ...shadow.sm,
-// } as ViewStyle;
-
-// const styles = StyleSheet.create({
-//   heading: {
-//     fontSize: 18,
-//     fontWeight: "600",
-//     marginBottom: 13,
-//   },
-//   card: {
-//     backgroundColor: "white",
-//     margin: 8,
-//     ...shadow.sm,
-//   },
-//   shadowProp: {},
-// });

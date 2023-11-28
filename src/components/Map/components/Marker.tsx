@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
   pinContainer: {
     alignItems: "center",
     justifyContent: "center",
-    // position: "relative",
   },
   pinImage: {
     width: 30,
