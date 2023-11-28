@@ -24,6 +24,6 @@ export function BaseField({ children, style, ...props }: ViewProps) {
 }
 
 const container = {
-  paddingVertical: spacing.sm,
+  paddingVertical: spacing.xs,
   gap: spacing.xs,
 } as ViewStyle;

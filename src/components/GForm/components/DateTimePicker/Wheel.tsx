@@ -41,8 +41,6 @@ export default function Wheel(props: WheelProps) {
   const onChange = (index: number) => {
     setSelectedIndex(index);
     setValue(items[index].value);
-    console.log("indexSelected : ", index);
-    console.log(items[index].value);
   };
 
   return (

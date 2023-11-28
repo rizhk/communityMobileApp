@@ -1,17 +1,18 @@
 import { TouchableOpacity, View, ViewStyle } from "react-native";
-import { GFieldItemType, GFieldProps, useGForm } from "../GForm.props";
-import { BaseField } from "./BaseField";
+import { GFieldItemType } from "../GForm.props";
 import I18n from "i18n-js";
 import { Text } from "components/Text";
 import { styleDirection } from "utils/formHelper";
 import { color, spacing } from "theme";
-import BaseRadio from "./BaseRadio";
 
-export interface RadioProps extends GFieldProps {
+export interface RadioProps {
+  value: string;
+  setValue: (value: string) => void;
   items: GFieldItemType<string, I18n.Scope>[];
   radioDirection?: "row" | "column";
   groupDirection?: "row" | "column";
   radioWidth?: number;
+  radioStyle?: ViewStyle;
 }
 
 type RadioButtonProps = {
@@ -21,10 +22,11 @@ type RadioButtonProps = {
   label: I18n.Scope;
   direction?: "row" | "column";
   width?: number;
+  style?: ViewStyle;
 };
 
 function RadioButton(props: RadioButtonProps) {
-  const { selected, setSelected, value, label, direction, width = 100 } = props;
+  const { selected, setSelected, value, label, direction, width = 100, style } = props;
   const buttonStyle = {
     ...styleDirection(direction),
     justifyContent: direction === "row" ? "flex-start" : "center",
@@ -32,23 +34,35 @@ function RadioButton(props: RadioButtonProps) {
   } as ViewStyle;
 
   return (
-    <TouchableOpacity style={[buttonStyle, radioButton]} onPress={() => setSelected(value)}>
+    <TouchableOpacity style={[buttonStyle, radioButton, style]} onPress={() => setSelected(value)}>
       <View style={radioOuter}>{selected === value && <View style={radioInner} />}</View>
       <Text tx={label} preset="radioLabel" />
     </TouchableOpacity>
   );
 }
 
-export default function Radio(props: RadioProps) {
-  const { containerStyle, valName, tx, text, items, ...rest } = props;
-  const { handleChange, values } = useGForm();
+export default function BaseRadio(props: RadioProps) {
+  const { value, setValue, items, radioDirection, groupDirection = "row", radioWidth, radioStyle } = props;
+  const containerPropStyle = [
+    styleDirection(groupDirection),
+    { justifyContent: groupDirection === "column" ? "flex-start" : "space-around" } as ViewStyle,
+    container,
+  ];
 
   return (
-    <BaseField style={containerStyle}>
-      {(tx !== undefined || text !== undefined) && <BaseField.Label tx={tx} text={text} />}
-      <BaseRadio value={values[valName]} setValue={handleChange(valName)} items={items} {...rest} />
-      <BaseField.ErrorLabel valName={valName} />
-    </BaseField>
+    <View style={containerPropStyle}>
+      {items.map((item, index) => (
+        <RadioButton
+          selected={value}
+          setSelected={setValue}
+          {...item}
+          direction={radioDirection ? radioDirection : groupDirection === "column" ? "row" : "column"}
+          width={radioWidth}
+          key={index}
+          style={radioStyle}
+        />
+      ))}
+    </View>
   );
 }
 
@@ -73,4 +87,9 @@ const radioInner = {
   width: 10,
   borderRadius: 10,
   backgroundColor: color.primary,
+} as ViewStyle;
+
+const container = {
+  gap: spacing.md,
+  flexWrap: "wrap",
 } as ViewStyle;

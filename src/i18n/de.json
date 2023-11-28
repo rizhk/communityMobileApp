@@ -98,19 +98,22 @@
     "joinChat": "An der Chat teilnehmen",
     "leaveActivity": "Aktivität verlassen"
   },
-  "createActivityScreen": {
+  "addressPicker": {
+    "where": "Wo ?",
+    "currentPosition": "Aktuelle Position",
+    "choosePosition": "Einen Ort wählen"
+  },
+  "createActivity": {
     "title": "Aktivität erstellen",
     "sportPicker": "Sportart wählen",
     "userPicker": "Teilnehmer auswählen",
-    "where": "Wo ?",
-    "currentPosition": "Aktuelle Position",
-    "choosePosition": "Einen Ort wählen",
     "adresse": "adresse",
     "when": "Wann ?",
     "type": "Typ",
     "public": "Öffentlich",
-    "semiPrivate": "Abonnenten",
     "private": "Privat",
+    "solo": "Solo",
+    "semiPrivate": "Abonnenten",
     "currentDate": "Heute",
     "chooseDate": "Wählen Sie ein Datum",
     "maxParticipant": "Max Teilnehmer/innen",

@@ -1,9 +1,6 @@
-import { View, Text, ViewStyle } from "react-native";
-import { GFieldItemType, GFieldProps, useGForm } from "../GForm.props";
+import { GFieldProps, useGForm } from "../GForm.props";
 import { BaseField } from "./BaseField";
 import DropDownPicker from "react-native-dropdown-picker";
-import { Button } from "components/Button";
-import { set } from "date-fns";
 import { useState } from "react";
 import { color } from "../../../theme/color";
 import { inputFieldStyle } from "./styles";
@@ -11,22 +8,26 @@ import { radius, spacing } from "theme";
 import { GrowingView } from "./containers/GrowingView";
 import { Icon } from "components/Icon";
 import { Tick } from "assets/svg";
+import { t } from "i18n-js";
 
-type DropPickerItem = {
-  element: JSX.Element;
+export type DropPickerItem = {
+  icon: () => JSX.Element;
   label: string;
   value: string;
 };
 
 interface DropPickerProps extends GFieldProps {
   items: DropPickerItem[];
+  placeholder?: string;
+  placeholderTx?: string;
 }
 
 export default function DropPicker(props: DropPickerProps) {
-  const { tx, text, valName, items } = props;
+  const { tx, text, valName, items, placeholderTx } = props;
   const { values, setFieldValue } = useGForm();
   const [value, setValue] = useState(values[valName]);
   const [open, setOpen] = useState(false);
+  const placeholder = (placeholderTx && t(placeholderTx)) || props.placeholder || "";
 
   return (
     <BaseField>
@@ -40,16 +41,18 @@ export default function DropPicker(props: DropPickerProps) {
           value={value}
           setValue={setValue}
           onChangeValue={() => setFieldValue(valName, value)}
-          style={dropPicker}
-          listItemLabelStyle={{ color: color.text }}
+          style={{
+            ...inputFieldStyle,
+            minHeight: inputFieldStyle.height,
+            borderWidth: 0,
+          }}
           placeholderStyle={{ color: color.placeholder }}
-          //   categorySelectable={true}
+          textStyle={{ color: color.text }}
           dropDownContainerStyle={{
             borderWidth: 0,
             backgroundColor: color.inputBackground,
             borderTopWidth: 1,
             borderTopColor: color.grey400,
-            zIndex: 1000,
           }}
           searchContainerStyle={{
             borderBottomColor: color.grey400,
@@ -62,14 +65,9 @@ export default function DropPicker(props: DropPickerProps) {
             padding: spacing.xxs,
           }}
           zIndex={1000}
+          placeholder={placeholder}
         />
       </GrowingView>
     </BaseField>
   );
 }
-
-const dropPicker = {
-  ...inputFieldStyle,
-  minHeight: 35,
-  borderWidth: 0,
-} as ViewStyle;

@@ -5,29 +5,34 @@ import { INFINIT_PARTICIPANTS } from "constants/global";
 import * as Yup from "yup";
 import { Validations } from "constants/Validations";
 import { rangedItems } from "utils/formHelper";
-import { Star } from "assets/svg";
+import { PinOutline, Star } from "assets/svg";
 import { Icon } from "components/Icon";
 import { t } from "i18n-js";
+import { Button } from "components/Button";
+import { useState } from "react";
+import { DropPickerItem } from "components/GForm/components/DropPicker";
+import { Text } from "components/Text";
+import { LocationType } from "types/global";
 
 type ValuesType = {
-  textInput: string;
-  numberPicker: number;
-  radioInput: string;
-  switch: boolean;
+  description: string;
+  sport: string;
+  type: string;
   dateStart: Date;
   dateEnd: Date;
-  dropPicker: string | undefined;
+  nbParticipant: number;
+  location: LocationType;
 };
 
-const testVals = [
-  { value: "box", label: "sports.Boxe" },
-  { value: "bowling", label: "sports.Bowling" },
-  { value: "bouldering", label: "sports.Bouldering" },
-  { value: "soccer", label: "sports.Soccer" },
-  { value: "soccer", label: "sports.Soccer" },
+const activityTypeItems = [
+  { value: "solo", label: "createActivity.solo" },
+  { value: "private", label: "createActivity.private" },
+  { value: "public", label: "createActivity.public" },
 ];
 
-const testDropVals = [
+const nbParticipantItems = rangedItems(0, 10, 0, 1, true);
+//TODO: replace by sportItems
+const sportItems: DropPickerItem[] = [
   { icon: () => <Icon icon={Star} />, value: "1box", label: t("sports.Boxe") },
   { icon: () => <Icon icon={Star} />, value: "2bowling", label: t("sports.Bowling") },
   { icon: () => <Icon icon={Star} />, value: "3bouldering", label: t("sports.Bouldering") },
@@ -46,24 +51,6 @@ const testDropVals = [
   { icon: () => <Icon icon={Star} />, value: "15soccer", label: t("sports.Soccer") },
 ];
 
-// const testDropVals = [
-//   { icon: () => <Icon icon={Star} />, value: "1box", label: t("sports.Boxe"), parent: "pa1" },
-//   { icon: () => <Icon icon={Star} />, value: "2bowling", label: t("sports.Bowling"), parent: "pa1" },
-//   { icon: () => <Icon icon={Star} />, value: "3bouldering", label: t("sports.Bouldering"), parent: "pa2" },
-//   { icon: () => <Icon icon={Star} />, value: "4soccer", label: t("sports.Soccer"), parent: "pa2" },
-//   { icon: () => <Icon icon={Star} />, value: "5box", label: t("sports.Boxe"), parent: "pa2" },
-//   { icon: () => <Icon icon={Star} />, value: "6bowling", label: t("sports.Bowling"), parent: "pa3" },
-//   { icon: () => <Icon icon={Star} />, value: "7bouldering", label: t("sports.Bouldering"), parent: "pa3" },
-//   { icon: () => <Icon icon={Star} />, value: "8soccer", label: t("sports.Soccer"), parent: "pa3" },
-//   { icon: () => <Icon icon={Star} />, value: "9box", label: t("sports.Boxe"), parent: "pa1" },
-//   { icon: () => <Icon icon={Star} />, value: "10bowling", label: t("sports.Bowling"), parent: "pa1" },
-//   { icon: () => <Icon icon={Star} />, value: "11bouldering", label: t("sports.Bouldering"), parent: "pa1" },
-//   { icon: () => <Icon icon={Star} />, value: "11soccer", label: t("sports.Soccer"), parent: "pa4" },
-//   { icon: () => <Icon icon={Star} />, value: "12box", label: t("sports.Boxe"), parent: "pa4" },
-//   { icon: () => <Icon icon={Star} />, value: "13bowling", label: t("sports.Bowling"), parent: "pa4" },
-//   { icon: () => <Icon icon={Star} />, value: "14bouldering", label: t("sports.Bouldering"), parent: "pa1" },
-//   { icon: () => <Icon icon={Star} />, value: "15soccer", label: t("sports.Soccer"), parent: "pa1" },
-// ];
 const nowMoreOneHour = () => {
   const now = new Date();
   now.setHours(now.getHours() + 1);
@@ -71,13 +58,13 @@ const nowMoreOneHour = () => {
 };
 
 const initialValues: ValuesType = {
-  textInput: "",
-  numberPicker: INFINIT_PARTICIPANTS,
-  radioInput: "kikou",
-  switch: true,
+  description: "",
+  sport: "",
+  type: "solo",
   dateStart: new Date(),
   dateEnd: nowMoreOneHour(),
-  dropPicker: undefined,
+  nbParticipant: INFINIT_PARTICIPANTS,
+  location: { latitude: 0, longitude: 0 },
 };
 
 const validations = Yup.object().shape({
@@ -92,30 +79,41 @@ type CreateActivityProps = {
 };
 
 export default function CreateActivity(props: CreateActivityProps) {
-  const { open, setOpen } = props;
+  const [open, setOpen] = useState(false);
+
+  const handleSubmit = (values: ValuesType) => {
+    //TODO: replace by api request
+    console.log(values);
+  };
+
   return (
-    <Modal visible={open} setVisible={setOpen}>
-      <GForm
-        initialValues={initialValues}
-        validationSchema={validations}
-        onSubmit={(values: ValuesType) => {
-          console.log(values);
-        }}
-      >
-        <Scroll>
-          <GForm.TextInput text="TextInputFIeld" valName="textInput" placeholder="Ecris qqch" />
-          <GForm.DropPicker text="DropPicker" valName="dropPicker" items={testDropVals} />
-          <GForm.DateTimePicker text="DateTimePicker" valNames={{ start: "dateStart", end: "dateEnd" }} />
-          <GForm.NumberPicker
-            items={rangedItems(0, 10, 0, 1, true)}
-            text="numberPicker"
-            valName="numberPicker"
+    <>
+      <Button
+        tx="createActivity.button"
+        onPress={() => setOpen(true)}
+        style={{ alignSelf: "center", bottom: 10, position: "absolute" }}
+      />
+      <Modal visible={open} setVisible={setOpen}>
+        <Text preset="header" tx="createActivity.title" />
+        <GForm initialValues={initialValues} validationSchema={validations} onSubmit={handleSubmit}>
+          <GForm.TextInput
+            tx="createActivity.activityDescription"
+            valName="descirption"
+            placeholderTx="createActivity.descriptionPlaceholder"
           />
-          <GForm.Radio items={testVals} text="Radio Field" valName="kikou" />
-          <GForm.Switch text="Switch" valName="switch" />
-          <GForm.SubmitButton text="SubmitButton" />
-        </Scroll>
-      </GForm>
-    </Modal>
+          <GForm.DropPicker
+            tx="createActivity.sportPicker"
+            placeholderTx="createActivity.sportPicker"
+            valName="sport"
+            items={sportItems}
+          />
+          <GForm.Radio valName="type" items={activityTypeItems} />
+          <GForm.AddressPicker valName="location" />
+          <GForm.DateTimePicker tx="createActivity.when" valNames={{ start: "dateStart", end: "dateEnd" }} />
+          <GForm.NumberPicker items={nbParticipantItems} tx="createActivity.maxParticipant" valName="nbParticipant" />
+          <GForm.SubmitButton tx="createActivity.createActivity" style={{ alignSelf: "center" }} />
+        </GForm>
+      </Modal>
+    </>
   );
 }

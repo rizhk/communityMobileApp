@@ -53,31 +53,19 @@ export function LoginScreen({ navigation, route }: Props) {
       >
         <View style={{ paddingVertical: spacing.md }}>
           <GForm.TextInput valName="email" placeholderTx="loginScreen.email" preset="thin" />
-          <GForm.TextInput
-            valName="password"
-            placeholderTx="loginScreen.password"
-            secureTextEntry
-            preset="thin"
-          />
+          <GForm.TextInput valName="password" placeholderTx="loginScreen.password" secureTextEntry preset="thin" />
         </View>
         <GForm.SubmitButton tx="loginScreen.loginButton" style={submitButton} />
       </GForm>
-      <View style={{ alignItems: "center", gap: spacing.md }}>
+      <View style={{ alignItems: "center" }}>
         <Button
           onPress={signIn}
           tx="loginScreen.signIn"
           preset="plainText"
           style={{ marginTop: 30 }}
-          onPressIn={() =>
-            navigation.navigate({ name: "registration", params: { strategy: AuthStrategy.LOCAL } })
-          }
+          onPressIn={() => navigation.navigate({ name: "registration", params: { strategy: AuthStrategy.LOCAL } })}
         />
-        <Button
-          onPress={forget}
-          tx="loginScreen.forgotPassword"
-          preset="plainText"
-          textStyle={{ fontWeight: "400" }}
-        />
+        <Button onPress={forget} tx="loginScreen.forgotPassword" preset="plainText" textStyle={{ fontWeight: "400" }} />
       </View>
       <Button onPress={() => setUser("dsd")} text="Go home" />
     </AuthLayout>

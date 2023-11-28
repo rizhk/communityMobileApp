@@ -49,8 +49,8 @@ const container = {
 const button = {
   alignItems: "center",
   justifyContent: "center",
-  height: buttonSize.lg,
-  width: buttonSize.lg,
+  height: buttonSize.xxl,
+  width: buttonSize.xxl,
 } as ViewStyle;
 
 const separator = {

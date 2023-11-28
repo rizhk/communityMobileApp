@@ -48,13 +48,7 @@ export default function TimePicker(props: TimePickerProps) {
             key={"h" + hourKey}
           />
           <Text text=":" style={dots} />
-          <Wheel
-            value={minutes}
-            setValue={setMinutes}
-            items={minuteItems}
-            scrollEnable={enable}
-            key={"m" + minKey}
-          />
+          <Wheel value={minutes} setValue={setMinutes} items={minuteItems} scrollEnable={enable} key={"m" + minKey} />
         </View>
       </GrowingView>
     </View>

@@ -7,9 +7,9 @@ import TextInput from "./components/TextInput/TextInput";
 import NumberPicker from "./components/NumberPicker";
 import Radio from "./components/Radio";
 import Switch from "./components/Switch";
-import { DateTimePicker } from "./components/DateTimePicker/DateTimePicker";
-import { Scroll } from "./components/containers/Scroll";
+import DateTimePicker from "./components/DateTimePicker/DateTimePicker";
 import DropPicker from "./components/DropPicker";
+import AddressPicker from "./components/AddressPicker/AddressPicker";
 
 GForm.SubmitButton = SubmitButton;
 GForm.TextInput = TextInput;
@@ -18,6 +18,7 @@ GForm.Radio = Radio;
 GForm.Switch = Switch;
 GForm.DateTimePicker = DateTimePicker;
 GForm.DropPicker = DropPicker;
+GForm.AddressPicker = AddressPicker;
 
 export default function GForm<Values extends FormikValues = FormikValues>({
   submitTx = "common.submit",
@@ -30,16 +31,7 @@ export default function GForm<Values extends FormikValues = FormikValues>({
   const submitButtonProps = { tx: submitTx, text: submitText };
   return (
     <Formik validateOnChange={false} {...props}>
-      {({
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        setFieldValue,
-        values,
-        errors,
-        validateField,
-        setFieldError,
-      }) => (
+      {({ handleChange, handleBlur, handleSubmit, setFieldValue, values, errors, validateField, setFieldError }) => (
         <GFormContext.Provider
           value={{
             handleChange,
