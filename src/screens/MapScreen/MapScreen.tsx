@@ -51,14 +51,14 @@ export default function MapScreen() {
   // );
 
   const handleRegionChangeComplete = (newRegion: Region) => {
-    console.log("icicici");
+    console.log("newRegion: ", newRegion);
     setRegion(newRegion);
   };
 
   console.log(region, "region");
 
   const handleRefetch = () => {
-    mutate("activities", true); // Force a revalidation
+    mutate("activities"); // Force a revalidation
   };
 
   const ShowRefetchButton = () => {
@@ -69,13 +69,17 @@ export default function MapScreen() {
     );
   };
 
-  const regionKey = JSON.stringify(region);
-
-  const { data, error, isLoading, mutate } = useSWR("activities", () =>
+  const { data, error, isLoading, mutate } = useSWR(["activities"], () =>
     fetchActivitiesByRegion(region, 5000, filters)
   );
 
-  console.log(data, "data");
+  // useEffect(() => {
+  //   //Example....
+  //   fetchActivitiesByRegion(region, 5000, filters)
+  // }
+  // , [region])
+
+  // console.log(data, "data");
 
   // console.log(data, "data");
   // if (isLoading) {
