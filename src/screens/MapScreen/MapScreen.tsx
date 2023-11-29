@@ -1,7 +1,7 @@
 import { fetchAPIqs } from "api/request";
 import { Button } from "components/Button";
 import MapComponent from "components/Map/Map";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { useQuery } from "react-query";
 import { fetchActivitiesByRegion } from "api/api";
@@ -42,14 +42,41 @@ export default function MapScreen() {
     })();
   }, []);
 
-  const { data, error, isLoading } = useSWR("activities", () =>
-    fetchActivitiesByRegion(region, 5000, filters)
+  // Callback for when the region changes
+  const handleRegionChangeComplete = (newRegion: Region) => {
+    setRegion(newRegion);
+  };
+
+  console.log(region, "region");
+
+  const handleRefetch = () => {
+    console.log("icii");
+    mutate();
+  };
+
+  const ShowRefetchButton = () => {
+    return (
+      <View>
+        <Button
+          onPress={() => {
+            handleRefetch();
+          }}
+          text="Refetch"
+        />
+      </View>
+    );
+  };
+
+  const regionKey = JSON.stringify(region);
+
+  const { data, error, isLoading, mutate } = useSWR("activities", () =>
+    fetchActivitiesByRegion(region, 50000, filters)
   );
 
-  console.log(data, "data");
-  if (isLoading) {
-    return <ActivityIndicator />;
-  }
+  // console.log(data, "data");
+  // if (isLoading) {
+  //   return <ActivityIndicator />;
+  // }
 
   if (error) {
     return <Text>error...</Text>;
@@ -57,7 +84,14 @@ export default function MapScreen() {
 
   return (
     <MainLayout>
-      <MapComponent key={region.latitude + region.longitude} activities={data} initialRegion={region} />
+      <ShowRefetchButton />
+      <MapComponent
+        key={region.latitude + region.longitude}
+        activities={data}
+        initialRegion={region}
+        // region={region}
+        // onRegionChangeComplete={handleRegionChangeComplete}
+      />
     </MainLayout>
   );
 }
