@@ -67,6 +67,10 @@ export default function MapScreen() {
     );
   };
 
+  //TODO: - Add radius to the map
+
+  //TODO: Add clusters to map
+
   const { data, error, isLoading, mutate } = useSWR(["activities"], () =>
     fetchActivitiesByRegion(region, 5000, filters)
   );
