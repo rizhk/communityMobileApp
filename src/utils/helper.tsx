@@ -1,8 +1,16 @@
 import { format as Format } from "date-fns";
 import "i18n";
 import i18n from "i18n-js";
-import { fr, en, de, it } from "date-fns/locale";
+import { fr, enUS as en, de, it } from "date-fns/locale";
 import { LatLng } from "react-native-maps";
+
+export const hexToRGBA = (hex: string, alpha: number) => {
+  let r = parseInt(hex.slice(1, 3), 16);
+  let g = parseInt(hex.slice(3, 5), 16);
+  let b = parseInt(hex.slice(5, 7), 16);
+
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
 
 // import { buildUrl } from "cloudinary-build-url";
 
@@ -179,10 +187,7 @@ export function computeDistance(p1: LatLng, p2: LatLng): number {
   var dLong = rad(p2.longitude - p1.longitude);
   var a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(rad(p1.latitude)) *
-      Math.cos(rad(p2.latitude)) *
-      Math.sin(dLong / 2) *
-      Math.sin(dLong / 2);
+    Math.cos(rad(p1.latitude)) * Math.cos(rad(p2.latitude)) * Math.sin(dLong / 2) * Math.sin(dLong / 2);
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   var d = R * c;
   return d; // returns the distance in meter

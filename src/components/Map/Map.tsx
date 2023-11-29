@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
-import MapView, { Marker, Region } from "react-native-maps";
+import MapView, { Marker, Region, Circle } from "react-native-maps";
 import { MapPresets, presets } from "./map.presets";
 import { Text } from "components/Text";
 import { ActivitiesData } from "types/activity";
 import { CustomMarker } from "./components/Marker";
+import { color } from "theme";
+import { hexToRGBA } from "utils/helper";
 
 //TODO: - Display fields on the map
 
 interface MapProps {
   initialRegion: Region;
+  maxDistance: number;
   region?: Region;
   style?: any;
   preset?: MapPresets;
@@ -25,6 +28,7 @@ const MapComponent: React.FC<MapProps> = ({
   onRegionChangeComplete,
   mapRef,
   activities,
+  maxDistance,
   style,
   ...rest
 }: MapProps) => {
@@ -36,10 +40,17 @@ const MapComponent: React.FC<MapProps> = ({
         style={styles}
         onRegionChangeComplete={onRegionChangeComplete}
         initialRegion={initialRegion}
-        region={region}
+        // region={region}
         ref={mapRef}
         {...rest}
       >
+        <Circle
+          center={{ latitude: initialRegion.latitude, longitude: initialRegion.longitude }}
+          radius={maxDistance}
+          strokeColor={color.primary}
+          fillColor={hexToRGBA(color.primary, 0.2)}
+          // fillColor="rgba(0,0,255,0.2)"
+        />
         {activities?.data &&
           activities.data.map((activity, index) => {
             const participantsCount = activity?.attributes?.participants?.data?.length;

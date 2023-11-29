@@ -18,6 +18,7 @@ import MapView from "react-native-maps";
 
 export default function MapScreen() {
   const [region, setRegion] = useState<Region>(INITIAL_REGION);
+  const [maxDistance, setMaxDistance] = useState(30000); // 30km
 
   const mapRef = useRef<MapView>(null);
 
@@ -72,7 +73,7 @@ export default function MapScreen() {
   //TODO: Add clusters to map
 
   const { data, error, isLoading, mutate } = useSWR(["activities"], () =>
-    fetchActivitiesByRegion(region, 5000, filters)
+    fetchActivitiesByRegion(region, maxDistance, filters)
   );
 
   // console.log(data, "data");
@@ -91,6 +92,7 @@ export default function MapScreen() {
       <ShowRefetchButton />
       <MapComponent
         // key={region.latitude + region.longitude}
+        maxDistance={maxDistance}
         mapRef={mapRef}
         activities={data}
         initialRegion={region}
