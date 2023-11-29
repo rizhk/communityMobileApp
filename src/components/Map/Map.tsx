@@ -6,18 +6,10 @@ import { Text } from "components/Text";
 import { ActivitiesData } from "types/activity";
 import { CustomMarker } from "./components/Marker";
 
-export interface MapRegion {
-  latitude: number;
-  longitude: number;
-  latitudeDelta: number;
-  longitudeDelta: number;
-}
-
-//TODO: - Display activities on the map
 //TODO: - Display fields on the map
 
 interface MapProps {
-  initialRegion: MapRegion;
+  initialRegion: Region;
   style?: any;
   preset?: MapPresets;
   activities?: ActivitiesData;

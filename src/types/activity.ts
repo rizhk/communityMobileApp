@@ -1,6 +1,29 @@
 import { SportItem } from "./sport";
 import { UserItem } from "./user";
 
+export const populateActivity = [
+  "cover",
+  "author",
+  "author.avatar",
+  "author.blockedUsers",
+  "participants",
+  "participants.avatar",
+  "sport",
+  "sport.icon",
+  "sport.localizations",
+  "channel",
+  "blockedUsers",
+];
+
+export interface ActivityFilters {
+  sportName?: string;
+  sportId?: number;
+  sport?: {
+    name: string;
+  };
+  date?: string;
+}
+
 export interface ActivityItem {
   id: number;
   name: string;

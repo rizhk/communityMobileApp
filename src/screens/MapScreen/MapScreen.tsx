@@ -4,7 +4,7 @@ import MapComponent from "components/Map/Map";
 import { useEffect, useState } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { useQuery } from "react-query";
-import { fetchActivities } from "api/api";
+import { fetchActivitiesByRegion } from "api/api";
 import useSWR from "swr";
 
 import { MainLayout } from "layouts";
@@ -13,16 +13,17 @@ import { Region } from "react-native-maps";
 import { Text } from "components/Text";
 import { shadow, color } from "theme";
 import * as Location from "expo-location";
+import { INITIAL_REGION } from "constants/global";
 
 export default function MapScreen() {
-  const INITIAL_REGION = {
-    latitude: 46.806,
-    longitude: 7.153,
-    latitudeDelta: 0.1,
-    longitudeDelta: 0.1,
-  };
-  //TODO: Center Map on User location if available or INITIAL_REGION
   const [region, setRegion] = useState<Region>(INITIAL_REGION);
+
+  const filters = {
+    sport: {
+      name: "Basketball",
+    },
+    // date: "2023-07-19",
+  };
 
   useEffect(() => {
     (async () => {
@@ -41,11 +42,11 @@ export default function MapScreen() {
     })();
   }, []);
 
-  console.log(region, "region");
+  const { data, error, isLoading } = useSWR("activities", () =>
+    fetchActivitiesByRegion(region, 5000, filters)
+  );
 
-  /////FETCH
-  const { data, error, isLoading } = useSWR("activities", () => fetchActivities());
-
+  console.log(data, "data");
   if (isLoading) {
     return <ActivityIndicator />;
   }
