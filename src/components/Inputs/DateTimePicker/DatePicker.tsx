@@ -30,7 +30,7 @@ type DatePickerProps = {
   minDate?: Date;
 };
 
-export default function DatePicker(props: DatePickerProps) {
+export function DatePicker(props: DatePickerProps) {
   const { enable = true, minDate, date, setDate } = props;
   const [day, setNewDay] = useState<number>(getDate(date));
   const [month, setNewMonth] = useState<number>(getMonth(date));

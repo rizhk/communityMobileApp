@@ -5,9 +5,9 @@ import { useState } from "react";
 import { color } from "../../../theme/color";
 import { inputFieldStyle } from "./styles";
 import { radius, spacing } from "theme";
-import { GrowingView } from "./containers/GrowingView";
+import { GrowingView } from "components/containers/GrowingView";
 import { Icon } from "components/Icon";
-import { Tick } from "assets/svg";
+import { DownArrow, Tick, UpArrow } from "assets/svg";
 import { t } from "i18n-js";
 
 export type DropPickerItem = {
@@ -20,14 +20,17 @@ interface DropPickerProps extends GFieldProps {
   items: DropPickerItem[];
   placeholder?: string;
   placeholderTx?: string;
+  searchPlaceholder?: string;
+  searchPlaceholderTx?: string;
 }
 
 export default function DropPicker(props: DropPickerProps) {
-  const { tx, text, valName, items, placeholderTx } = props;
+  const { tx, text, valName, items, placeholderTx, searchPlaceholderTx } = props;
   const { values, setFieldValue } = useGForm();
   const [value, setValue] = useState(values[valName]);
   const [open, setOpen] = useState(false);
   const placeholder = (placeholderTx && t(placeholderTx)) || props.placeholder || "";
+  const searchPlaceholder = (searchPlaceholderTx && t(searchPlaceholderTx)) || props.searchPlaceholder || "";
 
   return (
     <BaseField>
@@ -54,8 +57,10 @@ export default function DropPicker(props: DropPickerProps) {
             borderTopWidth: 1,
             borderTopColor: color.grey400,
           }}
+          searchPlaceholder={searchPlaceholder}
           searchContainerStyle={{
             borderBottomColor: color.grey400,
+            padding: spacing.xxs,
           }}
           searchTextInputStyle={{ color: color.text, borderWidth: 0 }}
           TickIconComponent={() => <Icon icon={Tick} size={15} />}
@@ -66,6 +71,8 @@ export default function DropPicker(props: DropPickerProps) {
           }}
           zIndex={1000}
           placeholder={placeholder}
+          ArrowUpIconComponent={() => <Icon icon={UpArrow} size={25} color="white" />}
+          ArrowDownIconComponent={() => <Icon icon={DownArrow} size={25} color="white" />}
         />
       </GrowingView>
     </BaseField>

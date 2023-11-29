@@ -15,20 +15,6 @@ export const images = {
   xl: 200,
 };
 
-/**
- * Icons size
- */
-// export const icon = {
-//   xxs: 8,
-//   xs: 10,
-//   sm: 12,
-//   md: 16,
-//   lg: 24,
-//   xl: 32,
-//   xxl: 48,
-//   xxxl: 80,
-//   xxxxl: 112,
-// };
 export const icon = {
   xxs: 6,
   xs: 8,

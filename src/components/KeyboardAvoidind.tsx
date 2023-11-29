@@ -1,18 +1,25 @@
+import { useHeaderHeight } from "@react-navigation/elements";
 import { PropsWithChildren } from "react";
-import { KeyboardAvoidingView, KeyboardAvoidingViewProps, Platform } from "react-native";
+import {
+  Keyboard,
+  KeyboardAvoidingView,
+  KeyboardAvoidingViewProps,
+  Platform,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 
-export function KeyboardAvoiding({
-  children,
-  ...props
-}: PropsWithChildren<KeyboardAvoidingViewProps>) {
+export function KeyboardAvoiding({ children, ...props }: PropsWithChildren<KeyboardAvoidingViewProps>) {
+  // const height = useHeaderHeight();
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 125 : 20}
+      // keyboardVerticalOffset={Platform.OS === "ios" ? 125 : 20}
+      // keyboardVerticalOffset={height}
       style={{ flex: 1 }}
       {...props}
     >
-      {children}
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>{children}</TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
 }

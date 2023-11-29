@@ -4,6 +4,7 @@ import { useState } from "react";
 import CreateActivity from "./components/CreateActivity";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
+import { Button } from "components/Button";
 
 type Props = NativeStackScreenProps<MainStackParamList, "activities">;
 
@@ -13,6 +14,11 @@ export default function ActivitiesScreen({ navigation }: Props) {
     <MainLayout>
       <Text>Activity Screen</Text>
       <CreateActivity open={open} setOpen={setOpen} />
+      <Button
+        tx="createActivity.button"
+        onPress={() => setOpen(true)}
+        style={{ alignSelf: "center", bottom: 10, position: "absolute" }}
+      />
     </MainLayout>
   );
 }

@@ -5,9 +5,8 @@ import DatePicker from "./DatePicker";
 import { Text } from "components/Text";
 import TimePicker from "./TimePicker";
 import { Button } from "components/Button";
-import { useScrollContext } from "../containers/Scroll";
+import { useScrollContext } from "components/containers/Scroll";
 import { Edit } from "assets/svg";
-import { min } from "date-fns";
 import { useState } from "react";
 
 export interface DateTimePickerProps extends Omit<GFieldProps, "valName"> {

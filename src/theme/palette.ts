@@ -12,6 +12,7 @@ export const palette = {
    */
   pelopsRed: "#AD3822",
   pelopsOrange: "#FF851B",
+  pelopsGreen: "#429570",
   pelopsLightRed: "#c67464",
   pelopsDarkRed: "#792718",
   pelopsMetal: "#747474",

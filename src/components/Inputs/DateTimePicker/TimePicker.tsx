@@ -14,7 +14,7 @@ type TimePickerProps = {
   enable?: boolean;
 };
 
-export default function TimePicker(props: TimePickerProps) {
+export function TimePicker(props: TimePickerProps) {
   const { date, setDate, enable = true, minDate } = props;
   const [hours, setHours] = useState(getHours(date));
   const [minutes, setMinutes] = useState(getMinutes(date));
