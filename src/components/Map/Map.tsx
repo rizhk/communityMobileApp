@@ -7,6 +7,7 @@ import { ActivitiesData } from "types/activity";
 import { CustomMarker } from "./components/Marker";
 import { color } from "theme";
 import { hexToRGBA } from "utils/helper";
+import { KM_PER_DEGREE_LATITUDE } from "constants/global";
 
 //TODO: - Display fields on the map
 
@@ -34,6 +35,14 @@ const MapComponent: React.FC<MapProps> = ({
 }: MapProps) => {
   const styles = [presets[preset], style];
 
+  const calculateRadius = (latitudeDelta: number): number => {
+    // Convert latitudeDelta to kilometers (40% of the map's height)
+    const deltaInKm = latitudeDelta * 0.4 * KM_PER_DEGREE_LATITUDE;
+    return deltaInKm * 1000;
+  };
+
+  const radius = calculateRadius(initialRegion.latitudeDelta);
+
   return (
     <>
       <MapView
@@ -46,10 +55,9 @@ const MapComponent: React.FC<MapProps> = ({
       >
         <Circle
           center={{ latitude: initialRegion.latitude, longitude: initialRegion.longitude }}
-          radius={maxDistance}
+          radius={radius || maxDistance}
           strokeColor={color.primary}
           fillColor={hexToRGBA(color.primary, 0.2)}
-          // fillColor="rgba(0,0,255,0.2)"
         />
         {activities?.data &&
           activities.data.map((activity, index) => {

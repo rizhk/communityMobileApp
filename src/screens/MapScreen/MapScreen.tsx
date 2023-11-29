@@ -62,7 +62,7 @@ export default function MapScreen() {
 
   const ShowRefetchButton = () => {
     return (
-      <View>
+      <View style={{ position: "absolute", top: 0, left: 0, zIndex: 100 }}>
         <Button onPress={handleRefetch} text="Refetch" />
       </View>
     );

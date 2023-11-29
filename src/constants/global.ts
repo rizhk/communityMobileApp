@@ -5,3 +5,5 @@ export const INITIAL_REGION = {
   latitudeDelta: 0.1,
   longitudeDelta: 0.1,
 };
+
+export const KM_PER_DEGREE_LATITUDE = 111; // Approximate km per degree of latitude
