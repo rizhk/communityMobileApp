@@ -10,19 +10,20 @@ import { CustomMarker } from "./components/Marker";
 
 interface MapProps {
   initialRegion: Region;
-  // region: Region;
+  region?: Region;
   style?: any;
   preset?: MapPresets;
   activities?: ActivitiesData;
+  mapRef?: any;
   onRegionChangeComplete?: (newRegion: Region) => void; // Add this line
 }
 
 const MapComponent: React.FC<MapProps> = ({
   preset = "default",
   initialRegion,
-  // region,
+  region,
   onRegionChangeComplete,
-
+  mapRef,
   activities,
   style,
   ...rest
@@ -35,7 +36,8 @@ const MapComponent: React.FC<MapProps> = ({
         style={styles}
         onRegionChangeComplete={onRegionChangeComplete}
         initialRegion={initialRegion}
-        // region={region}
+        region={region}
+        ref={mapRef}
         {...rest}
       >
         {activities?.data &&

@@ -1,7 +1,7 @@
 import { fetchAPIqs } from "api/request";
 import { Button } from "components/Button";
 import MapComponent from "components/Map/Map";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useRef } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { useQuery } from "react-query";
 import { fetchActivitiesByRegion } from "api/api";
@@ -14,9 +14,12 @@ import { Text } from "components/Text";
 import { shadow, color } from "theme";
 import * as Location from "expo-location";
 import { INITIAL_REGION } from "constants/global";
+import MapView from "react-native-maps";
 
 export default function MapScreen() {
   const [region, setRegion] = useState<Region>(INITIAL_REGION);
+
+  const mapRef = useRef<MapView>(null);
 
   const filters = {
     sport: {
@@ -42,20 +45,15 @@ export default function MapScreen() {
     })();
   }, []);
 
-  // Callback for when the region changes
-  // const handleRegionChangeComplete = useCallback(
-  //   debounce((newRegion: Region) => {
-  //     setRegion(newRegion);
-  //   }, 500), // Adjust debounce time as needed
-  //   []
-  // );
+  useEffect(() => {
+    if (mapRef.current) {
+      mapRef.current.animateToRegion(region);
+    }
+  }, [region]);
 
   const handleRegionChangeComplete = (newRegion: Region) => {
-    console.log("newRegion: ", newRegion);
     setRegion(newRegion);
   };
-
-  console.log(region, "region");
 
   const handleRefetch = () => {
     mutate("activities"); // Force a revalidation
@@ -73,12 +71,6 @@ export default function MapScreen() {
     fetchActivitiesByRegion(region, 5000, filters)
   );
 
-  // useEffect(() => {
-  //   //Example....
-  //   fetchActivitiesByRegion(region, 5000, filters)
-  // }
-  // , [region])
-
   // console.log(data, "data");
 
   // console.log(data, "data");
@@ -94,10 +86,10 @@ export default function MapScreen() {
     <MainLayout>
       <ShowRefetchButton />
       <MapComponent
-        key={region.latitude + region.longitude}
+        // key={region.latitude + region.longitude}
+        mapRef={mapRef}
         activities={data}
         initialRegion={region}
-        // region={region}
         onRegionChangeComplete={handleRegionChangeComplete}
       />
     </MainLayout>
