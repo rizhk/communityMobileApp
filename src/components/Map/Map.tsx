@@ -33,7 +33,7 @@ const MapComponent: React.FC<MapProps> = ({
     <>
       <MapView
         style={styles}
-        // onRegionChangeComplete={onRegionChangeComplete}
+        onRegionChangeComplete={onRegionChangeComplete}
         initialRegion={initialRegion}
         // region={region}
         {...rest}

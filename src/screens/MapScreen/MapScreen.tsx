@@ -43,26 +43,28 @@ export default function MapScreen() {
   }, []);
 
   // Callback for when the region changes
+  // const handleRegionChangeComplete = useCallback(
+  //   debounce((newRegion: Region) => {
+  //     setRegion(newRegion);
+  //   }, 500), // Adjust debounce time as needed
+  //   []
+  // );
+
   const handleRegionChangeComplete = (newRegion: Region) => {
+    console.log("icicici");
     setRegion(newRegion);
   };
 
   console.log(region, "region");
 
   const handleRefetch = () => {
-    console.log("icii");
-    mutate();
+    mutate("activities", true); // Force a revalidation
   };
 
   const ShowRefetchButton = () => {
     return (
       <View>
-        <Button
-          onPress={() => {
-            handleRefetch();
-          }}
-          text="Refetch"
-        />
+        <Button onPress={handleRefetch} text="Refetch" />
       </View>
     );
   };
@@ -70,8 +72,10 @@ export default function MapScreen() {
   const regionKey = JSON.stringify(region);
 
   const { data, error, isLoading, mutate } = useSWR("activities", () =>
-    fetchActivitiesByRegion(region, 50000, filters)
+    fetchActivitiesByRegion(region, 5000, filters)
   );
+
+  console.log(data, "data");
 
   // console.log(data, "data");
   // if (isLoading) {
@@ -90,7 +94,7 @@ export default function MapScreen() {
         activities={data}
         initialRegion={region}
         // region={region}
-        // onRegionChangeComplete={handleRegionChangeComplete}
+        onRegionChangeComplete={handleRegionChangeComplete}
       />
     </MainLayout>
   );
