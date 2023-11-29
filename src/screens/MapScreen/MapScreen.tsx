@@ -68,15 +68,11 @@ export default function MapScreen() {
     );
   };
 
-  //TODO: - Add radius to the map
-
   //TODO: Add clusters to map
 
   const { data, error, isLoading, mutate } = useSWR(["activities"], () =>
     fetchActivitiesByRegion(region, maxDistance, filters)
   );
-
-  // console.log(data, "data");
 
   // console.log(data, "data");
   // if (isLoading) {
@@ -91,11 +87,10 @@ export default function MapScreen() {
     <MainLayout>
       <ShowRefetchButton />
       <MapComponent
-        // key={region.latitude + region.longitude}
         maxDistance={maxDistance}
         mapRef={mapRef}
         activities={data}
-        initialRegion={region}
+        region={region}
         onRegionChangeComplete={handleRegionChangeComplete}
       />
     </MainLayout>

@@ -12,9 +12,8 @@ import { KM_PER_DEGREE_LATITUDE } from "constants/global";
 //TODO: - Display fields on the map
 
 interface MapProps {
-  initialRegion: Region;
   maxDistance: number;
-  region?: Region;
+  region: Region;
   style?: any;
   preset?: MapPresets;
   activities?: ActivitiesData;
@@ -24,7 +23,6 @@ interface MapProps {
 
 const MapComponent: React.FC<MapProps> = ({
   preset = "default",
-  initialRegion,
   region,
   onRegionChangeComplete,
   mapRef,
@@ -41,20 +39,19 @@ const MapComponent: React.FC<MapProps> = ({
     return deltaInKm * 1000;
   };
 
-  const radius = calculateRadius(initialRegion.latitudeDelta);
+  const radius = calculateRadius(region.latitudeDelta);
 
   return (
     <>
       <MapView
         style={styles}
         onRegionChangeComplete={onRegionChangeComplete}
-        initialRegion={initialRegion}
-        // region={region}
+        initialRegion={region}
         ref={mapRef}
         {...rest}
       >
         <Circle
-          center={{ latitude: initialRegion.latitude, longitude: initialRegion.longitude }}
+          center={{ latitude: region.latitude, longitude: region.longitude }}
           radius={radius || maxDistance}
           strokeColor={color.primary}
           fillColor={hexToRGBA(color.primary, 0.2)}
