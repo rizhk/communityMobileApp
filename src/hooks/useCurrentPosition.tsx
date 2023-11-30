@@ -3,10 +3,9 @@ import * as Location from "expo-location";
 import { Region } from "react-native-maps";
 import { INITIAL_REGION } from "constants/global";
 
-const useCurrentPosition = (): [Region, boolean] => {
-  const [region, setRegion] = useState<Region>();
+const useCurrentPosition = (): [Region | null, boolean] => {
+  const [region, setRegion] = useState<Region | null>(null);
   const [isLocationFetched, setLocationFetched] = useState(false);
-  console.log(isLocationFetched, "isLocationFetched");
 
   useEffect(() => {
     (async () => {
