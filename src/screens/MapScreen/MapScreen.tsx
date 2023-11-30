@@ -16,16 +16,14 @@ import * as Location from "expo-location";
 import { INITIAL_REGION } from "constants/global";
 import MapView from "react-native-maps";
 import useCurrentPosition from "hooks/useCurrentPosition";
-import { is } from "date-fns/locale";
-import { set } from "date-fns";
 
 export default function MapScreen() {
   const [region, setRegion] = useState<Region>(INITIAL_REGION);
   const [userRegion, isLocationFetched] = useCurrentPosition();
 
-  const [maxDistance, setMaxDistance] = useState(30000); // 30km
   const mapRef = useRef<MapView>(null);
 
+  const [maxDistance, setMaxDistance] = useState(30000); // 30km
   const filters = {
     sport: {
       name: "Basketball",
@@ -33,16 +31,12 @@ export default function MapScreen() {
     // date: "2023-07-19",
   };
 
+  //Move the map to user Location
   useEffect(() => {
-    setRegion(userRegion);
+    if (userRegion) {
+      setRegion(userRegion);
+    }
   }, [isLocationFetched]);
-
-  // useEffect(() => {
-  //   if (mapRef.current) {
-  //     console.log("ca bouge");
-  //     mapRef.current.animateToRegion(userRegion);
-  //   }
-  // }, [userRegion]);
 
   const handleRegionChangeComplete = (newRegion: Region) => {
     setRegion(newRegion);
@@ -63,14 +57,14 @@ export default function MapScreen() {
 
   //TODO: Add clusters to map
 
-  const { data, error, isLoading, mutate } = useSWR(["activities"], () =>
-    fetchActivitiesByRegion(region, maxDistance, filters)
-  );
-
   // console.log(data, "data");
   // if (!isLocationFetched) {
   //   return <ActivityIndicator />;
   // }
+
+  const { data, error, isLoading, mutate } = useSWR(["activities", region, maxDistance, filters], () =>
+    fetchActivitiesByRegion(region, maxDistance, filters)
+  );
 
   if (error) {
     return <Text>error...</Text>;
@@ -84,7 +78,6 @@ export default function MapScreen() {
         mapRef={mapRef}
         activities={data}
         region={region}
-        // initialRegion={initialRegion}
         onRegionChangeComplete={handleRegionChangeComplete}
       />
     </MainLayout>

@@ -4,7 +4,7 @@ import { Region } from "react-native-maps";
 import { INITIAL_REGION } from "constants/global";
 
 const useCurrentPosition = (): [Region, boolean] => {
-  const [region, setRegion] = useState<Region>(INITIAL_REGION);
+  const [region, setRegion] = useState<Region>();
   const [isLocationFetched, setLocationFetched] = useState(false);
   console.log(isLocationFetched, "isLocationFetched");
 
@@ -18,8 +18,8 @@ const useCurrentPosition = (): [Region, boolean] => {
 
       let location = await Location.getCurrentPositionAsync({});
       setRegion({
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
+        latitudeDelta: 0.1,
+        longitudeDelta: 0.1,
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
       });
