@@ -17,18 +17,14 @@ import { INITIAL_REGION } from "constants/global";
 import MapView from "react-native-maps";
 import useCurrentPosition from "hooks/useCurrentPosition";
 import { is } from "date-fns/locale";
+import { set } from "date-fns";
 
 export default function MapScreen() {
   const [region, setRegion] = useState<Region>(INITIAL_REGION);
   const [userRegion, isLocationFetched] = useCurrentPosition();
-  console.log(userRegion, "userRegion");
 
   const [maxDistance, setMaxDistance] = useState(30000); // 30km
   const mapRef = useRef<MapView>(null);
-
-  useEffect(() => {
-    console.log(region, "region");
-  }, [region]);
 
   const filters = {
     sport: {
@@ -38,11 +34,15 @@ export default function MapScreen() {
   };
 
   useEffect(() => {
-    if (mapRef.current) {
-      console.log("ca bouge");
-      mapRef.current.animateToRegion(userRegion);
-    }
-  }, [userRegion, isLocationFetched]);
+    setRegion(userRegion);
+  }, [isLocationFetched]);
+
+  // useEffect(() => {
+  //   if (mapRef.current) {
+  //     console.log("ca bouge");
+  //     mapRef.current.animateToRegion(userRegion);
+  //   }
+  // }, [userRegion]);
 
   const handleRegionChangeComplete = (newRegion: Region) => {
     setRegion(newRegion);

@@ -6,6 +6,7 @@ import { INITIAL_REGION } from "constants/global";
 const useCurrentPosition = (): [Region, boolean] => {
   const [region, setRegion] = useState<Region>(INITIAL_REGION);
   const [isLocationFetched, setLocationFetched] = useState(false);
+  console.log(isLocationFetched, "isLocationFetched");
 
   useEffect(() => {
     (async () => {
