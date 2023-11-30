@@ -15,10 +15,16 @@ import { shadow, color } from "theme";
 import * as Location from "expo-location";
 import { INITIAL_REGION } from "constants/global";
 import MapView from "react-native-maps";
+import useCurrentPosition from "hooks/useCurrentPosition";
+import { is } from "date-fns/locale";
 
 export default function MapScreen() {
-  const [region, setRegion] = useState<Region>(INITIAL_REGION);
+  // const [region, setRegion] = useState<Region>(INITIAL_REGION);
+
+  const [region, setRegion, isLocationFetched] = useCurrentPosition(INITIAL_REGION); // Add this line]
   const [maxDistance, setMaxDistance] = useState(30000); // 30km
+  console.log(isLocationFetched, "isLocationFetched");
+  console.log(region, "region");
 
   const mapRef = useRef<MapView>(null);
 
@@ -28,23 +34,6 @@ export default function MapScreen() {
     },
     // date: "2023-07-19",
   };
-
-  useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== "granted") {
-        console.error("Permission to access location was denied");
-        return;
-      }
-
-      let location = await Location.getCurrentPositionAsync({});
-      setRegion({
-        ...region,
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
-      });
-    })();
-  }, []);
 
   useEffect(() => {
     if (mapRef.current) {
@@ -60,6 +49,7 @@ export default function MapScreen() {
     mutate("activities"); // Force a revalidation
   };
 
+  //TODO: Better styling and way to show refetch button
   const ShowRefetchButton = () => {
     return (
       <View style={{ position: "absolute", top: 0, left: 0, zIndex: 100 }}>
