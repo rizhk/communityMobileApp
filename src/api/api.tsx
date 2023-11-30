@@ -55,6 +55,8 @@ export async function fetchActivitiesByRegion(
 ) {
   //   console.log("sport:", Object.keys(filters?.sport));
 
+  console.log("ca fetch");
+
   const apiFilters: { [key: string]: any } = {};
 
   //   if (filters?.sportName) {

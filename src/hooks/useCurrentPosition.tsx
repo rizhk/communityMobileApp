@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import * as Location from "expo-location";
 import { Region } from "react-native-maps";
+import { INITIAL_REGION } from "constants/global";
 
-const useCurrentPosition = (
-  initialRegion: Region
-): [Region, React.Dispatch<React.SetStateAction<Region>>, boolean] => {
-  const [region, setRegion] = useState<Region>(initialRegion);
+const useCurrentPosition = (): [Region, boolean] => {
+  const [region, setRegion] = useState<Region>(INITIAL_REGION);
   const [isLocationFetched, setLocationFetched] = useState(false);
 
   useEffect(() => {
@@ -18,7 +17,8 @@ const useCurrentPosition = (
 
       let location = await Location.getCurrentPositionAsync({});
       setRegion({
-        ...initialRegion,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
       });
@@ -26,7 +26,7 @@ const useCurrentPosition = (
     })();
   }, []);
 
-  return [region, setRegion, isLocationFetched];
+  return [region, isLocationFetched];
 };
 
 export default useCurrentPosition;

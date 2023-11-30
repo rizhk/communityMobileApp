@@ -7,13 +7,15 @@ import { ActivitiesData } from "types/activity";
 import { CustomMarker } from "./components/Marker";
 import { color } from "theme";
 import { hexToRGBA } from "utils/helper";
-import { KM_PER_DEGREE_LATITUDE } from "constants/global";
+import { INITIAL_REGION, KM_PER_DEGREE_LATITUDE } from "constants/global";
+import useCurrentPosition from "hooks/useCurrentPosition";
 
 //TODO: - Display fields on the map
 
 interface MapProps {
   maxDistance: number;
   region: Region;
+  initialRegion?: Region;
   style?: any;
   preset?: MapPresets;
   activities?: ActivitiesData;
@@ -46,8 +48,9 @@ const MapComponent: React.FC<MapProps> = ({
       <MapView
         style={styles}
         onRegionChangeComplete={onRegionChangeComplete}
-        initialRegion={region}
+        region={region}
         ref={mapRef}
+        initialRegion={rest.initialRegion}
         {...rest}
       >
         <Circle

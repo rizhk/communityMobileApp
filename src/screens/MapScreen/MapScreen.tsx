@@ -9,7 +9,7 @@ import useSWR from "swr";
 
 import { MainLayout } from "layouts";
 import { ActivityIndicator } from "react-native";
-import { Region } from "react-native-maps";
+import { LatLng, Region } from "react-native-maps";
 import { Text } from "components/Text";
 import { shadow, color } from "theme";
 import * as Location from "expo-location";
@@ -19,14 +19,16 @@ import useCurrentPosition from "hooks/useCurrentPosition";
 import { is } from "date-fns/locale";
 
 export default function MapScreen() {
-  // const [region, setRegion] = useState<Region>(INITIAL_REGION);
+  const [region, setRegion] = useState<Region>(INITIAL_REGION);
+  const [userRegion, isLocationFetched] = useCurrentPosition();
+  console.log(userRegion, "userRegion");
 
-  const [region, setRegion, isLocationFetched] = useCurrentPosition(INITIAL_REGION); // Add this line]
   const [maxDistance, setMaxDistance] = useState(30000); // 30km
-  console.log(isLocationFetched, "isLocationFetched");
-  console.log(region, "region");
-
   const mapRef = useRef<MapView>(null);
+
+  useEffect(() => {
+    console.log(region, "region");
+  }, [region]);
 
   const filters = {
     sport: {
@@ -37,9 +39,10 @@ export default function MapScreen() {
 
   useEffect(() => {
     if (mapRef.current) {
-      mapRef.current.animateToRegion(region);
+      console.log("ca bouge");
+      mapRef.current.animateToRegion(userRegion);
     }
-  }, [region]);
+  }, [userRegion, isLocationFetched]);
 
   const handleRegionChangeComplete = (newRegion: Region) => {
     setRegion(newRegion);
@@ -65,7 +68,7 @@ export default function MapScreen() {
   );
 
   // console.log(data, "data");
-  // if (isLoading) {
+  // if (!isLocationFetched) {
   //   return <ActivityIndicator />;
   // }
 
@@ -81,6 +84,7 @@ export default function MapScreen() {
         mapRef={mapRef}
         activities={data}
         region={region}
+        // initialRegion={initialRegion}
         onRegionChangeComplete={handleRegionChangeComplete}
       />
     </MainLayout>
