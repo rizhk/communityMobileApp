@@ -1,4 +1,5 @@
 export const INFINIT_PARTICIPANTS = 99999;
+export const DEFAULT_MAX_DISTANCE = 50;
 export const INITIAL_REGION = {
   latitude: 46.806,
   longitude: 7.153,
