@@ -81,7 +81,7 @@ export default function DatePicker(props: DatePickerProps) {
             value={day}
             setValue={setNewDay}
             items={dayItems}
-            itemWidth={45}
+            itemWidth={65}
             key={"d" + dayKey}
             scrollEnable={enable}
           />
@@ -90,7 +90,7 @@ export default function DatePicker(props: DatePickerProps) {
             value={month}
             setValue={setNewMonth}
             items={months}
-            itemWidth={150}
+            itemWidth={140}
             key={"m" + monthKey}
             scrollEnable={enable}
           />
