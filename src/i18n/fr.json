@@ -62,7 +62,6 @@
   },
   "mapScreen": {
     "start": "Start",
-    "CreateActivity": "Créer une activité",
     "createActivityHere": "Voulez-vous créer une activité ici ?"
   },
   "onClickCreate": {
@@ -104,19 +103,23 @@
     "joinChat": "Rejoindre le chat",
     "leaveActivity": "Quitter l'activité"
   },
-  "createActivityScreen": {
+  "addressPicker": {
+    "where": "Où ?",
+    "currentPosition": "Position actuelle",
+    "choosePosition": "Choisir un lieu"
+  },
+  "createActivity": {
+    "button": "Créer une activité",
     "title": "Créer une activité",
     "sportPicker": "Choisir un sport",
     "userPicker": "Choisir des participant.e.s",
-    "where": "Où ?",
-    "currentPosition": "Position actuelle",
-    "choosePosition": "Choisir un lieu",
     "adresse": "adresse",
     "when": "Quand ?",
     "type": "Type",
     "public": "Publique",
-    "semiPrivate": "Followers",
     "private": "Privée",
+    "solo": "Solo",
+    "semiPrivate": "Followers",
     "currentDate": "Aujourd'hui",
     "chooseDate": "Choisir une date",
     "maxParticipant": "Max participant.e.s",
@@ -385,5 +388,8 @@
     "october": "Octobre",
     "november": "Novembre",
     "december": "Décembre"
-  }
+  },
+  "item1": "item1",
+  "item2": "item2",
+  "item4": "item4"
 }

@@ -5,6 +5,7 @@ import I18n from "i18n-js";
 import { Text } from "components/Text";
 import { styleDirection } from "utils/formHelper";
 import { color, spacing } from "theme";
+import BaseRadio from "./BaseRadio";
 
 export interface RadioProps extends GFieldProps {
   items: GFieldItemType<string, I18n.Scope>[];
@@ -39,40 +40,13 @@ function RadioButton(props: RadioButtonProps) {
 }
 
 export default function Radio(props: RadioProps) {
-  const {
-    containerStyle,
-    valName,
-    tx,
-    text,
-    items,
-    radioDirection,
-    groupDirection = "row",
-    radioWidth,
-  } = props;
+  const { containerStyle, valName, tx, text, items, ...rest } = props;
   const { handleChange, values } = useGForm();
-  const containerPropStyle = [
-    styleDirection(groupDirection),
-    { justifyContent: groupDirection === "column" ? "flex-start" : "space-around" } as ViewStyle,
-    container,
-  ];
 
   return (
     <BaseField style={containerStyle}>
-      <BaseField.Label tx={tx} text={text} />
-      <View style={containerPropStyle}>
-        {items.map((item, index) => (
-          <RadioButton
-            selected={values[valName]}
-            setSelected={handleChange(valName)}
-            {...item}
-            direction={
-              radioDirection ? radioDirection : groupDirection === "column" ? "row" : "column"
-            }
-            width={radioWidth}
-            key={index}
-          />
-        ))}
-      </View>
+      {(tx !== undefined || text !== undefined) && <BaseField.Label tx={tx} text={text} />}
+      <BaseRadio value={values[valName]} setValue={handleChange(valName)} items={items} {...rest} />
       <BaseField.ErrorLabel valName={valName} />
     </BaseField>
   );
@@ -99,9 +73,4 @@ const radioInner = {
   width: 10,
   borderRadius: 10,
   backgroundColor: color.primary,
-} as ViewStyle;
-
-const container = {
-  gap: spacing.md,
-  flexWrap: "wrap",
 } as ViewStyle;

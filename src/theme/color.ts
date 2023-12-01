@@ -25,11 +25,12 @@ export const color = {
   primary: palette.pelopsRed,
   primaryLight: palette.pelopsLightRed,
   secondary: palette.pelopsOrange,
-  tertiary: palette.deepPurple,
+  tertiary: palette.pelopsGreen,
   primaryDark: palette.pelopsDarkRed,
 
   line: palette.offWhite,
   text: palette.white,
+  placeholder: palette.pelopsGrey100,
 
   grey100: palette.pelopsGrey100,
   grey200: palette.pelopsGrey200,

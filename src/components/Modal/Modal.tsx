@@ -17,7 +17,7 @@ export function Modal(props: PropsWithChildren<ModalProps>) {
         <View style={inner}>
           <Button
             icon={DownArrow}
-            size="md"
+            size="lg"
             onPress={() => setVisible(false)}
             rounded
             iconScale={2.5}
@@ -44,7 +44,8 @@ const inner = {
   width: "100%",
   padding: spacing.md,
   paddingTop: spacing.xl,
-  borderRadius: radius.xxl,
+  borderTopLeftRadius: radius.xxl,
+  borderTopRightRadius: radius.xxl,
 } as ViewStyle;
 
 const closeBtn = {

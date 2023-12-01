@@ -19,12 +19,14 @@ export default function AuthLayout({ route, title, children }: PropsWithChildren
   return (
     <ImageBackground style={image} source={require("assets/image/tile.png")}>
       <KeyboardAvoiding style={container}>
-        {route !== "login" && <Button icon={LeftArrow} onPress={() => navigation.goBack()} style={goBack} />}
-        <View style={innerContainer}>
-          <Icon icon={Pin} preset="title" />
-          <Text text="Pelops" style={titleStyle} />
-          <Text tx={title} preset="header" />
-          {children}
+        <View style={outerContainer}>
+          {route !== "login" && <Button icon={LeftArrow} onPress={() => navigation.goBack()} style={goBack} />}
+          <View style={innerContainer}>
+            <Icon icon={Pin} preset="title" />
+            <Text text="Pelops" style={titleStyle} />
+            <Text tx={title} preset="header" />
+            {children}
+          </View>
         </View>
       </KeyboardAvoiding>
     </ImageBackground>
@@ -44,9 +46,14 @@ const container = {
   position: "relative",
 } as ViewStyle;
 
+const outerContainer = {
+  width: "100%",
+} as ViewStyle;
+
 const innerContainer = {
   padding: spacing.md,
   alignSelf: "stretch",
+  flexDirection: "column",
 } as ViewStyle;
 
 const titleStyle = {

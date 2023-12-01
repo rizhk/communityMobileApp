@@ -15,30 +15,29 @@ export const images = {
   xl: 200,
 };
 
-/**
- * Icons size
- */
 export const icon = {
-  xxs: 8,
-  xs: 10,
-  sm: 12,
-  md: 16,
-  lg: 24,
-  xl: 32,
-  xxl: 48,
-  xxxl: 80,
-  xxxxl: 112,
+  xxs: 6,
+  xs: 8,
+  sm: 10,
+  md: 12,
+  lg: 16,
+  xl: 24,
+  xxl: 32,
+  xxxl: 48,
+  xxxxl: 80,
+  xxxxxl: 112,
 };
 
 export type IconSizeTypes = keyof typeof icon;
 
 export const buttonSize = {
-  xxs: 14,
+  xxs: 8,
   xs: 16,
-  sm: 32,
-  md: 48,
-  lg: 64,
-  xl: 80,
+  sm: 24,
+  md: 32,
+  lg: 40,
+  xl: 48,
+  xxl: 64,
 };
 
 export type ButtonSizeTypes = keyof typeof buttonSize;

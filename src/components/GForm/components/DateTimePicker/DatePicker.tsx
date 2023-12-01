@@ -1,4 +1,4 @@
-import { getDate, getDaysInMonth, getMonth, getYear } from "date-fns";
+import { getDate, getDaysInMonth, getMonth, getYear, setDate as setDay, setMonth, setYear } from "date-fns";
 import { translate } from "i18n";
 import { useEffect, useMemo, useState } from "react";
 import { View, ViewStyle } from "react-native";
@@ -6,7 +6,7 @@ import { color } from "theme";
 import Wheel from "./Wheel";
 import { rangedItems } from "utils/formHelper";
 import { inputContainer, outerContainer } from "./DateTimePicker.style";
-import { GrowingView } from "../containers/GrowingView";
+import { GrowingView } from "components/containers/GrowingView";
 
 const months = [
   { value: "0", label: translate("month.january") },
@@ -27,33 +27,50 @@ type DatePickerProps = {
   date: Date;
   setDate: (date: any) => void;
   enable?: boolean;
+  minDate?: Date;
 };
 
 export default function DatePicker(props: DatePickerProps) {
-  const { date, setDate, enable = true } = props;
+  const { enable = true, minDate, date, setDate } = props;
+  const [day, setNewDay] = useState<number>(getDate(date));
+  const [month, setNewMonth] = useState<number>(getMonth(date));
+  const [year, setNewYear] = useState<number>(getYear(date));
+  const [dayKey, setDayKey] = useState(0);
+  const [monthKey, setMonthKey] = useState(0);
+  const [yearKey, setYearKey] = useState(0);
+  const [maxDays, setMaxDays] = useState(getDaysInMonth(new Date(year, month)));
   const now = new Date();
-  const [day, setDay] = useState<number>(getDate(date));
-  const [month, setMonth] = useState<number>(getMonth(date));
-  const [year, setYear] = useState<number>(getYear(date));
-  const [key, setKey] = useState(0);
-
-  const dayItems = useMemo(() => rangedItems(1, getDaysInMonth(new Date(year, month)), 2), [month, year]);
   const yearItems = rangedItems(getYear(now), getYear(now) + 3);
-  const test = () => {
-    const testDate = `Test: ${day} / ${month} / ${year}`;
-    return testDate;
-  };
+  const dayItems = useMemo(
+    () =>
+      Array.from({ length: maxDays }, (_, i) => {
+        return { value: (i + 1).toString().padStart(2, "0"), label: (i + 1).toString().padStart(2, "0") };
+      }),
+    [maxDays]
+  );
 
-  // force to rerender days picker with setKey to handle difference number of days in month
+  // force to rerender days picker with setDayKey to handle difference number of days in month
   useEffect(() => {
-    const maxDays = getDaysInMonth(new Date(year, month));
-    if (day > maxDays) setDay(maxDays);
-    setKey((prev) => prev + 1);
-  }, [month, year]);
+    if (day > maxDays) setNewDay(maxDays);
+    setDayKey((prev) => prev + 1);
+  }, [maxDays]);
 
   useEffect(() => {
-    // console.log("TEEEEEST  ", year, month, day);
-    setDate(new Date(year, month, Number(day) + 1));
+    let newDate = new Date(date);
+    newDate = setDay(newDate, day);
+    newDate = setYear(newDate, year);
+    newDate = setMonth(newDate, month);
+    if (minDate && newDate < minDate) {
+      setNewDay(getDate(date));
+      setNewMonth(getMonth(date));
+      setNewYear(getYear(date));
+      setDayKey((prev) => prev + 1);
+      setMonthKey((prev) => prev + 1);
+      setYearKey((prev) => prev + 1);
+      return;
+    }
+    if (getDaysInMonth(newDate) != maxDays) setMaxDays(getDaysInMonth(newDate));
+    setDate(newDate);
   }, [day, month, year]);
 
   return (
@@ -62,16 +79,30 @@ export default function DatePicker(props: DatePickerProps) {
         <View style={inputContainer}>
           <Wheel
             value={day}
-            setValue={setDay}
+            setValue={setNewDay}
             items={dayItems}
             itemWidth={45}
-            key={key}
+            key={"d" + dayKey}
             scrollEnable={enable}
           />
           <View style={separator} />
-          <Wheel value={month} setValue={setMonth} items={months} itemWidth={150} scrollEnable={enable} />
+          <Wheel
+            value={month}
+            setValue={setNewMonth}
+            items={months}
+            itemWidth={150}
+            key={"m" + monthKey}
+            scrollEnable={enable}
+          />
           <View style={separator} />
-          <Wheel value={year} setValue={setYear} items={yearItems} itemWidth={80} scrollEnable={enable} />
+          <Wheel
+            value={year}
+            setValue={setNewYear}
+            items={yearItems}
+            itemWidth={80}
+            key={yearKey}
+            scrollEnable={enable}
+          />
         </View>
       </GrowingView>
     </View>

@@ -11,7 +11,7 @@ function Label(props: TextProps) {
 
 function ErrorLabel({ valName, ...props }: TextProps & { valName: string }) {
   const { errors } = useGForm();
-  useEffect(() => console.log(errors), [errors]);
+
   if (errors[valName] === undefined) return null;
   return <Text text={errors[valName]} preset="fieldError" {...props} />;
 }
@@ -24,6 +24,6 @@ export function BaseField({ children, style, ...props }: ViewProps) {
 }
 
 const container = {
-  paddingVertical: spacing.sm,
+  paddingVertical: spacing.xs,
   gap: spacing.xs,
 } as ViewStyle;

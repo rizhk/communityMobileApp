@@ -2,51 +2,76 @@ import { GFieldProps, useGForm } from "components/GForm/GForm.props";
 import { TextStyle, View, ViewStyle } from "react-native";
 import { BaseField } from "../BaseField";
 import DatePicker from "./DatePicker";
-import { useState } from "react";
 import { Text } from "components/Text";
 import TimePicker from "./TimePicker";
 import { Button } from "components/Button";
-import { useScrollContext } from "../containers/Scroll";
+import { useScrollContext } from "components/containers/Scroll";
 import { Edit } from "assets/svg";
+import { useState } from "react";
 
 export interface DateTimePickerProps extends Omit<GFieldProps, "valName"> {
   type?: "date" | "datetime";
   interval?: boolean;
   minDate?: Date;
   valNames: { start: string; end: string };
+  //if nested in a Scroll component from GFprm/container/Scroll.tsx
+  nestedScrollEnabled?: boolean;
 }
 
-export function DateTimePicker(props: DateTimePickerProps) {
-  const { type, interval, minDate, valNames, tx, text, containerStyle } = props;
-  const { handleChange, setFieldValue, values } = useGForm();
-  const [date, setDate] = useState(values[valNames.start]);
-  const [startDate, setStartDate] = useState(values[valNames.start]);
-  const [endDate, setEndDate] = useState(values[valNames.end]);
-  const { enable, setEnable } = useScrollContext();
-
+export default function DateTimePicker(props: DateTimePickerProps) {
+  const {
+    type,
+    interval,
+    minDate = new Date(),
+    valNames,
+    tx,
+    text,
+    containerStyle,
+    nestedScrollEnabled = false,
+  } = props;
+  const { setFieldValue, values } = useGForm();
+  const { enableScroll, setEnableScroll } = useScrollContext();
+  const [minimalDate] = useState(new Date(minDate ?? 0));
   const toggleEnable = () => {
-    setEnable(!enable);
+    setEnableScroll(!enableScroll);
   };
 
   return (
     <BaseField style={containerStyle}>
       <View style={header}>
         <BaseField.Label tx={tx} text={text} />
-        <Button
-          onPress={toggleEnable}
-          text={enable ? "edit" : "save"}
-          preset="small"
-          icon={enable ? Edit : undefined}
-          iconScale={1.2}
-          iconPosition="left"
-        />
+        {nestedScrollEnabled && (
+          <Button
+            onPress={toggleEnable}
+            text={enableScroll ? "edit" : "save"}
+            preset="small"
+            icon={enableScroll ? Edit : undefined}
+            iconScale={1.2}
+            iconPosition="left"
+          />
+        )}
       </View>
-      <DatePicker date={date} setDate={(date) => setFieldValue(date, date)} enable={!enable} />
+      <DatePicker
+        date={values[valNames.start]}
+        setDate={(date) => setFieldValue(valNames.start, date)}
+        minDate={minimalDate}
+        enable={!nestedScrollEnabled || !enableScroll}
+      />
       <View style={timeLine}>
         <Text tx="timePicker.from" style={timeLabel} />
-        <TimePicker date={startDate} setDate={setEndDate} enable={!enable} />
+        <TimePicker
+          date={values[valNames.start]}
+          setDate={(date) => setFieldValue(valNames.start, date)}
+          minDate={minimalDate}
+          enable={!nestedScrollEnabled || !enableScroll}
+        />
         <Text tx="timePicker.to" style={timeLabel} />
-        <TimePicker date={endDate} setDate={setEndDate} enable={!enable} />
+        <TimePicker
+          date={values[valNames.end]}
+          setDate={(date) => setFieldValue(valNames.end, date)}
+          minDate={minimalDate}
+          enable={!nestedScrollEnabled || !enableScroll}
+        />
       </View>
     </BaseField>
   );

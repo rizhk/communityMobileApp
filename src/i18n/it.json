@@ -103,18 +103,21 @@
     "joinChat": "Partecipa al chat",
     "leaveActivity": "Lasciare l'attività"
   },
-  "createActivityScreen": {
-    "title": "Creare attività",
-    "sportPicker": "Scegliere uno sport",
+  "addressPicker": {
     "where": "Dove?",
     "currentPosition": "posizione attuale",
-    "choosePosition": "scegliere un luogo",
+    "choosePosition": "scegliere un luogo"
+  },
+  "createActivity": {
+    "title": "Creare attività",
+    "sportPicker": "Scegliere uno sport",
     "adresse": "indirizzo",
     "when": "quando?",
     "type": "Tipo",
     "public": "Pubblico",
-    "semiPrivate": "Followers",
     "private": "Privato",
+    "solo": "Solo",
+    "semiPrivate": "Followers",
     "currentDate": "Oggi",
     "chooseDate": "Scegliere una data",
     "maxParticipant": "max partecipanti",

@@ -4,11 +4,6 @@ import i18n from "i18n-js";
 import { SVGAttributes, createContext, useContext } from "react";
 import { StyleProp, ViewStyle } from "react-native";
 
-export type GFieldItemType<T1, T2> = {
-  value: T1;
-  label: T2;
-};
-
 export type GFieldProps = {
   valName: string;
   tx?: I18n.Scope;
@@ -35,11 +30,7 @@ type ContextProps = {
     (e: React.FocusEvent<any, Element>): void;
     <T = any>(fieldOrEvent: T): T extends string ? (e: any) => void : void;
   };
-  setFieldValue: (
-    field: string,
-    value: any,
-    shouldValidate?: boolean | undefined
-  ) => Promise<void | FormikErrors<any>>;
+  setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => Promise<void | FormikErrors<any>>;
   handleSubmit: (e: any) => void;
   values: { [key: string]: any };
   errors: any;

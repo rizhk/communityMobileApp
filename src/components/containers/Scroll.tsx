@@ -3,19 +3,19 @@ import { ScrollViewProps } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
 type ScrollContextType = {
-  enable: boolean;
-  setEnable: React.Dispatch<React.SetStateAction<boolean>>;
+  enableScroll: boolean;
+  setEnableScroll: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const ScrollContext = createContext({} as ScrollContextType);
 
 export function Scroll({ children, ...props }: PropsWithChildren<ScrollViewProps>) {
-  const [enable, setEnable] = useState(true);
+  const [enableScroll, setEnableScroll] = useState(true);
   return (
-    <ScrollContext.Provider value={{ enable, setEnable }}>
+    <ScrollContext.Provider value={{ enableScroll, setEnableScroll }}>
       <ScrollView
         nestedScrollEnabled={true}
-        scrollEnabled={enable}
+        scrollEnabled={enableScroll}
         showsVerticalScrollIndicator={false}
         {...props}
       >
