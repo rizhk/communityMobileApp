@@ -7,7 +7,7 @@ import TextInput from "./components/TextInput/TextInput";
 import NumberPicker from "./components/NumberPicker";
 import Radio from "./components/Radio";
 import Switch from "./components/Switch";
-import DateTimePicker from "./components/DateTimePicker/DateTimePicker";
+import DateTimePicker from "./components/DateTimePicker";
 import DropPicker from "./components/DropPicker";
 import AddressPicker from "./components/AddressPicker/AddressPicker";
 
@@ -26,6 +26,7 @@ export default function GForm<Values extends FormikValues = FormikValues>({
   submitIcon,
   containerStyle,
   children,
+  themeColor,
   ...props
 }: PropsWithChildren<FormikConfig<Values> & GFormProps>) {
   const submitButtonProps = { tx: submitTx, text: submitText };
@@ -42,6 +43,7 @@ export default function GForm<Values extends FormikValues = FormikValues>({
             errors,
             validateField,
             setFieldError,
+            themeColor,
           }}
         >
           {children}

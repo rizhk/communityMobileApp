@@ -1,4 +1,4 @@
-import { getDate, getDaysInMonth, getMonth, getYear, setDate as setDay, setMonth, setYear } from "date-fns";
+import { getDate, getDaysInMonth, getMonth, getYear, set, setDate as setDay, setMonth, setYear } from "date-fns";
 import { translate } from "i18n";
 import { useEffect, useMemo, useState } from "react";
 import { View, ViewStyle } from "react-native";
@@ -55,23 +55,40 @@ export function DatePicker(props: DatePickerProps) {
     setDayKey((prev) => prev + 1);
   }, [maxDays]);
 
-  useEffect(() => {
-    let newDate = new Date(date);
-    newDate = setDay(newDate, day);
-    newDate = setYear(newDate, year);
-    newDate = setMonth(newDate, month);
+  const setDayDate = (day: number) => {
+    let newDate = setDay(date, day);
     if (minDate && newDate < minDate) {
       setNewDay(getDate(date));
-      setNewMonth(getMonth(date));
-      setNewYear(getYear(date));
       setDayKey((prev) => prev + 1);
+      return;
+    }
+    setNewDay(day);
+    setDate(newDate);
+  };
+
+  const setMonthDate = (month: number) => {
+    let newDate = setMonth(date, month);
+    if (minDate && newDate < minDate) {
+      setNewMonth(getMonth(date));
       setMonthKey((prev) => prev + 1);
+      return;
+    }
+    setNewMonth(month);
+    if (getDaysInMonth(newDate) != maxDays) setMaxDays(getDaysInMonth(newDate));
+    setDate(newDate);
+  };
+
+  const setYearDate = (year: number) => {
+    let newDate = setYear(date, year);
+    if (minDate && newDate < minDate) {
+      setNewYear(getYear(date));
       setYearKey((prev) => prev + 1);
       return;
     }
+    setNewYear(year);
     if (getDaysInMonth(newDate) != maxDays) setMaxDays(getDaysInMonth(newDate));
     setDate(newDate);
-  }, [day, month, year]);
+  };
 
   return (
     <View style={outerContainer}>
@@ -79,7 +96,7 @@ export function DatePicker(props: DatePickerProps) {
         <View style={inputContainer}>
           <Wheel
             value={day}
-            setValue={setNewDay}
+            setValue={setDayDate}
             items={dayItems}
             itemWidth={45}
             key={"d" + dayKey}
@@ -88,7 +105,7 @@ export function DatePicker(props: DatePickerProps) {
           <View style={separator} />
           <Wheel
             value={month}
-            setValue={setNewMonth}
+            setValue={setMonthDate}
             items={months}
             itemWidth={150}
             key={"m" + monthKey}
@@ -97,7 +114,7 @@ export function DatePicker(props: DatePickerProps) {
           <View style={separator} />
           <Wheel
             value={year}
-            setValue={setNewYear}
+            setValue={setYearDate}
             items={yearItems}
             itemWidth={80}
             key={yearKey}

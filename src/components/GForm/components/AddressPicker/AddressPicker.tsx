@@ -11,7 +11,8 @@ import { Icon } from "components/Icon";
 import { Cross, Pin } from "assets/svg";
 import { AddressSuggestions, fetchPlaceDetails, fetchSuggestions } from "utils/locationHelper";
 import { Button } from "components/Button";
-
+import { AddressPicker as AppAddressPicker } from "components/Inputs/AddressPicker";
+import { LocationType } from "types/global";
 export interface AdressPickerProps extends GFieldProps {
   placeholderTx?: I18n.Scope;
 }
@@ -74,6 +75,10 @@ export default function AddressPicker(props: AdressPickerProps) {
             </View>
           )}
         </View>
+        // <AppAddressPicker
+        //   value={values[valName] as LocationType}
+        //   setValue={(val: any) => setFieldValue(valName, val)}
+        // />
       )}
     </BaseField>
   );

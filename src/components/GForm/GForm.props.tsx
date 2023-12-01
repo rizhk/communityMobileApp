@@ -3,6 +3,7 @@ import I18n from "i18n-js";
 import i18n from "i18n-js";
 import { SVGAttributes, createContext, useContext } from "react";
 import { StyleProp, ViewStyle } from "react-native";
+import { ThemeColorType } from "theme";
 
 export type GFieldProps = {
   valName: string;
@@ -17,6 +18,7 @@ export type GFormProps = {
   submitText?: string;
   submitIcon?: React.FunctionComponent<SVGAttributes<SVGElement>>;
   containerStyle?: StyleProp<ViewStyle>;
+  themeColor?: ThemeColorType;
 };
 
 type ContextProps = {
@@ -36,6 +38,7 @@ type ContextProps = {
   errors: any;
   setFieldError: (field: string, error: string) => void;
   validateField: (e: any) => void;
+  themeColor?: ThemeColorType;
 };
 
 export const GFormContext = createContext<ContextProps>({} as ContextProps);

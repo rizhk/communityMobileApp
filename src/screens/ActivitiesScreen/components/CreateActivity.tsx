@@ -1,5 +1,5 @@
 import GForm from "components/GForm/GForm";
-import { Modal } from "components/Modal";
+import { Slider } from "components/Modal";
 import { INFINIT_PARTICIPANTS } from "constants/global";
 import * as Yup from "yup";
 import { Validations } from "constants/Validations";
@@ -88,7 +88,7 @@ export default function CreateActivity(props: CreateActivityProps) {
 
   return (
     <KeyboardAvoiding>
-      <Modal visible={open} setVisible={setOpen}>
+      <Slider visible={open} setVisible={setOpen}>
         <Text preset="header" tx="createActivity.title" />
         <GForm initialValues={initialValues} validationSchema={validations} onSubmit={handleSubmit}>
           <GForm.TextInput
@@ -106,10 +106,10 @@ export default function CreateActivity(props: CreateActivityProps) {
           <GForm.AddressPicker valName="location" />
           <GForm.DateTimePicker tx="createActivity.when" valNames={{ start: "dateStart", end: "dateEnd" }} />
           <GForm.Radio valName="type" items={activityTypeItems} />
-          <GForm.NumberPicker items={nbParticipantItems} tx="createActivity.maxParticipant" valName="nbParticipant" />
+          <GForm.NumberPicker max={10} hasInfinit tx="createActivity.maxParticipant" valName="nbParticipant" />
           <GForm.SubmitButton tx="createActivity.createActivity" style={{ alignSelf: "center" }} />
         </GForm>
-      </Modal>
+      </Slider>
     </KeyboardAvoiding>
   );
 }

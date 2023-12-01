@@ -14,7 +14,6 @@ export function TabsGroup(props: PropsWithChildren<ViewProps>) {
 const group = {
   display: "flex",
   flexDirection: "row",
-  marginVertical: spacing.xs,
   gap: spacing.md,
   marginHorizontal: spacing.md,
 } as ViewStyle;

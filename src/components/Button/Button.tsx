@@ -25,7 +25,7 @@ export function Button(props: ButtonProps) {
 
   const textProps = { tx: tx, txOptions: txOptions, text: text, preset: textPreset };
   const roundStyle = rounded
-    ? { width: buttonSize[size ?? "md"], height: buttonSize[size ?? "md"], borderRadius: 100 }
+    ? { width: buttonSize[size ?? "md"], height: buttonSize[size ?? "md"], borderRadius: 200 }
     : {};
   const buttonStyle = [presets[preset](color), { padding: spacing[size] }, roundStyle, style];
   const textStyles = [preset === "outlined" ? { color: themeColor[color] } : {}, textStyle];

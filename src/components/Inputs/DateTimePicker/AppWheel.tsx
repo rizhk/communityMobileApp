@@ -1,7 +1,7 @@
 import { Text } from "components/Text";
 import { useRef, useState } from "react";
 import { Platform, ScrollView, TextStyle, View, ViewStyle } from "react-native";
-import { color, radius, spacing } from "theme";
+import { color } from "theme";
 
 //in the making, it's a whell without flatlist to get rid of virtualized list warning
 export type item = { value: string; label: string };

@@ -39,7 +39,7 @@ export const presets = {
   small: (color: ThemeColorType) => {
     return {
       ...BASE(color),
-      height: 30,
+      height: 35,
       padding: 0,
       paddingHorizontal: spacing.sm,
     } as ViewStyle;

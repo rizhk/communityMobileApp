@@ -11,6 +11,8 @@ Tabs.Header = TabsHeader;
 Tabs.Group = TabsGroup;
 Tabs.Body = TabsBody;
 
+const offset = 20;
+
 export function Tabs(props: PropsWithChildren<TabsProps>) {
   const { children, selected, handleSelect, style } = props;
   const [values, setValues] = useState<any[]>([]);
@@ -26,16 +28,14 @@ export function Tabs(props: PropsWithChildren<TabsProps>) {
     if (event.nativeEvent.state !== State.ACTIVE) return;
     const translationX = event.nativeEvent.translationX;
     const index = values.indexOf(selected);
-    if (translationX < +20 && index !== values.length - 1) handleSelect(values[index + 1]);
-    else if (translationX > -20 && index !== 0) handleSelect(values[index - 1]);
+    if (translationX < -offset && index !== values.length - 1) handleSelect(values[index + 1]);
+    else if (translationX > +offset && index !== 0) handleSelect(values[index - 1]);
   }
 
   return (
     <PanGestureHandler onHandlerStateChange={gestureHandler}>
       <View style={[main, style]}>
-        <TabContext.Provider value={{ selected, handleSelect, addValue }}>
-          {children}
-        </TabContext.Provider>
+        <TabContext.Provider value={{ selected, handleSelect, addValue }}>{children}</TabContext.Provider>
       </View>
     </PanGestureHandler>
   );

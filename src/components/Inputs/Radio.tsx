@@ -3,7 +3,7 @@ import I18n from "i18n-js";
 import { Text } from "components/Text";
 import { ThemeColorType, color, spacing } from "theme";
 import { ItemType } from "./types";
-import { shadowStyle } from "./styles";
+import { shadowStyle } from "theme/styles";
 
 export interface RadioProps {
   value: string;

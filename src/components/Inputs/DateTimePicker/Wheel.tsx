@@ -10,7 +10,7 @@ type ItemType = {
 
 type WheelProps = {
   value: any;
-  setValue: React.Dispatch<React.SetStateAction<any>>;
+  setValue: (val: any) => void;
   items: ItemType[];
   nbItems?: number;
   itemHeight?: number;
@@ -20,16 +20,7 @@ type WheelProps = {
 };
 
 export default function Wheel(props: WheelProps) {
-  const {
-    value,
-    setValue,
-    items,
-    nbItems = 3,
-    itemHeight = 28,
-    itemWidth = 40,
-    style,
-    scrollEnable = false,
-  } = props;
+  const { value, setValue, items, nbItems = 3, itemHeight = 28, itemWidth = 40, style, scrollEnable = false } = props;
   const [selectedIndex, setSelectedIndex] = useState(() => {
     const i = items.findIndex((item) => {
       return item.value == value;

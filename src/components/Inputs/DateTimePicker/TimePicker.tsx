@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TextStyle, View } from "react-native";
 import Wheel from "./Wheel";
 import { rangedItems } from "utils/formHelper";
 import { Text } from "components/Text";
 import { inputContainer, outerContainer } from "./DateTimePicker.style";
 import { GrowingView } from "components/containers/GrowingView";
-import { getHours, getMinutes, set } from "date-fns";
+import { getHours, getMinutes, setHours as setHoursFns, setMinutes as setMinutesFns } from "date-fns";
 
 type TimePickerProps = {
   date: Date;
@@ -23,32 +23,45 @@ export function TimePicker(props: TimePickerProps) {
   const hourItems = rangedItems(0, 23, 2);
   const minuteItems = rangedItems(0, 59, 2);
 
-  useEffect(() => {
-    const newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), hours, minutes);
+  const setHourDate = (hour: number) => {
+    let newDate = setHoursFns(date, hour);
     if (minDate && newDate < minDate) {
-      setMinutes(getMinutes(date));
       setHours(getHours(date));
-      setMinKey((prev) => prev + 1);
       setHourKey((prev) => prev + 1);
       return;
     }
-    setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate(), hours, minutes));
-  }, [hours, minutes]);
+    setDate(newDate);
+  };
 
+  const setMinuteDate = (minute: number) => {
+    let newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), minute);
+    if (minDate && newDate < minDate) {
+      setMinutes(getMinutes(date));
+      setMinKey((prev) => prev + 1);
+      return;
+    }
+    setDate(newDate);
+  };
   return (
     <View style={outerContainer}>
       <GrowingView open={enable} from={32} to={80} style={{ overflow: "hidden" }}>
         <View style={inputContainer}>
           <Wheel
             value={hours}
-            setValue={setHours}
+            setValue={setHourDate}
             items={hourItems}
             itemWidth={38}
             scrollEnable={enable}
             key={"h" + hourKey}
           />
           <Text text=":" style={dots} />
-          <Wheel value={minutes} setValue={setMinutes} items={minuteItems} scrollEnable={enable} key={"m" + minKey} />
+          <Wheel
+            value={minutes}
+            setValue={setMinuteDate}
+            items={minuteItems}
+            scrollEnable={enable}
+            key={"m" + minKey}
+          />
         </View>
       </GrowingView>
     </View>
