@@ -5,6 +5,7 @@ import { Modal, View, StyleSheet, TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { color } from "theme";
 import { Text } from "components/Text";
+import Slider from "@react-native-community/slider";
 
 import { Radio, Switch, NumberPicker, DropPicker, TextInput, DateTimePicker } from "components/Inputs";
 import { hexToRGBA } from "utils/helper";
@@ -53,7 +54,7 @@ const ActivityFilter: React.FC<ActivityFilterProps> = ({ isVisible, onClose, onA
             <DropPicker items={dropItems} value={item} setValue={setItem} />
 
             <Text text="Distance max" />
-            <NumberPicker
+            {/* <NumberPicker
               min={10}
               max={100}
               value={maxDistance}
@@ -61,6 +62,18 @@ const ActivityFilter: React.FC<ActivityFilterProps> = ({ isVisible, onClose, onA
               width={120}
               padding={2}
               step={10}
+            /> */}
+            <Text text={maxDistance + "km"} />
+            <Slider
+              style={{ width: "100%", height: 40 }}
+              minimumValue={20}
+              maximumValue={100}
+              step={10}
+              minimumTrackTintColor={color.primary}
+              maximumTrackTintColor={color.primaryDark}
+              thumbTintColor={color.primary}
+              value={maxDistance}
+              onValueChange={setMaxDistance}
             />
             <Text text="Du" />
             <DatePicker date={startDate} setDate={setStartDate} minDate={new Date()} />
