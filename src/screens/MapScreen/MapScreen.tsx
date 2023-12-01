@@ -24,6 +24,7 @@ import { Text } from "components/Text";
 
 import { ScrollView } from "react-native";
 import { View } from "react-native-animatable";
+import ActivityFilter from "components/ActivityFilter/ActivityFilter";
 
 const items = [
   { label: "item1", value: "item1" },
@@ -51,6 +52,22 @@ export default function MapScreen() {
   const [item, setItem] = useState("drop-item1");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
+  // ... other states ...
+
+  const handleOpenFilter = () => {
+    setIsFilterVisible(true);
+  };
+
+  const handleCloseFilter = () => {
+    setIsFilterVisible(false);
+  };
+
+  const handleApplyFilter = () => {
+    // Update filters and fetch new data
+    handleCloseFilter();
+  };
 
   const filters = {
     sport: {
@@ -100,8 +117,17 @@ export default function MapScreen() {
 
   return (
     <MainLayout>
-      <ShowRefetchButton />
-      <ScrollView style={{ display: "flex", flexDirection: "column", gap: 30, padding: 20 }}>
+      <Button onPress={handleOpenFilter} text="Filter" />
+      <ActivityFilter
+        isVisible={isFilterVisible}
+        onClose={handleCloseFilter}
+        onApply={handleApplyFilter}
+        // filters={filters}
+        // setFilters={setFilters} // If you want to lift state up
+      />
+      {/* <ShowRefetchButton /> */}
+
+      {/* <ScrollView style={{ display: "flex", flexDirection: "column", gap: 30, padding: 20 }}>
         <TextInput placeholder="type text" style={{ marginVertical: 10 }} />
         <DropPicker items={dropItems} value={item} setValue={setItem} />
         <Radio value={radio} setValue={setRadio} items={items} style={{ marginTop: 20 }} />
@@ -118,14 +144,14 @@ export default function MapScreen() {
           <Switch value={true} color="tertiary" />
         </View>
         <DateTimePicker startDate={startDate} endDate={endDate} setStartDate={setStartDate} setEndDate={setEndDate} />
-      </ScrollView>
-      <MapComponent
+      </ScrollView> */}
+      {/* <MapComponent
         maxDistance={maxDistance}
         mapRef={mapRef}
         activities={data}
         region={region}
         onRegionChangeComplete={handleRegionChangeComplete}
-      />
+      /> */}
     </MainLayout>
   );
 }
