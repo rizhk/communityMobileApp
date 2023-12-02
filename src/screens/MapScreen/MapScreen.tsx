@@ -29,15 +29,9 @@ import ActivityFilter from "components/ActivityFilter/ActivityFilter";
 export function MapScreen() {
   const [region, setRegion] = useState<Region>(INITIAL_REGION);
   const [userRegion, isLocationFetched] = useCurrentPosition();
-  const mapRef = useRef<MapView>(null);
   const [maxDistance, setMaxDistance] = useState(30000); // 30km
 
-  const [radio, setRadio] = useState("item1");
-  const [switchValue, setSwitchValue] = useState(false);
-  const [n, setN] = useState(0);
-  const [item, setItem] = useState("drop-item1");
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const mapRef = useRef<MapView>(null);
 
   const [isFilterVisible, setIsFilterVisible] = useState(false);
   // ... other states ...
