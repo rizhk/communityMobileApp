@@ -26,7 +26,7 @@ import { ScrollView } from "react-native";
 import { View } from "react-native-animatable";
 import ActivityFilter from "components/ActivityFilter/ActivityFilter";
 
-export default function MapScreen() {
+export function MapScreen() {
   const [region, setRegion] = useState<Region>(INITIAL_REGION);
   const [userRegion, isLocationFetched] = useCurrentPosition();
   const mapRef = useRef<MapView>(null);
