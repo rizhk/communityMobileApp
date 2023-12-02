@@ -1,7 +1,7 @@
 import { Star } from "assets/svg";
 import { Icon } from "components/Icon";
-import React, { useState } from "react";
-import { Modal, View, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useState, useEffect } from "react";
+import { Modal, View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { color } from "theme";
 import { Text } from "components/Text";
@@ -11,59 +11,65 @@ import { Radio, Switch, NumberPicker, DropPicker, TextInput, DateTimePicker } fr
 import { hexToRGBA } from "utils/helper";
 import DatePicker from "components/GForm/components/DateTimePicker/DatePicker";
 import { DEFAULT_MAX_DISTANCE } from "constants/global";
+import { DropPickerItem } from "components/Inputs/DropPicker";
+import { SportItem } from "types/sport";
+import { SportItemStrapi } from "types/sport";
 
 interface ActivityFilterProps {
   isVisible: boolean;
+  sportItems: SportItemStrapi[];
   onClose: () => void;
   onApply: () => void; // Update this type as needed based on what onApply does
   // Include other props like filters and setFilters if you have specific filters state
 }
 
-const items = [
-  { label: "item1", value: "item1" },
-  { label: "item2", value: "item2" },
-  { label: "item3", value: "item3" },
-  { label: "item4", value: "item4" },
-];
+// const items = [
+//   { label: "item1", value: "item1" },
+//   { label: "item2", value: "item2" },
+//   { label: "item3", value: "item3" },
+//   { label: "item4", value: "item4" },
+// ];
 
-const dropItems = [
-  { icon: () => <Icon icon={Star} />, label: "drop-item1", value: "drop-item1" },
-  { icon: () => <Icon icon={Star} />, label: "drop-item2", value: "drop-item2" },
-  { icon: () => <Icon icon={Star} />, label: "drop-item3", value: "drop-item3" },
-  { icon: () => <Icon icon={Star} />, label: "drop-item4", value: "drop-item4" },
-];
+const mapSportsDataToDropPickerItems = (sportsData: SportItemStrapi[]) => {
+  const transformedItems = sportsData?.map((sport) => ({
+    icon: () => (
+      <Image source={{ uri: sport.attributes.icon.data.attributes.url }} resizeMode="contain" style={styles.pinImage} />
+    ),
+    label: sport?.attributes?.name,
+    value: String(sport.id),
+  }));
 
-const ActivityFilter: React.FC<ActivityFilterProps> = ({ isVisible, onClose, onApply }) => {
+  return transformedItems as DropPickerItem[];
+};
+
+const ActivityFilter: React.FC<ActivityFilterProps> = ({ isVisible, onClose, onApply, sportItems }) => {
   const [radio, setRadio] = useState("item1");
   const [switchValue, setSwitchValue] = useState(false);
   const [maxDistance, setMaxDistance] = useState(DEFAULT_MAX_DISTANCE);
   const [item, setItem] = useState("drop-item1");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const [mappedSportItems, setMappedSportItems] = useState<DropPickerItem[]>([]);
+
+  useEffect(() => {
+    if (sportItems) {
+      const transformedItems = mapSportsDataToDropPickerItems(sportItems as SportItemStrapi[]);
+      setMappedSportItems(transformedItems);
+    }
+  }, [sportItems]);
+
   return (
     <Modal animationType="fade" transparent={true} visible={isVisible} onRequestClose={onClose}>
       <View style={styles.container}>
         <View style={styles.panel}>
-          {/* Filter UI Elements */}
-          {/* ... */}
           <View style={{ display: "flex", flexDirection: "column", gap: 16, padding: 20 }}>
             <TouchableOpacity onPress={onClose} style={styles.closeButton}>
               <Text>Close</Text>
             </TouchableOpacity>
             <Text text="Sport Picker" />
-            <DropPicker items={dropItems} value={item} setValue={setItem} />
+            <DropPicker items={mappedSportItems} value={item} setValue={setItem} />
 
-            <Text text="Distance max" />
-            {/* <NumberPicker
-              min={10}
-              max={100}
-              value={maxDistance}
-              setValue={setMaxDistance}
-              width={120}
-              padding={2}
-              step={10}
-            /> */}
-            <Text text={maxDistance + "km"} />
+            <Text text={"Distance: " + maxDistance + " km"} />
             <Slider
               style={{ width: "100%", height: 40 }}
               minimumValue={20}
@@ -119,6 +125,10 @@ const styles = StyleSheet.create({
     height: "100%",
     backgroundColor: hexToRGBA(color.black, 0.9),
     padding: 24,
+  },
+  pinImage: {
+    width: 24,
+    height: 24,
   },
   button: {
     // Style for Apply Button

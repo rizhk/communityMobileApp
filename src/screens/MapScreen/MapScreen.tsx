@@ -4,7 +4,7 @@ import MapComponent from "components/Map/Map";
 import { useEffect, useState, useRef } from "react";
 import { StyleSheet, ViewStyle } from "react-native";
 import { useQuery } from "react-query";
-import { fetchActivitiesByRegion } from "api/api";
+import { fetchActivitiesByRegion, fetchSports } from "api/api";
 import useSWR from "swr";
 
 import { MainLayout } from "layouts";
@@ -97,6 +97,10 @@ export default function MapScreen() {
     fetchActivitiesByRegion(region, maxDistance, filters)
   );
 
+  const { data: dataSports } = useSWR(["sports"], () => fetchSports());
+
+  console.log("dataSports", dataSports);
+
   if (error) {
     return <Text>error...</Text>;
   }
@@ -108,6 +112,7 @@ export default function MapScreen() {
         isVisible={isFilterVisible}
         onClose={handleCloseFilter}
         onApply={handleApplyFilter}
+        sportItems={dataSports.data}
         // filters={filters}
         // setFilters={setFilters} // If you want to lift state up
       />

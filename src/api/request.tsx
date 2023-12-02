@@ -2,6 +2,7 @@ import axios from "axios";
 import { AxiosRequestHeaders } from "axios";
 import { API_URL } from "@env";
 import { qs } from "qs";
+import { ImageUpload } from "types/global";
 axios.defaults.baseURL = `${API_URL}/api`;
 
 export type GetDataStrapi = {
@@ -22,12 +23,7 @@ console.log(API_URL, "is API_URL");
  * @param {Object} options Options passed to fetch
  * @returns Parsed API call response
  */
-export async function fetchAPIqs(
-  path: string,
-  urlParamsObject = {},
-  options = {},
-  userToken?: string | null
-) {
+export async function fetchAPIqs(path: string, urlParamsObject = {}, options = {}, userToken?: string | null) {
   // Merge default and user options
 
   const mergedOptions = {

@@ -22,7 +22,7 @@ const PinIcon = ({ bgColor = color.primary }) => {
 
 interface CustomMarkerProps {
   participantCount: number | undefined;
-  image: ImageUpload;
+  image: string | undefined;
   //   pinImage?: IconTypes | ImageRequireSource;
   pinImage?: any;
   type?: "activity" | "field" | "tournament";
@@ -41,6 +41,7 @@ export function CustomMarker({
     <TouchableOpacity activeOpacity={1} style={styles.pinWrapper}>
       <View style={styles.pinContainer}>
         <PinIcon />
+        {/* TODO: Use CLoudinary image ? Or improve function to get image from cloudinary */}
         {image && <Image source={{ uri: image }} resizeMode="contain" style={styles.pinImage} />}
         <View style={styles.notificationBubble}>
           <Text style={styles.notificationText}>{participantCount}</Text>

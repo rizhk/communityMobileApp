@@ -1,4 +1,4 @@
-import { SportItem } from "./sport";
+import { SportItem, SportItemStrapi, SportsData } from "./sport";
 import { UserItem } from "./user";
 
 export const populateActivity = [
@@ -15,6 +15,7 @@ export const populateActivity = [
   "blockedUsers",
 ];
 
+//****** ACTIVITY ******\\
 export interface ActivityFilters {
   sportName?: string;
   sportId?: number;
@@ -42,6 +43,58 @@ export interface ActivityItem {
   channel: any;
 }
 
+export interface ActivityItemStrapi {
+  id: number;
+  attributes: ActivityItem;
+}
+
+export interface ActivitiesData {
+  data: ActivityItemStrapi[];
+  meta: any;
+}
+
+export interface ActivityFormData extends ActivityFormSchema {
+  label?: string;
+  type: ActivityFormType;
+  multiple?: boolean;
+  searchable?: boolean;
+  labelLocation?: string;
+  labelActualLocation?: string;
+}
+
+export type ActivityFormType =
+  | "media"
+  | "LocationPicker"
+  | "DateTimerPicker"
+  | "DropPicker"
+  | "maxParticipantsPicker"
+  | "hidden"
+  | "string"; //default
+
+export interface ActivityFormSchema {
+  value: ActivityType;
+  initialValue?: number | string | boolean | Date | Array<any>;
+  validation: FieldValidation;
+}
+
+export type ActivityType = "sport" | "location" | "date" | "startHour" | "endHour" | "maxParticipants" | "description";
+
+//****** IMAGE ******\\
+export interface ImageItem {
+  public_id: string;
+  url: string;
+}
+export interface ImageItemStrapi {
+  data: {
+    id: number;
+    attributes: ImageItem;
+  };
+
+  provider_metadata: ImageItem;
+  id: number;
+}
+
+//****** FIELD ******\\
 export interface FieldItem {
   sports: SportItem;
   certified: boolean;
@@ -57,30 +110,6 @@ export interface FieldItem {
   status: "public" | "semi-private" | "private";
   disponibility?: string;
 }
-
-export interface ImageItem {
-  public_id: string;
-}
-export interface ImageItemStrapi {
-  provider_metadata: ImageItem;
-  id: number;
-}
-
-export interface ActivityItemStrapi {
-  id: number;
-  attributes: ActivityItem;
-}
-
-export interface ActivitiesData {
-  data: ActivityItemStrapi[];
-  meta: any;
-}
-
-export interface SportItemStrapi {
-  id: number;
-  attributes: SportItem;
-}
-
 export interface FieldItemStrapi {
   id: number;
   attributes: FieldItem;
@@ -91,11 +120,7 @@ export interface FieldItemStrapi {
   attributes: FieldItem;
 }
 
-export interface SportsData {
-  data: SportItemStrapi[];
-  meta: any;
-}
-
+//****** TOURNAMENT ******\\
 export interface TournamentItem {
   maxParticipants?: number;
   latitude: number;
@@ -136,36 +161,3 @@ export type FieldValidation = {
   maxLenght?: number;
   format?: string;
 };
-
-export interface ActivityFormData extends ActivityFormSchema {
-  label?: string;
-  type: ActivityFormType;
-  multiple?: boolean;
-  searchable?: boolean;
-  labelLocation?: string;
-  labelActualLocation?: string;
-}
-
-export type ActivityFormType =
-  | "media"
-  | "LocationPicker"
-  | "DateTimerPicker"
-  | "DropPicker"
-  | "maxParticipantsPicker"
-  | "hidden"
-  | "string"; //default
-
-export interface ActivityFormSchema {
-  value: ActivityType;
-  initialValue?: number | string | boolean | Date | Array<any>;
-  validation: FieldValidation;
-}
-
-export type ActivityType =
-  | "sport"
-  | "location"
-  | "date"
-  | "startHour"
-  | "endHour"
-  | "maxParticipants"
-  | "description";

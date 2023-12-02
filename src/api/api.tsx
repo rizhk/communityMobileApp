@@ -19,6 +19,19 @@ export async function fetchAxiosAPI(path: string, params?: any, userToken?: stri
   }
 }
 
+export async function fetchSports(userToken?: string | null) {
+  return fetchAxiosAPI(
+    `/sports`,
+    {
+      populate: ["icon"],
+      pagination: {
+        limit: 1000,
+      },
+    },
+    userToken
+  );
+}
+
 export async function fetchActivities(userToken?: string | null) {
   return fetchAxiosAPI(
     `/activities`,
