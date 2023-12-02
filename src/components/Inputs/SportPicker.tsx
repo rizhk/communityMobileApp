@@ -3,9 +3,11 @@ import React, { useState, useEffect } from "react";
 import { Image, StyleSheet } from "react-native";
 import { SportsData } from "types/sport";
 import { DropPicker, DropPickerItem } from "./DropPicker";
+import useSWR from "swr";
+import { fetchSports } from "api/api";
 
 interface SportPickerComponentProps {
-  items: SportsData;
+  items?: SportsData;
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -21,8 +23,16 @@ const mapSportsDataToDropPickerItems = (sportsData: SportsData) => {
 };
 
 const SportPickerComponent: React.FC<SportPickerComponentProps> = ({ items, value, setValue }) => {
-  const [mappedSportItems] = useState<DropPickerItem[]>(mapSportsDataToDropPickerItems(items));
-  return <DropPicker items={mappedSportItems} value={value} setValue={setValue} />;
+  const { data: dataSports } = useSWR(["sports"], () => fetchSports());
+
+  if (!dataSports) {
+    return null;
+  }
+
+  return <DropPicker items={mapSportsDataToDropPickerItems(dataSports)} value={value} setValue={setValue} />;
+
+  //   const [mappedSportItems] = useState<DropPickerItem[]>(mapSportsDataToDropPickerItems(items));
+  //   return <DropPicker items={mappedSportItems} value={value} setValue={setValue} />;
 };
 
 const styles = StyleSheet.create({

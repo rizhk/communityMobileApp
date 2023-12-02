@@ -113,7 +113,7 @@ export default function MapScreen() {
         isVisible={isFilterVisible}
         onClose={handleCloseFilter}
         onApply={handleApplyFilter}
-        sportItems={dataSports}
+        // sportItems={dataSports}
         // filters={filters}
         // setFilters={setFilters} // If you want to lift state up
       />
