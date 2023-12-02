@@ -7,7 +7,6 @@ const BASE = (color: ThemeColorType) => {
     padding: spacing.md,
     backgroundColor: themeColor[color],
     gap: spacing.xs,
-    marginVertical: spacing.xs,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",

@@ -14,10 +14,10 @@ export interface TextInputProps extends GFieldProps {
 
 export default function TextInput(props: TextInputProps & RnTextInputProps) {
   const { containerStyle, valName, tx, text, inputStyle = {}, preset = "default", placeholderTx, ...rest } = props;
-  const { values, setFieldValue, errors, validateField, themeColor } = useGForm();
-
+  const { values, setFieldValue, errors, validateField } = useGForm();
   const inputStyles = [presets[preset].inputField, inputStyle, errors[valName] === undefined ? {} : inputError];
   const containerStyles = [presets[preset].container, containerStyle];
+
   return (
     <BaseField style={containerStyles}>
       {(tx !== undefined || text !== undefined) && <BaseField.Label tx={tx} text={text} />}

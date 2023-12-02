@@ -30,7 +30,7 @@ export function InputsTab() {
   const [address, setAddress] = useState({ latitude: 0, longitude: 0 });
 
   return (
-    <ScrollView style={{ display: "flex", flexDirection: "column", gap: 30, padding: 20 }}>
+    <ScrollView style={{ display: "flex", flexDirection: "column", gap: 30 }}>
       <TextInput placeholder="type text" style={{ marginVertical: 10 }} />
       <DropPicker items={dropItems} value={item} setValue={setItem} />
       <AddressPicker value={address} setValue={setAddress} placeholder="addressPicker" style={{ marginTop: 10 }} />

@@ -6,7 +6,7 @@ import { color, radius, spacing } from "theme";
 import { ModalProps } from "./modal.props";
 
 export function Slider(props: PropsWithChildren<ModalProps>) {
-  const { children, visible, setVisible } = props;
+  const { children, visible, setVisible, color = "primary" } = props;
   return (
     <RNModal animationType="slide" visible={visible} transparent={true}>
       <View style={container}>
@@ -18,6 +18,7 @@ export function Slider(props: PropsWithChildren<ModalProps>) {
             rounded
             iconScale={2.5}
             style={closeBtn}
+            color={color}
           />
           {children}
         </View>

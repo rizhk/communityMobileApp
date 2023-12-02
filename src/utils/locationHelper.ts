@@ -35,7 +35,7 @@ export async function fetchPlaceDetails(placeId: string) {
   return response.data.result.geometry.location;
 }
 
-export async function getLocalPosition() {
+export async function fetchLocalPosition() {
   const { status } = await Location.requestForegroundPermissionsAsync();
 
   if (status !== "granted") {
@@ -45,4 +45,12 @@ export async function getLocalPosition() {
 
   const loc = await Location.getCurrentPositionAsync({});
   return loc.coords;
+}
+
+export async function fetchAddressFromCoords(coords: { latitude: number; longitude: number }) {
+  if (coords.latitude === 0 && coords.longitude === 0) return "";
+  const response = await axios.get(
+    `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.latitude},${coords.longitude}&key=${GOOGLE_ADDRESS_KEY}`
+  );
+  return response.data.results[0].formatted_address;
 }

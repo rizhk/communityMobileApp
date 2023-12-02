@@ -3,7 +3,7 @@ import { TextInput, TextStyle, TouchableOpacity, View, ViewStyle } from "react-n
 import { inputFieldStyle } from "theme/styles";
 import I18n, { t } from "i18n-js";
 import { Text } from "components/Text";
-import { color, spacing } from "theme";
+import { ThemeColorType, color as themeColor, spacing } from "theme";
 import { Icon } from "components/Icon";
 import { Cross, Pin } from "assets/svg";
 import { AddressSuggestions, fetchPlaceDetails, fetchSuggestions } from "utils/locationHelper";
@@ -21,12 +21,13 @@ export interface AddressPickerProps {
   placeholderTx?: I18n.Scope;
   placeholder?: string;
   style?: ViewStyle;
+  color?: ThemeColorType;
 }
 
 export function AddressPicker(props: AddressPickerProps) {
-  const { style, placeholderTx, placeholder = "", value, setValue } = props;
-  const [address, setAddress] = useState<string>("");
+  const { style, placeholderTx, placeholder = "", value, setValue, color } = props;
   const [suggestions, setSuggestions] = useState<AddressSuggestions[]>([]);
+  const [address, setAddress] = useState<string>("");
 
   const onChangeText = (text: string) => {
     setAddress(text);
@@ -41,7 +42,7 @@ export function AddressPicker(props: AddressPickerProps) {
     setSuggestions([]);
     fetchPlaceDetails(selectedAddress.place_id).then((location) => {
       console.log(location);
-      setValue({ latitude: location.latitude as number, longitude: location.longitude as number });
+      setValue({ latitude: location.lat as number, longitude: location.lng as number });
     });
   };
 
@@ -53,10 +54,10 @@ export function AddressPicker(props: AddressPickerProps) {
           onChangeText={onChangeText}
           style={inputStyle}
           placeholder={placeholderTx !== undefined ? t(placeholderTx) : placeholder}
-          placeholderTextColor={color.grey100}
+          placeholderTextColor={themeColor.grey100}
         />
         {address.length > 0 && (
-          <Button rounded size="sm" icon={Cross} iconScale={2} color="grey300" onPress={() => setAddress("")} />
+          <Button rounded size="sm" icon={Cross} iconScale={2} color={color} onPress={() => setAddress("")} />
         )}
       </View>
       {suggestions.length > 0 && (
@@ -77,7 +78,8 @@ const inputContainer = {
   flexDirection: "row",
   position: "relative",
   alignItems: "center",
-  paddingHorizontal: inputFieldStyle.paddingHorizontal,
+  paddingLeft: inputFieldStyle.paddingHorizontal,
+  paddingRight: spacing.xxs,
   gap: spacing.xs,
 } as ViewStyle;
 
@@ -96,7 +98,7 @@ const suggestionContainer = {
 
 const suggestionList = {
   borderTopWidth: 1,
-  borderTopColor: color.grey400,
+  borderTopColor: themeColor.grey400,
   padding: inputFieldStyle.paddingHorizontal,
   gap: spacing.xs,
   paddingVertica: spacing.xs,

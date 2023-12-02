@@ -19,25 +19,39 @@ interface DropPickerProps {
   items: DropPickerItem[];
   placeholder?: string;
   placeholderTx?: string;
+  searchable?: boolean;
   searchPlaceholder?: string;
   searchPlaceholderTx?: string;
   color?: ThemeColorType;
+  open?: boolean;
+  setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function DropPicker(props: DropPickerProps) {
-  const { placeholderTx, searchPlaceholderTx, value, setValue, color = "primary" } = props;
-  const [open, setOpen] = useState(false);
+  const {
+    placeholderTx,
+    searchPlaceholderTx,
+    value,
+    setValue,
+    color = "primary",
+    searchable = false,
+    open,
+    setOpen,
+  } = props;
+  const openState = useState<boolean>(false);
   const placeholder = (placeholderTx && t(placeholderTx)) || props.placeholder || "";
+
   const searchPlaceholder =
     (searchPlaceholderTx && t(searchPlaceholderTx)) || props.searchPlaceholder || "Search item...";
   const [items, setItems] = useState<DropPickerItem[]>(props.items);
+
   return (
     <DropDownPicker
-      searchable={true}
+      searchable={searchable}
       items={items}
       setItems={setItems}
-      open={open}
-      setOpen={setOpen}
+      open={open !== undefined && setOpen !== undefined ? open : openState[0]}
+      setOpen={open !== undefined && setOpen !== undefined ? setOpen : openState[1]}
       value={value}
       setValue={setValue}
       style={{

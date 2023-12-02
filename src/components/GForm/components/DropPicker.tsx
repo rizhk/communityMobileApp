@@ -9,7 +9,7 @@ import { GrowingView } from "components/containers/GrowingView";
 import { Icon } from "components/Icon";
 import { DownArrow, Tick, UpArrow } from "assets/svg";
 import { t } from "i18n-js";
-
+import { DropPicker as AppDropPicker } from "components/Inputs";
 export type DropPickerItem = {
   icon: () => JSX.Element;
   label: string;
@@ -22,11 +22,12 @@ interface DropPickerProps extends GFieldProps {
   placeholderTx?: string;
   searchPlaceholder?: string;
   searchPlaceholderTx?: string;
+  searchable?: boolean;
 }
 
 export default function DropPicker(props: DropPickerProps) {
-  const { tx, text, valName, items, placeholderTx, searchPlaceholderTx } = props;
-  const { values, setFieldValue } = useGForm();
+  const { tx, text, valName, items, placeholderTx, searchPlaceholderTx, searchable } = props;
+  const { values, setFieldValue, themeColor } = useGForm();
   const [value, setValue] = useState(values[valName]);
   const [open, setOpen] = useState(false);
   const placeholder = (placeholderTx && t(placeholderTx)) || props.placeholder || "";
@@ -36,7 +37,16 @@ export default function DropPicker(props: DropPickerProps) {
     <BaseField>
       <BaseField.Label tx={tx} text={text} />
       <GrowingView from={35} to={210} open={open}>
-        <DropDownPicker
+        <AppDropPicker
+          items={items}
+          open={open}
+          setOpen={setOpen}
+          value={values[valName]}
+          setValue={(val: any) => setFieldValue(valName, val)}
+          searchable={searchable}
+          color={themeColor}
+        />
+        {/* <DropDownPicker
           searchable={true}
           items={items}
           open={open}
@@ -73,7 +83,7 @@ export default function DropPicker(props: DropPickerProps) {
           placeholder={placeholder}
           ArrowUpIconComponent={() => <Icon icon={UpArrow} size={25} color="white" />}
           ArrowDownIconComponent={() => <Icon icon={DownArrow} size={25} color="white" />}
-        />
+        /> */}
       </GrowingView>
     </BaseField>
   );

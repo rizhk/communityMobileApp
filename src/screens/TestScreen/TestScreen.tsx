@@ -1,6 +1,5 @@
 import { MainLayout } from "layouts";
 import { useState } from "react";
-import { spacing } from "theme";
 import { InputsTab } from "./components/InputsTab";
 import GFormTab from "./components/GFormTab";
 import { Tabs } from "components/Tabs";
@@ -20,10 +19,10 @@ export default function MapScreen() {
         <Tabs.Body value="Inputs">
           <InputsTab />
         </Tabs.Body>
-        <Tabs.Body value="GForm" style={{ paddingHorizontal: spacing.md }}>
+        <Tabs.Body value="GForm">
           <GFormTab />
         </Tabs.Body>
-        <Tabs.Body value="General" style={{ paddingHorizontal: spacing.md }}>
+        <Tabs.Body value="General">
           <GeneralTab />
         </Tabs.Body>
       </Tabs>

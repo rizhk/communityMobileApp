@@ -1,11 +1,13 @@
+import { Star } from "assets/svg";
 import { Button } from "components/Button";
 import GForm from "components/GForm/GForm";
+import { Icon } from "components/Icon";
 import { Popup } from "components/Modal";
 import { Text } from "components/Text";
 import { Scroll } from "components/containers/Scroll";
 import { format } from "date-fns";
 import { useState } from "react";
-import { Modal, Pressable, TouchableOpacity, ViewStyle } from "react-native";
+import { ViewStyle } from "react-native";
 import { View } from "react-native-animatable";
 import { color, radius, spacing } from "theme";
 import { shadowStyle } from "theme/styles";
@@ -18,6 +20,7 @@ const initialValues = {
   startDate: new Date(),
   endDate: new Date(),
   location: { latitude: 0, longitude: 0 },
+  drop: "drop-item1",
 };
 
 const RadioItems = [
@@ -26,10 +29,16 @@ const RadioItems = [
   { label: "item3", value: "item3" },
 ];
 
+const DropItems = [
+  { icon: () => <Icon icon={Star} />, label: "drop-item1", value: "drop-item1" },
+  { icon: () => <Icon icon={Star} />, label: "drop-item2", value: "drop-item2" },
+  { icon: () => <Icon icon={Star} />, label: "drop-item3", value: "drop-item3" },
+];
+
 function Line({ label, value }: { label: string; value: string }) {
   return (
     <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-      <Text>{label}:</Text>
+      <Text>{label}: </Text>
       <Text>{value}</Text>
     </View>
   );
@@ -49,6 +58,8 @@ export default function GFormTab() {
       <GForm initialValues={initialValues} onSubmit={handleSubmit} themeColor="secondary">
         <Scroll>
           <GForm.TextInput valName="input" text="TextInput" placeholder="Placeholder" />
+          <GForm.AddressPicker valName="location" placeholder="Enter address" />
+          <GForm.DropPicker valName="drop" text="DropPicker" items={DropItems} searchable />
           <GForm.Switch valName="switch" text="Switch" />
           <GForm.NumberPicker valName="number" text="Number" max={10} hasInfinit />
           <GForm.Radio valName="radio" text="Radio" items={RadioItems} />
@@ -58,7 +69,6 @@ export default function GFormTab() {
             text="DateTimePicker"
             nestedScrollEnabled
           />
-          <GForm.AddressPicker valName="location" />
           <GForm.SubmitButton text="Submit" />
         </Scroll>
       </GForm>
@@ -71,7 +81,6 @@ export default function GFormTab() {
         <Line label="startDate" value={format(values.startDate, "dd/MM/yyyy HH:mm")} />
         <Line label="endDate" value={format(values.endDate, "dd/MM/yyyy HH:mm")} />
         <Line label="location" value={JSON.stringify(values.location)} />
-        <Button text="Ok" onPress={() => setPopup(false)} size="sm" style={{ alignSelf: "flex-end" }} />
       </Popup>
     </>
   );
