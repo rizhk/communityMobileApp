@@ -144,15 +144,8 @@ export type ActivityFormType =
 
 export interface ActivityFormSchema {
   value: ActivityType;
-  initialValue?: number | string | boolean | Date | Array<any>;
+  initialValue?: number | string | boolean | Date | any[];
   validation: FieldValidation;
 }
 
-export type ActivityType =
-  | "sport"
-  | "location"
-  | "date"
-  | "startHour"
-  | "endHour"
-  | "maxParticipants"
-  | "description";
+export type ActivityType = "sport" | "location" | "date" | "startHour" | "endHour" | "maxParticipants" | "description";

@@ -1,14 +1,14 @@
+import { Cross, Pin } from "assets/svg";
+import { Button } from "components/Button";
+import { Icon } from "components/Icon";
+import { Text } from "components/Text";
+import I18n, { t } from "i18n-js";
 import { useState } from "react";
 import { TextInput, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native";
-import { inputFieldStyle } from "theme/styles";
-import I18n, { t } from "i18n-js";
-import { Text } from "components/Text";
 import { ThemeColorType, color as themeColor, spacing } from "theme";
-import { Icon } from "components/Icon";
-import { Cross, Pin } from "assets/svg";
-import { AddressSuggestions, fetchPlaceDetails, fetchSuggestions } from "utils/locationHelper";
-import { Button } from "components/Button";
+import { inputFieldStyle } from "theme/styles";
 import { LocationType } from "types/global";
+import { AddressSuggestions, fetchPlaceDetails, fetchSuggestions } from "utils/locationHelper";
 
 type Locationtype = {
   latitude: number;

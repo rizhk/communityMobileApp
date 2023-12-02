@@ -1,19 +1,19 @@
-import GForm from "components/GForm/GForm";
-import { Slider } from "components/Modal";
-import { INFINIT_PARTICIPANTS } from "constants/global";
-import * as Yup from "yup";
-import { Validations } from "constants/Validations";
-import { rangedItems } from "utils/formHelper";
 import { Star } from "assets/svg";
-import { Icon } from "components/Icon";
-import { t } from "i18n-js";
 import { Button } from "components/Button";
-import { useState } from "react";
+import GForm from "components/GForm/GForm";
 import { DropPickerItem } from "components/GForm/components/DropPicker";
-import { Text } from "components/Text";
-import { LocationType } from "types/global";
+import { Icon } from "components/Icon";
 import { KeyboardAvoiding } from "components/KeyboardAvoidind";
+import { Slider } from "components/Modal";
+import { Text } from "components/Text";
+import { Validations } from "constants/Validations";
+import { INFINIT_PARTICIPANTS } from "constants/global";
+import { t } from "i18n-js";
+import { useState } from "react";
 import { View } from "react-native";
+import { LocationType } from "types/global";
+import { rangedItems } from "utils/formHelper";
+import * as Yup from "yup";
 
 type ValuesType = {
   description: string;

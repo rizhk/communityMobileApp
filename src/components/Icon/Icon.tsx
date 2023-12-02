@@ -1,6 +1,7 @@
 import { ThemeColorType, color as themeColor, icon as iconSize } from "theme";
-import { IconProps } from "./icon.props";
+
 import { presets } from "./icon.presets";
+import { IconProps } from "./icon.props";
 
 export function Icon(props: IconProps) {
   const { icon, size, color, preset = "default", ...rest } = props;

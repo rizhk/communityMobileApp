@@ -1,9 +1,9 @@
-import { View, ViewStyle } from "react-native";
-import { color, text } from "theme";
-import { useMemo, useState } from "react";
-import { inputFieldStyle } from "theme/styles";
-import WheelPicker from "react-native-wheely";
 import { INFINIT_PARTICIPANTS } from "constants/global";
+import { useMemo, useState } from "react";
+import { View, ViewStyle } from "react-native";
+import WheelPicker from "react-native-wheely";
+import { color, text } from "theme";
+import { inputFieldStyle } from "theme/styles";
 
 export interface NumberPickerProps {
   min?: number;
@@ -45,7 +45,7 @@ export function NumberPicker(props: NumberPickerProps) {
   };
 
   return (
-    <View style={{ width: width }}>
+    <View style={{ width }}>
       <WheelPicker
         selectedIndex={index}
         options={options}

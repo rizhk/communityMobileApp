@@ -47,7 +47,7 @@ export default function AppWheel(props: AppWheelProps) {
           handleScroll(e);
           let y = getIndex(e) * itemSize;
           if (y > itemSize * (items.length - 1)) y = itemSize * (items.length - 1);
-          ref.current?.scrollTo({ y: y, animated: true });
+          ref.current?.scrollTo({ y, animated: true });
           console.log("y:", y);
         }}
         ref={ref}

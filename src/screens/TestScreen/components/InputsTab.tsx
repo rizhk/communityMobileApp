@@ -2,7 +2,6 @@ import { Star } from "assets/svg";
 import { Icon } from "components/Icon";
 import { Radio, Switch, NumberPicker, DropPicker, TextInput, DateTimePicker } from "components/Inputs";
 import { AddressPicker } from "components/Inputs/AddressPicker";
-
 import { useState } from "react";
 import { ScrollView } from "react-native";
 import { View } from "react-native-animatable";
@@ -32,7 +31,7 @@ export function InputsTab() {
   return (
     <ScrollView style={{ display: "flex", flexDirection: "column", gap: 30 }}>
       <TextInput placeholder="type text" style={{ marginVertical: 10 }} />
-      <DropPicker items={dropItems} value={item} setValue={setItem} />
+      <DropPicker items={dropItems} value={item} setValue={setItem} searchable />
       <AddressPicker value={address} setValue={setAddress} placeholder="addressPicker" style={{ marginTop: 10 }} />
       <Radio value={radio} setValue={setRadio} items={radioItems} style={{ marginTop: 20 }} />
       <View style={{ flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap", padding: 10, gap: 20 }}>
@@ -41,11 +40,11 @@ export function InputsTab() {
       </View>
       <View style={{ flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap", padding: 10, gap: 20 }}>
         <Switch value={switchValue} onChange={() => setSwitchValue(!switchValue)} />
-        <Switch value={true} />
+        <Switch value />
         <Switch value={false} color="secondary" />
-        <Switch value={true} color="secondary" />
+        <Switch value color="secondary" />
         <Switch value={false} color="tertiary" />
-        <Switch value={true} color="tertiary" />
+        <Switch value color="tertiary" />
       </View>
       <DateTimePicker startDate={startDate} endDate={endDate} setStartDate={setStartDate} setEndDate={setEndDate} />
     </ScrollView>

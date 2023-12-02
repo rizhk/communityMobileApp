@@ -1,14 +1,14 @@
 import { Chat, Home, PinOutline, User } from "assets/svg";
+import Joker from "assets/svg/joker.svg";
 import { translate } from "i18n";
 import { NavType } from "navigators/NavType";
 import { SVGAttributes } from "react";
 import { ChatScreen } from "screens";
 import ActivitiesScreen from "screens/ActivitiesScreen/ActivitiesScreen";
 import MapScreen from "screens/MapScreen/MapScreen";
+import TestScreen from "screens/TestScreen/TestScreen";
 import { ChannelUserItem } from "types/message";
 //TODO: remove (test purpose)
-import TestScreen from "screens/TestScreen/TestScreen";
-import Joker from "assets/svg/joker.svg";
 export interface BottomNavPropsType extends NavType<BottomTabParamList> {
   icon: React.FunctionComponent<SVGAttributes<SVGElement>>;
   tabBarBadge: number;

@@ -1,7 +1,7 @@
 import { format as Format } from "date-fns";
 import "i18n";
-import i18n from "i18n-js";
 import { fr, en, de, it } from "date-fns/locale";
+import i18n from "i18n-js";
 import { LatLng } from "react-native-maps";
 
 // import { buildUrl } from "cloudinary-build-url";
@@ -170,20 +170,17 @@ export const validateEmail = (email: string) => {
   return emailRegex.test(email);
 };
 
-var rad = function (x: number) {
+const rad = function (x: number) {
   return (x * Math.PI) / 180;
 };
 export function computeDistance(p1: LatLng, p2: LatLng): number {
-  var R = 6378137; // Earth’s mean radius in meter
-  var dLat = rad(p2.latitude - p1.latitude);
-  var dLong = rad(p2.longitude - p1.longitude);
-  var a =
+  const R = 6378137; // Earth’s mean radius in meter
+  const dLat = rad(p2.latitude - p1.latitude);
+  const dLong = rad(p2.longitude - p1.longitude);
+  const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(rad(p1.latitude)) *
-      Math.cos(rad(p2.latitude)) *
-      Math.sin(dLong / 2) *
-      Math.sin(dLong / 2);
-  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  var d = R * c;
+    Math.cos(rad(p1.latitude)) * Math.cos(rad(p2.latitude)) * Math.sin(dLong / 2) * Math.sin(dLong / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const d = R * c;
   return d; // returns the distance in meter
 }

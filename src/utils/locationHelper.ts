@@ -1,6 +1,6 @@
-import * as Location from "expo-location";
-import axios from "axios";
 import { GOOGLE_ADDRESS_KEY } from "@env";
+import axios from "axios";
+import * as Location from "expo-location";
 import I18n from "i18n-js";
 
 const RADIUS = 10000;

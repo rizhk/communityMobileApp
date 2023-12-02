@@ -1,9 +1,10 @@
-import { TouchableOpacity, View, ViewStyle } from "react-native";
-import I18n from "i18n-js";
 import { Text } from "components/Text";
+import I18n from "i18n-js";
+import { TouchableOpacity, View, ViewStyle } from "react-native";
 import { ThemeColorType, color, spacing } from "theme";
-import { ItemType } from "./types";
 import { shadowStyle } from "theme/styles";
+
+import { ItemType } from "./types";
 
 export interface RadioProps {
   value: string;

@@ -1,4 +1,5 @@
 import { ActivityItem } from "types/activity";
+
 import { SportItemStrapi } from "./activity";
 
 export type channelType = "private" | "activity" | "tournament" | "team" | "sport" | "group";

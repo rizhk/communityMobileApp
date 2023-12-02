@@ -1,12 +1,13 @@
+import { GrowingView } from "components/containers/GrowingView";
 import { getDate, getDaysInMonth, getMonth, getYear, set, setDate as setDay, setMonth, setYear } from "date-fns";
 import { translate } from "i18n";
 import { useEffect, useMemo, useState } from "react";
 import { View, ViewStyle } from "react-native";
 import { color } from "theme";
-import Wheel from "./Wheel";
 import { rangedItems } from "utils/formHelper";
+
 import { inputContainer, outerContainer } from "./DateTimePicker.style";
-import { GrowingView } from "components/containers/GrowingView";
+import Wheel from "./Wheel";
 
 const months = [
   { value: "0", label: translate("month.january") },
@@ -56,7 +57,7 @@ export function DatePicker(props: DatePickerProps) {
   }, [maxDays]);
 
   const setDayDate = (day: number) => {
-    let newDate = setDay(date, day);
+    const newDate = setDay(date, day);
     if (minDate && newDate < minDate) {
       setNewDay(getDate(date));
       setDayKey((prev) => prev + 1);
@@ -67,7 +68,7 @@ export function DatePicker(props: DatePickerProps) {
   };
 
   const setMonthDate = (month: number) => {
-    let newDate = setMonth(date, month);
+    const newDate = setMonth(date, month);
     if (minDate && newDate < minDate) {
       setNewMonth(getMonth(date));
       setMonthKey((prev) => prev + 1);
@@ -79,7 +80,7 @@ export function DatePicker(props: DatePickerProps) {
   };
 
   const setYearDate = (year: number) => {
-    let newDate = setYear(date, year);
+    const newDate = setYear(date, year);
     if (minDate && newDate < minDate) {
       setNewYear(getYear(date));
       setYearKey((prev) => prev + 1);

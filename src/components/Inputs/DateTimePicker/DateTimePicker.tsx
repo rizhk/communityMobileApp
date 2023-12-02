@@ -1,9 +1,10 @@
-import { TextStyle, View, ViewStyle } from "react-native";
-import { DatePicker } from "./DatePicker";
 import { Text } from "components/Text";
-import { TimePicker } from "./TimePicker";
 import { getDate, getHours, getMinutes, getMonth, getYear } from "date-fns";
+import { TextStyle, View, ViewStyle } from "react-native";
 import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
+
+import { DatePicker } from "./DatePicker";
+import { TimePicker } from "./TimePicker";
 
 export interface DateTimePickerProps {
   startDate: Date;

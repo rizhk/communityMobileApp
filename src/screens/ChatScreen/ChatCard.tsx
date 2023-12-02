@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, TouchableOpacityProps } from "react-native";
-import { cardStyles } from "./chat.styles";
 import { Avatar } from "components/Avatar";
 import * as Location from "expo-location";
+import { useEffect, useState } from "react";
+import { View, Text, TouchableOpacity, TouchableOpacityProps } from "react-native";
 import { ChannelItem, MessageItem } from "types/message";
 import { formatDateFromToday } from "utils/Date";
+
+import { cardStyles } from "./chat.styles";
 // import { Icon } from "components/Icon";
 
 export interface ChannelCardProps extends TouchableOpacityProps {
@@ -35,9 +36,7 @@ export function ChatCard(props: ChannelCardProps) {
             source={channel.image}
             size={60}
             sx={cardStyles.avatarImage}
-            containerStyle={
-              lastIsRead ? cardStyles.avatarContainerBaseInactif : cardStyles.avatarContainerBase
-            }
+            containerStyle={lastIsRead ? cardStyles.avatarContainerBaseInactif : cardStyles.avatarContainerBase}
           />
         </View>
         <View style={cardStyles.messageDetailsContainer}>
@@ -52,18 +51,14 @@ export function ChatCard(props: ChannelCardProps) {
             )}
           </View>
           {channel.lastMessage && (
-            <Text
-              style={lastIsRead ? cardStyles.messageTextInactif : cardStyles.messageText}
-              numberOfLines={2}
-            >
+            <Text style={lastIsRead ? cardStyles.messageTextInactif : cardStyles.messageText} numberOfLines={2}>
               {channel.type !== "private" && (
                 <Text style={lastIsRead ? cardStyles.messageUserInactif : cardStyles.messageUser}>
                   {channel.lastMessage.author?.firstName || "Unknown"}
                   {": "}
                 </Text>
               )}
-              {channel.lastMessage.content?.substring(0, 50) +
-                (channel.lastMessage.content?.length > 50 ? "..." : "")}
+              {channel.lastMessage.content?.substring(0, 50) + (channel.lastMessage.content?.length > 50 ? "..." : "")}
             </Text>
           )}
         </View>
@@ -72,7 +67,7 @@ export function ChatCard(props: ChannelCardProps) {
         <View style={cardStyles.eventDetails}>
           <Text style={cardStyles.eventDate}>{channel.eventDate}</Text>
           <View style={cardStyles.location}>
-            <Icon icon={"pin-activite"} style={cardStyles.icon} />
+            <Icon icon="pin-activite" style={cardStyles.icon} />
             <Text style={cardStyles.eventText}>
               {locationString.substring(0, 35) + (locationString.length > 35 ? "..." : "")}
             </Text>

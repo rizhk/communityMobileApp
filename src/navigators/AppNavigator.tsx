@@ -1,8 +1,9 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { useAuth } from "context/AuthContext";
-import { MainStack } from "./MainStack/MainStack";
-import { AuthStack } from "./AuthStack/AuthStack";
 import { color } from "theme";
+
+import { AuthStack } from "./AuthStack/AuthStack";
+import { MainStack } from "./MainStack/MainStack";
 
 export default function AppNavigator() {
   const { user } = useAuth();

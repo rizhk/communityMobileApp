@@ -1,5 +1,6 @@
-import { View, Text, ViewStyle, TouchableOpacity, TextStyle } from "react-native";
 import React, { PropsWithChildren } from "react";
+import { View, Text, ViewStyle, TouchableOpacity, TextStyle } from "react-native";
+
 import { styles } from "./styles";
 
 type ListProps = {
@@ -21,14 +22,7 @@ type ListHeaderProps = {
   sxText?: TextStyle;
 };
 
-export function ListItem({
-  icon,
-  label,
-  onPress,
-  sx = {},
-  sxText = {},
-  sxIcon = {},
-}: ListItemProps) {
+export function ListItem({ icon, label, onPress, sx = {}, sxText = {}, sxIcon = {} }: ListItemProps) {
   return (
     <TouchableOpacity style={{ ...styles.item, ...sx }} onPress={onPress}>
       <View style={{ ...styles.itemIcon, ...sxIcon }}>{icon}</View>

@@ -1,22 +1,23 @@
-import DropDownPicker from "react-native-dropdown-picker";
-import React, { useState } from "react";
-import { ThemeColorType, color as themeColor } from "theme";
-import { inputFieldStyle } from "theme/styles";
-import { radius, spacing } from "theme";
-import { Icon } from "components/Icon";
 import { DownArrow, Tick, UpArrow } from "assets/svg";
+import { Icon } from "components/Icon";
 import { t } from "i18n-js";
+import React, { useState } from "react";
+import DropDownPicker, { DropDownPickerProps, ItemType, ValueType } from "react-native-dropdown-picker";
+import { ThemeColorType, color as themeColor, radius, spacing } from "theme";
+import { inputFieldStyle } from "theme/styles";
 
-export type DropPickerItem = {
+import { color } from "../../theme/color";
+
+export interface DropPickerItem {
   icon: () => JSX.Element;
   label: string;
   value: string;
-};
+}
 
 interface DropPickerProps {
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
-  items: DropPickerItem[];
+  items: ItemType<string>[];
   placeholder?: string;
   placeholderTx?: string;
   searchable?: boolean;
@@ -25,10 +26,12 @@ interface DropPickerProps {
   color?: ThemeColorType;
   open?: boolean;
   setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+  onChangeValue?: (value: any) => void;
 }
 
 export function DropPicker(props: DropPickerProps) {
   const {
+    items,
     placeholderTx,
     searchPlaceholderTx,
     value,
@@ -37,23 +40,24 @@ export function DropPicker(props: DropPickerProps) {
     searchable = false,
     open,
     setOpen,
+    onChangeValue,
   } = props;
   const openState = useState<boolean>(false);
   const placeholder = (placeholderTx && t(placeholderTx)) || props.placeholder || "";
-
   const searchPlaceholder =
     (searchPlaceholderTx && t(searchPlaceholderTx)) || props.searchPlaceholder || "Search item...";
-  const [items, setItems] = useState<DropPickerItem[]>(props.items);
+  const [itemsSet, setItemsSet] = useState<ItemType<string>[]>(items);
 
   return (
     <DropDownPicker
       searchable={searchable}
-      items={items}
-      setItems={setItems}
+      items={itemsSet}
+      setItems={setItemsSet}
       open={open !== undefined && setOpen !== undefined ? open : openState[0]}
       setOpen={open !== undefined && setOpen !== undefined ? setOpen : openState[1]}
       value={value}
       setValue={setValue}
+      onChangeValue={onChangeValue}
       style={{
         ...inputFieldStyle,
         minHeight: inputFieldStyle.height,

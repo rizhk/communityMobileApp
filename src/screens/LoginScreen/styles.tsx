@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-
 import { color, typography, spacing, text, TextStyles } from "theme";
 
 const styles = StyleSheet.create({

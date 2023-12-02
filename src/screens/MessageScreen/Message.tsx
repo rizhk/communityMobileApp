@@ -1,12 +1,13 @@
-import React from "react";
-import { Text, View } from "react-native";
-import { MessageStyles } from "./message.styles";
-import { palette } from "theme/palette";
-import { differenceInCalendarDays, format } from "date-fns";
-import { MessageItem } from "types/message";
 import { Avatar } from "components/Avatar";
 import { useAuth } from "context/AuthContext";
+import { differenceInCalendarDays, format } from "date-fns";
+import React from "react";
+import { Text, View } from "react-native";
+import { palette } from "theme/palette";
+import { MessageItem } from "types/message";
 import { formatDateFromToday } from "utils/Date";
+
+import { MessageStyles } from "./message.styles";
 
 export type MessageProps = {
   message: MessageItem;
@@ -37,9 +38,7 @@ export function Message({ message, prevDate = new Date(200, 1, 1) }: MessageProp
             backgroundColor: isAuthor ? palette.red : palette.lightGrey,
           }}
         >
-          {!isAuthor && channelType !== "private" && (
-            <Text style={MessageStyles.authorText}>{author.firstName}</Text>
-          )}
+          {!isAuthor && channelType !== "private" && <Text style={MessageStyles.authorText}>{author.firstName}</Text>}
           <Text style={{ ...MessageStyles.contentText }}>{content}</Text>
           <Text
             style={{

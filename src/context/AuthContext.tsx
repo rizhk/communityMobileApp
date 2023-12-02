@@ -1,17 +1,8 @@
-import React, {
-  createContext,
-  useState,
-  useEffect,
-  ReactNode,
-  Dispatch,
-  SetStateAction,
-  useContext,
-} from "react";
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { fetchAPIqs, postAxiosAPI } from "api/request";
-import { Alert } from "react-native";
 import I18n from "i18n-js";
+import React, { createContext, useState, useEffect, ReactNode, Dispatch, SetStateAction, useContext } from "react";
+import { Alert } from "react-native";
 const API_URL = process.env.API_URL;
 
 interface UserLoginInterface {
@@ -96,7 +87,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       const response = await postAxiosAPI("/auth/local", {
         identifier: email,
-        password: password,
+        password,
       });
       response && AsyncStorage.setItem("userToken", response?.data?.jwt);
       response && fetchLoggedInUser();
@@ -109,11 +100,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const registerContext = async (
-    values: UserLoginInterface,
-    image: ImageUpload,
-    navigation: any
-  ) => {
+  const registerContext = async (values: UserLoginInterface, image: ImageUpload, navigation: any) => {
     setLoading(true);
     const valuesWithEmail = {
       email: values?.username,

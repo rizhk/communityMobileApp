@@ -1,8 +1,9 @@
-import { View, ViewStyle } from "react-native";
 import { PropsWithChildren, useState } from "react";
+import { View, ViewStyle } from "react-native";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
-import { TabContext, TabsProps } from "./Tabs.props";
 import { color } from "theme";
+
+import { TabContext, TabsProps } from "./Tabs.props";
 import { TabsBody } from "./components/Body";
 import { TabsGroup } from "./components/Group";
 import { TabsHeader } from "./components/Header";

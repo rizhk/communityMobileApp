@@ -1,14 +1,14 @@
-import { View, ViewStyle } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useAuth } from "context/AuthContext";
-import { AuthNavigatorParamList } from "navigators/AuthStack/AuthStack";
 import { Button } from "components/Button";
 import GForm from "components/GForm/GForm";
-import * as Yup from "yup";
 import { Validations } from "constants/Validations";
-import { spacing } from "theme";
+import { useAuth } from "context/AuthContext";
 import AuthLayout from "layouts/AuthLayout";
+import { AuthNavigatorParamList } from "navigators/AuthStack/AuthStack";
+import { View, ViewStyle } from "react-native";
+import { spacing } from "theme";
 import { AuthStrategy } from "types";
+import * as Yup from "yup";
 
 type Props = NativeStackScreenProps<AuthNavigatorParamList, "login">;
 

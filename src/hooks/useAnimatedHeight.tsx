@@ -4,7 +4,7 @@ import { Animated } from "react-native";
 function getHeightAnimationConfig(height: number, duration: number) {
   return {
     toValue: height,
-    duration: duration,
+    duration,
     useNativeDriver: false,
   };
 }

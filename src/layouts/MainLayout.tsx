@@ -1,6 +1,6 @@
+import { PropsWithChildren } from "react";
 import { View, ViewStyle } from "react-native";
 import { color, radius } from "theme";
-import { PropsWithChildren } from "react";
 
 export function MainLayout({ children }: PropsWithChildren) {
   return (

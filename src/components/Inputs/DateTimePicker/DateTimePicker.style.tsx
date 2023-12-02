@@ -1,5 +1,5 @@
-import { inputFieldStyle } from "theme/styles";
 import { ViewStyle } from "react-native";
+import { inputFieldStyle } from "theme/styles";
 
 export const outerContainer = {
   flexDirection: "column",

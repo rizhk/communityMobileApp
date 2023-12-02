@@ -1,7 +1,8 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { color, text } from "theme";
+
 import { BottomNavProps, BottomNavPropsType } from "./BottomNavProps";
 import TabButton from "./TabButton.tsx";
-import { color, text } from "theme";
 
 const Bottom = createBottomTabNavigator();
 
@@ -25,11 +26,7 @@ export function BottomStack() {
           component={tab.component}
           options={{
             tabBarButton: (props) => (
-              <TabButton
-                {...props}
-                tab={tab}
-                isLast={tab.id === BottomNavProps[BottomNavProps.length - 1].id}
-              />
+              <TabButton {...props} tab={tab} isLast={tab.id === BottomNavProps[BottomNavProps.length - 1].id} />
             ),
           }}
         />

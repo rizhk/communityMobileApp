@@ -1,7 +1,8 @@
-import { GFieldProps, useGForm } from "../GForm.props";
-import { BaseField } from "./BaseField";
 import { Radio as AppRadio } from "components/Inputs";
 import { RadioProps } from "components/Inputs/Radio";
+
+import { BaseField } from "./BaseField";
+import { GFieldProps, useGForm } from "../GForm.props";
 
 export default function Radio(props: GFieldProps & Omit<RadioProps, "value" | "setValue">) {
   const { containerStyle, valName, tx, text, items, ...rest } = props;

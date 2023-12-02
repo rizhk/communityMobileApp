@@ -1,11 +1,10 @@
-import axios from "axios";
-import { AxiosRequestHeaders } from "axios";
 import { API_URL } from "@env";
+import axios, { AxiosRequestHeaders } from "axios";
 import { qs } from "qs";
 axios.defaults.baseURL = `${API_URL}/api`;
 
 export type GetDataStrapi = {
-  data: {};
+  data: object;
   meta: [];
 };
 
@@ -20,12 +19,7 @@ export function getApiUrl(path = "") {
  * @param {Object} options Options passed to fetch
  * @returns Parsed API call response
  */
-export async function fetchAPIqs(
-  path: string,
-  urlParamsObject = {},
-  options = {},
-  userToken?: string | null
-) {
+export async function fetchAPIqs(path: string, urlParamsObject = {}, options = {}, userToken?: string | null) {
   // Merge default and user options
 
   const mergedOptions = {

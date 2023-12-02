@@ -1,9 +1,10 @@
+import { Tabs } from "components/Tabs";
 import { MainLayout } from "layouts";
 import { useState } from "react";
-import { InputsTab } from "./components/InputsTab";
+
 import GFormTab from "./components/GFormTab";
-import { Tabs } from "components/Tabs";
 import GeneralTab from "./components/GeneralTab";
+import { InputsTab } from "./components/InputsTab";
 
 export default function MapScreen() {
   const [selected, setSelected] = useState("Inputs");

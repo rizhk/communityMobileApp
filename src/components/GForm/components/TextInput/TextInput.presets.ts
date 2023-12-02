@@ -1,7 +1,8 @@
 import { ViewStyle } from "react-native";
-import { inputFieldStyle } from "../styles";
-import { color, spacing } from "theme";
 import { View } from "react-native-animatable";
+import { color, spacing } from "theme";
+
+import { inputFieldStyle } from "../styles";
 
 const BASE = {
   container: {} as ViewStyle,

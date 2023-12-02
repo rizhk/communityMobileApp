@@ -3,12 +3,13 @@ import { Button } from "components/Button";
 import { PropsWithChildren } from "react";
 import { Modal as RNModal, View, ViewStyle } from "react-native";
 import { color, radius, spacing } from "theme";
+
 import { ModalProps } from "./modal.props";
 
 export function Slider(props: PropsWithChildren<ModalProps>) {
   const { children, visible, setVisible, color = "primary" } = props;
   return (
-    <RNModal animationType="slide" visible={visible} transparent={true}>
+    <RNModal animationType="slide" visible={visible} transparent>
       <View style={container}>
         <View style={inner}>
           <Button

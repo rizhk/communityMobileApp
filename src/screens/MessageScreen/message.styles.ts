@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
-import { PrimaryIconButtonStyles } from "theme/components/button";
 import { color, ApplicationStyles, palette, FlexStyles, spacing } from "theme";
+import { PrimaryIconButtonStyles } from "theme/components/button";
 import { radius } from "theme/shape";
 
 const GoBackIconSize = 25;

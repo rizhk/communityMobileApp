@@ -1,5 +1,6 @@
 import { SVGAttributes } from "react";
 import { IconSizeTypes, ThemeColorType } from "theme";
+
 import { IconPresets } from "./icon.presets";
 
 export interface IconProps extends SVGAttributes<SVGAElement> {

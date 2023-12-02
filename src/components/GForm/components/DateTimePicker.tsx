@@ -1,13 +1,14 @@
-import { GFieldProps, useGForm } from "components/GForm/GForm.props";
-import { View, ViewStyle } from "react-native";
-import { BaseField } from "./BaseField";
-import { Button } from "components/Button";
-import { useScrollContext } from "components/containers/Scroll";
 import { Edit } from "assets/svg";
-import { useState } from "react";
+import { Button } from "components/Button";
+import { GFieldProps, useGForm } from "components/GForm/GForm.props";
 import { DateTimePicker as AppDateTimePicker, DateTimePickerProps as AppDateTimePickerProps } from "components/Inputs";
 import { Text } from "components/Text";
+import { useScrollContext } from "components/containers/Scroll";
 import { format } from "date-fns";
+import { useState } from "react";
+import { View, ViewStyle } from "react-native";
+
+import { BaseField } from "./BaseField";
 export interface DateTimePickerProps extends Omit<GFieldProps, "valName"> {
   valNames: { start: string; end: string };
   nestedScrollEnabled?: boolean;

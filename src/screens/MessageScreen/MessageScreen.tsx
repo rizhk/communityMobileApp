@@ -1,29 +1,22 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  KeyboardAvoidingView,
-  Platform,
-  ImageBackground,
-} from "react-native";
-import { MessageScreenStyles } from "./message.styles";
-import { useEffect, useState } from "react";
-import * as I18n from "i18n-js";
-import { palette } from "theme/palette";
-import { ChannelItem, MessageItem } from "types/message";
 import { fetchMessages } from "api/chatRequest";
-import { FlatList } from "react-native-gesture-handler";
-import { default as BgChat } from "../../../assets/bgChat.png";
-import { format } from "date-fns";
-import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { useAuth } from "context/AuthContext";
 import { useChat } from "context/ChatContext";
 import { fetchActivityQS } from "api/custom-request";
 import { ChatIcon, GoBackButton } from "components/Button/GenericButtons";
 import { Avatar } from "components/Avatar";
+import { format } from "date-fns";
+import * as I18n from "i18n-js";
+import { MainStackParamList } from "navigators/MainStack/MainNavProps";
+import { useEffect, useState } from "react";
+import { View, Text, TouchableOpacity, TextInput, KeyboardAvoidingView, Platform, ImageBackground } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
+import { palette } from "theme/palette";
+import { ChannelItem, MessageItem } from "types/message";
+
 import { Message } from "./Message";
+import { MessageScreenStyles } from "./message.styles";
+import { default as BgChat } from "../../../assets/bgChat.png";
 
 type Props = NativeStackScreenProps<MainStackParamList, "message">;
 

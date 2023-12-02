@@ -1,21 +1,25 @@
-import React, { useEffect, useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import * as Localization from "expo-localization";
-import { chatStyles } from "./chat.styles";
-import { observer } from "mobx-react-lite";
-import { PelopsScreen } from "../../types";
-import { ChatCard } from "./ChatCard";
-import i18n from "i18n-js";
-import { FlatList } from "react-native-gesture-handler";
+import { Tabs } from "components/Tabs";
+import { Text } from "components/Text/Text";
 import { useChat } from "context/ChatContext";
+import * as Localization from "expo-localization";
+import i18n from "i18n-js";
+import { observer } from "mobx-react-lite";
+import { MainStackParamList } from "navigators/MainStack/MainNavProps";
+import React, { useEffect, useState } from "react";
+import { View } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
+
+import { MessageScreen } from "screens";
+import { ChatCard } from "./ChatCard";
+import { chatStyles } from "./chat.styles";
+import { PelopsScreen } from "../../types";
+
+
 import { ChannelCardProps } from "./chat.props";
 import CreateChat from "./CreateChat";
+
 // import SearchInput from "components/textinput/SearchInput";
-import { MainStackParamList } from "navigators/MainStack/MainNavProps";
-import { Tabs } from "components/Tabs";
-import { MessageScreen } from "screens";
-import { View } from "react-native";
-import { Text } from "components/Text/Text";
 
 i18n.locale = Localization.locale;
 i18n.fallbacks = true;
@@ -62,10 +66,7 @@ export function ChatScreenTMP({ navigation }: Props) {
         if (chatType === "private") test = chanUsr.channel.type === "private";
         else if (chatType === "group") test = chanUsr.channel.type === "group";
         else test = chanUsr.channel.type !== "private" && chanUsr.channel.type !== "group";
-        return (
-          test &&
-          (chanUsr.channel.name?.toLowerCase().includes(search.toLowerCase()) || search === "")
-        );
+        return test && (chanUsr.channel.name?.toLowerCase().includes(search.toLowerCase()) || search === "");
       })
     );
   }
@@ -92,10 +93,7 @@ export function ChatScreenTMP({ navigation }: Props) {
         <FlatList
           data={filteredChannels}
           renderItem={({ item }) => (
-            <ChatCard
-              {...item}
-              onPress={async () => await joinChat({ channelId: item.channel.id }, navigation)}
-            />
+            <ChatCard {...item} onPress={async () => await joinChat({ channelId: item.channel.id }, navigation)} />
           )}
         />
         <CreateChat />

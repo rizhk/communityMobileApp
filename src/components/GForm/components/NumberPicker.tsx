@@ -1,9 +1,9 @@
-import { View, ViewStyle } from "react-native";
-import { GFieldProps, useGForm } from "../GForm.props";
-import { BaseField } from "./BaseField";
-
 import { NumberPicker } from "components/Inputs";
 import { NumberPickerProps } from "components/Inputs/NumberPicker";
+import { View, ViewStyle } from "react-native";
+
+import { BaseField } from "./BaseField";
+import { GFieldProps, useGForm } from "../GForm.props";
 
 export type GFieldItemType = {
   value: string;

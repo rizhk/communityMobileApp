@@ -1,9 +1,10 @@
-import { TouchableOpacity, View, ViewStyle } from "react-native";
-import { GFieldItemType } from "../GForm.props";
-import I18n from "i18n-js";
 import { Text } from "components/Text";
-import { styleDirection } from "utils/formHelper";
+import I18n from "i18n-js";
+import { TouchableOpacity, View, ViewStyle } from "react-native";
 import { color, spacing } from "theme";
+import { styleDirection } from "utils/formHelper";
+
+import { GFieldItemType } from "../GForm.props";
 
 export interface RadioProps {
   value: string;
@@ -30,7 +31,7 @@ function RadioButton(props: RadioButtonProps) {
   const buttonStyle = {
     ...styleDirection(direction),
     justifyContent: direction === "row" ? "flex-start" : "center",
-    width: width,
+    width,
   } as ViewStyle;
 
   return (

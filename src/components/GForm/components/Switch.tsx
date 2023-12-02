@@ -1,7 +1,8 @@
-import { ViewStyle } from "react-native";
-import { GFieldProps, useGForm } from "../GForm.props";
-import { BaseField } from "./BaseField";
 import { Switch as AppSwitch } from "components/Inputs";
+import { ViewStyle } from "react-native";
+
+import { BaseField } from "./BaseField";
+import { GFieldProps, useGForm } from "../GForm.props";
 
 export default function Switch(props: GFieldProps) {
   const { handleChange, values, themeColor } = useGForm();

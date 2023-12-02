@@ -1,7 +1,8 @@
 import { PropsWithChildren } from "react";
 import { StyleProp, View, ViewStyle } from "react-native";
-import { useTabs } from "../Tabs.props";
 import { spacing } from "theme";
+
+import { useTabs } from "../Tabs.props";
 
 export type BodyProps = {
   style?: StyleProp<ViewStyle>;

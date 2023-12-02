@@ -1,6 +1,6 @@
 import { ViewStyle } from "react-native";
-import { inputFieldStyle } from "theme/styles";
 import { color, spacing } from "theme";
+import { inputFieldStyle } from "theme/styles";
 
 const BASE = {
   container: {} as ViewStyle,

@@ -1,8 +1,9 @@
-import { View, ViewProps, ViewStyle } from "react-native";
-import { useGForm } from "../GForm.props";
 import { Text } from "components/Text";
-import { spacing } from "theme";
 import { TextProps } from "components/Text/text.props";
+import { View, ViewProps, ViewStyle } from "react-native";
+import { spacing } from "theme";
+
+import { useGForm } from "../GForm.props";
 
 function Label(props: TextProps) {
   const { themeColor } = useGForm();

@@ -1,11 +1,12 @@
+import { Cross } from "assets/svg";
+import { Button } from "components/Button";
+import { BlurView } from "expo-blur";
 import { PropsWithChildren } from "react";
 import { Modal, Pressable, TouchableOpacity, View, ViewStyle } from "react-native";
 import { color, radius, spacing } from "theme";
 import { shadowStyle } from "theme/styles";
+
 import { ModalProps } from "./modal.props";
-import { BlurView } from "expo-blur";
-import { Button } from "components/Button";
-import { Cross } from "assets/svg";
 
 interface PopupProps extends ModalProps {
   blur?: number;
@@ -14,7 +15,7 @@ interface PopupProps extends ModalProps {
 export function Popup(props: PropsWithChildren<PopupProps>) {
   const { children, visible, setVisible, color = "primary", blur = 10 } = props;
   return (
-    <Modal visible={visible} transparent={true} animationType="fade">
+    <Modal visible={visible} transparent animationType="fade">
       <TouchableOpacity onPress={() => setVisible(false)} style={modalStyle}>
         <BlurView intensity={blur} tint="dark" style={blurStyle}>
           <Pressable style={container} onPress={() => {}}>

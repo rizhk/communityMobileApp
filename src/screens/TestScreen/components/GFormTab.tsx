@@ -78,6 +78,7 @@ export default function GFormTab() {
         <Line label="Switch" value={values.switch.toString()} />
         <Line label="Number" value={values.number.toString()} />
         <Line label="Radio" value={values.radio} />
+        <Line label="Drop" value={values.drop} />
         <Line label="startDate" value={format(values.startDate, "dd/MM/yyyy HH:mm")} />
         <Line label="endDate" value={format(values.endDate, "dd/MM/yyyy HH:mm")} />
         <Line label="location" value={JSON.stringify(values.location)} />
@@ -85,19 +86,3 @@ export default function GFormTab() {
     </>
   );
 }
-
-const modalStyle = {
-  flex: 1,
-  alignItems: "center",
-  justifyContent: "center",
-  backgroundColor: "#7772",
-} as ViewStyle;
-
-const container = {
-  padding: spacing.md,
-  borderRadius: radius.md,
-  backgroundColor: color.grey700,
-  ...shadowStyle,
-  shadowRadius: 10,
-  width: "80%",
-} as ViewStyle;

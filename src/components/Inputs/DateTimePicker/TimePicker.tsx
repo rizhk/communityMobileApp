@@ -1,11 +1,12 @@
-import { useState } from "react";
-import { TextStyle, View } from "react-native";
-import Wheel from "./Wheel";
-import { rangedItems } from "utils/formHelper";
 import { Text } from "components/Text";
-import { inputContainer, outerContainer } from "./DateTimePicker.style";
 import { GrowingView } from "components/containers/GrowingView";
 import { getHours, getMinutes, setHours as setHoursFns, setMinutes as setMinutesFns } from "date-fns";
+import { useState } from "react";
+import { TextStyle, View } from "react-native";
+import { rangedItems } from "utils/formHelper";
+
+import { inputContainer, outerContainer } from "./DateTimePicker.style";
+import Wheel from "./Wheel";
 
 type TimePickerProps = {
   date: Date;
@@ -24,7 +25,7 @@ export function TimePicker(props: TimePickerProps) {
   const minuteItems = rangedItems(0, 59, 2);
 
   const setHourDate = (hour: number) => {
-    let newDate = setHoursFns(date, hour);
+    const newDate = setHoursFns(date, hour);
     if (minDate && newDate < minDate) {
       setHours(getHours(date));
       setHourKey((prev) => prev + 1);
@@ -34,7 +35,7 @@ export function TimePicker(props: TimePickerProps) {
   };
 
   const setMinuteDate = (minute: number) => {
-    let newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), minute);
+    const newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), minute);
     if (minDate && newDate < minDate) {
       setMinutes(getMinutes(date));
       setMinKey((prev) => prev + 1);
