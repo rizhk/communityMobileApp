@@ -8,7 +8,13 @@ import { TextInput, TextStyle, TouchableOpacity, View, ViewStyle } from "react-n
 import { ThemeColorType, color as themeColor, spacing } from "theme";
 import { inputFieldStyle } from "theme/styles";
 import { LocationType } from "types/global";
-import { AddressSuggestions, fetchPlaceDetails, fetchSuggestions } from "utils/locationHelper";
+import {
+  AddressSuggestions,
+  fetchAddressFromCoords,
+  fetchLocalPosition,
+  fetchPlaceDetails,
+  fetchSuggestions,
+} from "utils/locationHelper";
 
 export interface AddressPickerProps {
   value: LocationType;
@@ -23,6 +29,16 @@ export function AddressPicker(props: AddressPickerProps) {
   const { style, placeholderTx, placeholder = "", value, setValue, color } = props;
   const [suggestions, setSuggestions] = useState<AddressSuggestions[]>([]);
   const [address, setAddress] = useState<string>("");
+
+  if (value.latitude === 0 && value.longitude === 0)
+    fetchLocalPosition().then((position) => {
+      if (position == null) return;
+      setValue({ latitude: position.latitude, longitude: position.longitude });
+
+      fetchAddressFromCoords({ latitude: position.latitude, longitude: position.longitude }).then((address) =>
+        setAddress(address)
+      );
+    });
 
   const onChangeText = (text: string) => {
     setAddress(text);
@@ -57,8 +73,8 @@ export function AddressPicker(props: AddressPickerProps) {
       </View>
       {suggestions.length > 0 && (
         <View style={suggestionList}>
-          {suggestions.map((suggestion) => (
-            <TouchableOpacity onPress={() => onSelectAddress(suggestion)} style={button}>
+          {suggestions.map((suggestion, i) => (
+            <TouchableOpacity onPress={() => onSelectAddress(suggestion)} style={button} key={i}>
               <Icon icon={Pin} size={15} style={{ marginTop: 3 }} />
               <Text style={{ flex: 1 }}>{suggestion.description}</Text>
             </TouchableOpacity>
