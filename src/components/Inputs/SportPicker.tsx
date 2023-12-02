@@ -22,7 +22,7 @@ const mapSportsDataToDropPickerItems = (sportsData: SportsData) => {
   }));
 };
 
-const SportPickerComponent: React.FC<SportPickerComponentProps> = ({ items, value, setValue }) => {
+const SportPickerComponent: React.FC<SportPickerComponentProps> = ({ value, setValue }) => {
   const { data: dataSports } = useSWR(["sports"], () => fetchSports());
 
   if (!dataSports) {
@@ -30,9 +30,6 @@ const SportPickerComponent: React.FC<SportPickerComponentProps> = ({ items, valu
   }
 
   return <DropPicker items={mapSportsDataToDropPickerItems(dataSports)} value={value} setValue={setValue} />;
-
-  //   const [mappedSportItems] = useState<DropPickerItem[]>(mapSportsDataToDropPickerItems(items));
-  //   return <DropPicker items={mappedSportItems} value={value} setValue={setValue} />;
 };
 
 const styles = StyleSheet.create({

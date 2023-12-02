@@ -4,10 +4,8 @@ export interface SportItem {
   id: number;
   name: string;
   icon: ImageItemStrapi;
-  // data?: any;
 }
 
-//****** SPORT ******\\
 export interface SportItemStrapi {
   id: number;
   attributes: SportItem;

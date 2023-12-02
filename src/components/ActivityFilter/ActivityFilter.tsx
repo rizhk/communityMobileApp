@@ -23,33 +23,11 @@ interface ActivityFilterProps {
   onApply: () => void;
 }
 
-// const mapSportsDataToDropPickerItems = (sportsData: SportsData) => {
-//   const transformedItems = sportsData?.data?.map((sport) => ({
-//     icon: () => (
-//       <Image source={{ uri: sport.attributes.icon.data.attributes.url }} resizeMode="contain" style={styles.pinImage} />
-//     ),
-//     label: sport?.attributes?.name,
-//     value: String(sport.id),
-//   }));
-//   return transformedItems as DropPickerItem[];
-// };
-
 const ActivityFilter: React.FC<ActivityFilterProps> = ({ isVisible, onClose, onApply, sportItems }) => {
   const [maxDistance, setMaxDistance] = useState(DEFAULT_MAX_DISTANCE);
   const [sport, setSport] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  //   const [mappedSportItems, setMappedSportItems] = useState<DropPickerItem[]>([]);
-
-  //   //Tansform sportItems to DropPickerItems
-  //   useEffect(() => {
-  //     if (sportItems) {
-  //       const transformedItems = mapSportsDataToDropPickerItems(sportItems);
-  //       setMappedSportItems(transformedItems);
-  //     }
-  //   }, [sportItems]);
-
-  //   console.log(mappedSportItems, "mappedSportItems2");
 
   return (
     <Modal animationType="fade" transparent={true} visible={isVisible} onRequestClose={onClose}>
@@ -60,8 +38,6 @@ const ActivityFilter: React.FC<ActivityFilterProps> = ({ isVisible, onClose, onA
               <Text>Close</Text>
             </TouchableOpacity>
             <Text text="Sport Picker" />
-            {/* <DropPicker items={mappedSportItems} value={sport} setValue={setSport} /> */}
-            {/* <SportPickerComponent items={sportItems as SportsData} value={sport} setValue={setSport} /> */}
             <SportPickerComponent value={sport} setValue={setSport} />
 
             <Text text={"Distance: " + maxDistance + " km"} />
