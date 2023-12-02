@@ -1,7 +1,6 @@
 import { FormikErrors } from "formik";
-import I18n from "i18n-js";
 import i18n from "i18n-js";
-import { SVGAttributes, createContext, useContext } from "react";
+import { createContext, useContext } from "react";
 import { StyleProp, ViewStyle } from "react-native";
 import { ThemeColorType } from "theme";
 
@@ -13,10 +12,7 @@ export type GFieldProps = {
 };
 
 export type GFormProps = {
-  submitTx?: i18n.Scope;
   txOptions?: i18n.TranslateOptions;
-  submitText?: string;
-  submitIcon?: React.FunctionComponent<SVGAttributes<SVGElement>>;
   containerStyle?: StyleProp<ViewStyle>;
   themeColor?: ThemeColorType;
 };

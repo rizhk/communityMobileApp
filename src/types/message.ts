@@ -34,13 +34,6 @@ export interface ChannelItem {
   user?: UserItem;
 }
 
-export interface ChannelUserItem {
-  id: number;
-  channel: ChannelItem;
-  lastMessage?: MessageItem;
-  createdAt?: Date;
-}
-
 export interface MessageItem {
   id: number;
   content: string;

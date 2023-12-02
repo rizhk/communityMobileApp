@@ -3,34 +3,7 @@ import "i18n";
 import { fr, en, de, it } from "date-fns/locale";
 import i18n from "i18n-js";
 import { LatLng } from "react-native-maps";
-
-// import { buildUrl } from "cloudinary-build-url";
-
-// export const cloudinaryUrl = (publicId, width, height, resizeType = "fill") =>
-//   publicId
-//     ? buildUrl(publicId, {
-//         cloud: {
-//           cloudName: "duhdurytr",
-//         },
-//         transformations: {
-//           // color: "white",
-//           // effect: {
-//           //   name: "colorize",
-//           // },
-//           quality: "auto:best",
-//           resize: {
-//             type: resizeType,
-//             width: width,
-//             height: height,
-//           },
-//           gravity: resizeType != "pad" && "auto",
-//           // format: "webp",
-//         },
-//       })
-//     : null;
-
-// export const cloudinaryUrl = (publicId, width, height, resizeType = "fill") =>
-//   null;
+import { ImageUpload } from "types/global";
 
 export type GravityType =
   | "auto"
@@ -48,35 +21,6 @@ export type GravityType =
   | string;
 
 export type ResizeType = "fit" | "fill" | "limit" | "pad" | "crop" | "scale" | string;
-
-export const cloudinaryUrl = (
-  publicId: string = "duhdurytr",
-  width: number,
-  height: number,
-  resizeType: ResizeType = "fill",
-  gravityType: GravityType
-): string => {
-  const gravity = gravityType ? `g_${gravityType},` : "";
-  return `https://res.cloudinary.com/duhdurytr/image/upload/${gravity}c_${resizeType},h_${height},w_${width},q_auto:best,f_auto/${publicId}`;
-};
-
-// //TODO: improve cloudinaryUrl
-// export const cloudinaryUrl = (
-//   publicId = "duhdurytr",
-//   width: number,
-//   height: number,
-//   resizeType = "fill",
-//   gravityType = "auto"
-// ) => {
-//   return `https://res.cloudinary.com/duhdurytr/image/upload/g_${gravityType},c_${resizeType},h_${height},w_${width},q_auto:best,f_auto/${publicId}`;
-// };
-
-//Form
-export const checkFormError = (errors: any, touched: any, name: string) => {
-  return `${errors[name] && touched[name] ? "is-invalid form-icon-trailing" : ""} ${
-    !errors[name] && touched[name] ? "is-valid" : ""
-  }`;
-};
 
 export const formDataImage = async (values = {}, image: ImageUpload, field = "cover") => {
   let imageUri;
@@ -105,10 +49,6 @@ export const formDataImage = async (values = {}, image: ImageUpload, field = "co
   return formData;
 };
 
-export function convertToIdArray(data) {
-  return data.map(({ id }) => id);
-}
-
 //Text
 export function truncateWithEllipses(text: string, max: number) {
   return text.substr(0, max - 1) + (text.length > max ? "..." : "");
@@ -116,11 +56,6 @@ export function truncateWithEllipses(text: string, max: number) {
 
 export function truncateWithReadmore(text: string, max: number) {
   return text.substr(0, max - 1) + (text.length > max ? "<a" : "");
-}
-
-//Divers
-export function onlyUnique(value: any, index: number, self: any) {
-  return self.indexOf(value) === index;
 }
 
 export function formatDate(date: Date): string {
@@ -146,23 +81,6 @@ export function formatDate(date: Date): string {
       break;
   }
   return formattedDate;
-}
-// export function formatHour(date: Date, format: string): string;
-// export function formatHour(date: string | number, format: string): string;
-export function formatHour(date: any, format: string = "HH:mm:ss.SSS") {
-  if (typeof date === "string") {
-    const hour = `${new Date().toISOString()}`.split("T");
-    const newDate = new Date(`${hour[0]}T${date}Z`);
-    const formattedDate = Format(newDate, format);
-    return formattedDate;
-  } else if (typeof date === "number") {
-    const newDate = new Date(date);
-    const formattedDate = Format(newDate, format);
-    return formattedDate;
-  } else {
-    const formattedDate = Format(date, format);
-    return formattedDate;
-  }
 }
 
 export const validateEmail = (email: string) => {

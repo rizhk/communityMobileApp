@@ -10,11 +10,6 @@ import { inputFieldStyle } from "theme/styles";
 import { LocationType } from "types/global";
 import { AddressSuggestions, fetchPlaceDetails, fetchSuggestions } from "utils/locationHelper";
 
-type Locationtype = {
-  latitude: number;
-  longitude: number;
-};
-
 export interface AddressPickerProps {
   value: LocationType;
   setValue: (value: LocationType) => void;

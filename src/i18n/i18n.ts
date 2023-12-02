@@ -12,3 +12,5 @@ i18n.translations = { en, fr, de, it };
 i18n.locale = Localization.locale || "en";
 
 i18n.defaultSeparator = ".";
+
+export { i18n };

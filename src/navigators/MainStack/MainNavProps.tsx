@@ -1,8 +1,5 @@
 import { NavType } from "navigators/NavType";
-import { Region } from "react-native-maps";
-import { MessageScreen } from "screens";
-import ActivityScreen from "screens/ActivityScreen/ActivityScreen";
-import { ActivityItemStrapi, FieldItemStrapi } from "types/activity";
+import { ActivityScreen, MessageScreen } from "screens";
 import { ChannelUserItem } from "types/message";
 
 export interface MainNavPropsType extends NavType<MainStackParamList> {

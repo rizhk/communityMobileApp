@@ -1,5 +1,6 @@
-export * from "./ChatScreen/ChatScreen";
-export * from "./LoginScreen/LoginScreen";
-export * from "./MessageScreen/MessageScreen";
-export * from "./MapScreen/MapScreen";
-export * from "./ActivitiesScreen/ActivitiesScreen";
+export { ChatScreen } from "./ChatScreen/ChatScreen";
+export { ActivityScreen } from "screens/ActivityScreen/ActivityScreen";
+export { LoginScreen } from "./LoginScreen/LoginScreen";
+export { MessageScreen } from "./MessageScreen/MessageScreen";
+export { MapScreen } from "./MapScreen/MapScreen";
+export { ActivitiesScreen } from "./ActivitiesScreen/ActivitiesScreen";

@@ -2,9 +2,7 @@ import { Edit } from "assets/svg";
 import { Button } from "components/Button";
 import { GFieldProps, useGForm } from "components/GForm/GForm.props";
 import { DateTimePicker as AppDateTimePicker, DateTimePickerProps as AppDateTimePickerProps } from "components/Inputs";
-import { Text } from "components/Text";
 import { useScrollContext } from "components/containers/Scroll";
-import { format } from "date-fns";
 import { useState } from "react";
 import { View, ViewStyle } from "react-native";
 

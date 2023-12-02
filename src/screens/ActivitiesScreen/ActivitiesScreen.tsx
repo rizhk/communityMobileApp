@@ -9,7 +9,7 @@ import CreateActivity from "./components/CreateActivity";
 
 type Props = NativeStackScreenProps<MainStackParamList, "activities">;
 
-export default function ActivitiesScreen({ navigation }: Props) {
+export function ActivitiesScreen({ navigation }: Props) {
   const [open, setOpen] = useState(false);
   return (
     <MainLayout>

@@ -1,7 +1,7 @@
 import { TextPresets } from "components/Text/text.presets";
 import i18n from "i18n-js";
 import { SVGAttributes } from "react";
-import { StyleProp, TextStyle, TouchableOpacityProps, ViewProps, ViewStyle } from "react-native";
+import { StyleProp, TextStyle, TouchableOpacityProps, ViewStyle } from "react-native";
 import { ButtonSizeTypes, ThemeColorType } from "theme";
 
 import { ButtonPresets } from "./button.presets";

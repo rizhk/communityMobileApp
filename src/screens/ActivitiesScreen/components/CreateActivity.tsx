@@ -1,5 +1,4 @@
 import { Star } from "assets/svg";
-import { Button } from "components/Button";
 import GForm from "components/GForm/GForm";
 import { DropPickerItem } from "components/GForm/components/DropPicker";
 import { Icon } from "components/Icon";
@@ -9,10 +8,7 @@ import { Text } from "components/Text";
 import { Validations } from "constants/Validations";
 import { INFINIT_PARTICIPANTS } from "constants/global";
 import { t } from "i18n-js";
-import { useState } from "react";
-import { View } from "react-native";
 import { LocationType } from "types/global";
-import { rangedItems } from "utils/formHelper";
 import * as Yup from "yup";
 
 type ValuesType = {
@@ -30,8 +26,6 @@ const activityTypeItems = [
   { value: "private", label: "createActivity.private" },
   { value: "public", label: "createActivity.public" },
 ];
-
-const nbParticipantItems = rangedItems(0, 10, 0, 1, true);
 //TODO: replace by sportItems
 const sportItems: DropPickerItem[] = [
   { icon: () => <Icon icon={Star} />, value: "1box", label: t("sports.Boxe") },

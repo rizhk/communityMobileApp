@@ -1,24 +1,17 @@
 import { Button } from "components/Button";
-import { Radio } from "components/Inputs";
 import { AddressPicker as AppAddressPicker } from "components/Inputs/AddressPicker";
 import I18n from "i18n-js";
-import { useState } from "react";
 import { View } from "react-native";
 import { LocationType } from "types/global";
 import { fetchLocalPosition } from "utils/locationHelper";
 
-import { GFieldProps, useGForm } from "../../GForm.props";
-import { BaseField } from "../BaseField";
+import { BaseField } from "./BaseField";
+import { GFieldProps, useGForm } from "../GForm.props";
 
 export interface AdressPickerProps extends GFieldProps {
   placeholderTx?: I18n.Scope;
   placeholder?: string;
 }
-
-const addressTypeItems = [
-  { label: "addressPicker.currentPosition", value: "local" },
-  { label: "addressPicker.choosePosition", value: "custom" },
-];
 
 export default function AddressPicker(props: AdressPickerProps) {
   const { valName, tx, containerStyle, placeholderTx, placeholder } = props;

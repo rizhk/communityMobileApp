@@ -2,11 +2,9 @@ import { DownArrow, Tick, UpArrow } from "assets/svg";
 import { Icon } from "components/Icon";
 import { t } from "i18n-js";
 import React, { useState } from "react";
-import DropDownPicker, { DropDownPickerProps, ItemType, ValueType } from "react-native-dropdown-picker";
+import DropDownPicker, { ItemType } from "react-native-dropdown-picker";
 import { ThemeColorType, color as themeColor, radius, spacing } from "theme";
 import { inputFieldStyle } from "theme/styles";
-
-import { color } from "../../theme/color";
 
 export interface DropPickerItem {
   icon: () => JSX.Element;

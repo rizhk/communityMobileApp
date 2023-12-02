@@ -1,7 +1,7 @@
 import { Text } from "components/Text";
 import { MainLayout } from "layouts";
 
-export default function MapScreen() {
+export function MapScreen() {
   return (
     <MainLayout>
       <Text>MapScreen</Text>

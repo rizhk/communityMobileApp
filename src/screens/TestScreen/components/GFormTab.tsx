@@ -1,5 +1,4 @@
 import { Star } from "assets/svg";
-import { Button } from "components/Button";
 import GForm from "components/GForm/GForm";
 import { Icon } from "components/Icon";
 import { Popup } from "components/Modal";
@@ -7,10 +6,7 @@ import { Text } from "components/Text";
 import { Scroll } from "components/containers/Scroll";
 import { format } from "date-fns";
 import { useState } from "react";
-import { ViewStyle } from "react-native";
 import { View } from "react-native-animatable";
-import { color, radius, spacing } from "theme";
-import { shadowStyle } from "theme/styles";
 
 const initialValues = {
   input: "",

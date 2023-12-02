@@ -1,5 +1,5 @@
 import { GrowingView } from "components/containers/GrowingView";
-import { getDate, getDaysInMonth, getMonth, getYear, set, setDate as setDay, setMonth, setYear } from "date-fns";
+import { getDate, getDaysInMonth, getMonth, getYear, setDate as setDay, setMonth, setYear } from "date-fns";
 import { translate } from "i18n";
 import { useEffect, useMemo, useState } from "react";
 import { View, ViewStyle } from "react-native";
@@ -75,7 +75,7 @@ export function DatePicker(props: DatePickerProps) {
       return;
     }
     setNewMonth(month);
-    if (getDaysInMonth(newDate) != maxDays) setMaxDays(getDaysInMonth(newDate));
+    if (getDaysInMonth(newDate) !== maxDays) setMaxDays(getDaysInMonth(newDate));
     setDate(newDate);
   };
 
@@ -87,7 +87,7 @@ export function DatePicker(props: DatePickerProps) {
       return;
     }
     setNewYear(year);
-    if (getDaysInMonth(newDate) != maxDays) setMaxDays(getDaysInMonth(newDate));
+    if (getDaysInMonth(newDate) !== maxDays) setMaxDays(getDaysInMonth(newDate));
     setDate(newDate);
   };
 

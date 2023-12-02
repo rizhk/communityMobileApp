@@ -1,8 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Button } from "components/Button";
 import GForm from "components/GForm/GForm";
 import { Validations } from "constants/Validations";
-import { useAuth } from "context/AuthContext";
 import AuthLayout from "layouts/AuthLayout";
 import { AuthNavigatorParamList } from "navigators/AuthStack/AuthStack";
 import { View, ViewStyle } from "react-native";

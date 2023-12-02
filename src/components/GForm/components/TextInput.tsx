@@ -1,11 +1,11 @@
+import { TextInputPresets, presets } from "components/Inputs/TextInput/TextInput.presets";
 import { translate } from "i18n";
 import I18n from "i18n-js";
 import { StyleProp, ViewStyle, TextInput as RNTextInput, TextInputProps as RnTextInputProps } from "react-native";
 import { color } from "theme";
 
-import { TextInputPresets, presets } from "./TextInput.presets";
-import { GFieldProps, useGForm } from "../../GForm.props";
-import { BaseField } from "../BaseField";
+import { BaseField } from "./BaseField";
+import { GFieldProps, useGForm } from "../GForm.props";
 
 export interface TextInputProps extends GFieldProps {
   inputStyle?: StyleProp<ViewStyle>;

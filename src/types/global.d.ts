@@ -9,3 +9,5 @@ export type ItemType<T> = {
   value: T;
   label: I18n.Scope;
 };
+
+export type ValueType = string | number | boolean;

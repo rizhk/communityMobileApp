@@ -19,7 +19,7 @@ export default function AppWheel(props: AppWheelProps) {
   const { items, value, setValue, style, itemSize = 28, itemStyle, enableScroll = true } = props;
   const [selectedIndex, setSelectedIndex] = useState(() => {
     const i = items.findIndex((item) => {
-      return item.value == value;
+      return item.value === value;
     });
     if (i !== -1) return i;
     return 0;
@@ -66,6 +66,7 @@ export default function AppWheel(props: AppWheelProps) {
                   opacity: (1 - Math.abs(i - selectedIndex) * 0.2) ** 2,
                 },
               ]}
+              key={i}
             />
           ))}
         </View>

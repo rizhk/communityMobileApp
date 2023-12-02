@@ -1,26 +1,30 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { fetchMessages } from "api/chatRequest";
-import { useAuth } from "context/AuthContext";
-import { useChat } from "context/ChatContext";
-import { fetchActivityQS } from "api/custom-request";
-import { ChatIcon, GoBackButton } from "components/Button/GenericButtons";
-import { Avatar } from "components/Avatar";
-import { format } from "date-fns";
-import * as I18n from "i18n-js";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
-import { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, TextInput, KeyboardAvoidingView, Platform, ImageBackground } from "react-native";
-import { FlatList } from "react-native-gesture-handler";
-import { palette } from "theme/palette";
-import { ChannelItem, MessageItem } from "types/message";
+import {
+  View,
+  Text,
+  // TouchableOpacity, TextInput, KeyboardAvoidingView, Platform, ImageBackground
+} from "react-native";
+// import { fetchMessages } from "api/chatRequest";
+// import { fetchActivityQS } from "api/custom-request";
+// import { Avatar } from "components/Avatar";
+// import { ChatIcon, GoBackButton } from "components/Button/GenericButtons";
+// import { useAuth } from "context/AuthContext";
+// import { useChat } from "context/ChatContext";
+// import { format } from "date-fns";
+// import * as I18n from "i18n-js";
+// import { useEffect, useState } from "react";
+// import { FlatList } from "react-native-gesture-handler";
+// import { palette } from "theme/palette";
+// import { ChannelItem, MessageItem } from "types/message";
 
-import { Message } from "./Message";
-import { MessageScreenStyles } from "./message.styles";
-import { default as BgChat } from "../../../assets/bgChat.png";
+// import { Message } from "./Message";
+// import { MessageScreenStyles } from "./message.styles";
+// import { default as BgChat } from "../../../assets/bgChat.png";
 
 type Props = NativeStackScreenProps<MainStackParamList, "message">;
 
-const NB_MESSAGES_PER_FETCH = 20;
+// const NB_MESSAGES_PER_FETCH = 20;
 
 export function MessageScreen({ navigation, route }: Props) {
   return (

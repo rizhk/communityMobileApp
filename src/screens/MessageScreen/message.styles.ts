@@ -1,21 +1,18 @@
 import { StyleSheet } from "react-native";
-import { color, ApplicationStyles, palette, FlexStyles, spacing } from "theme";
-import { PrimaryIconButtonStyles } from "theme/components/button";
+import { color, palette, FlexStyles, spacing } from "theme";
 import { radius } from "theme/shape";
 
-const GoBackIconSize = 25;
 const ChannelIconSize = 45;
 const messageButtonSize = 35;
 
 export const MessageScreenStyles = StyleSheet.create({
   outerContainer: {
     paddingBottom: spacing.md,
-    backgroundColor: palette.grey,
+    // backgroundColor: palette.background,
     height: "100%",
   },
 
   innerContainer: {
-    ...ApplicationStyles.screen.mainContainerRounded,
     display: "flex",
     flexDirection: "column",
     width: "100%",
@@ -32,7 +29,7 @@ export const MessageScreenStyles = StyleSheet.create({
     gap: spacing.sm,
     alignItems: "center",
     paddingRight: spacing.sm,
-    backgroundColor: palette.grey,
+    // backgroundColor: palette.grey,
   },
   channelDetails: {
     display: "flex",
@@ -127,7 +124,7 @@ export const MessageStyles = StyleSheet.create({
     paddingVertical: 2,
     borderRadius: 10,
     overflow: "hidden",
-    backgroundColor: palette.lightGrey,
+    // backgroundColor: palette.lightGrey,
     color: palette.white,
     fontSize: 11,
     marginBottom: spacing.sm,
@@ -146,7 +143,7 @@ export const MessageStyles = StyleSheet.create({
     borderRadius: radius.md,
   },
   authorContent: {
-    backgroundColor: palette.DarkRed,
+    // backgroundColor: palette.DarkRed,
   },
   contentText: {
     maxWidth: "100%",
@@ -155,7 +152,7 @@ export const MessageStyles = StyleSheet.create({
   },
   timeText: {
     fontSize: 10,
-    color: palette.grey,
+    // color: palette.grey,
     alignSelf: "flex-end",
   },
   authorText: {

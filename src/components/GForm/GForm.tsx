@@ -2,14 +2,14 @@ import { Formik, FormikConfig, FormikValues } from "formik";
 import { PropsWithChildren } from "react";
 
 import { GFormContext, GFormProps } from "./GForm.props";
-import AddressPicker from "./components/AddressPicker/AddressPicker";
+import AddressPicker from "./components/AddressPicker";
 import DateTimePicker from "./components/DateTimePicker";
 import DropPicker from "./components/DropPicker";
 import NumberPicker from "./components/NumberPicker";
 import Radio from "./components/Radio";
 import SubmitButton from "./components/SubmitButton";
 import Switch from "./components/Switch";
-import TextInput from "./components/TextInput/TextInput";
+import TextInput from "./components/TextInput";
 
 GForm.SubmitButton = SubmitButton;
 GForm.TextInput = TextInput;
@@ -21,15 +21,11 @@ GForm.DropPicker = DropPicker;
 GForm.AddressPicker = AddressPicker;
 
 export default function GForm<Values extends FormikValues = FormikValues>({
-  submitTx = "common.submit",
-  submitText,
-  submitIcon,
   containerStyle,
   children,
   themeColor,
   ...props
 }: PropsWithChildren<FormikConfig<Values> & GFormProps>) {
-  const submitButtonProps = { tx: submitTx, text: submitText };
   return (
     <Formik validateOnChange={false} {...props}>
       {({ handleChange, handleBlur, handleSubmit, setFieldValue, values, errors, validateField, setFieldError }) => (

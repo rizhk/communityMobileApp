@@ -73,11 +73,6 @@ export interface FieldItemStrapi {
   attributes: FieldItem;
 }
 
-export interface FieldItemStrapi {
-  id: number;
-  attributes: FieldItem;
-}
-
 export interface SportsData {
   data: SportItemStrapi[];
   meta: any;

@@ -5,7 +5,7 @@ import { View, Text } from "react-native";
 
 type Props = NativeStackScreenProps<MainStackParamList, "activity">;
 
-export default function ActivityScreen({ navigation }: Props) {
+export function ActivityScreen({ navigation }: Props) {
   return (
     <View>
       <Text>ActivityScreen</Text>

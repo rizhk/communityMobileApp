@@ -15,7 +15,8 @@ export function GrowingView(props: PropsWithChildren<GrowingViewProps>) {
   const { heightValue, shrink, grow } = useAnimatedHeight(from, to, duration);
 
   useEffect(() => {
-    open ? grow() : shrink();
+    if (open) grow();
+    else shrink();
   }, [open]);
 
   return <Animated.View style={[{ height: heightValue }, style]}>{children}</Animated.View>;

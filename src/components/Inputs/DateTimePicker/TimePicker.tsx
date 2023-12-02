@@ -35,7 +35,7 @@ export function TimePicker(props: TimePickerProps) {
   };
 
   const setMinuteDate = (minute: number) => {
-    const newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), minute);
+    const newDate = setMinutesFns(date, minute);
     if (minDate && newDate < minDate) {
       setMinutes(getMinutes(date));
       setMinKey((prev) => prev + 1);

@@ -5,7 +5,7 @@ import { color } from "theme";
 import { AuthStack } from "./AuthStack/AuthStack";
 import { MainStack } from "./MainStack/MainStack";
 
-export default function AppNavigator() {
+export function AppNavigator() {
   const { user } = useAuth();
   const AppTheme = {
     dark: true,

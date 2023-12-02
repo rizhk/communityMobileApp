@@ -1,6 +1,6 @@
 import WheelPicker from "components/Wheel";
 import { useMemo, useState } from "react";
-import { View, Text, ViewStyle, TextStyle } from "react-native";
+import { View, ViewStyle, TextStyle } from "react-native";
 // import WheelPicker from "react-native-wheely";
 
 type ItemType = {
@@ -23,7 +23,7 @@ export default function Wheel(props: WheelProps) {
   const { value, setValue, items, nbItems = 3, itemHeight = 28, itemWidth = 40, style, scrollEnable = false } = props;
   const [selectedIndex, setSelectedIndex] = useState(() => {
     const i = items.findIndex((item) => {
-      return item.value == value;
+      return item.value === value;
     });
     if (i !== -1) return i;
     return 0;
