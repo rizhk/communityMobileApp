@@ -1,10 +1,11 @@
-import { StyleProp, ViewStyle, TextInput as RNTextInput, TextInputProps as RnTextInputProps } from "react-native";
-import { GFieldProps, useGForm } from "../../GForm.props";
-import { color } from "theme";
-import { BaseField } from "../BaseField";
-import I18n from "i18n-js";
+import { TextInputPresets, presets } from "components/Inputs/TextInput/TextInput.presets";
 import { translate } from "i18n";
-import { TextInputPresets, presets } from "./TextInput.presets";
+import I18n from "i18n-js";
+import { StyleProp, ViewStyle, TextInput as RNTextInput, TextInputProps as RnTextInputProps } from "react-native";
+import { color } from "theme";
+
+import { BaseField } from "./BaseField";
+import { GFieldProps, useGForm } from "../GForm.props";
 
 export interface TextInputProps extends GFieldProps {
   inputStyle?: StyleProp<ViewStyle>;
@@ -15,9 +16,9 @@ export interface TextInputProps extends GFieldProps {
 export default function TextInput(props: TextInputProps & RnTextInputProps) {
   const { containerStyle, valName, tx, text, inputStyle = {}, preset = "default", placeholderTx, ...rest } = props;
   const { values, setFieldValue, errors, validateField } = useGForm();
-
   const inputStyles = [presets[preset].inputField, inputStyle, errors[valName] === undefined ? {} : inputError];
   const containerStyles = [presets[preset].container, containerStyle];
+
   return (
     <BaseField style={containerStyles}>
       {(tx !== undefined || text !== undefined) && <BaseField.Label tx={tx} text={text} />}

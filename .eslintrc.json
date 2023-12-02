@@ -5,6 +5,7 @@
     "node": true
   },
   "extends": [
+    "universe/native",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended"
@@ -15,5 +16,10 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint", "react"],
-  "rules": {}
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-uses-react": "off",
+    // !Test purpose
+    "@typescript-eslint/no-explicit-any": ["off"]
+  }
 }

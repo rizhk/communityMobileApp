@@ -4,15 +4,12 @@ import { PropsWithChildren } from "react";
 import { Modal as RNModal, View, ViewStyle } from "react-native";
 import { color, radius, spacing } from "theme";
 
-export type ModalProps = {
-  visible: boolean;
-  setVisible: (v: boolean) => void;
-};
+import { ModalProps } from "./modal.props";
 
-export function Modal(props: PropsWithChildren<ModalProps>) {
-  const { children, visible, setVisible } = props;
+export function Slider(props: PropsWithChildren<ModalProps>) {
+  const { children, visible, setVisible, color = "primary" } = props;
   return (
-    <RNModal animationType="slide" visible={visible} transparent={true}>
+    <RNModal animationType="slide" visible={visible} transparent>
       <View style={container}>
         <View style={inner}>
           <Button
@@ -22,6 +19,7 @@ export function Modal(props: PropsWithChildren<ModalProps>) {
             rounded
             iconScale={2.5}
             style={closeBtn}
+            color={color}
           />
           {children}
         </View>

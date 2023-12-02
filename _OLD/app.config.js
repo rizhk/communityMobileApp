@@ -45,8 +45,7 @@ export default {
       [
         "expo-image-picker",
         {
-          photosPermission:
-            "The app accesses your photos to help you build a personalized profile.",
+          photosPermission: "The app accesses your photos to help you build a personalized profile.",
         },
       ],
     ],

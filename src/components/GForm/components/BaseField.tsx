@@ -1,12 +1,13 @@
-import { View, ViewProps, ViewStyle } from "react-native";
-import { useGForm } from "../GForm.props";
 import { Text } from "components/Text";
-import { spacing } from "theme";
 import { TextProps } from "components/Text/text.props";
-import { useEffect } from "react";
+import { View, ViewProps, ViewStyle } from "react-native";
+import { spacing } from "theme";
+
+import { useGForm } from "../GForm.props";
 
 function Label(props: TextProps) {
-  return <Text preset="fieldLabel" {...props} />;
+  const { themeColor } = useGForm();
+  return <Text preset="fieldLabel" color={themeColor} {...props} />;
 }
 
 function ErrorLabel({ valName, ...props }: TextProps & { valName: string }) {

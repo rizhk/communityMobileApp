@@ -1,4 +1,5 @@
 import { Platform } from "react-native";
+
 import { text } from "./sizing";
 
 export const typography = {

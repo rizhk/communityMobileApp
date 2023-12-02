@@ -61,23 +61,11 @@ export interface ActivityFormData extends ActivityFormSchema {
   labelLocation?: string;
   labelActualLocation?: string;
 }
-
-export type ActivityFormType =
-  | "media"
-  | "LocationPicker"
-  | "DateTimerPicker"
-  | "DropPicker"
-  | "maxParticipantsPicker"
-  | "hidden"
-  | "string"; //default
-
 export interface ActivityFormSchema {
   value: ActivityType;
   initialValue?: number | string | boolean | Date | Array<any>;
   validation: FieldValidation;
 }
-
-export type ActivityType = "sport" | "location" | "date" | "startHour" | "endHour" | "maxParticipants" | "description";
 
 //****** IMAGE ******\\
 export interface ImageItem {
@@ -110,11 +98,6 @@ export interface FieldItem {
   status: "public" | "semi-private" | "private";
   disponibility?: string;
 }
-export interface FieldItemStrapi {
-  id: number;
-  attributes: FieldItem;
-}
-
 export interface FieldItemStrapi {
   id: number;
   attributes: FieldItem;
@@ -161,3 +144,29 @@ export type FieldValidation = {
   maxLenght?: number;
   format?: string;
 };
+
+export interface ActivityFormData extends ActivityFormSchema {
+  label?: string;
+  type: ActivityFormType;
+  multiple?: boolean;
+  searchable?: boolean;
+  labelLocation?: string;
+  labelActualLocation?: string;
+}
+
+export type ActivityFormType =
+  | "media"
+  | "LocationPicker"
+  | "DateTimerPicker"
+  | "DropPicker"
+  | "maxParticipantsPicker"
+  | "hidden"
+  | "string"; //default
+
+export interface ActivityFormSchema {
+  value: ActivityType;
+  initialValue?: number | string | boolean | Date | any[];
+  validation: FieldValidation;
+}
+
+export type ActivityType = "sport" | "location" | "date" | "startHour" | "endHour" | "maxParticipants" | "description";

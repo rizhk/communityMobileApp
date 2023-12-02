@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleProp, TextStyle, Animated, Text, ViewStyle } from "react-native";
+
 import styles from "./WheelPicker.styles";
 
 interface ItemProps {
@@ -114,11 +115,7 @@ const WheelPickerItem: React.FC<ItemProps> = ({
 
   return (
     <Animated.View
-      style={[
-        styles.option,
-        style,
-        { height, opacity, transform: [{ translateY }, { rotateX }, { scale }] },
-      ]}
+      style={[styles.option, style, { height, opacity, transform: [{ translateY }, { rotateX }, { scale }] }]}
     >
       <Text style={textStyle}>{option}</Text>
     </Animated.View>

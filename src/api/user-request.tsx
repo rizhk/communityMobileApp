@@ -60,10 +60,7 @@ export const updateUser = async (
 
 export const getOneUser = async (userId: number, userToken?: string | null) => {
   try {
-    const response = await fetchAxiosAPI(
-      `users-permissions/users/find-one-user/${userId}`,
-      userToken
-    );
+    const response = await fetchAxiosAPI(`users-permissions/users/find-one-user/${userId}`, userToken);
     // console.log("respons :", response?.data);
     return response?.data;
   } catch (err) {
@@ -71,12 +68,7 @@ export const getOneUser = async (userId: number, userToken?: string | null) => {
   }
 };
 
-export const getFollowers = async (
-  userId: number,
-  userToken: string | null,
-  latestUserId: number,
-  count: number
-) => {
+export const getFollowers = async (userId: number, userToken: string | null, latestUserId: number, count: number) => {
   try {
     const response = await fetchAxiosAPI(
       `users-permissions/users/find-followers/${userId}/${latestUserId}/${count}`,
@@ -89,12 +81,7 @@ export const getFollowers = async (
   }
 };
 
-export const getFollowings = async (
-  userId: number,
-  userToken: string | null,
-  latestUserId: number,
-  count: number
-) => {
+export const getFollowings = async (userId: number, userToken: string | null, latestUserId: number, count: number) => {
   try {
     const response = await fetchAxiosAPI(
       `users-permissions/users/find-followings/${userId}/${latestUserId}/${count}`,
@@ -146,7 +133,7 @@ export const searchUsers = async (searchTerm: string, limit = 30, userToken?: st
           ],
         },
         populate: ["avatar", "favoriteSports", "followers", "followings", "favoriteSports.icon"],
-        limit: limit,
+        limit,
       },
       {},
       userToken
@@ -170,7 +157,7 @@ export const fetchUsersQs = async (limit = 30, userToken?: string | null) => {
           "followings",
           "favoriteSports.icon",
         ],
-        limit: limit,
+        limit,
       },
       {},
       userToken

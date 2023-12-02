@@ -1,4 +1,5 @@
 import { ActivityItem } from "types/activity";
+
 import { SportItemStrapi } from "./activity";
 
 export type channelType = "private" | "activity" | "tournament" | "team" | "sport" | "group";
@@ -31,13 +32,6 @@ export interface ChannelItem {
   // tournament?: any;
   sport?: SportItemStrapi;
   user?: UserItem;
-}
-
-export interface ChannelUserItem {
-  id: number;
-  channel: ChannelItem;
-  lastMessage?: MessageItem;
-  createdAt?: Date;
 }
 
 export interface MessageItem {

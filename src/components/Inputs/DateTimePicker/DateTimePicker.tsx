@@ -1,9 +1,9 @@
-import { TextStyle, View, ViewStyle } from "react-native";
-import { DatePicker } from "./DatePicker";
 import { Text } from "components/Text";
+import { getDate, getHours, getMinutes, getMonth, getYear } from "date-fns";
+import { TextStyle, View, ViewStyle } from "react-native";
+
+import { DatePicker } from "./DatePicker";
 import { TimePicker } from "./TimePicker";
-import { useScrollContext } from "components/containers/Scroll";
-import { useState } from "react";
 
 export interface DateTimePickerProps {
   startDate: Date;
@@ -14,50 +14,41 @@ export interface DateTimePickerProps {
   interval?: boolean;
   minDate?: Date;
   //if nested in a Scroll component from components/container/Scroll.tsx
-  nestedScrollEnabled?: boolean;
+  enable?: boolean;
 }
 
 export function DateTimePicker(props: DateTimePickerProps) {
   const {
-    type,
-    interval,
-    minDate = new Date(),
-    nestedScrollEnabled = false,
+    type = "datetime",
+    interval = "true",
+    minDate = new Date(0),
     startDate,
     endDate,
     setStartDate,
     setEndDate,
+    enable = true,
   } = props;
-  const { enableScroll, setEnableScroll } = useScrollContext();
-  const [minimalDate] = useState(new Date(minDate ?? 0));
-  const toggleEnable = () => {
-    setEnableScroll(!enableScroll);
+
+  const setDate = (date: Date) => {
+    setStartDate(new Date(getYear(date), getMonth(date), getDate(date), getHours(startDate), getMinutes(startDate)));
+    setEndDate(new Date(getYear(date), getMonth(date), getDate(date), getHours(endDate), getMinutes(endDate)));
   };
 
   return (
     <>
-      <DatePicker
-        date={startDate}
-        setDate={setStartDate}
-        minDate={minimalDate}
-        enable={!nestedScrollEnabled || !enableScroll}
-      />
-      <View style={timeLine}>
-        <Text tx="timePicker.from" style={timeLabel} />
-        <TimePicker
-          date={startDate}
-          setDate={setEndDate}
-          minDate={minimalDate}
-          enable={!nestedScrollEnabled || !enableScroll}
-        />
-        <Text tx="timePicker.to" style={timeLabel} />
-        <TimePicker
-          date={endDate}
-          setDate={setEndDate}
-          minDate={minimalDate}
-          enable={!nestedScrollEnabled || !enableScroll}
-        />
-      </View>
+      <DatePicker date={startDate} setDate={setDate} minDate={minDate} enable={enable} />
+      {type === "datetime" && (
+        <View style={timeLine}>
+          {interval && <Text tx="timePicker.from" style={timeLabel} />}
+          <TimePicker date={startDate} setDate={setStartDate} minDate={minDate} enable={enable} />
+          {interval && (
+            <>
+              <Text tx="timePicker.to" style={timeLabel} />
+              <TimePicker date={endDate} setDate={setEndDate} minDate={startDate} enable={enable} />
+            </>
+          )}
+        </View>
+      )}
     </>
   );
 }

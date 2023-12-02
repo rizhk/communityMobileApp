@@ -1,13 +1,12 @@
-import { Chat, Home, Notif, Pin, PinOutline, User } from "assets/svg";
+import { Chat, Home, PinOutline } from "assets/svg";
+import Joker from "assets/svg/joker.svg";
 import { translate } from "i18n";
 import { NavType } from "navigators/NavType";
 import { SVGAttributes } from "react";
-import { ChatScreen } from "screens";
-import ActivitiesScreen from "screens/ActivitiesScreen/ActivitiesScreen";
-import DesignSystemScreen from "screens/DesignSystemScreen/DesignSystemScreen";
-import MapScreen from "screens/MapScreen/MapScreen";
+import { ActivitiesScreen, ChatScreen, MapScreen } from "screens";
+import TestScreen from "screens/TestScreen/TestScreen";
 import { ChannelUserItem } from "types/message";
-
+//TODO: remove (test purpose)
 export interface BottomNavPropsType extends NavType<BottomTabParamList> {
   icon: React.FunctionComponent<SVGAttributes<SVGElement>>;
   tabBarBadge: number;
@@ -18,9 +17,9 @@ export interface BottomNavPropsType extends NavType<BottomTabParamList> {
 export type BottomTabParamList = {
   map: { region?: { latitude: number; longitude: number } };
   activities: undefined;
-  designSystem: undefined;
   profile: { user: any };
   messages: { channelUser: ChannelUserItem };
+  test: undefined;
 };
 
 //TODO: change icons from png to svg
@@ -52,15 +51,6 @@ export const BottomNavProps: BottomNavPropsType[] = [
     iconSize: 26,
     component: ChatScreen,
   },
-  {
-    id: 6,
-    route: "designSystem",
-    label: `${translate("screenTitle.designSystem")}`,
-    icon: Notif,
-    tabBarBadge: 0,
-    iconSize: 26,
-    component: DesignSystemScreen,
-  },
   // {
   //   id: 3,
   //   route: "profile",
@@ -70,4 +60,14 @@ export const BottomNavProps: BottomNavPropsType[] = [
   //   iconSize: 26,
   //   component: ProfileScreen,
   // },
+  //TODO: remove (test purpose)
+  {
+    id: 6,
+    route: "test",
+    label: "Design System",
+    icon: Joker,
+    tabBarBadge: 0,
+    iconSize: 26,
+    component: TestScreen,
+  },
 ];

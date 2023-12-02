@@ -1,4 +1,3 @@
-import { useHeaderHeight } from "@react-navigation/elements";
 import { PropsWithChildren } from "react";
 import {
   Keyboard,
@@ -6,7 +5,6 @@ import {
   KeyboardAvoidingViewProps,
   Platform,
   TouchableWithoutFeedback,
-  View,
 } from "react-native";
 
 export function KeyboardAvoiding({ children, ...props }: PropsWithChildren<KeyboardAvoidingViewProps>) {

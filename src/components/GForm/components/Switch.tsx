@@ -1,10 +1,11 @@
-import { Switch as RNSwitch, ViewStyle } from "react-native";
-import { GFieldProps, useGForm } from "../GForm.props";
+import { Switch as AppSwitch } from "components/Inputs";
+import { ViewStyle } from "react-native";
+
 import { BaseField } from "./BaseField";
-import { color } from "theme";
+import { GFieldProps, useGForm } from "../GForm.props";
 
 export default function Switch(props: GFieldProps) {
-  const { handleChange, values } = useGForm();
+  const { handleChange, values, themeColor } = useGForm();
   const { tx, text, valName } = props;
   const onChange = (value: boolean) => {
     handleChange(valName)(value ? "true" : "false");
@@ -12,13 +13,7 @@ export default function Switch(props: GFieldProps) {
   return (
     <BaseField style={container}>
       <BaseField.Label tx={tx} text={text} />
-      <RNSwitch
-        value={values[valName] === "true"}
-        onValueChange={onChange}
-        thumbColor={values[valName] === "true" ? color.primary : ""}
-        trackColor={{ false: color.grey800, true: color.white }}
-        ios_backgroundColor={color.grey800}
-      />
+      <AppSwitch value={values[valName] === "true"} onValueChange={onChange} color={themeColor} />
     </BaseField>
   );
 }

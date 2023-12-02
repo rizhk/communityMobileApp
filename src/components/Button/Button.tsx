@@ -1,9 +1,10 @@
-import { TouchableOpacity } from "react-native";
-import { ButtonProps } from "./button.props";
-import { Text } from "components/Text";
-import { presets } from "./button.presets";
 import { Icon } from "components/Icon";
+import { Text } from "components/Text";
+import { TouchableOpacity } from "react-native";
 import { buttonSize, color as themeColor, icon as iconSize, spacing } from "theme";
+
+import { presets } from "./button.presets";
+import { ButtonProps } from "./button.props";
 
 export function Button(props: ButtonProps) {
   const {
@@ -23,9 +24,9 @@ export function Button(props: ButtonProps) {
     ...rest
   } = props;
 
-  const textProps = { tx: tx, txOptions: txOptions, text: text, preset: textPreset };
+  const textProps = { tx, txOptions, text, preset: textPreset };
   const roundStyle = rounded
-    ? { width: buttonSize[size ?? "md"], height: buttonSize[size ?? "md"], borderRadius: 100 }
+    ? { width: buttonSize[size ?? "md"], height: buttonSize[size ?? "md"], borderRadius: 200 }
     : {};
   const buttonStyle = [presets[preset](color), { padding: spacing[size] }, roundStyle, style];
   const textStyles = [preset === "outlined" ? { color: themeColor[color] } : {}, textStyle];

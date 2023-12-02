@@ -1,17 +1,12 @@
-import App from "./src/app";
-import React from "react";
 import * as SplashScreen from "expo-splash-screen";
-import { QueryClient, QueryClientProvider } from "react-query";
+import React from "react";
+
+import App from "./src/app";
 
 SplashScreen.preventAutoHideAsync();
-const queryClient = new QueryClient();
 
 function PelopsApp() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <App hideSplashScreen={SplashScreen.hideAsync} />
-    </QueryClientProvider>
-  );
+  return <App hideSplashScreen={SplashScreen.hideAsync} />;
 }
 
 export default PelopsApp;

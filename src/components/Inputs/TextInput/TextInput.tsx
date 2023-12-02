@@ -1,7 +1,8 @@
+import { translate } from "i18n";
+import I18n from "i18n-js";
 import { ViewStyle, TextInput as RNTextInput, TextInputProps as RnTextInputProps } from "react-native";
 import { color } from "theme";
-import I18n from "i18n-js";
-import { translate } from "i18n";
+
 import { TextInputPresets, presets } from "./TextInput.presets";
 
 export interface TextInputProps extends RnTextInputProps {

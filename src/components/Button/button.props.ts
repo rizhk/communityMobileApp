@@ -1,9 +1,10 @@
-import { StyleProp, TextStyle, TouchableOpacityProps, ViewProps, ViewStyle } from "react-native";
-import { ButtonPresets } from "./button.presets";
-import i18n from "i18n-js";
 import { TextPresets } from "components/Text/text.presets";
+import i18n from "i18n-js";
 import { SVGAttributes } from "react";
+import { StyleProp, TextStyle, TouchableOpacityProps, ViewStyle } from "react-native";
 import { ButtonSizeTypes, ThemeColorType } from "theme";
+
+import { ButtonPresets } from "./button.presets";
 
 export interface ButtonProps extends TouchableOpacityProps {
   // text passed to Text component

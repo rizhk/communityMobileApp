@@ -12,34 +12,6 @@ export const hexToRGBA = (hex: string, alpha: number) => {
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 };
 
-// import { buildUrl } from "cloudinary-build-url";
-
-// export const cloudinaryUrl = (publicId, width, height, resizeType = "fill") =>
-//   publicId
-//     ? buildUrl(publicId, {
-//         cloud: {
-//           cloudName: "duhdurytr",
-//         },
-//         transformations: {
-//           // color: "white",
-//           // effect: {
-//           //   name: "colorize",
-//           // },
-//           quality: "auto:best",
-//           resize: {
-//             type: resizeType,
-//             width: width,
-//             height: height,
-//           },
-//           gravity: resizeType != "pad" && "auto",
-//           // format: "webp",
-//         },
-//       })
-//     : null;
-
-// export const cloudinaryUrl = (publicId, width, height, resizeType = "fill") =>
-//   null;
-
 export type GravityType =
   | "auto"
   | "center"
@@ -136,40 +108,23 @@ export function formatDate(date: Date): string {
   }
   return formattedDate;
 }
-// export function formatHour(date: Date, format: string): string;
-// export function formatHour(date: string | number, format: string): string;
-export function formatHour(date: any, format: string = "HH:mm:ss.SSS") {
-  if (typeof date === "string") {
-    const hour = `${new Date().toISOString()}`.split("T");
-    const newDate = new Date(`${hour[0]}T${date}Z`);
-    const formattedDate = Format(newDate, format);
-    return formattedDate;
-  } else if (typeof date === "number") {
-    const newDate = new Date(date);
-    const formattedDate = Format(newDate, format);
-    return formattedDate;
-  } else {
-    const formattedDate = Format(date, format);
-    return formattedDate;
-  }
-}
 
 export const validateEmail = (email: string) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 };
 
-var rad = function (x: number) {
+const rad = function (x: number) {
   return (x * Math.PI) / 180;
 };
 export function computeDistance(p1: LatLng, p2: LatLng): number {
-  var R = 6378137; // Earth’s mean radius in meter
-  var dLat = rad(p2.latitude - p1.latitude);
-  var dLong = rad(p2.longitude - p1.longitude);
-  var a =
+  const R = 6378137; // Earth’s mean radius in meter
+  const dLat = rad(p2.latitude - p1.latitude);
+  const dLong = rad(p2.longitude - p1.longitude);
+  const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
     Math.cos(rad(p1.latitude)) * Math.cos(rad(p2.latitude)) * Math.sin(dLong / 2) * Math.sin(dLong / 2);
-  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  var d = R * c;
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const d = R * c;
   return d; // returns the distance in meter
 }

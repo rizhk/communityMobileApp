@@ -1,11 +1,11 @@
-import { View, ViewStyle } from "react-native";
-import { color, text } from "theme";
-import { useMemo, useState } from "react";
-import { inputFieldStyle } from "./styles";
-import WheelPicker from "react-native-wheely";
 import { INFINIT_PARTICIPANTS } from "constants/global";
+import { useMemo, useState } from "react";
+import { View, ViewStyle } from "react-native";
+import WheelPicker from "react-native-wheely";
+import { color, text } from "theme";
+import { inputFieldStyle } from "theme/styles";
 
-export interface PickerProps {
+export interface NumberPickerProps {
   min?: number;
   max: number;
   step?: number;
@@ -18,7 +18,7 @@ export interface PickerProps {
   width?: number;
 }
 
-export function NumberPicker(props: PickerProps) {
+export function NumberPicker(props: NumberPickerProps) {
   const { value, setValue, min = 0, step = 1, max, hasInfinit, padding = 0, style, visible = 1, width = 80 } = props;
   const options = useMemo(() => {
     const options = [];
@@ -45,7 +45,7 @@ export function NumberPicker(props: PickerProps) {
   };
 
   return (
-    <View style={{ width: width }}>
+    <View style={{ width }}>
       <WheelPicker
         selectedIndex={index}
         options={options}

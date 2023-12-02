@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from "react";
-import { BottomNavPropsType } from "./BottomNavProps";
 import { Icon } from "components/Icon";
+import { useEffect, useRef, useState } from "react";
 import { TouchableOpacity, ViewStyle } from "react-native";
 import { View } from "react-native-animatable";
-import { buttonSize, color } from "theme";
 import * as Animatable from "react-native-animatable";
+import { buttonSize, color } from "theme";
+
+import { BottomNavPropsType } from "./BottomNavProps";
 
 export interface TabButtonProps {
   tab: BottomNavPropsType;

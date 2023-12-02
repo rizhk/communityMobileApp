@@ -6,7 +6,7 @@ export function rangedItems(min: number, max: number, padding = 0, step = 1, has
   const arr = Array.from({ length }, (_, i) => {
     const val = (min + i * step).toString();
     const label = val.length > padding ? val : val.padStart(padding, "0");
-    return { value: val, label: label };
+    return { value: val, label };
   });
   if (hasUnlimited) arr.unshift({ value: INFINIT_PARTICIPANTS.toString(), label: " ∞ " });
   return arr;
@@ -18,5 +18,5 @@ export function styleDirection(direction: "row" | "column" | undefined) {
 
 export function styleJustifyContent(justify: "left" | "center") {
   const justifyContent = justify === "left" ? "flex-start" : "space-around";
-  return { justifyContent: justifyContent } as ViewStyle;
+  return { justifyContent } as ViewStyle;
 }

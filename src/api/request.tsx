@@ -1,12 +1,11 @@
-import axios from "axios";
-import { AxiosRequestHeaders } from "axios";
 import { API_URL } from "@env";
+import axios, { AxiosRequestHeaders } from "axios";
 import { qs } from "qs";
 import { ImageUpload } from "types/global";
 axios.defaults.baseURL = `${API_URL}/api`;
 
 export type GetDataStrapi = {
-  data: {};
+  data: object;
   meta: [];
 };
 

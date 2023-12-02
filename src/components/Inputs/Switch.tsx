@@ -1,6 +1,6 @@
 import { Switch as RNSwitch, SwitchProps } from "react-native";
 import { ThemeColorType, color as themeColor } from "theme";
-import { shadowStyle } from "./styles";
+import { shadowStyle } from "theme/styles";
 
 interface Props extends SwitchProps {
   color?: ThemeColorType;

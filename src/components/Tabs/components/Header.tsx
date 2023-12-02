@@ -1,9 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import { StyleProp, TouchableOpacity, ViewStyle } from "react-native";
-import { TabContext, useTabs } from "../Tabs.props";
-import { color } from "theme";
 import { Text } from "components/Text";
 import i18n from "i18n-js";
+import { useContext, useEffect, useState } from "react";
+import { StyleProp, TouchableOpacity, ViewStyle } from "react-native";
+import { color } from "theme";
+
+import { TabContext, useTabs } from "../Tabs.props";
 
 type TabsHeaderProps = {
   value: any;
@@ -29,10 +30,7 @@ export function TabsHeader(props: TabsHeaderProps) {
   }, [selected]);
 
   return (
-    <TouchableOpacity
-      style={[tab, active ? selectedTab : {}, containerStyle]}
-      onPress={() => handleSelect(value)}
-    >
+    <TouchableOpacity style={[tab, active ? selectedTab : {}, containerStyle]} onPress={() => handleSelect(value)}>
       <Text {...textProps} preset={active ? "tabHeaderActive" : "tabHeader"} />
     </TouchableOpacity>
   );

@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
-
-import { color, palette, spacing } from "../../theme";
+import { color, spacing } from "theme";
 
 export const chatStyles = StyleSheet.create({
   mainContainer: {

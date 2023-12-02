@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthProvider } from "context/AuthContext";
 import { ChatProvider } from "context/ChatContext";
-import AppNavigator from "navigators/AppNavigator";
+import { AppNavigator } from "navigators/AppNavigator";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider, initialWindowMetrics } from "react-native-safe-area-context";
 
@@ -11,7 +11,8 @@ interface AppProps {
 
 export default function App({ hideSplashScreen }: AppProps) {
   AsyncStorage.getItem("userToken").then((userToken) => {
-    userToken ? setTimeout(hideSplashScreen, 4000) : hideSplashScreen();
+    if (userToken) setTimeout(hideSplashScreen, 4000);
+    else hideSplashScreen();
   });
 
   return (

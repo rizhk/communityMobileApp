@@ -1,1 +1,1 @@
-export * from "./AppNavigator";
+export { AppNavigator } from "./AppNavigator";

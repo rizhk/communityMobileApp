@@ -1,7 +1,7 @@
 import { Text } from "components/Text";
 import { useRef, useState } from "react";
 import { Platform, ScrollView, TextStyle, View, ViewStyle } from "react-native";
-import { color, radius, spacing } from "theme";
+import { color } from "theme";
 
 //in the making, it's a whell without flatlist to get rid of virtualized list warning
 export type item = { value: string; label: string };
@@ -19,7 +19,7 @@ export default function AppWheel(props: AppWheelProps) {
   const { items, value, setValue, style, itemSize = 28, itemStyle, enableScroll = true } = props;
   const [selectedIndex, setSelectedIndex] = useState(() => {
     const i = items.findIndex((item) => {
-      return item.value == value;
+      return item.value === value;
     });
     if (i !== -1) return i;
     return 0;
@@ -47,7 +47,7 @@ export default function AppWheel(props: AppWheelProps) {
           handleScroll(e);
           let y = getIndex(e) * itemSize;
           if (y > itemSize * (items.length - 1)) y = itemSize * (items.length - 1);
-          ref.current?.scrollTo({ y: y, animated: true });
+          ref.current?.scrollTo({ y, animated: true });
           console.log("y:", y);
         }}
         ref={ref}
@@ -66,6 +66,7 @@ export default function AppWheel(props: AppWheelProps) {
                   opacity: (1 - Math.abs(i - selectedIndex) * 0.2) ** 2,
                 },
               ]}
+              key={i}
             />
           ))}
         </View>

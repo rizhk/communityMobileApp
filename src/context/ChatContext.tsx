@@ -1,11 +1,12 @@
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { fetchMyChannelUsers } from "api/chatRequest";
+import { getApiUrl } from "api/request";
+import { DeepNavParam } from "navigators/navigator.types";
 import React, { createContext, useEffect, useState, useContext, PropsWithChildren } from "react";
 import io, { Socket } from "socket.io-client";
-import { getApiUrl } from "api/request";
-import { useAuth } from "./AuthContext";
 import { ChannelUserItem, MessageItem, channelType } from "types/message";
-import { fetchMyChannelUsers } from "api/chatRequest";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { DeepNavParam } from "navigators/navigator.types";
+
+import { useAuth } from "./AuthContext";
 
 export type ChannelParamType = {
   channelId?: number;
@@ -45,9 +46,7 @@ export function ChatProvider({ children }: PropsWithChildren) {
   const [chatSocket, setChatSocket] = useState<Socket | null>(null);
   const [myChannelUsers, setMyChannelUsers] = useState<ChannelUserItem[]>([]);
   const [messages, setMessages] = useState<MessageItem[]>([]);
-  const [currentChannelUser, setCurrentChannelUser] = useState<ChannelUserItem | null | undefined>(
-    null
-  );
+  const [currentChannelUser, setCurrentChannelUser] = useState<ChannelUserItem | null | undefined>(null);
 
   // const [newMessageNotification, setNewMessageNotification] = useState<any>(null);
   // const [newMessageNotificationCount, setNewMessageNotificationCount] = useState<number>(0);
@@ -138,9 +137,7 @@ export function ChatProvider({ children }: PropsWithChildren) {
 
   //update channelUser lastMessageId on the server
   function updateChannelUserLastMessage(lastMessage: MessageItem) {
-    const channelUser = myChannelUsers.find(
-      (chanUser) => chanUser.channel.id === lastMessage.channel.id
-    );
+    const channelUser = myChannelUsers.find((chanUser) => chanUser.channel.id === lastMessage.channel.id);
     if (!channelUser) return;
     chatSocket?.emit("updateChannelUserLastMessage", {
       channelUserId: channelUser?.id,
@@ -155,8 +152,7 @@ export function ChatProvider({ children }: PropsWithChildren) {
       ...prevChannelUsers.map((prevChanUser) => {
         if (prevChanUser.channel.id !== lastMessage.channel.id) return prevChanUser;
         const newChanUser = JSON.parse(JSON.stringify(prevChanUser));
-        if (currentChannelUser?.channel.id === lastMessage.channel.id)
-          newChanUser.lastMessage = lastMessage;
+        if (currentChannelUser?.channel.id === lastMessage.channel.id) newChanUser.lastMessage = lastMessage;
         newChanUser.channel.lastMessage = lastMessage;
         return newChanUser;
       }),
@@ -191,11 +187,10 @@ export function ChatProvider({ children }: PropsWithChildren) {
     if (!channelId && (!id || !type)) return console.log("joinChannel error: missing param");
 
     let channelUser = null;
-    if (channelId)
-      channelUser = myChannelUsers.find((chanUser) => chanUser.channel.id === channelId);
+    if (channelId) channelUser = myChannelUsers.find((chanUser) => chanUser.channel.id === channelId);
     else if (type && id) channelUser = getChannelUser(type, id);
 
-    if (channelUser && navigation) navigation.navigate("message", { channelUser: channelUser });
+    if (channelUser && navigation) navigation.navigate("message", { channelUser });
     if (!channelUser && !channelId) {
       chatSocket?.emit("joinChat", type, id, async (channelUserRes: ChannelUserItem) => {
         if (!channelUserRes) return console.log("joinChannel error: nothing received from server");
@@ -207,8 +202,7 @@ export function ChatProvider({ children }: PropsWithChildren) {
   async function leaveChat(param: ChannelParamType) {
     const { channelId, type, id } = param;
     let channelUser = null;
-    if (channelId)
-      channelUser = myChannelUsers.find((chanUser) => chanUser.channel.id === channelId);
+    if (channelId) channelUser = myChannelUsers.find((chanUser) => chanUser.channel.id === channelId);
     else if (type && id) channelUser = getChannelUser(type, id);
     if (!channelUser) return;
     chatSocket?.emit("leaveChat", channelUser.channel.id, (res: any) => {
