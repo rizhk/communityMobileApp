@@ -23,7 +23,7 @@ interface MapProps {
   onRegionChangeComplete?: (newRegion: Region) => void; // Add this line
 }
 
-const MapComponent: React.FC<MapProps> = ({
+const MapComponent = ({
   preset = "default",
   region,
   onRegionChangeComplete,

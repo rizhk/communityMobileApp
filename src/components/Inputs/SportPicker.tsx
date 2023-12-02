@@ -22,7 +22,7 @@ const mapSportsDataToDropPickerItems = (sportsData: SportsData) => {
   }));
 };
 
-const SportPickerComponent: React.FC<SportPickerComponentProps> = ({ value, setValue }) => {
+const SportPickerComponent = ({ value, setValue }: SportPickerComponentProps) => {
   const { data: dataSports } = useSWR(["sports"], () => fetchSports());
 
   if (!dataSports) {

@@ -23,7 +23,7 @@ interface ActivityFilterProps {
   onApply: () => void;
 }
 
-const ActivityFilter: React.FC<ActivityFilterProps> = ({ isVisible, onClose, onApply, sportItems }) => {
+const ActivityFilter = ({ isVisible, onClose, onApply, sportItems }: ActivityFilterProps) => {
   const [maxDistance, setMaxDistance] = useState(DEFAULT_MAX_DISTANCE);
   const [sport, setSport] = useState("");
   const [startDate, setStartDate] = useState(new Date());
