@@ -12,48 +12,38 @@ import { hexToRGBA } from "utils/helper";
 import DatePicker from "components/GForm/components/DateTimePicker/DatePicker";
 import { DEFAULT_MAX_DISTANCE } from "constants/global";
 import { DropPickerItem } from "components/Inputs/DropPicker";
-import { SportItem } from "types/sport";
+import { SportItem, SportsData } from "types/sport";
 import { SportItemStrapi } from "types/sport";
 
 interface ActivityFilterProps {
   isVisible: boolean;
-  sportItems: SportItemStrapi[];
+  sportItems?: SportsData;
   onClose: () => void;
-  onApply: () => void; // Update this type as needed based on what onApply does
-  // Include other props like filters and setFilters if you have specific filters state
+  onApply: () => void;
 }
 
-// const items = [
-//   { label: "item1", value: "item1" },
-//   { label: "item2", value: "item2" },
-//   { label: "item3", value: "item3" },
-//   { label: "item4", value: "item4" },
-// ];
-
-const mapSportsDataToDropPickerItems = (sportsData: SportItemStrapi[]) => {
-  const transformedItems = sportsData?.map((sport) => ({
+const mapSportsDataToDropPickerItems = (sportsData: SportsData) => {
+  const transformedItems = sportsData?.data?.map((sport) => ({
     icon: () => (
       <Image source={{ uri: sport.attributes.icon.data.attributes.url }} resizeMode="contain" style={styles.pinImage} />
     ),
     label: sport?.attributes?.name,
     value: String(sport.id),
   }));
-
   return transformedItems as DropPickerItem[];
 };
 
 const ActivityFilter: React.FC<ActivityFilterProps> = ({ isVisible, onClose, onApply, sportItems }) => {
-  const [radio, setRadio] = useState("item1");
-  const [switchValue, setSwitchValue] = useState(false);
   const [maxDistance, setMaxDistance] = useState(DEFAULT_MAX_DISTANCE);
-  const [item, setItem] = useState("drop-item1");
+  const [sport, setSport] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [mappedSportItems, setMappedSportItems] = useState<DropPickerItem[]>([]);
 
+  //Tansform sportItems to DropPickerItems
   useEffect(() => {
     if (sportItems) {
-      const transformedItems = mapSportsDataToDropPickerItems(sportItems as SportItemStrapi[]);
+      const transformedItems = mapSportsDataToDropPickerItems(sportItems);
       setMappedSportItems(transformedItems);
     }
   }, [sportItems]);
@@ -67,7 +57,7 @@ const ActivityFilter: React.FC<ActivityFilterProps> = ({ isVisible, onClose, onA
               <Text>Close</Text>
             </TouchableOpacity>
             <Text text="Sport Picker" />
-            <DropPicker items={mappedSportItems} value={item} setValue={setItem} />
+            <DropPicker items={mappedSportItems} value={sport} setValue={setSport} />
 
             <Text text={"Distance: " + maxDistance + " km"} />
             <Slider
@@ -85,24 +75,6 @@ const ActivityFilter: React.FC<ActivityFilterProps> = ({ isVisible, onClose, onA
             <DatePicker date={startDate} setDate={setStartDate} minDate={new Date()} />
             <Text text="Au" />
             <DatePicker date={endDate} setDate={setEndDate} minDate={startDate} />
-
-            {/* <Radio value={radio} setValue={setRadio} items={items} style={{ marginTop: 20 }} /> */}
-            {/* <View
-              style={{ flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap", padding: 10, gap: 20 }}
-            >
-              <Radio value={radio} setValue={setRadio} items={items} groupDirection="column" color="secondary" />
-            </View>
-            <View
-              style={{ flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap", padding: 10, gap: 20 }}
-            >
-              <Switch value={switchValue} onChange={() => setSwitchValue(!switchValue)} />
-            </View> */}
-            {/* <DateTimePicker
-              startDate={startDate}
-              endDate={endDate}
-              setStartDate={setStartDate}
-              setEndDate={setEndDate}
-            /> */}
           </View>
 
           <TouchableOpacity onPress={onApply} style={styles.button}>

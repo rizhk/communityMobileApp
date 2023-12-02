@@ -99,8 +99,6 @@ export default function MapScreen() {
 
   const { data: dataSports } = useSWR(["sports"], () => fetchSports());
 
-  console.log("dataSports", dataSports);
-
   if (error) {
     return <Text>error...</Text>;
   }
@@ -112,7 +110,7 @@ export default function MapScreen() {
         isVisible={isFilterVisible}
         onClose={handleCloseFilter}
         onApply={handleApplyFilter}
-        sportItems={dataSports.data}
+        sportItems={dataSports}
         // filters={filters}
         // setFilters={setFilters} // If you want to lift state up
       />

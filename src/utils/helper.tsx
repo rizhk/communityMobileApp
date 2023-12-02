@@ -80,13 +80,7 @@ export const cloudinaryUrl = (
 // };
 
 //Form
-export const checkFormError = (errors: any, touched: any, name: string) => {
-  return `${errors[name] && touched[name] ? "is-invalid form-icon-trailing" : ""} ${
-    !errors[name] && touched[name] ? "is-valid" : ""
-  }`;
-};
-
-export const formDataImage = async (values = {}, image: ImageUpload, field = "cover") => {
+export const formDataImage = async (values = {}, image: any, field = "cover") => {
   let imageUri;
   if (typeof image === "string") {
     imageUri = image;
@@ -112,19 +106,6 @@ export const formDataImage = async (values = {}, image: ImageUpload, field = "co
 
   return formData;
 };
-
-export function convertToIdArray(data) {
-  return data.map(({ id }) => id);
-}
-
-//Text
-export function truncateWithEllipses(text: string, max: number) {
-  return text.substr(0, max - 1) + (text.length > max ? "..." : "");
-}
-
-export function truncateWithReadmore(text: string, max: number) {
-  return text.substr(0, max - 1) + (text.length > max ? "<a" : "");
-}
 
 //Divers
 export function onlyUnique(value: any, index: number, self: any) {

@@ -3,6 +3,7 @@ import axios from "axios";
 import { API_URL } from "@env";
 import { Region } from "react-native-maps";
 import { ActivityFilters, populateActivity } from "types/activity";
+import { SportsData } from "types/sport";
 axios.defaults.baseURL = `${API_URL}/api`;
 
 export async function fetchAxiosAPI(path: string, params?: any, userToken?: string | null) {
@@ -19,7 +20,7 @@ export async function fetchAxiosAPI(path: string, params?: any, userToken?: stri
   }
 }
 
-export async function fetchSports(userToken?: string | null) {
+export async function fetchSports(userToken?: string | null): Promise<SportsData> {
   return fetchAxiosAPI(
     `/sports`,
     {
