@@ -97,8 +97,11 @@ export default function MapScreen() {
     fetchActivitiesByRegion(region, maxDistance, filters)
   );
 
-  const { data: dataSports } = useSWR(["sports"], () => fetchSports());
+  const { data: dataSports, isLoading: isLoadingSport } = useSWR(["sports"], () => fetchSports());
 
+  // if (isLoadingSport) {
+  //   return <ActivityIndicator></ActivityIndicator>;
+  // }
   if (error) {
     return <Text>error...</Text>;
   }
