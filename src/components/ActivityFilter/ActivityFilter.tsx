@@ -61,7 +61,7 @@ const ActivityFilter: React.FC<ActivityFilterProps> = ({ isVisible, onClose, onA
             </TouchableOpacity>
             <Text text="Sport Picker" />
             {/* <DropPicker items={mappedSportItems} value={sport} setValue={setSport} /> */}
-            <SportPickerComponent items={sportItems} value={sport} setValue={setSport} />
+            <SportPickerComponent items={sportItems as SportsData} value={sport} setValue={setSport} />
 
             <Text text={"Distance: " + maxDistance + " km"} />
             <Slider

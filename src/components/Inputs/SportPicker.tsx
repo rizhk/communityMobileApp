@@ -5,13 +5,12 @@ import { SportsData } from "types/sport";
 import { DropPicker, DropPickerItem } from "./DropPicker";
 
 interface SportPickerComponentProps {
-  items: SportsData | undefined;
+  items: SportsData;
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const mapSportsDataToDropPickerItems = (sportsData: SportsData) => {
-  console.log(sportsData, "sportsData");
   return sportsData?.data?.map((sport) => ({
     icon: () => (
       <Image source={{ uri: sport.attributes.icon.data.attributes.url }} resizeMode="contain" style={styles.pinImage} />
@@ -22,18 +21,7 @@ const mapSportsDataToDropPickerItems = (sportsData: SportsData) => {
 };
 
 const SportPickerComponent: React.FC<SportPickerComponentProps> = ({ items, value, setValue }) => {
-  const [mappedSportItems, setMappedSportItems] = useState<DropPickerItem[]>([]);
-  useEffect(() => {
-    if (items) {
-      const transformedItems = mapSportsDataToDropPickerItems(items);
-      setMappedSportItems(transformedItems);
-    }
-  }, [items]);
-
-  if (mappedSportItems.length === 0) {
-    return null;
-  }
-
+  const [mappedSportItems] = useState<DropPickerItem[]>(mapSportsDataToDropPickerItems(items));
   return <DropPicker items={mappedSportItems} value={value} setValue={setValue} />;
 };
 
@@ -42,7 +30,6 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
   },
-  // Ajoutez d'autres styles si nécessaire
 });
 
 export default SportPickerComponent;
