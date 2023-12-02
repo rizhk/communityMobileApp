@@ -18,7 +18,7 @@ interface MapProps {
   initialRegion?: Region;
   style?: any;
   preset?: MapPresets;
-  activities?: ActivitiesData;
+  activities: ActivitiesData;
   mapRef?: any;
   onRegionChangeComplete?: (newRegion: Region) => void; // Add this line
 }
@@ -43,6 +43,7 @@ const MapComponent = ({
 
   const radius = calculateRadius(region.latitudeDelta);
 
+  console.log(activities?.data, "activities.data");
   return (
     <>
       <MapView
@@ -59,6 +60,7 @@ const MapComponent = ({
           strokeColor={color.primary}
           fillColor={hexToRGBA(color.primary, 0.2)}
         />
+
         {activities?.data &&
           activities.data.map((activity, index) => {
             const participantsCount = activity?.attributes?.participants?.data?.length;

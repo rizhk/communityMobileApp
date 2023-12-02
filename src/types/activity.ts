@@ -37,9 +37,9 @@ export interface ActivityItem {
   location: string;
   description: string;
   author: UserItem;
-  participants: { data: UserItem[] };
+  participants: { data: UserItem[] }; //TODO: Check types
   blockedUsers: { data: UserItem[] };
-  sport: SportItem;
+  sport: { data: SportItemStrapi };
   channel: any;
 }
 
