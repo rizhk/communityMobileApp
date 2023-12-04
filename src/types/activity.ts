@@ -21,7 +21,7 @@ export interface ActivityFilters {
   sportId?: number;
   sport?: {
     name?: string;
-    id: number;
+    id?: number;
   };
   date?: string;
   maxDistance?: number;

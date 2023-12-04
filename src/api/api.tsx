@@ -80,7 +80,7 @@ export async function fetchActivitiesByRegion(
   //   apiFilters.sport = { name: { $contains: filters?.sport.name } };
   // }
   if (filters?.sport) {
-    apiFilters.sport = { id: { $eq: filters?.sport.id } };
+    apiFilters.sport = { name: { $eq: filters?.sport.name } };
   }
   if (filters?.date) {
     apiFilters["date"] = { $eq: filters?.date };

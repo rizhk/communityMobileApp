@@ -33,7 +33,7 @@ const modalEndOffset = 20;
 
 const ActivityFilter = ({ isVisible, onClose, onApply, currentFilters }: ActivityFilterProps) => {
   const [maxDistance, setMaxDistance] = useState(currentFilters?.maxDistance || DEFAULT_MAX_DISTANCE);
-  const [sport, setSport] = useState(currentFilters?.sport?.id || "0");
+  const [sport, setSport] = useState(currentFilters?.sport?.name || "");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
@@ -93,7 +93,7 @@ const ActivityFilter = ({ isVisible, onClose, onApply, currentFilters }: Activit
                 <Button
                   text="Apply"
                   size="md"
-                  onPress={() => onApply({ ...currentFilters, sport: { id: sport }, maxDistance })}
+                  onPress={() => onApply({ ...currentFilters, sport: { name: sport }, maxDistance })}
                 />
 
                 <Button text="Cancel" size="md" onPress={onClose} preset="outlined" />

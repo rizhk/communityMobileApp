@@ -18,7 +18,7 @@ const mapSportsDataToDropPickerItems = (sportsData: SportsData) => {
       <Image source={{ uri: sport.attributes.icon.data.attributes.url }} resizeMode="contain" style={styles.pinImage} />
     ),
     label: sport?.attributes?.name,
-    value: String(sport.id),
+    value: String(sport.attributes?.name),
   }));
 };
 
