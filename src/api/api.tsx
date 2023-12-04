@@ -76,12 +76,17 @@ export async function fetchActivitiesByRegion(
   //   if (filters?.sportName) {
   //     apiFilters.sport = { name: { $eq: filters?.sportName } };
   //   }
+  // if (filters?.sport) {
+  //   apiFilters.sport = { name: { $contains: filters?.sport.name } };
+  // }
   if (filters?.sport) {
-    apiFilters.sport = { name: { $eq: filters?.sport.name } };
+    apiFilters.sport = { id: { $eq: filters?.sport.id } };
   }
   if (filters?.date) {
     apiFilters["date"] = { $eq: filters?.date };
   }
+
+  console.log(apiFilters, "apiFilters");
 
   return fetchAxiosAPI(
     `/activity/find-nearby`,

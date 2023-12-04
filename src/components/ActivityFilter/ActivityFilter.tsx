@@ -15,32 +15,29 @@ import { SportItem, SportsData } from "types/sport";
 import { SportItemStrapi } from "types/sport";
 import SportPickerComponent from "components/Inputs/SportPicker";
 import { Button } from "components/Button";
+import { ActivityFilters } from "types/activity";
 
 //TODO: Add button create activity s'il y pas de données
 //TODO: Pouvoir filter par adresse et rediriger dessus sur la map
 
 interface ActivityFilterProps {
   isVisible: boolean;
-  sportItems?: SportsData;
   onClose: () => void;
-  onApply: () => void;
+  onApply: (newFilters: ActivityFilters) => void;
+  currentFilters: ActivityFilters;
 }
 
 const screenWidth = Dimensions.get("window").width;
 const modalStartOffset = screenWidth; // Départ depuis le côté droit
 const modalEndOffset = 20;
 
-const ActivityFilter = ({ isVisible, onClose, onApply, sportItems }: ActivityFilterProps) => {
-  const [maxDistance, setMaxDistance] = useState(DEFAULT_MAX_DISTANCE);
-  const [sport, setSport] = useState("");
+const ActivityFilter = ({ isVisible, onClose, onApply, currentFilters }: ActivityFilterProps) => {
+  const [maxDistance, setMaxDistance] = useState(currentFilters?.maxDistance || DEFAULT_MAX_DISTANCE);
+  const [sport, setSport] = useState(currentFilters?.sport?.id || "0");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
-  // console.log(screenWidth, "screenWidth");
-
-  // const [animation] = useState(new Animated.Value(screenWidth)); // Démarre en dehors de l'écran
-
-  // S'arrête à 80px du bord droit
+  console.log(sport, "sport");
 
   const [animation] = useState(new Animated.Value(modalStartOffset));
 
@@ -71,12 +68,8 @@ const ActivityFilter = ({ isVisible, onClose, onApply, sportItems }: ActivityFil
           <Animated.View style={modalStyle}>
             <View style={styles.panel}>
               <View style={{ display: "flex", flexDirection: "column", gap: 16, padding: 20 }}>
-                <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-                  <Text>Close</Text>
-                </TouchableOpacity>
                 <Text text="Sport Picker" />
                 <SportPickerComponent value={sport} setValue={setSport} />
-
                 <Text text={"Distance: " + maxDistance + " km"} />
                 <Slider
                   style={{ width: "100%", height: 40 }}
@@ -96,7 +89,13 @@ const ActivityFilter = ({ isVisible, onClose, onApply, sportItems }: ActivityFil
               </View>
 
               <View style={{ flexDirection: "row", justifyContent: "space-evenly", alignItems: "center" }}>
-                <Button text="Apply" size="md" onPress={onApply} />
+                {/* <Button text="Apply" size="md" onPress={onApply} /> */}
+                <Button
+                  text="Apply"
+                  size="md"
+                  onPress={() => onApply({ ...currentFilters, sport: { id: sport }, maxDistance })}
+                />
+
                 <Button text="Cancel" size="md" onPress={onClose} preset="outlined" />
               </View>
             </View>
@@ -122,12 +121,6 @@ const styles = StyleSheet.create({
   pinImage: {
     width: 24,
     height: 24,
-  },
-  button: {
-    // Style for Apply Button
-  },
-  closeButton: {
-    // Style for Close Button
   },
 });
 export default ActivityFilter;

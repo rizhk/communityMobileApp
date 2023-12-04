@@ -20,9 +20,11 @@ export interface ActivityFilters {
   sportName?: string;
   sportId?: number;
   sport?: {
-    name: string;
+    name?: string;
+    id: number;
   };
   date?: string;
+  maxDistance?: number;
 }
 
 export interface ActivityItem {

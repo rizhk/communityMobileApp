@@ -34,7 +34,6 @@ export function MapScreen() {
   const mapRef = useRef<MapView>(null);
 
   const [isFilterVisible, setIsFilterVisible] = useState(false);
-  // ... other states ...
 
   const handleOpenFilter = () => {
     setIsFilterVisible(true);

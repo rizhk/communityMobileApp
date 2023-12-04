@@ -14,23 +14,42 @@ import { Region } from "react-native-maps";
 import useCurrentPosition from "hooks/useCurrentPosition";
 import { is } from "date-fns/locale";
 import { View } from "react-native-animatable";
+import ActivityFilter from "components/ActivityFilter/ActivityFilter";
+import { ActivityFilters } from "types/activity";
+import { INITIAL_REGION_FRIBOURG } from "constants/global";
 
 type Props = NativeStackScreenProps<MainStackParamList, "activities">;
 
 export function ActivitiesScreen({ navigation }: Props) {
-  const [open, setOpen] = useState(false);
+  const [openActivity, setOpenActivity] = useState(false);
   const [userRegion, isLocationFetched] = useCurrentPosition();
-
-  const [region, setRegion] = useState<Region | null>(userRegion);
-
   const [maxDistance, setMaxDistance] = useState(50000);
 
-  const filters = {
-    sport: {
-      name: "Basketball",
-    },
-    // date: "2023-07-19",
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
+
+  const handleOpenFilter = () => {
+    setIsFilterVisible(true);
   };
+
+  const handleCloseFilter = () => {
+    setIsFilterVisible(false);
+  };
+
+  const handleApplyFilter = (newFilters: ActivityFilters) => {
+    setFilters(newFilters);
+    handleCloseFilter();
+  };
+
+  // const [region, setRegion] = useState<Region | null>(userRegion);
+
+  const [filters, setFilters] = useState<ActivityFilters>({
+    // sport: {
+    //   id: 0,
+    // },
+    // date: "2023-07-19",
+  });
+
+  console.log(filters, "filter");
 
   //Fetch Activities
   const {
@@ -38,24 +57,32 @@ export function ActivitiesScreen({ navigation }: Props) {
     error,
     isLoading,
     mutate,
-  } = useSWR(isLocationFetched ? ["activities", userRegion, maxDistance, filters] : null, () =>
-    fetchActivitiesByRegion(userRegion, maxDistance, filters)
+  } = useSWR(["activities", INITIAL_REGION_FRIBOURG, maxDistance, filters], () =>
+    // } = useSWR(isLocationFetched ? ["activities", userRegion, maxDistance, filters] : null, () =>
+    fetchActivitiesByRegion(INITIAL_REGION_FRIBOURG, maxDistance, filters)
   );
-
-  console.log(activities, "data2");
-
-  // Add filter button -> finish setup filter buttons
-  // Create activityCard
 
   // Add swtich to filter between my activities and all activities
   // TODO: Button to add activity to calendar ?
 
   return (
     <MainLayout>
-      <Text>Activity Screen</Text>
-      {/* //maps trough activities */}
+      <Text preset="header">Activity Screen</Text>
+      {/* TODO Add filter button -> finish setup filter buttons */}
+      <Button onPress={handleOpenFilter} text="Filter" />
+      <ActivityFilter
+        isVisible={isFilterVisible}
+        onClose={handleCloseFilter}
+        onApply={handleApplyFilter}
+        currentFilters={filters}
+        // sportItems={dataSports}
+        // filters={filters}
+        // setFilters={setFilters} // If you want to lift state up
+      />
       <ScrollView>
         {activities?.data?.map((activity: any) => (
+          //TODO: Create activityCard
+
           <View key={activity.id}>
             <Text>
               {activity.id} - {activity.attributes.date} - {activity.attributes.sport?.data?.attributes?.name}
@@ -63,11 +90,10 @@ export function ActivitiesScreen({ navigation }: Props) {
           </View>
         ))}
       </ScrollView>
-
-      <CreateActivity open={open} setOpen={setOpen} />
+      <CreateActivity open={openActivity} setOpen={setOpenActivity} />
       <Button
         tx="createActivity.button"
-        onPress={() => setOpen(true)}
+        onPress={() => setOpenActivity(true)}
         style={{ alignSelf: "center", bottom: 10, position: "absolute" }}
       />
     </MainLayout>
