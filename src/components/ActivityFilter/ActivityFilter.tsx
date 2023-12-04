@@ -1,7 +1,7 @@
 import { Star } from "assets/svg";
 import { Icon } from "components/Icon";
 import React, { useState, useEffect } from "react";
-import { Animated, Modal, View, TouchableOpacity, StyleSheet, Dimensions, ViewStyle } from "react-native";
+import { Animated, Modal, View, TouchableOpacity, StyleSheet, Dimensions, ViewStyle, Pressable } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { color } from "theme";
 import { Text } from "components/Text";
@@ -14,6 +14,7 @@ import { DropPickerItem } from "components/Inputs/DropPicker";
 import { SportItem, SportsData } from "types/sport";
 import { SportItemStrapi } from "types/sport";
 import SportPickerComponent from "components/Inputs/SportPicker";
+import { Button } from "components/Button";
 
 //TODO: Add button create activity s'il y pas de données
 //TODO: Pouvoir filter par adresse et rediriger dessus sur la map
@@ -66,38 +67,41 @@ const ActivityFilter = ({ isVisible, onClose, onApply, sportItems }: ActivityFil
   return (
     <Modal transparent={true} visible={isVisible} onRequestClose={onClose}>
       <View style={styles.container}>
-        <Animated.View style={modalStyle}>
-          <View style={styles.panel}>
-            <View style={{ display: "flex", flexDirection: "column", gap: 16, padding: 20 }}>
-              <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-                <Text>Close</Text>
-              </TouchableOpacity>
-              <Text text="Sport Picker" />
-              <SportPickerComponent value={sport} setValue={setSport} />
+        <Pressable style={styles.container} onPress={onClose}>
+          <Animated.View style={modalStyle}>
+            <View style={styles.panel}>
+              <View style={{ display: "flex", flexDirection: "column", gap: 16, padding: 20 }}>
+                <TouchableOpacity onPress={onClose} style={styles.closeButton}>
+                  <Text>Close</Text>
+                </TouchableOpacity>
+                <Text text="Sport Picker" />
+                <SportPickerComponent value={sport} setValue={setSport} />
 
-              <Text text={"Distance: " + maxDistance + " km"} />
-              <Slider
-                style={{ width: "100%", height: 40 }}
-                minimumValue={20}
-                maximumValue={100}
-                step={10}
-                minimumTrackTintColor={color.primary}
-                maximumTrackTintColor={color.primaryDark}
-                thumbTintColor={color.primary}
-                value={maxDistance}
-                onValueChange={setMaxDistance}
-              />
-              {/* <Text text="Du" />
+                <Text text={"Distance: " + maxDistance + " km"} />
+                <Slider
+                  style={{ width: "100%", height: 40 }}
+                  minimumValue={20}
+                  maximumValue={100}
+                  step={10}
+                  minimumTrackTintColor={color.primary}
+                  maximumTrackTintColor={color.primaryDark}
+                  thumbTintColor={color.primary}
+                  value={maxDistance}
+                  onValueChange={setMaxDistance}
+                />
+                {/* <Text text="Du" />
             <DatePicker date={startDate} setDate={setStartDate} minDate={new Date()} />
             <Text text="Au" />
             <DatePicker date={endDate} setDate={setEndDate} minDate={startDate} /> */}
-            </View>
+              </View>
 
-            <TouchableOpacity onPress={onApply} style={styles.button}>
-              <Text>Apply</Text>
-            </TouchableOpacity>
-          </View>
-        </Animated.View>
+              <View style={{ flexDirection: "row", justifyContent: "space-evenly", alignItems: "center" }}>
+                <Button text="Apply" size="md" onPress={onApply} />
+                <Button text="Cancel" size="md" onPress={onClose} preset="outlined" />
+              </View>
+            </View>
+          </Animated.View>
+        </Pressable>
       </View>
     </Modal>
   );

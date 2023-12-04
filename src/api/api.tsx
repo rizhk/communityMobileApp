@@ -62,7 +62,7 @@ export async function fetchActivities(userToken?: string | null) {
 //   });
 
 export async function fetchActivitiesByRegion(
-  region: Region,
+  region: Region | null,
   maxDistance: number = 5000000,
   filters: ActivityFilters,
   userToken?: string | null

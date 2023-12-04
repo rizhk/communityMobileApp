@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import * as Location from "expo-location";
 import { Region } from "react-native-maps";
-import { INITIAL_REGION } from "constants/global";
+import { INITIAL_REGION_BOUT_DU_MONDE } from "constants/global";
 
 const useCurrentPosition = (): [Region | null, boolean] => {
   const [region, setRegion] = useState<Region | null>(null);
@@ -13,18 +13,23 @@ const useCurrentPosition = (): [Region | null, boolean] => {
       if (status !== "granted") {
         console.error("Permission to access location was denied");
         return;
+      } else {
+        console.log("Permission to access location was granted");
+        let location = await Location.getCurrentPositionAsync({});
+        setRegion({
+          latitudeDelta: 0.1,
+          longitudeDelta: 0.1,
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+        });
+        setLocationFetched(true);
       }
-
-      let location = await Location.getCurrentPositionAsync({});
-      setRegion({
-        latitudeDelta: 0.1,
-        longitudeDelta: 0.1,
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
-      });
-      setLocationFetched(true);
     })();
   }, []);
+
+  if (isLocationFetched) {
+    return [INITIAL_REGION_BOUT_DU_MONDE, isLocationFetched];
+  }
 
   return [region, isLocationFetched];
 };
