@@ -15,6 +15,5 @@ const group = {
   display: "flex",
   flexDirection: "row",
   gap: spacing.md,
-  marginHorizontal: spacing.md,
-  marginBottom: spacing.md,
+  // marginHorizontal: spacing.md,
 } as ViewStyle;

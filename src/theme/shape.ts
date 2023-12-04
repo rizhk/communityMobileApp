@@ -9,3 +9,5 @@ export const radius = {
   xxxl: 40,
   full: 9999,
 };
+
+export type RadiusTypes = keyof typeof radius;

@@ -1,7 +1,7 @@
 import { PropsWithChildren, useState } from "react";
 import { View, ViewStyle } from "react-native";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
-import { color } from "theme";
+import { color, spacing } from "theme";
 
 import { TabContext, TabsProps } from "./Tabs.props";
 import { TabsBody } from "./components/Body";
@@ -46,6 +46,7 @@ const main = {
   backgroundColor: color.background,
   display: "flex",
   flexDirection: "column",
-  height: "100%",
-  flexShrink: 1,
+  flexGrow: 1,
+  padding: spacing.sm,
+  gap: spacing.sm,
 } as ViewStyle;

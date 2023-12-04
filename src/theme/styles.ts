@@ -4,12 +4,12 @@ import { radius } from "theme/shape";
 import { spacing } from "theme/spacing";
 
 export const shadowStyle = {
-  shadowColor: "#0008",
+  shadowColor: "#000",
   shadowOffset: {
     width: 0,
     height: 2,
   },
-  shadowOpacity: 1,
+  shadowOpacity: 0.5,
   shadowRadius: 4,
   elevation: 4,
 };

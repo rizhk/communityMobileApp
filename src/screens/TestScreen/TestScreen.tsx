@@ -5,6 +5,7 @@ import { useState } from "react";
 import GFormTab from "./components/GFormTab";
 import GeneralTab from "./components/GeneralTab";
 import { InputsTab } from "./components/InputsTab";
+import ViewsTab from "./components/ViewsTab";
 
 export default function MapScreen() {
   const [selected, setSelected] = useState("Inputs");
@@ -16,6 +17,7 @@ export default function MapScreen() {
           <Tabs.Header value="Inputs" text="Inputs" />
           <Tabs.Header value="GForm" text="GForm" />
           <Tabs.Header value="General" text="General" />
+          <Tabs.Header value="Views" text="Views" />
         </Tabs.Group>
         <Tabs.Body value="Inputs">
           <InputsTab />
@@ -25,6 +27,9 @@ export default function MapScreen() {
         </Tabs.Body>
         <Tabs.Body value="General">
           <GeneralTab />
+        </Tabs.Body>
+        <Tabs.Body value="Views">
+          <ViewsTab />
         </Tabs.Body>
       </Tabs>
     </MainLayout>
