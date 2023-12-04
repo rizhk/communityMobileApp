@@ -73,9 +73,6 @@ export async function fetchActivitiesByRegion(
 
   const apiFilters: { [key: string]: any } = {};
 
-  //   if (filters?.sportName) {
-  //     apiFilters.sport = { name: { $eq: filters?.sportName } };
-  //   }
   // if (filters?.sport) {
   //   apiFilters.sport = { name: { $contains: filters?.sport.name } };
   // }

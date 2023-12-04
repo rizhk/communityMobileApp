@@ -42,12 +42,7 @@ export function ActivitiesScreen({ navigation }: Props) {
 
   // const [region, setRegion] = useState<Region | null>(userRegion);
 
-  const [filters, setFilters] = useState<ActivityFilters>({
-    // sport: {
-    //   id: 0,
-    // },
-    // date: "2023-07-19",
-  });
+  const [filters, setFilters] = useState<ActivityFilters>({});
 
   console.log(filters, "filter");
 
@@ -55,41 +50,47 @@ export function ActivitiesScreen({ navigation }: Props) {
   const {
     data: activities,
     error,
-    isLoading,
+    isLoading: isLoadingActivities,
     mutate,
   } = useSWR(["activities", INITIAL_REGION_FRIBOURG, maxDistance, filters], () =>
     // } = useSWR(isLocationFetched ? ["activities", userRegion, maxDistance, filters] : null, () =>
     fetchActivitiesByRegion(INITIAL_REGION_FRIBOURG, maxDistance, filters)
   );
 
-  // Add swtich to filter between my activities and all activities
-  // TODO: Button to add activity to calendar ?
+  console.log(activities, "activities");
 
   return (
     <MainLayout>
-      <Text preset="header">Activity Screen</Text>
-      {/* TODO Add filter button -> finish setup filter buttons */}
-      <Button onPress={handleOpenFilter} text="Filter" />
-      <ActivityFilter
-        isVisible={isFilterVisible}
-        onClose={handleCloseFilter}
-        onApply={handleApplyFilter}
-        currentFilters={filters}
-        // sportItems={dataSports}
-        // filters={filters}
-        // setFilters={setFilters} // If you want to lift state up
-      />
-      <ScrollView>
-        {activities?.data?.map((activity: any) => (
-          //TODO: Create activityCard
+      <Text preset="header">{activities?.meta?.pagination?.total} Activities found </Text>
 
-          <View key={activity.id}>
-            <Text>
-              {activity.id} - {activity.attributes.date} - {activity.attributes.sport?.data?.attributes?.name}
-            </Text>
-          </View>
-        ))}
-      </ScrollView>
+      <Button onPress={handleOpenFilter} text="Filter" />
+      <CreateActivity open={openActivity} setOpen={setOpenActivity} />
+      <Button
+        tx="createActivity.button"
+        onPress={() => setOpenActivity(true)}
+        style={{ alignSelf: "center", bottom: 10, position: "absolute" }}
+      />
+      {isLoadingActivities ? (
+        <ActivityIndicator />
+      ) : (
+        <>
+          <ActivityFilter
+            isVisible={isFilterVisible}
+            onClose={handleCloseFilter}
+            onApply={handleApplyFilter}
+            currentFilters={filters}
+          />
+          <ScrollView>
+            {activities?.data?.map((activity: any) => (
+              <View key={activity.id}>
+                <Text>
+                  {activity.id} - {activity.attributes.date} - {activity.attributes.sport?.data?.attributes?.name}
+                </Text>
+              </View>
+            ))}
+          </ScrollView>
+        </>
+      )}
       <CreateActivity open={openActivity} setOpen={setOpenActivity} />
       <Button
         tx="createActivity.button"
