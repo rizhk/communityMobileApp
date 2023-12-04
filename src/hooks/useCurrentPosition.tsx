@@ -3,8 +3,8 @@ import * as Location from "expo-location";
 import { Region } from "react-native-maps";
 import { INITIAL_REGION_BOUT_DU_MONDE } from "constants/global";
 
-const useCurrentPosition = (): [Region | null, boolean] => {
-  const [region, setRegion] = useState<Region | null>(null);
+const useCurrentPosition = (): [Region, boolean] => {
+  const [region, setRegion] = useState<Region>(INITIAL_REGION_BOUT_DU_MONDE);
   const [isLocationFetched, setLocationFetched] = useState(false);
 
   useEffect(() => {
@@ -12,24 +12,21 @@ const useCurrentPosition = (): [Region | null, boolean] => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
         console.error("Permission to access location was denied");
+        setLocationFetched(true); // Permission denied, using initial region
         return;
-      } else {
-        console.log("Permission to access location was granted");
-        let location = await Location.getCurrentPositionAsync({});
-        setRegion({
-          latitudeDelta: 0.1,
-          longitudeDelta: 0.1,
-          latitude: location.coords.latitude,
-          longitude: location.coords.longitude,
-        });
-        setLocationFetched(true);
       }
+
+      console.log("Permission to access location was granted");
+      let location = await Location.getCurrentPositionAsync({});
+      setRegion({
+        latitudeDelta: 0.1,
+        longitudeDelta: 0.1,
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+      });
+      setLocationFetched(true); // Location fetched
     })();
   }, []);
-
-  if (isLocationFetched) {
-    return [INITIAL_REGION_BOUT_DU_MONDE, isLocationFetched];
-  }
 
   return [region, isLocationFetched];
 };

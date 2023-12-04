@@ -4,6 +4,7 @@ import { Text } from "components/Text";
 import { MainLayout } from "layouts";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { useState } from "react";
+import { ActivityIndicator } from "react-native";
 
 import CreateActivity from "./components/CreateActivity";
 import useSWR from "swr";
@@ -32,11 +33,10 @@ export function ActivitiesScreen({ navigation }: Props) {
   };
 
   //Fetch Activities
-  const { data, error, isLoading, mutate } = useSWR(["activities", region, maxDistance, filters], () =>
-    fetchActivitiesByRegion(region, maxDistance, filters)
+  const { data, error, isLoading, mutate } = useSWR(
+    isLocationFetched ? ["activities", userRegion, maxDistance, filters] : null,
+    () => fetchActivitiesByRegion(userRegion, maxDistance, filters)
   );
-
-  console.log(data, "data");
 
   // Add filter button -> finis setup filter buttons
   // Create activityCard
