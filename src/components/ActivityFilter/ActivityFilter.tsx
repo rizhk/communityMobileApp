@@ -37,16 +37,14 @@ const ActivityFilter = ({ isVisible, onClose, onApply, currentFilters }: Activit
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
-  console.log(sport, "sport");
-
   const [animation] = useState(new Animated.Value(modalStartOffset));
 
   useEffect(() => {
     if (isVisible) {
       Animated.timing(animation, {
         toValue: modalEndOffset, // Anime jusqu'à la position 0
-        duration: 300, // Durée de l'animation
-        useNativeDriver: true, // Améliore les performances
+        duration: 300,
+        useNativeDriver: true,
       }).start();
     } else {
       Animated.timing(animation, {
@@ -70,6 +68,7 @@ const ActivityFilter = ({ isVisible, onClose, onApply, currentFilters }: Activit
               <View style={{ display: "flex", flexDirection: "column", gap: 16, padding: 20 }}>
                 <Text text="Sport Picker" />
                 <SportPickerComponent value={sport} setValue={setSport} />
+
                 <Text text={"Distance: " + maxDistance + " km"} />
                 <Slider
                   style={{ width: "100%", height: 40 }}
@@ -82,6 +81,7 @@ const ActivityFilter = ({ isVisible, onClose, onApply, currentFilters }: Activit
                   value={maxDistance}
                   onValueChange={setMaxDistance}
                 />
+
                 {/* <Text text="Du" />
             <DatePicker date={startDate} setDate={setStartDate} minDate={new Date()} />
             <Text text="Au" />
@@ -89,7 +89,6 @@ const ActivityFilter = ({ isVisible, onClose, onApply, currentFilters }: Activit
               </View>
 
               <View style={{ flexDirection: "row", justifyContent: "space-evenly", alignItems: "center" }}>
-                {/* <Button text="Apply" size="md" onPress={onApply} /> */}
                 <Button
                   text="Apply"
                   size="md"

@@ -22,7 +22,7 @@ type Props = NativeStackScreenProps<MainStackParamList, "activities">;
 
 export function ActivitiesScreen({ navigation }: Props) {
   const [openActivity, setOpenActivity] = useState(false);
-  const [userRegion, isLocationFetched] = useCurrentPosition();
+  const [userRegion] = useCurrentPosition();
   const [maxDistance, setMaxDistance] = useState(50000);
 
   const [isFilterVisible, setIsFilterVisible] = useState(false);
@@ -40,11 +40,9 @@ export function ActivitiesScreen({ navigation }: Props) {
     handleCloseFilter();
   };
 
-  // const [region, setRegion] = useState<Region | null>(userRegion);
-
   const [filters, setFilters] = useState<ActivityFilters>({});
 
-  console.log(filters, "filter");
+  console.log(userRegion, "userRegion");
 
   //Fetch Activities
   const {
@@ -52,9 +50,8 @@ export function ActivitiesScreen({ navigation }: Props) {
     error,
     isLoading: isLoadingActivities,
     mutate,
-  } = useSWR(["activities", INITIAL_REGION_FRIBOURG, maxDistance, filters], () =>
-    // } = useSWR(isLocationFetched ? ["activities", userRegion, maxDistance, filters] : null, () =>
-    fetchActivitiesByRegion(INITIAL_REGION_FRIBOURG, maxDistance, filters)
+  } = useSWR(["activities", userRegion, maxDistance, filters], () =>
+    fetchActivitiesByRegion(userRegion, maxDistance, filters)
   );
 
   console.log(activities, "activities");
