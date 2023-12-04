@@ -4,7 +4,7 @@ import { Text } from "components/Text";
 import { MainLayout } from "layouts";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { useState } from "react";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, ScrollView } from "react-native";
 
 import CreateActivity from "./components/CreateActivity";
 import useSWR from "swr";
@@ -13,6 +13,7 @@ import { Region } from "react-native-maps";
 // import { INITIAL_REGION } from "constants/global";
 import useCurrentPosition from "hooks/useCurrentPosition";
 import { is } from "date-fns/locale";
+import { View } from "react-native-animatable";
 
 type Props = NativeStackScreenProps<MainStackParamList, "activities">;
 
@@ -22,7 +23,6 @@ export function ActivitiesScreen({ navigation }: Props) {
 
   const [region, setRegion] = useState<Region | null>(userRegion);
 
-  console.log(userRegion, "userRegion2");
   const [maxDistance, setMaxDistance] = useState(50000);
 
   const filters = {
@@ -33,12 +33,18 @@ export function ActivitiesScreen({ navigation }: Props) {
   };
 
   //Fetch Activities
-  const { data, error, isLoading, mutate } = useSWR(
-    isLocationFetched ? ["activities", userRegion, maxDistance, filters] : null,
-    () => fetchActivitiesByRegion(userRegion, maxDistance, filters)
+  const {
+    data: activities,
+    error,
+    isLoading,
+    mutate,
+  } = useSWR(isLocationFetched ? ["activities", userRegion, maxDistance, filters] : null, () =>
+    fetchActivitiesByRegion(userRegion, maxDistance, filters)
   );
 
-  // Add filter button -> finis setup filter buttons
+  console.log(activities, "data2");
+
+  // Add filter button -> finish setup filter buttons
   // Create activityCard
 
   // Add swtich to filter between my activities and all activities
@@ -48,6 +54,15 @@ export function ActivitiesScreen({ navigation }: Props) {
     <MainLayout>
       <Text>Activity Screen</Text>
       {/* //maps trough activities */}
+      <ScrollView>
+        {activities?.data?.map((activity: any) => (
+          <View key={activity.id}>
+            <Text>
+              {activity.id} - {activity.attributes.date} - {activity.attributes.sport?.data?.attributes?.name}
+            </Text>
+          </View>
+        ))}
+      </ScrollView>
 
       <CreateActivity open={open} setOpen={setOpen} />
       <Button

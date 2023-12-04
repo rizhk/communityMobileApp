@@ -13,7 +13,7 @@ import { LatLng, Region } from "react-native-maps";
 
 import { shadow, color } from "theme";
 import * as Location from "expo-location";
-import { INITIAL_REGION } from "constants/global";
+import { INITIAL_REGION_FRIBOURG } from "constants/global";
 import MapView from "react-native-maps";
 import useCurrentPosition from "hooks/useCurrentPosition";
 
@@ -27,7 +27,7 @@ import { View } from "react-native-animatable";
 import ActivityFilter from "components/ActivityFilter/ActivityFilter";
 
 export function MapScreen() {
-  const [region, setRegion] = useState<Region>(INITIAL_REGION);
+  const [region, setRegion] = useState<Region>(INITIAL_REGION_FRIBOURG);
   const [userRegion, isLocationFetched] = useCurrentPosition();
   const [maxDistance, setMaxDistance] = useState(30000); // 30km
 

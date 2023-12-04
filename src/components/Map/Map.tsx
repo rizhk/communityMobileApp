@@ -7,7 +7,7 @@ import { ActivitiesData } from "types/activity";
 import { CustomMarker } from "./components/Marker";
 import { color } from "theme";
 import { hexToRGBA } from "utils/helper";
-import { INITIAL_REGION, KM_PER_DEGREE_LATITUDE } from "constants/global";
+import { KM_PER_DEGREE_LATITUDE } from "constants/global";
 import useCurrentPosition from "hooks/useCurrentPosition";
 
 //TODO: - Display fields on the map
