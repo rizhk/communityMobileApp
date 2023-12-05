@@ -86,7 +86,7 @@ export async function fetchActivitiesByRegion(
   console.log(apiFilters, "apiFilters");
 
   return fetchAxiosAPI(
-    `/activity/find-nearby`,
+    `/activities`,
     {
       maxDistance: maxDistance,
       region: region,

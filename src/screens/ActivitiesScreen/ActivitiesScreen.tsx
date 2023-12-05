@@ -79,9 +79,9 @@ export function ActivitiesScreen({ navigation }: Props) {
           />
           <ScrollView>
             {activities?.data?.map((activity: any) => (
-              <View key={activity.id}>
+              <View key={activity?.id}>
                 <Text>
-                  {activity.id} - {activity.attributes.date} - {activity.attributes.sport?.data?.attributes?.name}
+                  {activity.id} - {activity?.attributes?.date} - {activity.attributes?.sport?.data?.attributes?.name}
                 </Text>
               </View>
             ))}
