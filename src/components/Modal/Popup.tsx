@@ -16,7 +16,7 @@ export function Popup(props: PropsWithChildren<PopupProps>) {
   const { children, visible, setVisible, color = "primary", blur = 10 } = props;
   return (
     <Modal visible={visible} transparent animationType="fade">
-      <TouchableOpacity onPress={() => setVisible(false)} style={modalStyle}>
+      <Pressable onPress={() => setVisible(false)} style={modalStyle}>
         <BlurView intensity={blur} tint="dark" style={blurStyle}>
           <Pressable style={container} onPress={() => {}}>
             <Button
@@ -31,7 +31,7 @@ export function Popup(props: PropsWithChildren<PopupProps>) {
             {children}
           </Pressable>
         </BlurView>
-      </TouchableOpacity>
+      </Pressable>
     </Modal>
   );
 }

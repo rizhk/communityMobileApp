@@ -1,15 +1,20 @@
 import { Star } from "assets/svg";
 import { Button } from "components/Button";
 import { Popup, Slider } from "components/Modal";
+import { SideSlider } from "components/Modal/SideSlider";
 import { Text } from "components/Text";
+import { XStack, YStack } from "components/containers/Stack";
 import { useState } from "react";
 import { View } from "react-native";
 
 export default function GeneralTab() {
   const [slider, setSlider] = useState(false);
+  const [leftSlider, setLeftSlider] = useState(false);
+  const [rightSlider, setRightSlider] = useState(false);
+
   const [popup, setPopup] = useState(false);
   return (
-    <View style={{ flex: 1, gap: 20 }}>
+    <YStack gap="sm" flexGrow jc="space-between">
       <Text preset="header">Text Header</Text>
       <Text>Text default</Text>
       <Text preset="bold">Text bold</Text>
@@ -28,14 +33,23 @@ export default function GeneralTab() {
         <Button icon={Star} rounded size="lg" color="tertiary" />
         <Button icon={Star} rounded size="xl" />
       </View>
-      <Button text="Popup" onPress={() => setPopup(true)} />
-      <Button text="Slider" onPress={() => setSlider(true)} />
+      <XStack gap="sm">
+        <Button text="Popup" onPress={() => setPopup(true)} style={{ flex: 1 }} />
+        <Button text="Slider" onPress={() => setSlider(true)} style={{ flex: 1 }} />
+      </XStack>
+      <XStack gap="sm">
+        <Button text="Left Slider" onPress={() => setLeftSlider(true)} style={{ flex: 1 }} />
+        <Button text="Right Slider" onPress={() => setRightSlider(true)} style={{ flex: 1 }} />
+      </XStack>
       <Popup visible={popup} setVisible={setPopup} color="tertiary">
         <Text preset="header">Modal popup</Text>
       </Popup>
       <Slider visible={slider} setVisible={setSlider} color="secondary">
         <Text preset="header">Modal slider</Text>
       </Slider>
-    </View>
+      <SideSlider visible={leftSlider} setVisible={setLeftSlider}>
+        <Text preset="header">Modal left slider</Text>
+      </SideSlider>
+    </YStack>
   );
 }
