@@ -10,7 +10,9 @@
     "save": "sauvegarder",
     "no": "Non",
     "yes": "Oui",
-    "submit": "Soumettre"
+    "submit": "Soumettre",
+    "next": "Suivant",
+    "previous": "Précédent"
   },
   "errors": {
     "invalidEmail": "Adresse e-mail invalide"

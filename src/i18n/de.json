@@ -9,7 +9,9 @@
     "save": "speichern",
     "no": "Nein",
     "yes": "Ja",
-    "submit": "Submit"
+    "submit": "Submit",
+    "next": "Weiter",
+    "previous": "Zurück"
   },
   "errors": {
     "invalidEmail": "Ungültige E-Mail Adresse.",

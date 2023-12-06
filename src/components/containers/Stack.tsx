@@ -4,6 +4,7 @@ import { shadowStyle } from "theme/styles";
 
 export interface StackProps extends ViewProps {
   children?: React.ReactNode;
+  direction?: "row" | "column" | "row-reverse" | "column-reverse";
   justify?: "center" | "flex-start" | "flex-end" | "space-between" | "space-around" | "space-evenly";
   jc?: "center" | "flex-start" | "flex-end" | "space-between" | "space-around" | "space-evenly";
   align?: "center" | "flex-start" | "flex-end" | "stretch" | "baseline";
@@ -39,11 +40,12 @@ export interface StackProps extends ViewProps {
 export function Stack(props: StackProps) {
   const {
     children,
+    direction,
     justify,
     jc,
     align,
     ai,
-    alignSelf = "stretch",
+    alignSelf,
     padding,
     pa = "none",
     margin,
@@ -82,6 +84,7 @@ export function Stack(props: StackProps) {
   const fg = typeof flexGrow === "boolean" ? (flexGrow ? 1 : 0) : flexGrow;
   const fs = typeof flexShrink === "boolean" ? (flexShrink ? 1 : 0) : flexShrink;
   const styles = {
+    flexDirection: direction,
     flex: flex,
     flexGrow: fg,
     flexShrink: fs,
@@ -111,21 +114,21 @@ export function Stack(props: StackProps) {
   );
 }
 
-export function XStack(props: StackProps) {
-  const { children, style, ...rest } = props;
+export function XStack(props: Omit<StackProps, "direction">) {
+  const { children, ...rest } = props;
 
   return (
-    <Stack style={[{ flexDirection: "row" }, style]} {...rest}>
+    <Stack direction="row" {...rest}>
       {children}
     </Stack>
   );
 }
 
-export function YStack(props: StackProps) {
-  const { children, style, ...rest } = props;
+export function YStack(props: Omit<StackProps, "direction">) {
+  const { children, ...rest } = props;
 
   return (
-    <Stack style={[{ flexDirection: "column" }, style]} {...rest}>
+    <Stack direction="column" {...rest}>
       {children}
     </Stack>
   );

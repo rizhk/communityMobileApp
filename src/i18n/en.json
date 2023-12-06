@@ -9,7 +9,9 @@
     "save": "save",
     "no": "No",
     "yes": "Yes",
-    "submit": "Submit"
+    "submit": "Submit",
+    "next": "Next",
+    "previous": "Previous"
   },
   "errors": {
     "invalidEmail": "Invalid email address.",

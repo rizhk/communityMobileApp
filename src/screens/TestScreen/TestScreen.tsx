@@ -6,6 +6,7 @@ import GFormTab from "./components/GFormTab";
 import GeneralTab from "./components/GeneralTab";
 import { InputsTab } from "./components/InputsTab";
 import ViewsTab from "./components/ViewsTab";
+import SteperTab from "./components/SteperTab";
 
 export default function MapScreen() {
   const [selected, setSelected] = useState("Inputs");
@@ -18,6 +19,7 @@ export default function MapScreen() {
           <Tabs.Header value="GForm" text="GForm" />
           <Tabs.Header value="General" text="General" />
           <Tabs.Header value="Views" text="Views" />
+          <Tabs.Header value="Steper" text="Steper" />
         </Tabs.Group>
         <Tabs.Body value="Inputs">
           <InputsTab />
@@ -30,6 +32,9 @@ export default function MapScreen() {
         </Tabs.Body>
         <Tabs.Body value="Views">
           <ViewsTab />
+        </Tabs.Body>
+        <Tabs.Body value="Steper">
+          <SteperTab />
         </Tabs.Body>
       </Tabs>
     </MainLayout>
