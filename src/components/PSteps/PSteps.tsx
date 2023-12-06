@@ -1,12 +1,13 @@
 import { Stack, StackProps, XStack, YStack } from "components/containers/Stack";
 import { i18n } from "i18n";
-import { Children, createContext, useContext, useEffect, useState } from "react";
+import { Children, SVGAttributes, createContext, useContext, useEffect, useState } from "react";
 import { ThemeColorType, color as themeColor } from "../../theme/color";
 import { Icon } from "components/Icon";
 import { LeftArrow, Tick } from "assets/svg";
 import { Text } from "components/Text";
 import { View, ViewStyle } from "react-native";
-import { Button } from "components/Button";
+import { Button, ButtonProps } from "components/Button";
+import SubmitButton from "../GForm/components/SubmitButton";
 
 type StepState = "active" | "completed" | "inactive";
 export type PStepsContextType = {
@@ -30,13 +31,16 @@ export type PStepsProps = {
   onNext?: () => void;
   onPrevious?: () => void;
   onSubmit?: () => void;
+  iconMode?: boolean;
+  submitButton?: JSX.Element;
+  buttonProps?: ButtonProps;
 };
 
 export function PSteps(props: PStepsProps) {
   const {
     children,
     color = "primary",
-    inactiveColor = "grey900",
+    inactiveColor = "grey600",
     nextIcon,
     previousIcon,
     nextTx,
@@ -45,13 +49,14 @@ export function PSteps(props: PStepsProps) {
     onNext,
     onPrevious,
     onSubmit,
+    submitButton,
+    buttonProps,
   } = props;
   const [currentStep, setCurrentStep] = useState(0);
   const labels: string[] =
     Children.map(children, (child) => {
       return (child as any).props.label;
     }) || [];
-
   const pressNext = () => {
     setCurrentStep(currentStep + 1);
     onNext && onNext();
@@ -76,48 +81,78 @@ export function PSteps(props: PStepsProps) {
         currentStep: currentStep,
       }}
     >
-      <YStack flexGrow style={{ backgroundColor: "#0904" }}>
+      <YStack flexGrow>
         <XStack jc="center" style={{ paddingVertical: 10 }}>
           {labels.map((label, index) => {
             const state = index === currentStep ? "active" : index < currentStep ? "completed" : "inactive";
             const stepColor = state === "inactive" ? inactiveColor : color;
             return (
-              <XStack key={index} jc="center" ai="center">
-                {index !== 0 && <XStack w={20} h={4} bc={stepColor} />}
-                <Stack
-                  key={index}
-                  br="full"
-                  borderWidth={3}
-                  borderColor={stepColor}
-                  bc={state === "completed" ? stepColor : "transparent"}
-                  jc="center"
-                  ai="center"
-                  gap="sm"
-                  w={30}
-                  h={30}
-                >
-                  {state === "completed" && <Icon icon={Tick} color={"white"} />}
-                  {state !== "completed" && (
-                    <Text text={`${index + 1}`} color={state === "inactive" ? inactiveColor : "white"} />
-                  )}
-                </Stack>
+              <XStack key={index} position="relative">
+                {index !== 0 && <XStack w={42} h={4} bc={stepColor} position="absolute" x={-20} y={13} z={100} />}
+                <YStack ai="center" gap="xxs">
+                  <Stack
+                    key={index}
+                    br="full"
+                    borderWidth={3}
+                    borderColor={stepColor}
+                    bc={state === "completed" ? stepColor : "transparent"}
+                    jc="center"
+                    ai="center"
+                    gap="sm"
+                    w={30}
+                    h={30}
+                  >
+                    {state === "completed" && <Icon icon={Tick} color={"white"} />}
+                    {state !== "completed" && (
+                      <Text text={`${index + 1}`} color={state === "inactive" ? inactiveColor : "white"} />
+                    )}
+                  </Stack>
+                  <Text
+                    size={14}
+                    text={label}
+                    color={state === "inactive" ? inactiveColor : "white"}
+                    style={{ width: 70, paddingHorizontal: 2, textAlign: "center" }}
+                  />
+                </YStack>
               </XStack>
             );
           })}
         </XStack>
-        <YStack flexGrow>{children}</YStack>
-        <XStack ai="center" jc="space-between" bc="grey800">
+        {children}
+        <XStack ai="center" jc="space-between">
           <View style={{ flex: 1 }}>
             {currentStep !== 0 && (
-              <Button text={i18n.t(previousTx || "common.previous")} onPress={pressPrevious} preset="plainText" />
+              <Button
+                text={i18n.t(nextTx || "common.previous")}
+                textColor={color}
+                onPress={pressPrevious}
+                preset="plainText"
+                size="sm"
+                {...buttonProps}
+              />
             )}
           </View>
           <View style={{ flex: 1 }}>
             {currentStep !== labels.length - 1 && (
-              <Button text={i18n.t(nextTx || "common.next")} onPress={pressNext} preset="plainText" />
+              <Button
+                text={i18n.t(nextTx || "common.next")}
+                textColor={color}
+                onPress={pressNext}
+                preset="plainText"
+                size="sm"
+                {...buttonProps}
+              />
             )}
-            {currentStep === labels.length - 1 && (
-              <Button text={i18n.t(submitTx || "common.submit")} onPress={pressSubmit} preset="plainText" />
+            {currentStep === labels.length - 1 && submitButton !== undefined && submitButton}
+            {currentStep === labels.length - 1 && submitButton === undefined && (
+              <Button
+                text={i18n.t(submitTx || "common.submit")}
+                textColor={color}
+                onPress={pressSubmit}
+                preset="plainText"
+                size="sm"
+                {...buttonProps}
+              />
             )}
           </View>
         </XStack>
@@ -132,11 +167,11 @@ export interface PStepProps extends StackProps {
 }
 
 export function PStep(props: PStepProps) {
-  const { children, label, flexGrow = true, direction = "column", jc = "center", ...rest } = props;
+  const { children, label, flexGrow = true, direction = "column", jc = "center", style = {}, ...rest } = props;
   const { currentStep, labels } = usePSteps();
   if (label === labels[currentStep])
     return (
-      <Stack flexGrow bc="white" {...rest}>
+      <Stack flexGrow {...rest} style={[{ marginTop: 10 }, style]}>
         {children}
       </Stack>
     );

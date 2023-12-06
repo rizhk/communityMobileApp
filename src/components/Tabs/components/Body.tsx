@@ -17,5 +17,4 @@ export function TabsBody({ children, style, value }: PropsWithChildren<BodyProps
 const body = {
   flexGrow: 1,
   flexShrink: 1,
-  overflow: "scroll",
 } as ViewStyle;

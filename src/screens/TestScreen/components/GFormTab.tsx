@@ -7,6 +7,8 @@ import { Scroll } from "components/containers/Scroll";
 import { format } from "date-fns";
 import { useState } from "react";
 import { View } from "react-native-animatable";
+import ColorPicker from "./ColorPicker";
+import { ThemeColorType } from "theme";
 
 const initialValues = {
   input: "",
@@ -41,6 +43,7 @@ function Line({ label, value }: { label: string; value: string }) {
 }
 
 export default function GFormTab() {
+  const [color, setColor] = useState("primary" as ThemeColorType);
   const [popup, setPopup] = useState(false);
   const [values, setValues] = useState(initialValues);
   const handleSubmit = (values: any) => {
@@ -51,8 +54,9 @@ export default function GFormTab() {
 
   return (
     <>
-      <GForm initialValues={initialValues} onSubmit={handleSubmit} themeColor="secondary">
-        <Scroll>
+      <ColorPicker setColor={setColor} />
+      <Scroll style={{ height: "90%" }}>
+        <GForm initialValues={initialValues} onSubmit={handleSubmit} themeColor={color}>
           <GForm.TextInput valName="input" text="TextInput" placeholder="Placeholder" />
           <GForm.AddressPicker valName="location" placeholder="Enter address" />
           <GForm.DropPicker valName="drop" text="DropPicker" items={DropItems} searchable />
@@ -66,8 +70,8 @@ export default function GFormTab() {
             nestedScrollEnabled
           />
           <GForm.SubmitButton text="Submit" />
-        </Scroll>
-      </GForm>
+        </GForm>
+      </Scroll>
       <Popup visible={popup} setVisible={setPopup}>
         <Text preset="header">Modal</Text>
         <Line label="TextInput" value={values.input} />

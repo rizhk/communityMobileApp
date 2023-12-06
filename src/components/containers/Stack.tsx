@@ -31,6 +31,7 @@ export interface StackProps extends ViewProps {
   maxHeight?: DimensionValue | undefined;
   x?: DimensionValue | undefined;
   y?: DimensionValue | undefined;
+  z?: number;
   position?: "absolute" | "relative";
   flexGrow?: number | boolean;
   flexShrink?: number | boolean;
@@ -68,6 +69,7 @@ export function Stack(props: StackProps) {
     maxHeight,
     x,
     y,
+    z,
     position,
     flexGrow = false,
     flexShrink = false,
@@ -83,7 +85,9 @@ export function Stack(props: StackProps) {
   const radius = borderRadius || br;
   const fg = typeof flexGrow === "boolean" ? (flexGrow ? 1 : 0) : flexGrow;
   const fs = typeof flexShrink === "boolean" ? (flexShrink ? 1 : 0) : flexShrink;
+  const zIndex = z;
   const styles = {
+    zIndex,
     flexDirection: direction,
     flex: flex,
     flexGrow: fg,

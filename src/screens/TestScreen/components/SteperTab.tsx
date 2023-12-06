@@ -1,15 +1,15 @@
-import PSteps from "components/Steper";
-import Steper from "components/Steper";
-import { YStack } from "components/containers/Stack";
-import { Text, View } from "react-native";
-import { ProgressSteps, ProgressStep } from "react-native-progress-steps";
 import { PSteps as PPSteps, PStep } from "components/PSteps/PSteps";
-export default function SteperTab() {
-  return (
-    //   <Steper />
+import { Text } from "components/Text";
+import { ThemeColorType } from "theme/color";
+import { useState } from "react";
+import ColorPicker from "./ColorPicker";
 
+export default function SteperTab() {
+  const [color, setColor] = useState("primary" as ThemeColorType);
+  return (
     <>
-      <PPSteps>
+      <ColorPicker setColor={setColor} />
+      <PPSteps color={color}>
         <PStep label="First Step">
           <Text>This is the content within step 1!</Text>
         </PStep>
@@ -23,33 +23,6 @@ export default function SteperTab() {
           <Text>This is the content within step 2!</Text>
         </PStep>
       </PPSteps>
-      {/* <PSteps>
-        <ProgressStep label="First Step">
-          <View style={{ alignItems: "center" }}>
-            <Text>This is the content within step 1!</Text>
-          </View>
-        </ProgressStep>
-        <ProgressStep label="Second Step">
-          <View style={{ alignItems: "center" }}>
-            <Text>This is the content within step 2!</Text>
-          </View>
-        </ProgressStep>
-        <ProgressStep label="Third Step">
-          <View style={{ alignItems: "center" }}>
-            <Text>This is the content within step 3!</Text>
-          </View>
-        </ProgressStep>
-        <ProgressStep label="Third Step">
-          <View style={{ alignItems: "center" }}>
-            <Text>This is the content within step 3!</Text>
-          </View>
-        </ProgressStep>
-        <ProgressStep label="Third Step">
-          <View style={{ alignItems: "center" }}>
-            <Text>This is the content within step 3!</Text>
-          </View>
-        </ProgressStep>
-      </PSteps> */}
     </>
   );
 }

@@ -13,6 +13,7 @@ export interface ButtonProps extends TouchableOpacityProps {
   text?: string;
   textPreset?: TextPresets;
   textStyle?: TextStyle;
+  textColor?: ThemeColorType;
   // icon props
   iconPosition?: "left" | "right";
   icon?: React.FunctionComponent<SVGAttributes<SVGElement>>;

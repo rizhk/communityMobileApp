@@ -12,4 +12,5 @@ const background = {
 const page = {
   flexGrow: 1,
   overflow: "hidden",
+  // backgroundColor: color.white,
 } as ViewStyle;
