@@ -1,6 +1,5 @@
 import { useState, useEffect, PropsWithChildren } from "react";
-import { Animated, Modal, StyleSheet, Dimensions, ViewStyle, Pressable, TouchableOpacity } from "react-native";
-import { Stack, YStack } from "components/containers/Stack";
+import { Animated, Modal, Dimensions, ViewStyle, Pressable } from "react-native";
 import { BlurView } from "expo-blur";
 import { ModalProps } from "./modal.props";
 import { Button } from "components/Button";
@@ -8,8 +7,6 @@ import { LeftArrow, RightArrow } from "assets/svg";
 import { ThemeColorType, color as themeColor } from "../../theme/color";
 import { radius, spacing } from "theme";
 import { shadowStyle } from "theme/styles";
-//TODO: Add button create activity s'il y pas de données
-//TODO: Pouvoir filter par adresse et rediriger dessus sur la map
 
 interface SideSliderProps extends ModalProps {
   onClose?: () => void;
@@ -21,11 +18,9 @@ interface SideSliderProps extends ModalProps {
 }
 
 const screenWidth = Dimensions.get("window").width;
-const modalStartOffset = screenWidth; // Départ depuis le côté droit
-const modalEndOffset = screenWidth * 0.1; // Arrivée à 10% de l'écran
 
 export function SideSlider(props: PropsWithChildren<SideSliderProps>) {
-  const [animation] = useState(new Animated.Value(modalStartOffset));
+  const [animation] = useState(new Animated.Value(0));
   const {
     visible,
     setVisible,
@@ -33,24 +28,28 @@ export function SideSlider(props: PropsWithChildren<SideSliderProps>) {
     onClose = () => {},
     color = "primary",
     left = false,
-    right = false,
+    right = true,
     width = 0.9,
     children,
   } = props;
-  const isLeft = left || !right;
+
+  const isRight = !left && right;
+  const [modal, setModal] = useState(false);
+
   useEffect(() => {
     if (visible) {
+      setModal(true);
       Animated.timing(animation, {
-        toValue: (1 - width) * screenWidth, // Anime jusqu'à la position 0
+        toValue: isRight ? (1 - width) * screenWidth : 0, // Anime jusqu'à la position 0
         duration: 300, // Durée de l'animation
         useNativeDriver: true, // Améliore les performances
       }).start();
     } else {
       Animated.timing(animation, {
-        toValue: modalStartOffset, // Replace le modal hors de l'écran
+        toValue: isRight ? screenWidth : -screenWidth, // Replace le modal hors de l'écran
         duration: 300,
         useNativeDriver: true,
-      }).start();
+      }).start(() => setModal(false));
     }
   }, [visible, animation]);
 
@@ -60,27 +59,26 @@ export function SideSlider(props: PropsWithChildren<SideSliderProps>) {
   };
 
   return (
-    <Modal visible={visible} transparent animationType="fade">
+    <Modal visible={modal} transparent animationType="fade">
       <Pressable onPress={() => setVisible(false)} style={{ height: "100%" }}>
         <BlurView intensity={blur} tint="dark" style={blurStyle}>
           <Animated.View
             style={{
-              //   width: width * screenWidth,
+              width: width * screenWidth,
               height: "100%",
               justifyContent: "center",
               transform: [{ translateX: animation }],
-              backgroundColor: "#8008",
             }}
           >
             <Pressable style={{ ...container, width: width * screenWidth }} onPress={() => {}}>
               <Button
-                icon={isLeft ? RightArrow : LeftArrow}
-                size="lg"
+                icon={isRight ? RightArrow : LeftArrow}
+                size="md"
                 onPress={close}
                 rounded
                 iconScale={2.5}
                 color={color}
-                style={{ position: "absolute", left: -22 }}
+                style={{ position: "absolute", [isRight ? "left" : "right"]: -15 }}
               />
               {children}
             </Pressable>
@@ -93,9 +91,8 @@ export function SideSlider(props: PropsWithChildren<SideSliderProps>) {
 
 const blurStyle = {
   flex: 1,
-  alignItems: "center",
-  justifyContent: "center",
   height: "100%",
+  position: "relative",
 } as ViewStyle;
 
 const container = {
@@ -104,4 +101,5 @@ const container = {
   backgroundColor: themeColor.grey700,
   ...shadowStyle,
   shadowRadius: 10,
+  justifyContent: "center",
 } as ViewStyle;

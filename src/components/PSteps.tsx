@@ -1,13 +1,13 @@
 import { Stack, StackProps, XStack, YStack } from "components/containers/Stack";
 import { i18n } from "i18n";
 import { Children, SVGAttributes, createContext, useContext, useEffect, useState } from "react";
-import { ThemeColorType, color as themeColor } from "../../theme/color";
+import { ThemeColorType, color as themeColor } from "../theme/color";
 import { Icon } from "components/Icon";
 import { LeftArrow, Tick } from "assets/svg";
 import { Text } from "components/Text";
 import { View, ViewStyle } from "react-native";
 import { Button, ButtonProps } from "components/Button";
-import SubmitButton from "../GForm/components/SubmitButton";
+import SubmitButton from "./GForm/components/SubmitButton";
 
 type StepState = "active" | "completed" | "inactive";
 export type PStepsContextType = {

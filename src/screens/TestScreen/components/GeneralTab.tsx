@@ -67,8 +67,19 @@ export default function GeneralTab() {
       <Slider visible={slider} setVisible={setSlider} color="secondary">
         <Text preset="header">Modal slider</Text>
       </Slider>
-      <SideSlider visible={leftSlider} setVisible={setLeftSlider}>
+      <SideSlider visible={leftSlider} setVisible={setLeftSlider} width={0.7} left>
+        <Text preset="header">Modal slider</Text>
+        <Text preset="header">Modal slider</Text>
+        <Text preset="header">Modal slider</Text>
+        <Text preset="header">Modal slider</Text>
         <Text preset="header">Modal left slider</Text>
+      </SideSlider>
+      <SideSlider visible={rightSlider} setVisible={setRightSlider} width={0.7} right>
+        <Text preset="header">Modal slider</Text>
+        <Text preset="header">Modal slider</Text>
+        <Text preset="header">Modal slider</Text>
+        <Text preset="header">Modal slider</Text>
+        <Text preset="header">Modal right slider</Text>
       </SideSlider>
     </YStack>
   );
