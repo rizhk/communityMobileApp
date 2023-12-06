@@ -1,7 +1,8 @@
 import { PSteps as PPSteps, PStep } from "components/PSteps";
 import { Text } from "components/Text";
-import { ThemeColorType } from "theme/color";
 import { useState } from "react";
+import { ThemeColorType } from "theme/color";
+
 import ColorPicker from "./ColorPicker";
 
 export default function SteperTab() {

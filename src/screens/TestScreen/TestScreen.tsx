@@ -5,8 +5,8 @@ import { useState } from "react";
 import GFormTab from "./components/GFormTab";
 import GeneralTab from "./components/GeneralTab";
 import { InputsTab } from "./components/InputsTab";
-import ViewsTab from "./components/ViewsTab";
 import SteperTab from "./components/SteperTab";
+import ViewsTab from "./components/ViewsTab";
 
 export default function MapScreen() {
   const [selected, setSelected] = useState("Inputs");

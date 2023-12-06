@@ -1,10 +1,10 @@
-import { ThemeColorType } from "theme";
-import { XStack } from "components/containers/Stack";
-import { Text } from "components/Text";
-import { Button } from "components/Button";
-import { useState } from "react";
 import { PaletteIcon } from "assets/svg";
+import { Button } from "components/Button";
 import { Popup } from "components/Modal";
+import { Text } from "components/Text";
+import { XStack } from "components/containers/Stack";
+import { useState } from "react";
+import { ThemeColorType } from "theme";
 import { shadowStyle } from "theme/styles";
 
 type ColorPickerProps = {
@@ -49,6 +49,7 @@ export default function ColorPicker(props: ColorPickerProps) {
                 setColor(c);
                 setOpen(false);
               }}
+              key={c}
             />
           ))}
         </XStack>
@@ -66,6 +67,7 @@ export default function ColorPicker(props: ColorPickerProps) {
                     setOpen(false);
                   }}
                   style={shadowStyle}
+                  key={`t-${c}`}
                 />
               ))}
             </XStack>

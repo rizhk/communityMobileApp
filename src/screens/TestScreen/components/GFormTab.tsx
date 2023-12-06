@@ -7,8 +7,9 @@ import { Scroll } from "components/containers/Scroll";
 import { format } from "date-fns";
 import { useState } from "react";
 import { View } from "react-native-animatable";
-import ColorPicker from "./ColorPicker";
 import { ThemeColorType } from "theme";
+
+import ColorPicker from "./ColorPicker";
 
 const initialValues = {
   input: "",

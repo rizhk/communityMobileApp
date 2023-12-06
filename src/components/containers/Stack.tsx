@@ -89,7 +89,7 @@ export function Stack(props: StackProps) {
   const styles = {
     zIndex,
     flexDirection: direction,
-    flex: flex,
+    flex,
     flexGrow: fg,
     flexShrink: fs,
     justifyContent,

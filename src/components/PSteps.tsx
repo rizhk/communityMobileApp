@@ -1,15 +1,13 @@
+import { Tick } from "assets/svg";
+import { Button, ButtonProps } from "components/Button";
+import { Icon } from "components/Icon";
+import { Text } from "components/Text";
 import { Stack, StackProps, XStack, YStack } from "components/containers/Stack";
 import { i18n } from "i18n";
-import { Children, SVGAttributes, createContext, useContext, useEffect, useState } from "react";
-import { ThemeColorType, color as themeColor } from "../theme/color";
-import { Icon } from "components/Icon";
-import { LeftArrow, Tick } from "assets/svg";
-import { Text } from "components/Text";
-import { View, ViewStyle } from "react-native";
-import { Button, ButtonProps } from "components/Button";
-import SubmitButton from "./GForm/components/SubmitButton";
+import { Children, createContext, useContext, useState } from "react";
+import { View } from "react-native";
+import { ThemeColorType } from "theme/color";
 
-type StepState = "active" | "completed" | "inactive";
 export type PStepsContextType = {
   currentStep: number;
   labels: string[];
@@ -23,8 +21,6 @@ export type PStepsProps = {
   children: React.ReactNode;
   color?: ThemeColorType;
   inactiveColor?: ThemeColorType;
-  nextIcon?: React.ReactNode;
-  previousIcon?: React.ReactNode;
   nextTx?: i18n.Scope;
   previousTx?: i18n.Scope;
   submitTx?: i18n.Scope;
@@ -41,8 +37,6 @@ export function PSteps(props: PStepsProps) {
     children,
     color = "primary",
     inactiveColor = "grey600",
-    nextIcon,
-    previousIcon,
     nextTx,
     previousTx,
     submitTx,
@@ -71,14 +65,11 @@ export function PSteps(props: PStepsProps) {
     onSubmit && onSubmit();
   };
 
-  useEffect(() => {
-    console.log("currentStep", currentStep);
-  }, [currentStep]);
   return (
     <PStepsContext.Provider
       value={{
-        labels: labels,
-        currentStep: currentStep,
+        labels,
+        currentStep,
       }}
     >
       <YStack flexGrow>
@@ -102,7 +93,7 @@ export function PSteps(props: PStepsProps) {
                     w={30}
                     h={30}
                   >
-                    {state === "completed" && <Icon icon={Tick} color={"white"} />}
+                    {state === "completed" && <Icon icon={Tick} color="white" />}
                     {state !== "completed" && (
                       <Text text={`${index + 1}`} color={state === "inactive" ? inactiveColor : "white"} />
                     )}
@@ -123,7 +114,7 @@ export function PSteps(props: PStepsProps) {
           <View style={{ flex: 1 }}>
             {currentStep !== 0 && (
               <Button
-                text={i18n.t(nextTx || "common.previous")}
+                text={i18n.t(previousTx || "common.previous")}
                 textColor={color}
                 onPress={pressPrevious}
                 preset="plainText"
@@ -171,7 +162,7 @@ export function PStep(props: PStepProps) {
   const { currentStep, labels } = usePSteps();
   if (label === labels[currentStep])
     return (
-      <Stack flexGrow {...rest} style={[{ marginTop: 10 }, style]}>
+      <Stack flexGrow={flexGrow} direction={direction} jc={jc} {...rest} style={[{ marginTop: 10 }, style]}>
         {children}
       </Stack>
     );

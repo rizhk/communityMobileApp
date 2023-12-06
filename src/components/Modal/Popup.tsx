@@ -2,7 +2,7 @@ import { Cross } from "assets/svg";
 import { Button } from "components/Button";
 import { BlurView } from "expo-blur";
 import { PropsWithChildren } from "react";
-import { Modal, Pressable, TouchableOpacity, ViewStyle } from "react-native";
+import { Modal, Pressable, ViewStyle } from "react-native";
 import { color, radius, spacing } from "theme";
 import { shadowStyle } from "theme/styles";
 

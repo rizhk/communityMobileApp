@@ -1,12 +1,13 @@
+import { LeftArrow, RightArrow } from "assets/svg";
+import { Button } from "components/Button";
+import { BlurView } from "expo-blur";
 import { useState, useEffect, PropsWithChildren } from "react";
 import { Animated, Modal, Dimensions, ViewStyle, Pressable } from "react-native";
-import { BlurView } from "expo-blur";
-import { ModalProps } from "./modal.props";
-import { Button } from "components/Button";
-import { LeftArrow, RightArrow } from "assets/svg";
-import { ThemeColorType, color as themeColor } from "../../theme/color";
 import { radius, spacing } from "theme";
 import { shadowStyle } from "theme/styles";
+
+import { ModalProps } from "./modal.props";
+import { ThemeColorType, color as themeColor } from "../../theme/color";
 
 interface SideSliderProps extends ModalProps {
   onClose?: () => void;
