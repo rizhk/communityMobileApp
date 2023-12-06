@@ -29,10 +29,11 @@ export function InputsTab() {
   const [address, setAddress] = useState({ latitude: 0, longitude: 0 });
 
   return (
-    <ScrollView style={{ display: "flex", flexDirection: "column", gap: 30 }}>
+    <ScrollView style={{ display: "flex", flexDirection: "column" }}>
       <TextInput placeholder="type text" style={{ marginVertical: 10 }} />
       <DropPicker items={dropItems} value={item} setValue={setItem} searchable />
-      <AddressPicker value={address} setValue={setAddress} placeholder="addressPicker" style={{ marginTop: 10 }} />
+      <AddressPicker value={address} setValue={setAddress} placeholder="addressPicker" style={{ marginVertical: 10 }} />
+      <DateTimePicker startDate={startDate} endDate={endDate} setStartDate={setStartDate} setEndDate={setEndDate} />
       <Radio value={radio} setValue={setRadio} items={radioItems} style={{ marginTop: 20 }} />
       <View style={{ flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap", padding: 10, gap: 20 }}>
         <Radio value={radio} setValue={setRadio} items={radioItems} groupDirection="column" color="secondary" />
@@ -46,7 +47,6 @@ export function InputsTab() {
         <Switch value={false} color="tertiary" />
         <Switch value color="tertiary" />
       </View>
-      <DateTimePicker startDate={startDate} endDate={endDate} setStartDate={setStartDate} setEndDate={setEndDate} />
     </ScrollView>
   );
 }
