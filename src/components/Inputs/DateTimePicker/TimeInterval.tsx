@@ -30,7 +30,7 @@ export function TimeInterval(props: TimeIntervalProps) {
   return (
     <YStack gap="sm">
       <DatePicker date={start} setDate={updateDate} minDate={minDate} color={color} />
-      <XStack jc="center" gap="sm" ai="center">
+      <XStack jc="space-around" gap="sm" ai="center">
         <XStack style={labelContainer}>
           <Text tx="timePicker.from" style={timeLabel} />
           <TimePicker
