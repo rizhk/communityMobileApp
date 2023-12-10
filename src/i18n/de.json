@@ -105,6 +105,11 @@
     "currentPosition": "Aktuelle Position",
     "choosePosition": "Einen Ort wählen"
   },
+  "datePicker": {
+    "when": "Wann ?",
+    "currentDate": "Heute",
+    "chooseDate": "Wählen Sie ein Datum"
+  },
   "createActivity": {
     "title": "Aktivität erstellen",
     "sportPicker": "Sportart wählen",

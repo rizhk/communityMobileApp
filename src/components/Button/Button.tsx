@@ -30,7 +30,7 @@ export function Button(props: ButtonProps) {
     ? { width: buttonSize[size ?? "md"], height: buttonSize[size ?? "md"], borderRadius: 200 }
     : {};
   const buttonStyle = [presets[preset](color), { padding: spacing[size] }, roundStyle, style];
-  const textStyles = [preset === "outlined" ? { color: themeColor[color] } : {}, textStyle];
+  const textStyles = [preset === "outlined" || preset === "plainText" ? { color: themeColor[color] } : {}, textStyle];
 
   function ButtonIcon() {
     if (icon === undefined) return null;

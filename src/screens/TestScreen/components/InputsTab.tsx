@@ -1,6 +1,6 @@
 import { Star } from "assets/svg";
 import { Icon } from "components/Icon";
-import { Radio, Switch, NumberPicker, DropPicker, TextInput, DateTimePicker } from "components/Inputs";
+import { Radio, Switch, NumberPicker, DropPicker, TextInput, TimeInterval } from "components/Inputs";
 import { AddressPicker } from "components/Inputs/AddressPicker";
 import { useState } from "react";
 import { ScrollView } from "react-native";
@@ -33,7 +33,7 @@ export function InputsTab() {
       <TextInput placeholder="type text" style={{ marginVertical: 10 }} />
       <DropPicker items={dropItems} value={item} setValue={setItem} searchable />
       <AddressPicker value={address} setValue={setAddress} placeholder="addressPicker" style={{ marginVertical: 10 }} />
-      <DateTimePicker startDate={startDate} endDate={endDate} setStartDate={setStartDate} setEndDate={setEndDate} />
+      <TimeInterval start={startDate} end={endDate} setStart={setStartDate} setEnd={setEndDate} color="secondary" />
       <Radio value={radio} setValue={setRadio} items={radioItems} style={{ marginTop: 20 }} />
       <View style={{ flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap", padding: 10, gap: 20 }}>
         <Radio value={radio} setValue={setRadio} items={radioItems} groupDirection="column" color="secondary" />

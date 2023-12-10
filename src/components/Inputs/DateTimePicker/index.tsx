@@ -1,3 +1,3 @@
 export { TimePicker } from "./TimePicker";
-export { DateTimePicker, DateTimePickerProps } from "./DateTimePicker";
 export { DatePicker } from "./DatePicker";
+export { TimeInterval } from "./TimeInterval";
