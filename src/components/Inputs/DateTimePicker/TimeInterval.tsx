@@ -2,10 +2,10 @@ import { Text } from "components/Text";
 import { XStack, YStack } from "components/containers/Stack";
 import { TextStyle, ViewStyle } from "react-native";
 import { ThemeColorType, color, spacing } from "theme";
+import { inputFieldStyle } from "theme/styles";
 
 import { DatePicker } from "./DatePicker";
 import { TimePicker } from "./TimePicker";
-import { inputFieldStyle } from "../../GForm/components/styles";
 
 export type TimeIntervalProps = {
   start: Date;
@@ -32,7 +32,7 @@ export function TimeInterval(props: TimeIntervalProps) {
     <YStack gap="sm">
       <DatePicker date={start} setDate={updateDate} minDate={minDate} color={color} />
       <XStack jc="space-around" gap="sm" ai="center">
-        <XStack style={labelContainer}>
+        <XStack ai="center" jc="center" gap="sm" style={labelContainer}>
           <Text size="sm" preset="bold" tx="timePicker.from" style={timeLabel} />
           <TimePicker
             date={start}
@@ -41,7 +41,7 @@ export function TimeInterval(props: TimeIntervalProps) {
             color={color}
           />
         </XStack>
-        <XStack style={labelContainer}>
+        <XStack ai="center" jc="center" gap="sm" style={labelContainer}>
           <Text size="sm" preset="bold" tx="timePicker.to" style={timeLabel} />
           <TimePicker date={end} setDate={(date) => updateTime(date, end, setEnd)} minDate={start} color={color} />
         </XStack>
@@ -57,9 +57,6 @@ const timeLabel = {
 
 const labelContainer = {
   ...inputFieldStyle,
-  justifyContent: "center",
-  alignItems: "center",
-  gap: spacing.sm,
   backgroundColor: color.grey800,
   paddingLeft: spacing.sm,
   paddingRight: 0,
