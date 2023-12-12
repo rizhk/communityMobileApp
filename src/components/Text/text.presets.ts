@@ -25,7 +25,7 @@ export const presets = {
     fontSize: text.md,
     fontWeight: "bold",
     color: color.primary,
-    textTransform: "uppercase",
+    textTransform: "capitalize",
   } as TextStyle,
   fieldError: { ...BASE, fontSize: text.sm, color: color.error } as TextStyle,
 

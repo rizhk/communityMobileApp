@@ -1,9 +1,5 @@
-import { INFINIT_PARTICIPANTS } from "constants/global";
-import { useMemo, useState } from "react";
-import { View, ViewStyle } from "react-native";
-import WheelPicker from "react-native-wheely";
-import { ThemeColorType, color as themeColor, text } from "theme";
-import { inputFieldStyle } from "theme/styles";
+import { ViewStyle } from "react-native";
+import { ThemeColorType } from "theme";
 import { TextInput } from "./TextInput/TextInput";
 
 export interface NumberPickerProps {

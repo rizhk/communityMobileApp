@@ -22,7 +22,6 @@ export default function Picker(props: GFieldProps & Omit<NumberPickerProps, "val
           {...rest}
           value={values[valName] as number}
           setValue={(val) => handleChange(valName)(val.toString())}
-          visible={0}
           color={themeColor}
         />
       </XStack>

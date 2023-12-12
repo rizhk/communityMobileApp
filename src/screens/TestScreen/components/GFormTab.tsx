@@ -64,7 +64,7 @@ export default function GFormTab() {
             <GForm.AddressPicker valName="location" placeholder="Enter address" />
             <GForm.DropPicker valName="drop" text="DropPicker" items={DropItems} searchable />
             <GForm.Switch valName="switch" text="Switch" />
-            <GForm.NumberPicker valName="number" text="Number" max={10} hasInfinit />
+            <GForm.NumberPicker valName="number" text="Number" max={10} />
             <GForm.Radio valName="radio" text="Radio" items={RadioItems} />
             <GForm.DateTimePicker
               valNames={{ start: "startDate", end: "endDate" }}
