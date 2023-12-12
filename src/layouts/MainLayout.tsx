@@ -7,6 +7,7 @@ export function MainLayout({ children }: PropsWithChildren) {
 
 const page = {
   flexGrow: 1,
-  overflow: "hidden",
+
+  // overflow: "hidden",
   // backgroundColor: color.white,
 } as ViewStyle;

@@ -162,7 +162,7 @@ export function PStep(props: PStepProps) {
   const { currentStep, labels } = usePSteps();
   if (label === labels[currentStep])
     return (
-      <Stack flexGrow={flexGrow} direction={direction} jc={jc} {...rest} style={[{ marginTop: 10 }, style]}>
+      <Stack flexGrow={flexGrow} direction={direction} jc={jc} pa="sm" {...rest} style={[{ marginTop: 10 }, style]}>
         {children}
       </Stack>
     );

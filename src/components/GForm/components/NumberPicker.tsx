@@ -1,9 +1,9 @@
 import { NumberPicker } from "components/Inputs";
 import { NumberPickerProps } from "components/Inputs/NumberPicker";
-import { View, ViewStyle } from "react-native";
 
 import { BaseField } from "./BaseField";
 import { GFieldProps, useGForm } from "../GForm.props";
+import { XStack } from "components/containers/Stack";
 
 export type GFieldItemType = {
   value: string;
@@ -12,25 +12,20 @@ export type GFieldItemType = {
 
 export default function Picker(props: GFieldProps & Omit<NumberPickerProps, "value" | "setValue">) {
   const { containerStyle, valName, tx, text, ...rest } = props;
-  const { handleChange, values } = useGForm();
+  const { handleChange, values, themeColor } = useGForm();
 
   return (
     <BaseField style={containerStyle}>
-      <View style={line}>
+      <XStack ai="center" jc="space-between">
         <BaseField.Label tx={tx} text={text} />
         <NumberPicker
           {...rest}
           value={values[valName] as number}
           setValue={(val) => handleChange(valName)(val.toString())}
           visible={0}
+          color={themeColor}
         />
-      </View>
+      </XStack>
     </BaseField>
   );
 }
-
-const line = {
-  flexDirection: "row",
-  justifyContent: "space-between",
-  alignItems: "center",
-} as ViewStyle;

@@ -5,6 +5,7 @@ import { AddressPicker } from "components/Inputs/AddressPicker";
 import { useState } from "react";
 import { ScrollView } from "react-native";
 import { View } from "react-native-animatable";
+import { spacing } from "theme";
 
 const radioItems = [
   { label: "item1", value: "item1" },
@@ -29,16 +30,16 @@ export function InputsTab() {
   const [address, setAddress] = useState({ latitude: 0, longitude: 0 });
 
   return (
-    <ScrollView style={{ display: "flex", flexDirection: "column" }}>
+    <ScrollView style={{ display: "flex", flexDirection: "column", padding: spacing.sm }}>
+      <View style={{ flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap", padding: 10, gap: 20 }}>
+        <Radio value={radio} setValue={setRadio} items={radioItems} groupDirection="column" color="secondary" />
+        <NumberPicker min={0} max={10} value={n} setValue={setN} hasInfinit padding={2} />
+      </View>
       <TextInput placeholder="type text" style={{ marginVertical: 10 }} />
       <DropPicker items={dropItems} value={item} setValue={setItem} searchable />
       <AddressPicker value={address} setValue={setAddress} placeholder="addressPicker" style={{ marginVertical: 10 }} />
       <TimeInterval start={startDate} end={endDate} setStart={setStartDate} setEnd={setEndDate} color="secondary" />
       <Radio value={radio} setValue={setRadio} items={radioItems} style={{ marginTop: 20 }} />
-      <View style={{ flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap", padding: 10, gap: 20 }}>
-        <Radio value={radio} setValue={setRadio} items={radioItems} groupDirection="column" color="secondary" />
-        <NumberPicker min={0} max={10} value={n} setValue={setN} hasInfinit padding={2} />
-      </View>
       <View style={{ flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap", padding: 10, gap: 20 }}>
         <Switch value={switchValue} onChange={() => setSwitchValue(!switchValue)} />
         <Switch value />

@@ -11,11 +11,11 @@ type TabsHeaderProps = {
   tx?: i18n.Scope;
   text?: string;
   txOptions?: i18n.TranslateOptions;
-  containerStyle?: StyleProp<ViewStyle>;
+  style?: StyleProp<ViewStyle>;
 };
 
 export function TabsHeader(props: TabsHeaderProps) {
-  const { value, tx, txOptions, text, containerStyle } = props;
+  const { value, tx, txOptions, text, style } = props;
   const { selected, handleSelect } = useContext(TabContext);
   const { addValue } = useTabs();
   const textProps = { tx, txOptions, text };
@@ -30,7 +30,7 @@ export function TabsHeader(props: TabsHeaderProps) {
   }, [selected]);
 
   return (
-    <TouchableOpacity style={[tab, active ? selectedTab : {}, containerStyle]} onPress={() => handleSelect(value)}>
+    <TouchableOpacity style={[tab, active ? selectedTab : {}, style]} onPress={() => handleSelect(value)}>
       <Text {...textProps} preset={active ? "tabHeaderActive" : "tabHeader"} />
     </TouchableOpacity>
   );

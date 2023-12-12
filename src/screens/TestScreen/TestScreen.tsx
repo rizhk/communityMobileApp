@@ -1,5 +1,4 @@
 import { Tabs } from "components/Tabs";
-import { MainLayout } from "layouts";
 import { useState } from "react";
 
 import GFormTab from "./components/GFormTab";
@@ -25,19 +24,17 @@ export default function MapScreen() {
   const [selected, setSelected] = useState("Inputs");
 
   return (
-    <MainLayout>
-      <Tabs selected={selected} handleSelect={(val: any) => setSelected(val)}>
-        <Tabs.Group>
-          {TabsItems.map((item) => (
-            <Tabs.Header key={item.value} value={item.value} text={item.value} />
-          ))}
-        </Tabs.Group>
+    <Tabs selected={selected} handleSelect={(val: any) => setSelected(val)}>
+      <Tabs.Group>
         {TabsItems.map((item) => (
-          <Tabs.Body key={item.value} value={item.value}>
-            {item.tab}
-          </Tabs.Body>
+          <Tabs.Header key={item.value} value={item.value} text={item.value} />
         ))}
-      </Tabs>
-    </MainLayout>
+      </Tabs.Group>
+      {TabsItems.map((item) => (
+        <Tabs.Body key={item.value} value={item.value}>
+          {item.tab}
+        </Tabs.Body>
+      ))}
+    </Tabs>
   );
 }
