@@ -32,7 +32,7 @@ export function TimeInterval(props: TimeIntervalProps) {
       <DatePicker date={start} setDate={updateDate} minDate={minDate} color={color} />
       <XStack jc="space-around" gap="sm" ai="center">
         <XStack style={labelContainer}>
-          <Text tx="timePicker.from" style={timeLabel} />
+          <Text size="sm" preset="bold" tx="timePicker.from" style={timeLabel} />
           <TimePicker
             date={start}
             setDate={(date) => updateTime(date, start, setStart)}
@@ -41,7 +41,7 @@ export function TimeInterval(props: TimeIntervalProps) {
           />
         </XStack>
         <XStack style={labelContainer}>
-          <Text tx="timePicker.to" style={timeLabel} />
+          <Text size="sm" preset="bold" tx="timePicker.to" style={timeLabel} />
           <TimePicker date={end} setDate={(date) => updateTime(date, end, setEnd)} minDate={start} color={color} />
         </XStack>
       </XStack>
@@ -50,11 +50,7 @@ export function TimeInterval(props: TimeIntervalProps) {
 }
 
 const timeLabel = {
-  textTransform: "uppercase",
-  fontFamily: "",
-  fontWeight: "800",
-  fontSize: 16,
-  width: 30,
+  textTransform: "capitalize",
   textAlign: "center",
 } as TextStyle;
 

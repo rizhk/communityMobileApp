@@ -6,7 +6,6 @@ import { Text } from "components/Text";
 import { ThemeColorType, spacing } from "theme";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Platform } from "react-native";
-import { color as themeColor } from "../../../theme/color";
 import { IOSDatePicker } from "./components/IODatePicker";
 import { AndroidDatePicker } from "./components/AndroidDatePicker";
 
@@ -36,9 +35,9 @@ export function TimePicker(props: DatePickerProps) {
     <View style={{ width: 100 }}>
       <TouchableOpacity onPress={() => setShow(true)} style={style}>
         <XStack style={container} jc="space-between" ai="center">
-          <Text size="md" preset="bold" text={date.getHours().toString()} style={text} />
-          <Text size="md" preset="bold" text=":" style={text} />
-          <Text size="md" preset="bold" text={date.getMinutes().toString()} style={text} />
+          <Text size="sm" preset="bold" text={date.getHours().toString().padStart(2, "0")} style={text} />
+          <Text size="sm" preset="bold" text=":" style={text} />
+          <Text size="sm" preset="bold" text={date.getMinutes().toString().padStart(2, "0")} style={text} />
         </XStack>
       </TouchableOpacity>
       {Platform.OS === "ios" ? <IOSDatePicker {...pickerProps} /> : <AndroidDatePicker {...pickerProps} />}

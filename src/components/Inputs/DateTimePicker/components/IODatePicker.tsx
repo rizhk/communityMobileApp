@@ -15,15 +15,15 @@ type IOSDatePickerProps = {
   setDate: (date: any) => void;
   color?: ThemeColorType;
   mode?: "date" | "time";
+  label?: i18n.Scope;
 };
 
 export function IOSDatePicker(props: IOSDatePickerProps) {
-  const { visible, setVisible, minDate, date, setDate, color, mode } = props;
+  const { visible, setVisible, minDate, date, setDate, color, mode, label } = props;
   const [datePick, setDatePick] = useState(date);
 
   return (
     <Popup visible={visible} setVisible={() => setVisible(false)} color={color}>
-      <Text preset="header" tx="datePicker.chooseDate" />
       <DateTimePicker
         value={date}
         display="spinner"
