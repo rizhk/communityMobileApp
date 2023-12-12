@@ -59,7 +59,7 @@ export function AddressPicker(props: AddressPickerProps) {
   };
 
   return (
-    <View style={[suggestionContainer, focus ? shadowFocus() : {}, style]}>
+    <View style={[suggestionContainer, focus ? shadowFocus(color) : {}, style]}>
       <View style={inputContainer}>
         <TextInput
           value={address}
