@@ -1,16 +1,16 @@
-import { XStack } from "components/containers/Stack";
-import { useState } from "react";
-import { inputFieldStyle } from "theme/styles";
-import { TextStyle, View, ViewStyle } from "react-native";
 import { Text } from "components/Text";
-import { t } from "i18n-js";
+import { XStack } from "components/containers/Stack";
 import { format } from "date-fns";
-import { ThemeColorType } from "theme";
+import { t } from "i18n-js";
+import { useState } from "react";
+import { TextStyle, View, ViewStyle, Platform } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { Platform } from "react-native";
-import { color as themeColor } from "../../../theme/color";
-import { IOSDatePicker } from "./components/IODatePicker";
+import { ThemeColorType } from "theme";
+import { inputFieldStyle } from "theme/styles";
+
 import { AndroidDatePicker } from "./components/AndroidDatePicker";
+import { IOSDatePicker } from "./components/IODatePicker";
+import { color as themeColor } from "../../../theme/color";
 
 export type DatePickerProps = {
   date: Date;

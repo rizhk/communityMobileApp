@@ -1,11 +1,10 @@
-import { XStack } from "components/containers/Stack";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { useState } from "react";
-import { Text } from "components/Text";
-import { ThemeColorType } from "theme";
-import { Popup } from "components/Modal";
 import { Button } from "components/Button";
+import { Popup } from "components/Modal";
+import { XStack } from "components/containers/Stack";
 import { i18n } from "i18n";
+import { useState } from "react";
+import { ThemeColorType } from "theme";
 
 type IOSDatePickerProps = {
   visible: boolean;
@@ -19,7 +18,7 @@ type IOSDatePickerProps = {
 };
 
 export function IOSDatePicker(props: IOSDatePickerProps) {
-  const { visible, setVisible, minDate, date, setDate, color, mode, label } = props;
+  const { visible, setVisible, minDate, date, setDate, color, mode } = props;
   const [datePick, setDatePick] = useState(date);
 
   return (

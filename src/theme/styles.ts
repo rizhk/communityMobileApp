@@ -1,7 +1,20 @@
-import { TextStyle } from "react-native";
-import { color } from "theme/color";
+import { TextStyle, ViewStyle } from "react-native";
+import { ThemeColorType, color as themeColor } from "theme/color";
 import { radius } from "theme/shape";
 import { spacing } from "theme/spacing";
+
+export const shadowFocus = (color: ThemeColorType = "primary") => {
+  return {
+    shadowColor: themeColor[color],
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 6,
+    elevation: 20,
+  } as ViewStyle;
+};
 
 export const shadowStyle = {
   shadowColor: "#000",
@@ -15,10 +28,10 @@ export const shadowStyle = {
 };
 
 export const inputFieldStyle = {
-  backgroundColor: color.inputBackground,
-  borderRadius: radius.md,
+  backgroundColor: themeColor.inputBackground,
+  borderRadius: radius.xs,
   paddingHorizontal: spacing.sm,
-  color: color.white,
+  color: themeColor.white,
   height: 33,
   ...shadowStyle,
 } as TextStyle;

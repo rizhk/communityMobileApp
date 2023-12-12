@@ -1,12 +1,12 @@
+import { DatePicker, TimeInterval, TimePicker } from "components/Inputs/";
 import { PSteps as PPSteps, PStep } from "components/PSteps";
 import { Text } from "components/Text";
+import { YStack } from "components/containers/Stack";
+import { format } from "date-fns";
 import { useState } from "react";
 import { ThemeColorType } from "theme/color";
 
 import ColorPicker from "./ColorPicker";
-import { YStack } from "components/containers/Stack";
-import { DatePicker, TimeInterval, TimePicker } from "components/Inputs/";
-import { format } from "date-fns";
 
 export default function SteperTab() {
   const [color, setColor] = useState("primary" as ThemeColorType);

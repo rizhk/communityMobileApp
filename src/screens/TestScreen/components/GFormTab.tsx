@@ -4,6 +4,7 @@ import { Icon } from "components/Icon";
 import { Popup } from "components/Modal";
 import { Text } from "components/Text";
 import { Scroll } from "components/containers/Scroll";
+import { YStack } from "components/containers/Stack";
 import { format } from "date-fns";
 import { useState } from "react";
 import { View } from "react-native-animatable";
@@ -58,19 +59,21 @@ export default function GFormTab() {
       <ColorPicker setColor={setColor} />
       <Scroll style={{ height: "90%" }}>
         <GForm initialValues={initialValues} onSubmit={handleSubmit} themeColor={color}>
-          <GForm.TextInput valName="input" text="TextInput" placeholder="Placeholder" />
-          <GForm.AddressPicker valName="location" placeholder="Enter address" />
-          <GForm.DropPicker valName="drop" text="DropPicker" items={DropItems} searchable />
-          <GForm.Switch valName="switch" text="Switch" />
-          <GForm.NumberPicker valName="number" text="Number" max={10} hasInfinit />
-          <GForm.Radio valName="radio" text="Radio" items={RadioItems} />
-          <GForm.DateTimePicker
-            valNames={{ start: "startDate", end: "endDate" }}
-            minDate={new Date()}
-            text="DateTimePicker"
-            nestedScrollEnabled
-          />
-          <GForm.SubmitButton text="Submit" />
+          <YStack pa="sm">
+            <GForm.TextInput valName="input" text="TextInput" placeholder="Placeholder" />
+            <GForm.AddressPicker valName="location" placeholder="Enter address" />
+            <GForm.DropPicker valName="drop" text="DropPicker" items={DropItems} searchable />
+            <GForm.Switch valName="switch" text="Switch" />
+            <GForm.NumberPicker valName="number" text="Number" max={10} />
+            <GForm.Radio valName="radio" text="Radio" items={RadioItems} />
+            <GForm.DateTimePicker
+              valNames={{ start: "startDate", end: "endDate" }}
+              minDate={new Date()}
+              text="DateTimePicker"
+              nestedScrollEnabled
+            />
+            <GForm.SubmitButton text="Submit" />
+          </YStack>
         </GForm>
       </Scroll>
       <Popup visible={popup} setVisible={setPopup}>

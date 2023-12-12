@@ -1,9 +1,10 @@
+import { Text } from "components/Text";
 import { XStack, YStack } from "components/containers/Stack";
+import { TextStyle, ViewStyle } from "react-native";
+import { ThemeColorType, color, spacing } from "theme";
+
 import { DatePicker } from "./DatePicker";
 import { TimePicker } from "./TimePicker";
-import { TextStyle, ViewStyle } from "react-native";
-import { Text } from "components/Text";
-import { ThemeColorType, color, spacing } from "theme";
 import { inputFieldStyle } from "../../GForm/components/styles";
 
 export type TimeIntervalProps = {

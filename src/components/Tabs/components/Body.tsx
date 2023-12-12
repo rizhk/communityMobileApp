@@ -1,5 +1,6 @@
+import { Stack } from "components/containers/Stack";
 import { PropsWithChildren } from "react";
-import { StyleProp, View, ViewStyle } from "react-native";
+import { StyleProp, ViewStyle } from "react-native";
 
 import { useTabs } from "../Tabs.props";
 
@@ -8,13 +9,12 @@ export type BodyProps = {
   value?: any;
 };
 
-export function TabsBody({ children, style, value }: PropsWithChildren<BodyProps>) {
-  const { selected } = useTabs();
+export function TabsBody({ children, value }: PropsWithChildren<BodyProps>) {
+  const { selected, body } = useTabs();
   if (value && value !== selected) return null;
-  return <View style={[body, style]}>{children}</View>;
+  return (
+    <Stack flexGrow {...body}>
+      {children}
+    </Stack>
+  );
 }
-
-const body = {
-  flexGrow: 1,
-  flexShrink: 1,
-} as ViewStyle;
