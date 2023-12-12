@@ -29,7 +29,7 @@ export const shadowStyle = {
 
 export const inputFieldStyle = {
   backgroundColor: themeColor.inputBackground,
-  borderRadius: radius.xs,
+  borderRadius: radius.sm,
   paddingHorizontal: spacing.sm,
   color: themeColor.white,
   height: 33,
