@@ -1,5 +1,5 @@
 import { DatePicker, TimeInterval, TimePicker } from "components/Inputs/";
-import { PSteps as PPSteps, PStep } from "components/PSteps";
+import { PSteps, PStep } from "components/PSteps";
 import { Text } from "components/Text";
 import { YStack } from "components/containers/Stack";
 import { format } from "date-fns";
@@ -18,7 +18,7 @@ export default function SteperTab() {
   return (
     <>
       <ColorPicker setColor={setColor} />
-      <PPSteps color={color}>
+      <PSteps color={color}>
         <PStep label="First Step">
           <Text>This is the content within step 1!</Text>
           <Text>{date.toString()}</Text>
@@ -40,7 +40,7 @@ export default function SteperTab() {
         <PStep label="fourth Step">
           <Text>This is the content within step 2!</Text>
         </PStep>
-      </PPSteps>
+      </PSteps>
     </>
   );
 }
