@@ -1,24 +1,24 @@
 import { useRef } from "react";
 import { Animated } from "react-native";
 
-function getHeightAnimationConfig(height: number, duration: number) {
+function getSizeAnimationConfig(size: number, duration: number) {
   return {
-    toValue: height,
+    toValue: size,
     duration,
     useNativeDriver: false,
   };
 }
 
-export function useAnimatedHeight(from: number, to: number, duration: number = 100) {
-  const heightValue = useRef(new Animated.Value(from)).current;
+export function useAnimatedSize(from: number, to: number, duration: number = 100) {
+  const sizeValue = useRef(new Animated.Value(from)).current;
 
   const grow = () => {
-    Animated.timing(heightValue, getHeightAnimationConfig(to, duration)).start();
+    Animated.timing(sizeValue, getSizeAnimationConfig(to, duration)).start();
   };
 
   const shrink = () => {
-    Animated.timing(heightValue, getHeightAnimationConfig(from, duration)).start();
+    Animated.timing(sizeValue, getSizeAnimationConfig(from, duration)).start();
   };
 
-  return { heightValue, grow, shrink };
+  return { sizeValue, grow, shrink };
 }

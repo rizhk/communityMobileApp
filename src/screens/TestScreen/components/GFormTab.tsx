@@ -11,11 +11,12 @@ import { View } from "react-native-animatable";
 import { ThemeColorType } from "theme";
 
 import ColorPicker from "./ColorPicker";
+import { INFINIT_PARTICIPANTS } from "constants/global";
 
 const initialValues = {
   input: "",
   switch: false,
-  number: 5,
+  number: INFINIT_PARTICIPANTS,
   radio: "item1",
   startDate: new Date(),
   endDate: new Date(),
@@ -64,7 +65,7 @@ export default function GFormTab() {
             <GForm.AddressPicker valName="location" placeholder="Enter address" />
             <GForm.DropPicker valName="drop" text="DropPicker" items={DropItems} searchable />
             <GForm.Switch valName="switch" text="Switch" />
-            <GForm.NumberPicker valName="number" text="Number" max={10} />
+            <GForm.NumberPicker valName="number" text="Number" max={1000} />
             <GForm.Radio valName="radio" text="Radio" items={RadioItems} />
             <GForm.DateTimePicker
               valNames={{ start: "startDate", end: "endDate" }}
