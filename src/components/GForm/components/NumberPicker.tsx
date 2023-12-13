@@ -8,7 +8,7 @@ import { Text } from "components/Text";
 import { color } from "theme";
 import { useRef, useState } from "react";
 import { INFINIT_PARTICIPANTS } from "constants/global";
-import { inputFieldStyle } from "theme/styles";
+import { inputFieldStyle, shadowFocus } from "theme/styles";
 
 export type GFieldItemType = {
   value: string;
@@ -28,6 +28,7 @@ export default function Picker(props: GFieldProps & Omit<NumberPickerProps, "val
   const { handleChange, values, themeColor = "primary" } = useGForm();
   const [noLimit, setNoLimit] = useState(Number(values[valName]) === INFINIT_PARTICIPANTS);
   const [displayValue, setDisplayValue] = useState(values[valName] as string);
+  const [focus, setFocus] = useState(false);
 
   const width = useRef(
     new Animated.Value(
@@ -67,7 +68,13 @@ export default function Picker(props: GFieldProps & Omit<NumberPickerProps, "val
     <BaseField style={containerStyle}>
       <XStack ai="center" jc="space-between">
         <BaseField.Label tx={tx} text={text} />
-        <AnimatedXStack ai="center" br="md" w={PICKER_WIDTH} bc={noLimit ? themeColor : DISABLED_COLOR}>
+        <AnimatedXStack
+          ai="center"
+          br="md"
+          w={PICKER_WIDTH}
+          bc={noLimit ? themeColor : DISABLED_COLOR}
+          style={focus ? shadowFocus(themeColor) : undefined}
+        >
           <AnimatedTextInput
             value={displayValue}
             inputMode="numeric"
@@ -83,12 +90,16 @@ export default function Picker(props: GFieldProps & Omit<NumberPickerProps, "val
               }
             }}
             onFocus={() => {
+              setFocus(true);
               if (noLimit) toggleLimit();
               if (values[valName] === String(INFINIT_PARTICIPANTS)) {
                 handleChange(valName)("");
                 setDisplayValue("");
                 grow();
               }
+            }}
+            onBlur={() => {
+              setFocus(false);
             }}
             style={[inputStyle, { width: width }, noLimit ? disableInputStyle : {}]}
           />
