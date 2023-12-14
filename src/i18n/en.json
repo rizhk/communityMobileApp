@@ -9,7 +9,9 @@
     "save": "save",
     "no": "No",
     "yes": "Yes",
-    "submit": "Submit"
+    "submit": "Submit",
+    "next": "Next",
+    "previous": "Previous"
   },
   "errors": {
     "invalidEmail": "Invalid email address.",
@@ -102,6 +104,11 @@
     "where": "Where ?",
     "currentPosition": "current location",
     "choosePosition": "choose a location"
+  },
+  "datePicker": {
+    "when": "When ?",
+    "currentDate": "Today",
+    "chooseDate": "Choose a date"
   },
   "createActivity": {
     "button": "Create Activity",

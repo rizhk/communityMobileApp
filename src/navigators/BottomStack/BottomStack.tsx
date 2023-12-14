@@ -16,6 +16,8 @@ export function BottomStack() {
         tabBarStyle: {
           backgroundColor: color.backgroundLight,
           height: 80,
+          borderTopWidth: 0.5,
+          borderTopColor: color.grey600,
         },
       })}
     >

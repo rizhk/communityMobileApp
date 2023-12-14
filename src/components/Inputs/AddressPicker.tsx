@@ -6,7 +6,7 @@ import I18n, { t } from "i18n-js";
 import { useState } from "react";
 import { TextInput, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native";
 import { ThemeColorType, color as themeColor, spacing } from "theme";
-import { inputFieldStyle } from "theme/styles";
+import { inputFieldStyle, shadowFocus } from "theme/styles";
 import { LocationType } from "types/global";
 import {
   AddressSuggestions,
@@ -29,6 +29,7 @@ export function AddressPicker(props: AddressPickerProps) {
   const { style, placeholderTx, placeholder = "", value, setValue, color } = props;
   const [suggestions, setSuggestions] = useState<AddressSuggestions[]>([]);
   const [address, setAddress] = useState<string>("");
+  const [focus, setFocus] = useState<boolean>(false);
 
   if (value.latitude === 0 && value.longitude === 0)
     fetchLocalPosition().then((position) => {
@@ -58,7 +59,7 @@ export function AddressPicker(props: AddressPickerProps) {
   };
 
   return (
-    <View style={[suggestionContainer, style]}>
+    <View style={[suggestionContainer, focus ? shadowFocus(color) : {}, style]}>
       <View style={inputContainer}>
         <TextInput
           value={address}
@@ -66,6 +67,11 @@ export function AddressPicker(props: AddressPickerProps) {
           style={inputStyle}
           placeholder={placeholderTx !== undefined ? t(placeholderTx) : placeholder}
           placeholderTextColor={themeColor.grey100}
+          onFocus={() => setFocus(true)}
+          onBlur={() => {
+            setFocus(false);
+            setSuggestions([]);
+          }}
         />
         {address.length > 0 && (
           <Button rounded size="sm" icon={Cross} iconScale={2} color={color} onPress={() => setAddress("")} />
@@ -84,17 +90,16 @@ export function AddressPicker(props: AddressPickerProps) {
     </View>
   );
 }
-
 const inputContainer = {
   flexDirection: "row",
   position: "relative",
   alignItems: "center",
-  paddingLeft: inputFieldStyle.paddingHorizontal,
   paddingRight: spacing.xxs,
   gap: spacing.xs,
 } as ViewStyle;
 
 const inputStyle = {
+  paddingHorizontal: inputFieldStyle.paddingHorizontal,
   height: inputFieldStyle.height,
   color: inputFieldStyle.color,
   flex: 1,

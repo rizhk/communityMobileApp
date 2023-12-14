@@ -25,7 +25,7 @@ export const presets = {
     fontSize: text.md,
     fontWeight: "bold",
     color: color.primary,
-    textTransform: "uppercase",
+    textTransform: "capitalize",
   } as TextStyle,
   fieldError: { ...BASE, fontSize: text.sm, color: color.error } as TextStyle,
 
@@ -33,14 +33,14 @@ export const presets = {
     textAlign: "center",
     fontSize: text.sm,
     color: color.grey200,
-    padding: spacing.md,
+    paddingVertical: spacing.sm,
   } as TextStyle,
 
   tabHeaderActive: {
     textAlign: "center",
     fontSize: text.sm,
     color: color.white,
-    padding: spacing.md,
+    paddingVertical: spacing.md,
   } as TextStyle,
   radioLabel: { ...BASE, fontSize: text.xs, textTransform: "uppercase" } as TextStyle,
 };

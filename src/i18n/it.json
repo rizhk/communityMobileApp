@@ -9,7 +9,9 @@
     "save": "salvare",
     "no": "No",
     "yes": "Sì",
-    "submit": "Submit"
+    "submit": "Submit",
+    "next": "Avanti",
+    "previous": "Precedente"
   },
   "errors": {
     "invalidEmail": "Indirizzo e-mail non valido.",
@@ -107,6 +109,11 @@
     "where": "Dove?",
     "currentPosition": "posizione attuale",
     "choosePosition": "scegliere un luogo"
+  },
+  "datePicker": {
+    "when": "Quando?",
+    "currentDate": "Oggi",
+    "chooseDate": "Scegliere una data"
   },
   "createActivity": {
     "title": "Creare attività",

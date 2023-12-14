@@ -1,7 +1,6 @@
 import { PropsWithChildren, useState } from "react";
 import { View, ViewStyle } from "react-native";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
-import { color } from "theme";
 
 import { TabContext, TabsProps } from "./Tabs.props";
 import { TabsBody } from "./components/Body";
@@ -15,7 +14,7 @@ Tabs.Body = TabsBody;
 const offset = 20;
 
 export function Tabs(props: PropsWithChildren<TabsProps>) {
-  const { children, selected, handleSelect, style } = props;
+  const { children, selected, handleSelect, style, ...rest } = props;
   const [values, setValues] = useState<any[]>([]);
 
   const addValue = (val: any) => {
@@ -36,16 +35,16 @@ export function Tabs(props: PropsWithChildren<TabsProps>) {
   return (
     <PanGestureHandler onHandlerStateChange={gestureHandler}>
       <View style={[main, style]}>
-        <TabContext.Provider value={{ selected, handleSelect, addValue }}>{children}</TabContext.Provider>
+        <TabContext.Provider value={{ selected, handleSelect, addValue, ...rest }}>{children}</TabContext.Provider>
       </View>
     </PanGestureHandler>
   );
 }
 
 const main = {
-  backgroundColor: color.background,
   display: "flex",
   flexDirection: "column",
+  flexGrow: 1,
+  // gap: spacing.sm,
   height: "100%",
-  flexShrink: 1,
 } as ViewStyle;
