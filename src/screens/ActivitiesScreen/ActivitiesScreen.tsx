@@ -39,13 +39,9 @@ export function ActivitiesScreen({ navigation }: Props) {
   const [filters, setFilters] = useState<ActivityFilters>({});
 
   //Fetch Activities
-  const {
-    data: activities,
-    error,
-    isLoading: isLoadingActivities,
-    mutate,
-  } = useSWR(["activities", userRegion, maxDistance, filters], () =>
-    fetchActivitiesByRegion(userRegion, maxDistance, filters)
+  const { data: activities, isLoading: isLoadingActivities } = useSWR(
+    ["activities", userRegion, maxDistance, filters],
+    () => fetchActivitiesByRegion(userRegion, maxDistance, filters)
   );
 
   return (

@@ -1,3 +1,4 @@
+import { postAxiosApiFormData } from "api/api";
 import { Star } from "assets/svg";
 import GForm from "components/GForm/GForm";
 import { DropPickerItem } from "components/GForm/components/DropPicker";
@@ -8,6 +9,7 @@ import { Text } from "components/Text";
 import { Validations } from "constants/Validations";
 import { INFINIT_PARTICIPANTS } from "constants/global";
 import { t } from "i18n-js";
+import { mutate } from "swr";
 import { LocationType } from "types/global";
 import * as Yup from "yup";
 
@@ -75,9 +77,49 @@ type CreateActivityProps = {
 
 export default function CreateActivity(props: CreateActivityProps) {
   const { open, setOpen } = props;
-  const handleSubmit = (values: ValuesType) => {
-    //TODO: replace by api request
-    console.log(values);
+  // const handleSubmit = (values: ValuesType) => {
+  //   //TODO: replace by api request
+  //   console.log(values);
+  // };
+
+  type ValuesType = {
+    description: string;
+    sport: number;
+    type: string;
+    date: Date;
+    startHour: Date;
+    endHour: Date;
+    dateEnd: Date;
+    nbParticipant: number;
+    location: LocationType;
+    [key: string]: any; // Add index signature
+  };
+
+  const handleSubmit = async (values: ValuesType) => {
+    try {
+      const formData = new FormData();
+      Object.keys(values).forEach((key) => formData.append(key, values[key]));
+      console.log(formData, "formData");
+
+      const response = await postAxiosApiFormData("/activities", formData);
+
+      // Here we call `mutate` to revalidate the local data and update the list of activities
+      mutate("/activities");
+
+      console.log(response);
+    } catch (error) {
+      console.error("Failed to create activity", error);
+    }
+  };
+
+  const handleSubmit3 = async (values: ValuesType) => {
+    try {
+      const formData = new FormData();
+      Object.keys(values).forEach((key) => formData.append(key, values[key]));
+      // Rest of the code...
+    } catch (error) {
+      console.error("Failed to create activity", error);
+    }
   };
 
   return (
@@ -98,9 +140,13 @@ export default function CreateActivity(props: CreateActivityProps) {
             items={sportItems}
           />
           <GForm.AddressPicker valName="location" />
-          <GForm.DateTimePicker tx="createActivity.when" valNames={{ start: "dateStart", end: "dateEnd" }} />
+          <GForm.DateTimePicker
+            tx="createActivity.when"
+            valNames={{ start: "dateStart", end: "dateEnd" }}
+            minDate={new Date()}
+          />
           <GForm.Radio valName="type" items={activityTypeItems} />
-          <GForm.NumberPicker max={10} hasInfinit tx="createActivity.maxParticipant" valName="nbParticipant" />
+          <GForm.NumberPicker max={10} tx="createActivity.maxParticipant" valName="nbParticipant" />
           <GForm.SubmitButton tx="createActivity.createActivity" style={{ alignSelf: "center" }} />
         </GForm>
       </Slider>

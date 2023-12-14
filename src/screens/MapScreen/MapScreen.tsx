@@ -3,7 +3,7 @@ import { Button } from "components/Button";
 import MapComponent from "components/Map/Map";
 import { useEffect, useState, useRef } from "react";
 import { StyleSheet, ViewStyle } from "react-native";
-import { useQuery } from "react-query";
+
 import { fetchActivitiesByRegion, fetchSports } from "api/api";
 import useSWR from "swr";
 
@@ -17,19 +17,17 @@ import { INITIAL_REGION_FRIBOURG } from "constants/global";
 import MapView from "react-native-maps";
 import useCurrentPosition from "hooks/useCurrentPosition";
 
-import { Star } from "assets/svg";
-import { Icon } from "components/Icon";
-import { Radio, Switch, NumberPicker, DropPicker, TextInput, DateTimePicker } from "components/Inputs";
 import { Text } from "components/Text";
 
-import { ScrollView } from "react-native";
 import { View } from "react-native-animatable";
 import ActivityFilter from "components/ActivityFilter/ActivityFilter";
+import CreateActivity from "screens/ActivitiesScreen/components/CreateActivity";
 
 export function MapScreen() {
   const [region, setRegion] = useState<Region>(INITIAL_REGION_FRIBOURG);
   const [userRegion, isLocationFetched] = useCurrentPosition();
   const [maxDistance, setMaxDistance] = useState(30000); // 30km
+  const [openActivity, setOpenActivity] = useState(false);
 
   const mapRef = useRef<MapView>(null);
 
@@ -102,14 +100,20 @@ export function MapScreen() {
   return (
     <MainLayout>
       <Button onPress={handleOpenFilter} text="Filter" />
-      <ActivityFilter
+      <CreateActivity open={openActivity} setOpen={setOpenActivity} />
+      <Button
+        tx="createActivity.button"
+        onPress={() => setOpenActivity(true)}
+        style={{ alignSelf: "center", bottom: 10, position: "absolute" }}
+      />
+      {/* <ActivityFilter
         isVisible={isFilterVisible}
         onClose={handleCloseFilter}
         onApply={handleApplyFilter}
         // sportItems={dataSports}
         // filters={filters}
         // setFilters={setFilters} // If you want to lift state up
-      />
+      /> */}
       {/* <ShowRefetchButton /> */}
 
       {/* <MapComponent

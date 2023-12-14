@@ -90,3 +90,19 @@ export async function fetchActivitiesByRegion(
     userToken
   );
 }
+
+export async function postAxiosApiFormData(path: string, data: any, userToken?: string | null) {
+  const headers: any = {
+    "Content-Type": "multipart/form-data",
+  };
+  if (userToken) {
+    headers.Authorization = `Bearer ${userToken}`;
+  }
+  try {
+    const response = await axios.post(path, data, { headers });
+    return response;
+  } catch (err) {
+    console.error(err, "Axios Post error, path:", path);
+    throw err;
+  }
+}
