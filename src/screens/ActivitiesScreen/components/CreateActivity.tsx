@@ -11,6 +11,7 @@ import { INFINIT_PARTICIPANTS } from "constants/global";
 import { t } from "i18n-js";
 import { mutate } from "swr";
 import { LocationType } from "types/global";
+import { formatHour } from "utils/helper";
 import * as Yup from "yup";
 
 type ValuesType = {
@@ -97,14 +98,81 @@ export default function CreateActivity(props: CreateActivityProps) {
 
   const handleSubmit = async (values: ValuesType) => {
     try {
+      const formattedValues = {
+        name: "Tour de foot aniamaux",
+        description: "Du foot pour les aniamauxs",
+        // latitude: 46.8212,
+        // longitude: 7.7221,
+        latitude: values.location.latitude,
+        longitude: values.location.longitude,
+        location: "Route des avions 1, 1260 Nyon",
+        date: new Date(),
+        startHour: formatHour(new Date().setHours(9, 0, 0, 0)),
+        endHour: formatHour(new Date().setHours(16, 0, 0, 0)),
+        maxParticipants: 15,
+        author: {
+          id: 40,
+        },
+        // author: 42,
+        // author: [45],
+        sport: [2],
+
+        // sport: [10], // Assuming values.sport is a string that can be parsed as a number
+
+        // // description: values.description,
+        // // type: values.type,
+        // description: "Du foot pour les aniamauxs",
+        // latitude: 46.8212,
+        // longitude: 7.7221,
+        // location: "Route des avions 1, 1260 Nyon",
+
+        // date: new Date(),
+        // startHour: formatHour(new Date().setHours(9, 0, 0, 0)),
+        // endHour: formatHour(new Date().setHours(16, 0, 0, 0)),
+        // // date: values.dateStart.toISOString().split("T")[0], // Format: YYYY-MM-DD
+        // // // startHour: values.dateStart.toISOString().split("T")[1],
+        // // // endHour: values.dateEnd.toISOString().split("T")[1],
+        // // startHour: "20:34:58.000",
+        // // endHour: "21:04:58.000",
+        // maxParticipants: values.nbParticipant,
+        // author: {
+        //   id: 46,
+        // },
+        // Add any other fields required by your API
+      };
+
+      // const formattedValues: any = {
+      //   name: "Tour de foot aniamaux",
+      //   description: "Du foot pour les aniamauxs",
+      //   latitude: 46.8212,
+      //   longitude: 7.7221,
+      //   location: "Route des avions 1, 1260 Nyon",
+      //   date: new Date(),
+      //   startHour: formatHour(new Date().setHours(9, 0, 0, 0)),
+      //   endHour: formatHour(new Date().setHours(16, 0, 0, 0)),
+      //   maxParticipants: 15,
+      //   author: {
+      //     id: 40,
+      //   },
+      //   // author: 42,
+      //   // author: [45],
+      //   sport: [1],
+      // };
+
       const formData = new FormData();
-      Object.keys(values).forEach((key) => formData.append(key, values[key]));
+      formData.append("data", JSON.stringify(formattedValues));
+
       console.log(formData, "formData");
 
       const response = await postAxiosApiFormData("/activities", formData);
 
       // Here we call `mutate` to revalidate the local data and update the list of activities
       mutate("/activities");
+
+      // mutate("/activities", (cachedData) => {
+      //   // Supposant que cachedData est un tableau d'activités
+      //   return [...cachedData, { ...values, id: response.data.id }]; // Ajoutez la nouvelle activité avec l'ID retourné
+      // }, false);
 
       console.log(response);
     } catch (error) {
