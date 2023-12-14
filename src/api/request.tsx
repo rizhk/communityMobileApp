@@ -1,3 +1,4 @@
+//DEPRECATED
 import { API_URL } from "@env";
 import axios, { AxiosRequestHeaders } from "axios";
 import { qs } from "qs";
