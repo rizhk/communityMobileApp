@@ -7,7 +7,7 @@ import { color } from "theme";
 import { Text } from "components/Text";
 import Slider from "@react-native-community/slider";
 
-import { Radio, Switch, NumberPicker, DropPicker, TextInput, DateTimePicker, DatePicker } from "components/Inputs";
+import { Radio, Switch, NumberPicker, DropPicker, TextInput, DatePicker } from "components/Inputs";
 import { hexToRGBA } from "utils/helper";
 import { DEFAULT_MAX_DISTANCE } from "constants/global";
 import { DropPickerItem } from "components/Inputs/DropPicker";
@@ -16,6 +16,7 @@ import { SportItemStrapi } from "types/sport";
 import SportPickerComponent from "components/Inputs/SportPicker";
 import { Button } from "components/Button";
 import { ActivityFilters } from "types/activity";
+import { SideSlider } from "components/Modal";
 
 //TODO: Add button create activity s'il y pas de données
 //TODO: Pouvoir filter par adresse et rediriger dessus sur la map
@@ -37,89 +38,46 @@ const ActivityFilter = ({ isVisible, onClose, onApply, currentFilters }: Activit
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
+  const [rightSlider, setRightSlider] = useState(false);
+
   const [animation] = useState(new Animated.Value(modalStartOffset));
 
-  useEffect(() => {
-    if (isVisible) {
-      Animated.timing(animation, {
-        toValue: modalEndOffset, // Anime jusqu'à la position 0
-        duration: 300,
-        useNativeDriver: true,
-      }).start();
-    } else {
-      Animated.timing(animation, {
-        toValue: modalStartOffset, // Replace le modal hors de l'écran
-        duration: 300,
-        useNativeDriver: true,
-      }).start();
-    }
-  }, [isVisible, animation]);
-
-  const modalStyle = {
-    transform: [{ translateX: animation }],
-  } as ViewStyle;
-
   return (
-    <Modal transparent={true} visible={isVisible} onRequestClose={onClose}>
-      <View style={styles.container}>
-        <Pressable style={styles.container} onPress={onClose}>
-          <Animated.View style={modalStyle}>
-            <View style={styles.panel}>
-              <View style={{ display: "flex", flexDirection: "column", gap: 16, padding: 20 }}>
-                <Text text="Sport Picker" />
-                <SportPickerComponent value={sport} setValue={setSport} />
+    <SideSlider transparent={true} visible={isVisible} setVisible={onClose} width={0.8} right>
+      <View style={{ gap: 16, padding: 8 }}>
+        <Text text="Sport Picker" />
+        <SportPickerComponent value={sport} setValue={setSport} />
 
-                <Text text={"Distance: " + maxDistance + " km"} />
-                <Slider
-                  style={{ width: "100%", height: 40 }}
-                  minimumValue={20}
-                  maximumValue={100}
-                  step={10}
-                  minimumTrackTintColor={color.primary}
-                  maximumTrackTintColor={color.primaryDark}
-                  thumbTintColor={color.primary}
-                  value={maxDistance}
-                  onValueChange={setMaxDistance}
-                />
+        <Text text={"Distance: " + maxDistance + " km"} />
+        <Slider
+          style={{ width: "100%", height: 40 }}
+          minimumValue={20}
+          maximumValue={100}
+          step={10}
+          minimumTrackTintColor={color.primary}
+          maximumTrackTintColor={color.primaryDark}
+          thumbTintColor={color.primary}
+          value={maxDistance}
+          onValueChange={setMaxDistance}
+        />
 
-                {/* <Text text="Du" />
+        {/* <Text text="Du" />
             <DatePicker date={startDate} setDate={setStartDate} minDate={new Date()} />
             <Text text="Au" />
             <DatePicker date={endDate} setDate={setEndDate} minDate={startDate} /> */}
-              </View>
-
-              <View style={{ flexDirection: "row", justifyContent: "space-evenly", alignItems: "center" }}>
-                <Button
-                  text="Apply"
-                  size="md"
-                  onPress={() => onApply({ ...currentFilters, sport: { name: sport }, maxDistance })}
-                />
-
-                <Button text="Cancel" size="md" onPress={onClose} preset="outlined" />
-              </View>
-            </View>
-          </Animated.View>
-        </Pressable>
       </View>
-    </Modal>
+
+      <View style={{ flexDirection: "row", justifyContent: "space-evenly", alignItems: "center" }}>
+        <Button
+          text="Apply"
+          size="md"
+          onPress={() => onApply({ ...currentFilters, sport: { name: sport }, maxDistance })}
+        />
+
+        <Button text="Cancel" size="md" onPress={onClose} preset="outlined" />
+      </View>
+    </SideSlider>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "flex-end",
-  },
-  panel: {
-    width: screenWidth - modalEndOffset,
-    height: "100%",
-    backgroundColor: hexToRGBA(color.black, 0.9),
-    padding: 24,
-  },
-  pinImage: {
-    width: 24,
-    height: 24,
-  },
-});
 export default ActivityFilter;
