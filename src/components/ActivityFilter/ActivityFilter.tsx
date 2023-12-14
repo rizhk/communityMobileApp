@@ -29,17 +29,12 @@ const ActivityFilter = ({ isVisible, onClose, onApply, currentFilters }: Activit
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
-  // const updateDate = (date: Date) => {
-  //   setStartDate(new Date(date.getFullYear(), date.getMonth(), date.getDate(), start.getHours(), start.getMinutes()));
-  //   setEndDate(new Date(date.getFullYear(), date.getMonth(), date.getDate(), end.getHours(), end.getMinutes()));
-  // };
-
   return (
     <SideSlider transparent={true} visible={isVisible} setVisible={onClose} width={0.8} right>
       <View style={{ gap: 16, padding: 8 }}>
         <Text text="Sport Picker" />
         <SportPickerComponent value={sport} setValue={setSport} />
-
+        {/* 
         <Text text={"Distance: " + maxDistance + " km"} />
         <Slider
           style={{ width: "100%", height: 40 }}
@@ -51,7 +46,7 @@ const ActivityFilter = ({ isVisible, onClose, onApply, currentFilters }: Activit
           thumbTintColor={color.primary}
           value={maxDistance}
           onValueChange={setMaxDistance}
-        />
+        /> */}
 
         {/* //TODO: Add address Picker */}
 
