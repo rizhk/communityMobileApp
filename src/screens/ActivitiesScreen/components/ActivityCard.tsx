@@ -10,13 +10,15 @@ interface ActivityCardProps {
 const ActivityCard = ({
   activity,
   activity: {
-    attributes: { date, latitude, longitude, sport, maxParticipants },
+    attributes: { date, latitude, longitude, sport, participants, maxParticipants },
   },
 }: ActivityCardProps) => {
   const [address, setAddress] = useState("");
   const day = new Date(date).getDate();
   const month = new Date(date).toLocaleString("default", { month: "long" });
   const sportName = sport.data.attributes.name;
+  const nbParticipants = participants.data.length;
+  const nbmaxParticipants = maxParticipants === 999999 ? "∞" : maxParticipants;
 
   fetchShortAddressFromCoords({
     latitude: latitude,
@@ -32,7 +34,9 @@ const ActivityCard = ({
       <View style={styles.detailsContainer}>
         <Text style={styles.title}>{sportName}</Text>
         <Text style={styles.location}>{address}</Text>
-        <Text style={styles.participants}>14/{maxParticipants}</Text>
+        <Text style={styles.participants}>
+          {nbParticipants}/{maxParticipants}
+        </Text>
       </View>
     </View>
   );

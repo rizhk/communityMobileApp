@@ -64,6 +64,6 @@ export async function fetchShortAddressFromCoords(coords: { latitude: number; lo
   );
   console.log(response.data.results[0], "ressullts");
   const addressComponents = response.data.results[0].address_components;
-  const shortAddress = `${addressComponents[0].short_name} ${addressComponents[1].short_name}, ${addressComponents[6].short_name}  ${addressComponents[2].short_name}`;
+  const shortAddress = `${addressComponents[0]?.short_name} ${addressComponents[1]?.short_name}, ${addressComponents[6]?.short_name}  ${addressComponents[2]?.short_name}`;
   return shortAddress;
 }
