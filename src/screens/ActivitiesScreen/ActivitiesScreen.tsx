@@ -17,6 +17,7 @@ import { View } from "react-native-animatable";
 import ActivityFilter from "components/ActivityFilter/ActivityFilter";
 import { ActivityFilters } from "types/activity";
 import { INITIAL_REGION_FRIBOURG } from "constants/global";
+import ActivityCard from "./components/ActivityCard";
 
 type Props = NativeStackScreenProps<MainStackParamList, "activities">;
 
@@ -52,8 +53,6 @@ export function ActivitiesScreen({ navigation }: Props) {
     fetchActivitiesByRegion(userRegion, maxDistance, filters)
   );
 
-  console.log(activities, "activities");
-
   return (
     <MainLayout>
       <Text preset="header">{activities?.meta?.pagination?.total} Activities found </Text>
@@ -77,11 +76,12 @@ export function ActivitiesScreen({ navigation }: Props) {
           />
           <ScrollView>
             {activities?.data?.map((activity: any) => (
-              <View key={activity?.id}>
-                <Text>
-                  {activity.id} - {activity?.attributes?.date} - {activity.attributes?.sport?.data?.attributes?.name}
-                </Text>
-              </View>
+              <ActivityCard activity={activity} key={activity?.id} />
+              // <View key={activity?.id}>
+              //   <Text>
+              //     {activity.id} - {activity?.attributes?.date} - {activity.attributes?.sport?.data?.attributes?.name}
+              //   </Text>
+              // </View>
             ))}
           </ScrollView>
         </>

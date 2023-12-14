@@ -43,7 +43,6 @@ const MapComponent = ({
 
   const radius = calculateRadius(region.latitudeDelta);
 
-  console.log(activities?.data, "activities.data");
   return (
     <>
       <MapView
