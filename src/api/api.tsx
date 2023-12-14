@@ -67,10 +67,6 @@ export async function fetchActivitiesByRegion(
   filters: ActivityFilters,
   userToken?: string | null
 ) {
-  //   console.log("sport:", Object.keys(filters?.sport));
-
-  console.log("ca fetch");
-
   const apiFilters: { [key: string]: any } = {};
 
   // if (filters?.sport) {
@@ -82,8 +78,6 @@ export async function fetchActivitiesByRegion(
   if (filters?.date) {
     apiFilters["date"] = { $eq: filters?.date };
   }
-
-  console.log(apiFilters, "apiFilters");
 
   return fetchAxiosAPI(
     `/activities`,

@@ -34,7 +34,7 @@ const ActivityFilter = ({ isVisible, onClose, onApply, currentFilters }: Activit
       <View style={{ gap: 16, padding: 8 }}>
         <Text text="Sport Picker" />
         <SportPickerComponent value={sport} setValue={setSport} />
-        {/* 
+
         <Text text={"Distance: " + maxDistance + " km"} />
         <Slider
           style={{ width: "100%", height: 40 }}
@@ -46,7 +46,7 @@ const ActivityFilter = ({ isVisible, onClose, onApply, currentFilters }: Activit
           thumbTintColor={color.primary}
           value={maxDistance}
           onValueChange={setMaxDistance}
-        /> */}
+        />
 
         {/* //TODO: Add address Picker */}
 
@@ -60,7 +60,7 @@ const ActivityFilter = ({ isVisible, onClose, onApply, currentFilters }: Activit
         <Button
           text="Apply"
           size="md"
-          onPress={() => onApply({ ...currentFilters, sport: { name: sport }, maxDistance })}
+          onPress={() => onApply({ ...currentFilters, ...(sport && { sport: { name: sport } }), maxDistance })}
         />
 
         <Button text="Cancel" size="md" onPress={onClose} preset="outlined" />

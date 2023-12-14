@@ -42,8 +42,6 @@ export function ActivitiesScreen({ navigation }: Props) {
 
   const [filters, setFilters] = useState<ActivityFilters>({});
 
-  console.log(userRegion, "userRegion");
-
   //Fetch Activities
   const {
     data: activities,
