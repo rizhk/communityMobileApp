@@ -15,7 +15,6 @@ type AndroidDatePickerProps = {
 
 export function AndroidDatePicker(props: AndroidDatePickerProps) {
   const { visible, setVisible, minDate, date, setDate, mode } = props;
-  const [datePick, setDatePick] = useState(date);
   if (!visible) return null;
   return (
     <DateTimePicker
@@ -25,13 +24,13 @@ export function AndroidDatePicker(props: AndroidDatePickerProps) {
       onChange={(_event, selectedDate) => {
         const currentDate = selectedDate || date;
         setVisible(false);
-        setDatePick(currentDate);
+        setDate(selectedDate);
       }}
       onPointerCancel={() => setVisible(false)}
-      onPointerEnter={() => {
-        setVisible(false);
-        setDate(datePick);
-      }}
+      // onPointerEnter={() => {
+      //   setVisible(false);
+      //   setDate(datePick);
+      // }}
       mode={mode}
       locale={i18n.locale}
     />
