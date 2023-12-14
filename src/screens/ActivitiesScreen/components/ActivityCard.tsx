@@ -35,7 +35,7 @@ const ActivityCard = ({
         <Text style={styles.title}>{sportName}</Text>
         <Text style={styles.location}>{address}</Text>
         <Text style={styles.participants}>
-          {nbParticipants}/{maxParticipants}
+          {nbParticipants}/{nbmaxParticipants}
         </Text>
       </View>
     </View>
