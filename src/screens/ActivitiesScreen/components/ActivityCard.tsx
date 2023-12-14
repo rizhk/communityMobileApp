@@ -1,20 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { ActivityItemStrapi } from "types/activity";
+import { fetchShortAddressFromCoords } from "utils/locationHelper";
 
 interface ActivityCardProps {
-  activity: any;
+  activity: ActivityItemStrapi;
 }
 
-const ActivityCard = ({ activity }: ActivityCardProps) => {
-  console.log(activity, "activity");
-  const inputDate = activity.attributes.date;
-  const day = new Date(inputDate).getDate();
-  const month = new Date(inputDate).toLocaleString("default", { month: "long" });
-  const sport = activity.attributes.sport.data.attributes.name;
-  const location = activity.attributes.location;
-  const maxParticipants = activity.attributes.maxParticipants;
-  console.log(day, "day2");
-  console.log(month, "month");
+const ActivityCard = ({
+  activity,
+  activity: {
+    attributes: { date, latitude, longitude, sport, maxParticipants },
+  },
+}: ActivityCardProps) => {
+  const [address, setAddress] = useState("");
+  const day = new Date(date).getDate();
+  const month = new Date(date).toLocaleString("default", { month: "long" });
+  const sportName = sport.data.attributes.name;
+
+  fetchShortAddressFromCoords({
+    latitude: latitude,
+    longitude: longitude,
+  }).then((address) => setAddress(address));
+
   return (
     <View style={styles.card}>
       <View style={styles.dateContainer}>
@@ -22,8 +30,8 @@ const ActivityCard = ({ activity }: ActivityCardProps) => {
         <Text style={styles.month}>{month}</Text>
       </View>
       <View style={styles.detailsContainer}>
-        <Text style={styles.title}>{sport}</Text>
-        <Text style={styles.location}>{location}</Text>
+        <Text style={styles.title}>{sportName}</Text>
+        <Text style={styles.location}>{address}</Text>
         <Text style={styles.participants}>14/{maxParticipants}</Text>
       </View>
     </View>
