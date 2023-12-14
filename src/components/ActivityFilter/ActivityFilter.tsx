@@ -1,22 +1,17 @@
-import { Star } from "assets/svg";
-import { Icon } from "components/Icon";
 import React, { useState, useEffect } from "react";
 import { Animated, Modal, View, TouchableOpacity, StyleSheet, Dimensions, ViewStyle, Pressable } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+
 import { color } from "theme";
 import { Text } from "components/Text";
 import Slider from "@react-native-community/slider";
 
-import { Radio, Switch, NumberPicker, DropPicker, TextInput, DatePicker } from "components/Inputs";
-import { hexToRGBA } from "utils/helper";
 import { DEFAULT_MAX_DISTANCE } from "constants/global";
-import { DropPickerItem } from "components/Inputs/DropPicker";
-import { SportItem, SportsData } from "types/sport";
-import { SportItemStrapi } from "types/sport";
+
 import SportPickerComponent from "components/Inputs/SportPicker";
 import { Button } from "components/Button";
 import { ActivityFilters } from "types/activity";
 import { SideSlider } from "components/Modal";
+import { DatePicker } from "components/Inputs";
 
 //TODO: Add button create activity s'il y pas de données
 //TODO: Pouvoir filter par adresse et rediriger dessus sur la map
@@ -28,19 +23,16 @@ interface ActivityFilterProps {
   currentFilters: ActivityFilters;
 }
 
-const screenWidth = Dimensions.get("window").width;
-const modalStartOffset = screenWidth; // Départ depuis le côté droit
-const modalEndOffset = 20;
-
 const ActivityFilter = ({ isVisible, onClose, onApply, currentFilters }: ActivityFilterProps) => {
   const [maxDistance, setMaxDistance] = useState(currentFilters?.maxDistance || DEFAULT_MAX_DISTANCE);
   const [sport, setSport] = useState(currentFilters?.sport?.name || "");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
-  const [rightSlider, setRightSlider] = useState(false);
-
-  const [animation] = useState(new Animated.Value(modalStartOffset));
+  // const updateDate = (date: Date) => {
+  //   setStartDate(new Date(date.getFullYear(), date.getMonth(), date.getDate(), start.getHours(), start.getMinutes()));
+  //   setEndDate(new Date(date.getFullYear(), date.getMonth(), date.getDate(), end.getHours(), end.getMinutes()));
+  // };
 
   return (
     <SideSlider transparent={true} visible={isVisible} setVisible={onClose} width={0.8} right>
@@ -61,9 +53,11 @@ const ActivityFilter = ({ isVisible, onClose, onApply, currentFilters }: Activit
           onValueChange={setMaxDistance}
         />
 
-        {/* <Text text="Du" />
-            <DatePicker date={startDate} setDate={setStartDate} minDate={new Date()} />
-            <Text text="Au" />
+        {/* //TODO: Add address Picker */}
+
+        <Text text="Depuis le" />
+        <DatePicker date={startDate} setDate={setStartDate} minDate={new Date()} />
+        {/* <Text text="Au" />
             <DatePicker date={endDate} setDate={setEndDate} minDate={startDate} /> */}
       </View>
 
