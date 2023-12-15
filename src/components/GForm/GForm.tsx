@@ -5,6 +5,7 @@ import { GFormContext, GFormProps } from "./GForm.props";
 import AddressPicker from "./components/AddressPicker";
 import DateTimePicker from "./components/DateTimePicker";
 import DropPicker from "./components/DropPicker";
+import SportPicker from "./components/SportPicker";
 import NumberPicker from "./components/NumberPicker";
 import Radio from "./components/Radio";
 import SubmitButton from "./components/SubmitButton";
@@ -18,6 +19,7 @@ GForm.Radio = Radio;
 GForm.Switch = Switch;
 GForm.DateTimePicker = DateTimePicker;
 GForm.DropPicker = DropPicker;
+GForm.SportPicker = SportPicker;
 GForm.AddressPicker = AddressPicker;
 
 export default function GForm<Values extends FormikValues = FormikValues>({

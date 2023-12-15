@@ -90,8 +90,7 @@ export default function CreateActivity(props: CreateActivityProps) {
   // };
 
   const handleSubmit = async (values: ActivityFormType) => {
-    console.log(new Date(), "newDate()");
-    console.log(values.dateStart, "values.dateStart()");
+    console.log(values, "values");
 
     const startHour = format(values.dateStart, "HH:mm:ss.SSS"); // Formats to hour, minute, second, and milliseconds
     const endHour = format(values.dateEnd, "HH:mm:ss.SSS");
@@ -146,13 +145,19 @@ export default function CreateActivity(props: CreateActivityProps) {
             valName="descirption"
             placeholderTx="createActivity.descriptionPlaceholder"
           />
-          <GForm.DropPicker
+          <GForm.SportPicker
+            tx="createActivity.sportPicker"
+            placeholderTx="createActivity.sportPicker"
+            searchPlaceholder="Search a Sport"
+            valName="sport"
+          />
+          {/* <GForm.DropPicker
             tx="createActivity.sportPicker"
             placeholderTx="createActivity.sportPicker"
             searchPlaceholder="Search a Sport"
             valName="sport"
             items={sportItems}
-          />
+          /> */}
           <GForm.AddressPicker valName="location" />
           <GForm.DateTimePicker
             tx="createActivity.when"
