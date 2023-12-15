@@ -45,6 +45,7 @@ const nowMoreOneHour = () => {
 
 const initialValues: ActivityFormType = {
   description: "",
+  //@ts-ignore
   sport: "2", //TODO: replace by [number] but it's not working
   type: "solo",
   dateStart: new Date(),
