@@ -110,14 +110,12 @@ export default function CreateActivity(props: CreateActivityProps) {
         author: {
           id: 40, //TODO: replace by user id
         },
-        sport: [3], //TODO: replace by sport id
+        sport: [values.sport], //TODO: replace by sport id
         // type: values.type,
       };
 
       const formData = new FormData();
       formData.append("data", JSON.stringify(formattedValues));
-
-      console.log(formData, "formData");
 
       const response = await postAxiosApiFormData("/activities", formData);
 
@@ -128,8 +126,6 @@ export default function CreateActivity(props: CreateActivityProps) {
       //   // Supposant que cachedData est un tableau d'activités
       //   return [...cachedData, { ...values, id: response.data.id }]; // Ajoutez la nouvelle activité avec l'ID retourné
       // }, false);
-
-      console.log(response);
     } catch (error) {
       console.error("Failed to create activity", error);
     }

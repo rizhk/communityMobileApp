@@ -37,7 +37,7 @@ const mapSportsDataToDropPickerItems = (sportsData: SportsData) => {
       <Image source={{ uri: sport.attributes.icon.data.attributes.url }} resizeMode="contain" style={styles.pinImage} />
     ),
     label: sport?.attributes?.name,
-    value: String(sport.attributes?.name),
+    value: String(sport.id),
   }));
 };
 
@@ -52,7 +52,7 @@ export default function SportPicker({
 }: DropPickerProps) {
   const { values, setFieldValue, themeColor } = useGForm();
   const [value, setValue] = useState(values[valName]);
-  console.log(values, "valueseeae");
+  console.log(value, "valueseeae");
   const [open, setOpen] = useState(false);
   const placeholderF = (placeholderTx && t(placeholderTx)) || placeholder || "";
   const searchPlaceholderF = (searchPlaceholderTx && t(searchPlaceholderTx)) || searchPlaceholder || "";
