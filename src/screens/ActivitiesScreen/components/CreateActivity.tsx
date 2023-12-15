@@ -13,6 +13,7 @@ import { t } from "i18n-js";
 import { mutate } from "swr";
 import { LocationType } from "types/global";
 import { formatHour } from "utils/helper";
+import { fetchShortAddressFromCoords } from "utils/locationHelper";
 import * as Yup from "yup";
 
 type ActivityFormType = {
@@ -34,25 +35,6 @@ const activityTypeItems = [
   { value: "solo", label: "createActivity.solo" },
   { value: "private", label: "createActivity.private" },
   { value: "public", label: "createActivity.public" },
-];
-//TODO: replace by sportItems
-const sportItems: DropPickerItem[] = [
-  { icon: () => <Icon icon={Star} />, value: "1box", label: t("sports.Boxe") },
-  { icon: () => <Icon icon={Star} />, value: "2bowling", label: t("sports.Bowling") },
-  { icon: () => <Icon icon={Star} />, value: "3bouldering", label: t("sports.Bouldering") },
-  { icon: () => <Icon icon={Star} />, value: "4soccer", label: t("sports.Soccer") },
-  { icon: () => <Icon icon={Star} />, value: "5box", label: t("sports.Boxe") },
-  { icon: () => <Icon icon={Star} />, value: "6bowling", label: t("sports.Bowling") },
-  { icon: () => <Icon icon={Star} />, value: "7bouldering", label: t("sports.Bouldering") },
-  { icon: () => <Icon icon={Star} />, value: "8soccer", label: t("sports.Soccer") },
-  { icon: () => <Icon icon={Star} />, value: "9box", label: t("sports.Boxe") },
-  { icon: () => <Icon icon={Star} />, value: "10bowling", label: t("sports.Bowling") },
-  { icon: () => <Icon icon={Star} />, value: "11bouldering", label: t("sports.Bouldering") },
-  { icon: () => <Icon icon={Star} />, value: "11soccer", label: t("sports.Soccer") },
-  { icon: () => <Icon icon={Star} />, value: "12box", label: t("sports.Boxe") },
-  { icon: () => <Icon icon={Star} />, value: "13bowling", label: t("sports.Bowling") },
-  { icon: () => <Icon icon={Star} />, value: "14bouldering", label: t("sports.Bouldering") },
-  { icon: () => <Icon icon={Star} />, value: "15soccer", label: t("sports.Soccer") },
 ];
 
 const nowMoreOneHour = () => {
@@ -84,34 +66,30 @@ type CreateActivityProps = {
 
 export default function CreateActivity(props: CreateActivityProps) {
   const { open, setOpen } = props;
-  // const handleSubmit = (values: ActivityFormType) => {
-  //   //TODO: replace by api request
-  //   console.log(values);
-  // };
 
   const handleSubmit = async (values: ActivityFormType) => {
     console.log(values, "values");
 
-    const startHour = format(values.dateStart, "HH:mm:ss.SSS"); // Formats to hour, minute, second, and milliseconds
-    const endHour = format(values.dateEnd, "HH:mm:ss.SSS");
+    const address = await fetchShortAddressFromCoords({
+      latitude: values.location.latitude,
+      longitude: values.location.longitude,
+    });
+
     try {
       const formattedValues = {
         description: values.description,
-
         latitude: values.location.latitude,
         longitude: values.location.longitude,
-        location: "", //TODO: replace by location name
-
+        location: address,
         startHour: format(values.dateStart, "HH:mm:ss.SSS"),
         endHour: format(values.dateEnd, "HH:mm:ss.SSS"),
-        date: values.dateStart, //TODO: Bug date jour avant, on avait déjà eu ça je
-
+        date: values.dateStart, //TODO: Bug date jour avant, on avait déjà eu ça je crois
         maxParticipants: values.nbParticipant,
         author: {
           id: 40, //TODO: replace by user id
         },
-        sport: [values.sport], //TODO: replace by sport id
-        // type: values.type,
+        sport: [values.sport],
+        // type: values.type, //TODO : ça bug
       };
 
       const formData = new FormData();
