@@ -19,7 +19,7 @@ import * as Yup from "yup";
 type ActivityFormType = {
   description: string;
   // sport: [number]; //right
-  sport: string; //TODO: replace by [number];
+  sport: [number]; //TODO: replace by [number];
   type: string;
   dateStart: Date;
   dateEnd: Date;
@@ -45,7 +45,7 @@ const nowMoreOneHour = () => {
 
 const initialValues: ActivityFormType = {
   description: "",
-  sport: "2",
+  sport: "2", //TODO: replace by [number] but it's not working
   type: "solo",
   dateStart: new Date(),
   dateEnd: nowMoreOneHour(),
@@ -125,13 +125,7 @@ export default function CreateActivity(props: CreateActivityProps) {
             searchPlaceholder="Search a Sport"
             valName="sport"
           />
-          {/* <GForm.DropPicker
-            tx="createActivity.sportPicker"
-            placeholderTx="createActivity.sportPicker"
-            searchPlaceholder="Search a Sport"
-            valName="sport"
-            items={sportItems}
-          /> */}
+
           <GForm.AddressPicker valName="location" />
           <GForm.DateTimePicker
             tx="createActivity.when"
