@@ -8,6 +8,7 @@ import { Slider } from "components/Modal";
 import { Text } from "components/Text";
 import { Validations } from "constants/Validations";
 import { INFINIT_PARTICIPANTS } from "constants/global";
+import { format } from "date-fns";
 import { t } from "i18n-js";
 import { mutate } from "swr";
 import { LocationType } from "types/global";
@@ -97,67 +98,30 @@ export default function CreateActivity(props: CreateActivityProps) {
   };
 
   const handleSubmit = async (values: ValuesType) => {
+    console.log(new Date(), "newDate()");
+    console.log(values.dateStart, "values.dateStart()");
+
+    const startHour = format(values.dateStart, "HH:mm:ss.SSS"); // Formats to hour, minute, second, and milliseconds
+    const endHour = format(values.dateEnd, "HH:mm:ss.SSS");
     try {
       const formattedValues = {
-        name: "Tour de foot aniamaux",
-        description: "Du foot pour les aniamauxs",
-        // latitude: 46.8212,
-        // longitude: 7.7221,
+        description: values.description,
+
         latitude: values.location.latitude,
         longitude: values.location.longitude,
-        location: "Route des avions 1, 1260 Nyon",
-        date: new Date(),
-        startHour: formatHour(new Date().setHours(9, 0, 0, 0)),
-        endHour: formatHour(new Date().setHours(16, 0, 0, 0)),
-        maxParticipants: 15,
+        location: "", //TODO: replace by location name
+
+        startHour: format(values.dateStart, "HH:mm:ss.SSS"),
+        endHour: format(values.dateEnd, "HH:mm:ss.SSS"),
+        date: values.dateStart, //TODO: Bug date jour avant, on avait déjà eu ça je
+
+        maxParticipants: values.nbParticipant,
         author: {
-          id: 40,
+          id: 40, //TODO: replace by user id
         },
-        // author: 42,
-        // author: [45],
-        sport: [2],
-
-        // sport: [10], // Assuming values.sport is a string that can be parsed as a number
-
-        // // description: values.description,
-        // // type: values.type,
-        // description: "Du foot pour les aniamauxs",
-        // latitude: 46.8212,
-        // longitude: 7.7221,
-        // location: "Route des avions 1, 1260 Nyon",
-
-        // date: new Date(),
-        // startHour: formatHour(new Date().setHours(9, 0, 0, 0)),
-        // endHour: formatHour(new Date().setHours(16, 0, 0, 0)),
-        // // date: values.dateStart.toISOString().split("T")[0], // Format: YYYY-MM-DD
-        // // // startHour: values.dateStart.toISOString().split("T")[1],
-        // // // endHour: values.dateEnd.toISOString().split("T")[1],
-        // // startHour: "20:34:58.000",
-        // // endHour: "21:04:58.000",
-        // maxParticipants: values.nbParticipant,
-        // author: {
-        //   id: 46,
-        // },
-        // Add any other fields required by your API
+        sport: [3], //TODO: replace by sport id
+        // type: values.type,
       };
-
-      // const formattedValues: any = {
-      //   name: "Tour de foot aniamaux",
-      //   description: "Du foot pour les aniamauxs",
-      //   latitude: 46.8212,
-      //   longitude: 7.7221,
-      //   location: "Route des avions 1, 1260 Nyon",
-      //   date: new Date(),
-      //   startHour: formatHour(new Date().setHours(9, 0, 0, 0)),
-      //   endHour: formatHour(new Date().setHours(16, 0, 0, 0)),
-      //   maxParticipants: 15,
-      //   author: {
-      //     id: 40,
-      //   },
-      //   // author: 42,
-      //   // author: [45],
-      //   sport: [1],
-      // };
 
       const formData = new FormData();
       formData.append("data", JSON.stringify(formattedValues));
