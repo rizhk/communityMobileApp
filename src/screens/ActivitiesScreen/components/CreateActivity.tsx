@@ -15,14 +15,19 @@ import { LocationType } from "types/global";
 import { formatHour } from "utils/helper";
 import * as Yup from "yup";
 
-type ValuesType = {
+type ActivityFormType = {
   description: string;
-  sport: string;
+  // sport: [number]; //right
+  sport: string; //TODO: replace by [number];
   type: string;
   dateStart: Date;
   dateEnd: Date;
+  // startHour: Date;
+  // endHour: Date;
+  // dateEnd: Date;
   nbParticipant: number;
   location: LocationType;
+  [key: string]: any; // Add index signature
 };
 
 const activityTypeItems = [
@@ -56,9 +61,9 @@ const nowMoreOneHour = () => {
   return now;
 };
 
-const initialValues: ValuesType = {
+const initialValues: ActivityFormType = {
   description: "",
-  sport: "",
+  sport: "2",
   type: "solo",
   dateStart: new Date(),
   dateEnd: nowMoreOneHour(),
@@ -79,25 +84,12 @@ type CreateActivityProps = {
 
 export default function CreateActivity(props: CreateActivityProps) {
   const { open, setOpen } = props;
-  // const handleSubmit = (values: ValuesType) => {
+  // const handleSubmit = (values: ActivityFormType) => {
   //   //TODO: replace by api request
   //   console.log(values);
   // };
 
-  type ValuesType = {
-    description: string;
-    sport: number;
-    type: string;
-    date: Date;
-    startHour: Date;
-    endHour: Date;
-    dateEnd: Date;
-    nbParticipant: number;
-    location: LocationType;
-    [key: string]: any; // Add index signature
-  };
-
-  const handleSubmit = async (values: ValuesType) => {
+  const handleSubmit = async (values: ActivityFormType) => {
     console.log(new Date(), "newDate()");
     console.log(values.dateStart, "values.dateStart()");
 
@@ -139,16 +131,6 @@ export default function CreateActivity(props: CreateActivityProps) {
       // }, false);
 
       console.log(response);
-    } catch (error) {
-      console.error("Failed to create activity", error);
-    }
-  };
-
-  const handleSubmit3 = async (values: ValuesType) => {
-    try {
-      const formData = new FormData();
-      Object.keys(values).forEach((key) => formData.append(key, values[key]));
-      // Rest of the code...
     } catch (error) {
       console.error("Failed to create activity", error);
     }
