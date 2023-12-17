@@ -13,6 +13,7 @@ import useCurrentPosition from "hooks/useCurrentPosition";
 import ActivityFilter from "components/ActivityFilter/ActivityFilter";
 import { ActivityFilters } from "types/activity";
 import ActivityCard from "./components/ActivityCard";
+import { YStack } from "components/containers/Stack";
 
 type Props = NativeStackScreenProps<MainStackParamList, "activities">;
 
@@ -45,7 +46,7 @@ export function ActivitiesScreen({ navigation }: Props) {
   );
 
   return (
-    <MainLayout>
+    <YStack full>
       <Text preset="header">{activities?.meta?.pagination?.total} Activities found </Text>
 
       <Button onPress={handleOpenFilter} text="Filter" />
@@ -76,6 +77,6 @@ export function ActivitiesScreen({ navigation }: Props) {
         onPress={() => setOpenActivity(true)}
         style={{ alignSelf: "center", bottom: 10, position: "absolute" }}
       />
-    </MainLayout>
+    </YStack>
   );
 }
