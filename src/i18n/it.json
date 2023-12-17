@@ -112,7 +112,8 @@
   "datePicker": {
     "when": "Quando?",
     "currentDate": "Oggi",
-    "chooseDate": "Scegliere una data"
+    "chooseDate": "Scegliere una data",
+    "chooseTime": "Scegliere un'ora"
   },
   "createActivity": {
     "title": "Creare attività",

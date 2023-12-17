@@ -6,7 +6,7 @@ import { BaseField } from "./BaseField";
 export interface DateTimePickerProps extends Omit<GFieldProps, "valName"> {
   valNames: { start: string; end: string };
   nestedScrollEnabled?: boolean;
-  minDate: Date;
+  minDate?: Date;
 }
 
 export default function DateTimePicker(props: DateTimePickerProps) {

@@ -1,6 +1,7 @@
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Button } from "components/Button";
 import { Popup } from "components/Modal";
+import { Text } from "components/Text";
 import { XStack } from "components/containers/Stack";
 import { i18n } from "i18n";
 import { useState } from "react";
@@ -18,11 +19,12 @@ type IOSDatePickerProps = {
 };
 
 export function IOSDatePicker(props: IOSDatePickerProps) {
-  const { visible, setVisible, minDate, date, setDate, color, mode } = props;
+  const { visible, setVisible, minDate, date, setDate, color, mode = "date" } = props;
   const [datePick, setDatePick] = useState(date);
 
   return (
     <Popup visible={visible} setVisible={() => setVisible(false)} color={color}>
+      <Text tx={`datePicker.${mode == "date" ? "chooseDate" : "chooseTime"}`} preset="header" />
       <DateTimePicker
         value={date}
         display="spinner"
