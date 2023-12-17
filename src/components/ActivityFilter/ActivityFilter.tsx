@@ -24,7 +24,8 @@ interface ActivityFilterProps {
   currentFilters: ActivityFilters;
 }
 
-const ActivityFilter = ({ isVisible, onClose, onApply, currentFilters }: ActivityFilterProps) => {
+function ActivityFilter(props: ActivityFilterProps) {
+  const { isVisible, onClose, onApply, currentFilters } = props;
   const [maxDistance, setMaxDistance] = useState(currentFilters?.maxDistance || DEFAULT_MAX_DISTANCE);
   const [sport, setSport] = useState(currentFilters?.sport?.name || "");
   const [startDate, setStartDate] = useState(new Date());
@@ -68,6 +69,6 @@ const ActivityFilter = ({ isVisible, onClose, onApply, currentFilters }: Activit
       </XStack>
     </SideSlider>
   );
-};
+}
 
 export default ActivityFilter;
