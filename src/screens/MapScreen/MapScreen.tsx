@@ -25,6 +25,7 @@ import { Text } from "components/Text";
 import { ScrollView } from "react-native";
 import { View } from "react-native-animatable";
 import ActivityFilter from "components/ActivityFilter/ActivityFilter";
+import { YStack } from "components/containers/Stack";
 
 export function MapScreen() {
   const [region, setRegion] = useState<Region>(INITIAL_REGION_FRIBOURG);
@@ -100,7 +101,7 @@ export function MapScreen() {
   }
 
   return (
-    <MainLayout>
+    <YStack full>
       <Button onPress={handleOpenFilter} text="Filter" />
       <ActivityFilter
         isVisible={isFilterVisible}
@@ -119,6 +120,6 @@ export function MapScreen() {
         region={region}
         onRegionChangeComplete={handleRegionChangeComplete}
       /> */}
-    </MainLayout>
+    </YStack>
   );
 }

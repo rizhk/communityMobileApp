@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { Animated, Modal, View, TouchableOpacity, StyleSheet, Dimensions, ViewStyle, Pressable } from "react-native";
+import { useState } from "react";
 
 import { color } from "theme";
 import { Text } from "components/Text";

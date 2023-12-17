@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
 import MapView, { Marker, Region, Circle } from "react-native-maps";
 import { MapPresets, presets } from "./map.presets";
 import { Text } from "components/Text";
@@ -23,16 +21,8 @@ interface MapProps {
   onRegionChangeComplete?: (newRegion: Region) => void; // Add this line
 }
 
-const MapComponent = ({
-  preset = "default",
-  region,
-  onRegionChangeComplete,
-  mapRef,
-  activities,
-  maxDistance,
-  style,
-  ...rest
-}: MapProps) => {
+function MapComponent(props: MapProps) {
+  const { preset = "default", region, onRegionChangeComplete, mapRef, activities, maxDistance, style, ...rest } = props;
   const styles = [presets[preset], style];
 
   const calculateRadius = (latitudeDelta: number): number => {
@@ -88,6 +78,6 @@ const MapComponent = ({
       </MapView>
     </>
   );
-};
+}
 
 export default MapComponent;
