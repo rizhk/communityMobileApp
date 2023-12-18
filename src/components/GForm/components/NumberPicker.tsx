@@ -23,12 +23,13 @@ const ANIMATION_DURATION = 300;
 const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 const AnimatedXStack = Animated.createAnimatedComponent(XStack);
 
-export default function Picker(props: GFieldProps & Omit<NumberPickerProps, "value" | "setValue">) {
+export default function NumberPicker(props: GFieldProps & Omit<NumberPickerProps, "value" | "setValue">) {
   const { containerStyle, valName, tx, text, min, max } = props;
   const { handleChange, values, themeColor = "primary" } = useGForm();
   const [noLimit, setNoLimit] = useState(Number(values[valName]) === INFINIT_PARTICIPANTS);
   const [displayValue, setDisplayValue] = useState(values[valName] as string);
   const [focus, setFocus] = useState(false);
+  const ref = useRef<TextInput | null>(null);
 
   const width = useRef(
     new Animated.Value(
@@ -45,6 +46,7 @@ export default function Picker(props: GFieldProps & Omit<NumberPickerProps, "val
       setNoLimit(true);
       handleChange(valName)(String(INFINIT_PARTICIPANTS));
       shrink();
+      if (ref?.current && ref.current.isFocused()) ref.current.blur();
     }
   };
 
@@ -102,6 +104,7 @@ export default function Picker(props: GFieldProps & Omit<NumberPickerProps, "val
               setFocus(false);
             }}
             style={[inputStyle, { width: width }, noLimit ? disableInputStyle : {}]}
+            ref={ref}
           />
           <Pressable onPress={toggleLimit} style={iButton}>
             <Text

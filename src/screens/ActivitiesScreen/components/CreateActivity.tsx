@@ -85,6 +85,7 @@ export default function CreateActivity(props: CreateActivityProps) {
       <Slider visible={open} setVisible={setOpen}>
         <Text preset="header" tx="createActivity.title" />
         <GForm initialValues={initialValues} validationSchema={validations} onSubmit={handleSubmit}>
+          <GForm.NumberPicker max={10} hasInfinit tx="createActivity.maxParticipant" valName="nbParticipant" />
           <GForm.TextInput
             tx="createActivity.activityDescription"
             valName="descirption"
@@ -100,7 +101,6 @@ export default function CreateActivity(props: CreateActivityProps) {
           <GForm.AddressPicker valName="location" />
           <GForm.DateTimePicker tx="createActivity.when" valNames={{ start: "dateStart", end: "dateEnd" }} />
           <GForm.Radio valName="type" items={activityTypeItems} />
-          <GForm.NumberPicker max={10} hasInfinit tx="createActivity.maxParticipant" valName="nbParticipant" />
           <GForm.SubmitButton tx="createActivity.createActivity" style={{ alignSelf: "center" }} />
         </GForm>
       </Slider>
