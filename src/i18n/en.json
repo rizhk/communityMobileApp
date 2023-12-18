@@ -128,7 +128,8 @@
     "activityDescription": "Activity's description",
     "createActivity": "Create activity",
     "descriptionPlaceholder": "Describe your activity",
-    "chooseOnMap": "Select from map"
+    "chooseOnMap": "Select from map",
+    "wrongActivityDuration": "The activity duration must be inbetween {{min}} minutes and {{max}} hours"
   },
 
   "tournamentScreen": {

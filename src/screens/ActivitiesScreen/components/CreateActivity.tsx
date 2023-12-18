@@ -52,16 +52,6 @@ const nowMoreOneHour = () => {
   return now;
 };
 
-const initialValues: ValuesType = {
-  description: "",
-  sport: "",
-  type: "solo",
-  dateStart: new Date(),
-  dateEnd: nowMoreOneHour(),
-  nbParticipant: INFINIT_PARTICIPANTS,
-  location: { latitude: 0, longitude: 0 },
-};
-
 const validations = Yup.object().shape({
   // name: Validations.emailRequired,
   textInput: Validations.name,
@@ -78,6 +68,16 @@ export default function CreateActivity(props: CreateActivityProps) {
   const handleSubmit = (values: ValuesType) => {
     //TODO: replace by api request
     console.log(values);
+  };
+
+  const initialValues: ValuesType = {
+    description: "",
+    sport: "",
+    type: "solo",
+    dateStart: new Date(),
+    dateEnd: nowMoreOneHour(),
+    nbParticipant: INFINIT_PARTICIPANTS,
+    location: { latitude: 0, longitude: 0 },
   };
 
   return (

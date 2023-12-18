@@ -127,7 +127,8 @@
     "maxParticipant": "Max Teilnehmer/innen",
     "activityDescription": "Beschreibung der Aktivität",
     "createActivity": "Aktivität erstellen",
-    "descriptionPlaceholder": "Beschreibung der Aktivität"
+    "descriptionPlaceholder": "Beschreibung der Aktivität",
+    "wrongActivityDuration": "Die Aktivitätsdauer muss zwischen {{min}} Minuten und {{max}} Stunden liegen"
   },
   "fieldScreen": {
     "title": "Feld",

@@ -131,7 +131,8 @@
     "activityDescription": "Descrizione dell'attività",
     "createActivity": "Creare attività",
     "descriptionPlaceholder": "Descrizione dell'attività",
-    "chooseOnMap": "Scegliere sulla mappa"
+    "chooseOnMap": "Scegliere sulla mappa",
+    "wrongActivityDuration": "La durata dell'attività deve essere tra {{min}} minuti e {{max}} ore"
   },
   "fieldScreen": {
     "title": "Terreno",
