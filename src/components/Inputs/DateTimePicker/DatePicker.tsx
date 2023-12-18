@@ -11,21 +11,16 @@ import { inputFieldStyle } from "theme/styles";
 import { AndroidDatePicker } from "./components/AndroidDatePicker";
 import { IOSDatePicker } from "./components/IODatePicker";
 import { color as themeColor } from "../../../theme/color";
-
-export type DatePickerProps = {
-  date: Date;
-  setDate: (date: any) => void;
-  minDate?: Date;
-  color?: ThemeColorType;
-  style?: ViewStyle;
-};
+import { DatePickerProps } from "./components/DatePicker.props";
 
 export function DatePicker(props: DatePickerProps) {
-  const { minDate, date, setDate, color = "primary", style } = props;
+  const { minimumDate, maximumDate, date, setDate, color = "primary", style, txLabel } = props;
   const [show, setShow] = useState(false);
-  const pickerProps = { visible: show, setVisible: setShow, minDate, date, setDate, color };
+  const pickerProps = { visible: show, setVisible: setShow, minimumDate, maximumDate, date, setDate, color, txLabel };
+
   return (
     <>
+      {/* <Text text={} */}
       <TouchableOpacity onPress={() => setShow(true)} style={style}>
         <XStack style={container} jc="space-between" ai="center">
           <Text size="sm" preset="bold" text={date.getDate().toString()} style={text} />
