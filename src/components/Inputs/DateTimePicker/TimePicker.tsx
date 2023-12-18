@@ -3,7 +3,7 @@ import { XStack } from "components/containers/Stack";
 import { useState } from "react";
 import { TextStyle, View, ViewStyle, Platform } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { ThemeColorType, spacing } from "theme";
+import { spacing } from "theme";
 import { inputFieldStyle } from "theme/styles";
 
 import { AndroidDatePicker } from "./components/AndroidDatePicker";

@@ -7,7 +7,6 @@ import { inputFieldStyle } from "theme/styles";
 import { DatePicker } from "./DatePicker";
 import { TimePicker } from "./TimePicker";
 import { TimeIntervalPickerProps } from "./components/DatePicker.props";
-import { format } from "date-fns";
 
 export function TimeInterval(props: TimeIntervalPickerProps) {
   const { start, end, setStart, setEnd, minimumDate, maximumDate, color } = props;

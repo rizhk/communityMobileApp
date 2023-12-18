@@ -89,6 +89,7 @@ export default function CreateActivity(props: CreateActivityProps) {
             tx="createActivity.activityDescription"
             valName="descirption"
             placeholderTx="createActivity.descriptionPlaceholder"
+            multiline
           />
           <GForm.DropPicker
             tx="createActivity.sportPicker"
