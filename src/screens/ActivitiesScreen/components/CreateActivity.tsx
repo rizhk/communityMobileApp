@@ -9,10 +9,8 @@ import { Text } from "components/Text";
 import { Validations } from "constants/Validations";
 import { INFINIT_PARTICIPANTS } from "constants/global";
 import { format } from "date-fns";
-import { t } from "i18n-js";
 import { mutate } from "swr";
 import { LocationType } from "types/global";
-import { formatHour } from "utils/helper";
 import { fetchShortAddressFromCoords } from "utils/locationHelper";
 import * as Yup from "yup";
 
