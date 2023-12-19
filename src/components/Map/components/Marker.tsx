@@ -1,10 +1,8 @@
-import { Icon } from "components/Icon";
-import React from "react";
 import { StyleSheet, View, TouchableOpacity, Platform } from "react-native";
 import { Text } from "components/Text";
 
 import { Image } from "react-native";
-import { color, radius, spacing, TextStyles, shadow, text } from "theme";
+import { color, spacing, TextStyles, shadow, text } from "theme";
 
 import Svg, { Path } from "react-native-svg";
 
@@ -28,13 +26,14 @@ interface CustomMarkerProps {
   type?: "activity" | "field" | "tournament";
 }
 
-export function CustomMarker({
-  type,
+export function CustomMarker(props: CustomMarkerProps) {
+  const {
+    type,
 
-  participantCount,
-  image,
-  pinImage,
-}: CustomMarkerProps) {
+    participantCount,
+    image,
+    pinImage,
+  } = props;
   const pinType = type ? `pin-${type}` : "pin-activity";
 
   return (

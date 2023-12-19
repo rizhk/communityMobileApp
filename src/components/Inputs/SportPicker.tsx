@@ -1,5 +1,5 @@
 //TODO: Discussion intrete composant SportPicker
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import { Image, StyleSheet } from "react-native";
 import { SportsData } from "types/sport";
@@ -13,7 +13,7 @@ interface SportPickerComponentProps {
   setValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const mapSportsDataToDropPickerItems = (sportsData: SportsData) => {
+function mapSportsDataToDropPickerItems(sportsData: SportsData) {
   return sportsData?.data?.map((sport) => ({
     icon: () => (
       <Image source={{ uri: sport.attributes.icon.data.attributes.url }} resizeMode="contain" style={styles.pinImage} />
@@ -21,9 +21,9 @@ const mapSportsDataToDropPickerItems = (sportsData: SportsData) => {
     label: sport?.attributes?.name,
     value: String(sport.attributes?.name),
   }));
-};
+}
 
-const SportPickerComponent = ({ value, setValue }: SportPickerComponentProps) => {
+function SportPickerComponent({ value, setValue }: SportPickerComponentProps) {
   const { data: dataSports } = useSWR(["sports"], () => fetchSports());
 
   if (!dataSports) {
@@ -31,7 +31,7 @@ const SportPickerComponent = ({ value, setValue }: SportPickerComponentProps) =>
   }
 
   return <DropPicker items={mapSportsDataToDropPickerItems(dataSports)} value={value} setValue={setValue} />;
-};
+}
 
 const styles = StyleSheet.create({
   pinImage: {

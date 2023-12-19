@@ -9,14 +9,10 @@ import { ActivityIndicator, ScrollView } from "react-native";
 import CreateActivity from "./components/CreateActivity";
 import useSWR from "swr";
 import { fetchActivitiesByRegion } from "api/api";
-import { Region } from "react-native-maps";
-// import { INITIAL_REGION } from "constants/global";
 import useCurrentPosition from "hooks/useCurrentPosition";
-import { is } from "date-fns/locale";
-import { View } from "react-native-animatable";
 import ActivityFilter from "components/ActivityFilter/ActivityFilter";
 import { ActivityFilters } from "types/activity";
-import { INITIAL_REGION_FRIBOURG } from "constants/global";
+import ActivityCard from "./components/ActivityCard";
 
 type Props = NativeStackScreenProps<MainStackParamList, "activities">;
 
@@ -52,8 +48,6 @@ export function ActivitiesScreen({ navigation }: Props) {
     fetchActivitiesByRegion(userRegion, maxDistance, filters)
   );
 
-  console.log(activities, "activities");
-
   return (
     <MainLayout>
       <Text preset="header">{activities?.meta?.pagination?.total} Activities found </Text>
@@ -76,13 +70,7 @@ export function ActivitiesScreen({ navigation }: Props) {
             currentFilters={filters}
           />
           <ScrollView>
-            {activities?.data?.map((activity: any) => (
-              <View key={activity?.id}>
-                <Text>
-                  {activity.id} - {activity?.attributes?.date} - {activity.attributes?.sport?.data?.attributes?.name}
-                </Text>
-              </View>
-            ))}
+            {activities?.data?.map((activity: any) => <ActivityCard activity={activity} key={activity?.id} />)}
           </ScrollView>
         </>
       )}
