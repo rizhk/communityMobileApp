@@ -36,6 +36,8 @@ export interface StackProps extends ViewProps {
   flexGrow?: number | boolean;
   flexShrink?: number | boolean;
   shadow?: boolean;
+  wrap?: boolean;
+  flexWrap?: "wrap" | "nowrap" | "wrap-reverse";
 }
 
 export function Stack(props: StackProps) {
@@ -74,6 +76,8 @@ export function Stack(props: StackProps) {
     flexGrow = false,
     flexShrink = false,
     shadow,
+    wrap,
+    flexWrap,
     ...rest
   } = props;
 
@@ -87,6 +91,7 @@ export function Stack(props: StackProps) {
   const fs = typeof flexShrink === "boolean" ? (flexShrink ? 1 : 0) : flexShrink;
   const zIndex = z;
   const styles = {
+    flexWrap: wrap ? "wrap" : flexWrap,
     zIndex,
     flexDirection: direction,
     flex,

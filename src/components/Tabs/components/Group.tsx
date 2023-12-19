@@ -1,19 +1,15 @@
+import { Stack } from "components/containers/Stack";
 import { PropsWithChildren } from "react";
-import { View, ViewProps, ViewStyle } from "react-native";
-import { spacing } from "theme";
 
-export function TabsGroup(props: PropsWithChildren<ViewProps>) {
-  const { children, style, ...rest } = props;
+import { useTabs } from "../Tabs.props";
+
+export function TabsGroup(props: PropsWithChildren) {
+  const { children } = props;
+  const { group } = useTabs();
+
   return (
-    <View style={[group, style]} {...rest}>
+    <Stack direction="row" pa="sm" gap="md" {...group}>
       {children}
-    </View>
+    </Stack>
   );
 }
-
-const group = {
-  display: "flex",
-  flexDirection: "row",
-  gap: spacing.md,
-  // marginHorizontal: spacing.md,
-} as ViewStyle;

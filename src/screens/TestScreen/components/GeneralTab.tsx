@@ -18,7 +18,7 @@ export default function GeneralTab() {
   const [textColor, setTextColor] = useState("white" as ThemeColorType);
   const [popup, setPopup] = useState(false);
   return (
-    <YStack gap="sm" flexGrow jc="space-between">
+    <YStack gap="sm" flexGrow jc="space-between" pa="sm">
       <ColorPicker setColor={setColor} setTextColor={setTextColor} />
       <Text preset="header" color={textColor}>
         Text Header

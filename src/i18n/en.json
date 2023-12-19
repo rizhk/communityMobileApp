@@ -104,6 +104,11 @@
     "currentPosition": "current location",
     "choosePosition": "choose a location"
   },
+  "datePicker": {
+    "when": "When ?",
+    "currentDate": "Today",
+    "chooseDate": "Choose a date"
+  },
   "createActivity": {
     "button": "Create Activity",
     "title": "Create activity",

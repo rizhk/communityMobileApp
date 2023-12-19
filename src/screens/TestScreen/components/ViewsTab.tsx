@@ -3,7 +3,7 @@ import { Stack, XStack, YStack } from "components/containers/Stack";
 
 export default function ViewsTab() {
   return (
-    <YStack bc="grey800" pa="sm" gap="xs" jc="space-between" flexGrow>
+    <YStack bc="grey800" ma="sm" pa="sm" gap="xs" jc="space-between" flexGrow>
       <Text text="YStack bc='grey800' pa='sm' gap='xs' jc='space-between' flexGrow" />
       <XStack pa="xl" ai="center" alignSelf="center" maxWidth={250} gap="md">
         <YStack pa="xs" borderRadius="sm" borderWidth={2} borderColor="white" gap="sm">

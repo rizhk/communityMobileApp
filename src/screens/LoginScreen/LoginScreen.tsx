@@ -49,7 +49,6 @@ export function LoginScreen({ navigation, route }: Props) {
         onSubmit={(values) => {
           handleSubmit(values);
         }}
-        submitTx="loginScreen.loginButton"
       >
         <View style={{ paddingVertical: spacing.md }}>
           <GForm.TextInput valName="email" placeholderTx="loginScreen.email" preset="thin" />

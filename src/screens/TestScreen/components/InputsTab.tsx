@@ -1,10 +1,11 @@
 import { Star } from "assets/svg";
 import { Icon } from "components/Icon";
-import { Radio, Switch, NumberPicker, DropPicker, TextInput, DateTimePicker } from "components/Inputs";
+import { Radio, Switch, NumberPicker, DropPicker, TextInput, TimeInterval } from "components/Inputs";
 import { AddressPicker } from "components/Inputs/AddressPicker";
+import { XStack } from "components/containers/Stack";
 import { useState } from "react";
 import { ScrollView } from "react-native";
-import { View } from "react-native-animatable";
+import { spacing } from "theme";
 
 const radioItems = [
   { label: "item1", value: "item1" },
@@ -29,24 +30,24 @@ export function InputsTab() {
   const [address, setAddress] = useState({ latitude: 0, longitude: 0 });
 
   return (
-    <ScrollView style={{ display: "flex", flexDirection: "column", gap: 30 }}>
+    <ScrollView style={{ display: "flex", flexDirection: "column", padding: spacing.sm }}>
       <TextInput placeholder="type text" style={{ marginVertical: 10 }} />
       <DropPicker items={dropItems} value={item} setValue={setItem} searchable />
-      <AddressPicker value={address} setValue={setAddress} placeholder="addressPicker" style={{ marginTop: 10 }} />
+      <AddressPicker value={address} setValue={setAddress} placeholder="addressPicker" style={{ marginVertical: 10 }} />
+      <TimeInterval start={startDate} end={endDate} setStart={setStartDate} setEnd={setEndDate} color="secondary" />
       <Radio value={radio} setValue={setRadio} items={radioItems} style={{ marginTop: 20 }} />
-      <View style={{ flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap", padding: 10, gap: 20 }}>
+      <XStack ai="center" jc="space-around" wrap pa="md" gap="md">
         <Radio value={radio} setValue={setRadio} items={radioItems} groupDirection="column" color="secondary" />
-        <NumberPicker min={0} max={10} value={n} setValue={setN} hasInfinit padding={2} />
-      </View>
-      <View style={{ flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap", padding: 10, gap: 20 }}>
+        <NumberPicker min={0} max={10} value={n} setValue={setN} />
+      </XStack>
+      <XStack ai="center" jc="space-around" wrap pa="md" gap="md">
         <Switch value={switchValue} onChange={() => setSwitchValue(!switchValue)} />
         <Switch value />
         <Switch value={false} color="secondary" />
         <Switch value color="secondary" />
         <Switch value={false} color="tertiary" />
         <Switch value color="tertiary" />
-      </View>
-      <DateTimePicker startDate={startDate} endDate={endDate} setStartDate={setStartDate} setEndDate={setEndDate} />
+      </XStack>
     </ScrollView>
   );
 }
