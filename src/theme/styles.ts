@@ -1,5 +1,6 @@
 import { TextStyle, ViewStyle } from "react-native";
 import { ThemeColorType, color as themeColor } from "theme/color";
+import { shadow } from "theme/shadow";
 import { radius } from "theme/shape";
 import { spacing } from "theme/spacing";
 
@@ -33,5 +34,6 @@ export const inputFieldStyle = {
   paddingHorizontal: spacing.sm,
   color: themeColor.white,
   height: 33,
-  ...shadowStyle,
+  ...shadow.xxs,
+  // ...shadowStyle,
 } as TextStyle;

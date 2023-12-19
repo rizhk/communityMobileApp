@@ -1,3 +1,32 @@
+import { SportItem, SportItemStrapi, SportsData } from "./sport";
+import { UserItem } from "./user";
+
+export const populateActivity = [
+  "cover",
+  "author",
+  "author.avatar",
+  "author.blockedUsers",
+  "participants",
+  "participants.avatar",
+  "sport",
+  "sport.icon",
+  "sport.localizations",
+  "channel",
+  "blockedUsers",
+];
+
+//****** ACTIVITY ******\\
+export interface ActivityFilters {
+  sportName?: string;
+  sportId?: number;
+  sport?: {
+    name?: string;
+    id?: number;
+  };
+  date?: string;
+  maxDistance?: number;
+}
+
 export interface ActivityItem {
   id: number;
   name: string;
@@ -10,25 +39,52 @@ export interface ActivityItem {
   location: string;
   description: string;
   author: UserItem;
-  participants: { data: UserItem[] };
+  participants: { data: UserItem[] }; //TODO: Check types
   blockedUsers: { data: UserItem[] };
-  sport: SportItem;
+  sport: { data: SportItemStrapi };
   channel: any;
 }
-export interface SportItem {
+
+export interface ActivityItemStrapi {
   id: number;
-  name: string;
-  icon?: ImageItemStrapi;
-  data?: any;
+  attributes: ActivityItem;
 }
 
-export interface UserItem {
-  data?: {
+export interface ActivitiesData {
+  data: ActivityItemStrapi[];
+  meta: any;
+}
+
+export interface ActivityFormData extends ActivityFormSchema {
+  label?: string;
+  type: ActivityFormType;
+  multiple?: boolean;
+  searchable?: boolean;
+  labelLocation?: string;
+  labelActualLocation?: string;
+}
+export interface ActivityFormSchema {
+  value: ActivityType;
+  initialValue?: number | string | boolean | Date | Array<any>;
+  validation: FieldValidation;
+}
+
+//****** IMAGE ******\\
+export interface ImageItem {
+  public_id: string;
+  url: string;
+}
+export interface ImageItemStrapi {
+  data: {
     id: number;
+    attributes: ImageItem;
   };
-  id?: number;
+
+  provider_metadata: ImageItem;
+  id: number;
 }
 
+//****** FIELD ******\\
 export interface FieldItem {
   sports: SportItem;
   certified: boolean;
@@ -44,40 +100,12 @@ export interface FieldItem {
   status: "public" | "semi-private" | "private";
   disponibility?: string;
 }
-
-export interface ImageItem {
-  public_id: string;
-}
-export interface ImageItemStrapi {
-  provider_metadata: ImageItem;
-  id: number;
-}
-
-export interface ActivityItemStrapi {
-  id: number;
-  attributes: ActivityItem;
-}
-
-export interface ActivitiesData {
-  data: ActivityItemStrapi[];
-  meta: any;
-}
-
-export interface SportItemStrapi {
-  id: number;
-  attributes: SportItem;
-}
-
 export interface FieldItemStrapi {
   id: number;
   attributes: FieldItem;
 }
 
-export interface SportsData {
-  data: SportItemStrapi[];
-  meta: any;
-}
-
+//****** TOURNAMENT ******\\
 export interface TournamentItem {
   maxParticipants?: number;
   latitude: number;

@@ -1,9 +1,16 @@
 import { format as Format } from "date-fns";
 import "i18n";
-import { fr, en, de, it } from "date-fns/locale";
 import i18n from "i18n-js";
+import { fr, enUS as en, de, it } from "date-fns/locale";
 import { LatLng } from "react-native-maps";
-import { ImageUpload } from "types/global";
+
+export const hexToRGBA = (hex: string, alpha: number) => {
+  let r = parseInt(hex.slice(1, 3), 16);
+  let g = parseInt(hex.slice(3, 5), 16);
+  let b = parseInt(hex.slice(5, 7), 16);
+
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
 
 export type GravityType =
   | "auto"
@@ -22,7 +29,30 @@ export type GravityType =
 
 export type ResizeType = "fit" | "fill" | "limit" | "pad" | "crop" | "scale" | string;
 
-export const formDataImage = async (values = {}, image: ImageUpload, field = "cover") => {
+export const cloudinaryUrl = (
+  publicId: string = "duhdurytr",
+  width: number,
+  height: number,
+  resizeType: ResizeType = "fill",
+  gravityType: GravityType
+): string => {
+  const gravity = gravityType ? `g_${gravityType},` : "";
+  return `https://res.cloudinary.com/duhdurytr/image/upload/${gravity}c_${resizeType},h_${height},w_${width},q_auto:best,f_auto/${publicId}`;
+};
+
+// //TODO: improve cloudinaryUrl and replace by https://www.npmjs.com/package/@cloudinary/url-gen
+// export const cloudinaryUrl = (
+//   publicId = "duhdurytr",
+//   width: number,
+//   height: number,
+//   resizeType = "fill",
+//   gravityType = "auto"
+// ) => {
+//   return `https://res.cloudinary.com/duhdurytr/image/upload/g_${gravityType},c_${resizeType},h_${height},w_${width},q_auto:best,f_auto/${publicId}`;
+// };
+
+//Form
+export const formDataImage = async (values = {}, image: any, field = "cover") => {
   let imageUri;
   if (typeof image === "string") {
     imageUri = image;
@@ -49,13 +79,9 @@ export const formDataImage = async (values = {}, image: ImageUpload, field = "co
   return formData;
 };
 
-//Text
-export function truncateWithEllipses(text: string, max: number) {
-  return text.substr(0, max - 1) + (text.length > max ? "..." : "");
-}
-
-export function truncateWithReadmore(text: string, max: number) {
-  return text.substr(0, max - 1) + (text.length > max ? "<a" : "");
+//Divers
+export function onlyUnique(value: any, index: number, self: any) {
+  return self.indexOf(value) === index;
 }
 
 export function formatDate(date: Date): string {

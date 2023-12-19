@@ -16,6 +16,7 @@ interface SideSliderProps extends ModalProps {
   right?: boolean;
   color?: ThemeColorType;
   width?: number;
+  transparent?: boolean;
 }
 
 const screenWidth = Dimensions.get("window").width;
@@ -32,6 +33,7 @@ export function SideSlider(props: PropsWithChildren<SideSliderProps>) {
     right = true,
     width = 0.9,
     children,
+    transparent = true,
   } = props;
 
   const isRight = !left && right;
@@ -60,7 +62,7 @@ export function SideSlider(props: PropsWithChildren<SideSliderProps>) {
   };
 
   return (
-    <Modal visible={modal} transparent animationType="fade">
+    <Modal visible={modal} transparent={transparent} animationType="fade">
       <Pressable onPress={() => setVisible(false)} style={{ height: "100%" }}>
         <BlurView intensity={blur} tint="dark" style={blurStyle}>
           <Animated.View

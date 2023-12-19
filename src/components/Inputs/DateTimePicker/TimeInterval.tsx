@@ -17,7 +17,8 @@ export type TimeIntervalProps = {
 };
 
 export function TimeInterval(props: TimeIntervalProps) {
-  const { start, end, setStart, setEnd, minDate, color } = props;
+  const { start, end, setStart, setEnd, color } = props;
+  const minDate = new Date();
 
   const updateDate = (date: Date) => {
     setStart(new Date(date.getFullYear(), date.getMonth(), date.getDate(), start.getHours(), start.getMinutes()));

@@ -36,7 +36,8 @@
     "profil": "Profil",
     "chat": "Chat",
     "pelops": "Pelops",
-    "messages": "Mitteilungen"
+    "messages": "Mitteilungen",
+    "designSystem": "Design System"
   },
   "loginScreen": {
     "title": "Anmeldung",

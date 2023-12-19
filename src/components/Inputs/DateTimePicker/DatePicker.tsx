@@ -3,14 +3,15 @@ import { XStack } from "components/containers/Stack";
 import { format } from "date-fns";
 import { t } from "i18n-js";
 import { useState } from "react";
-import { TextStyle, View, ViewStyle, Platform } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TextStyle, View, ViewStyle, Platform, TouchableOpacity } from "react-native";
+
 import { ThemeColorType } from "theme";
 import { inputFieldStyle } from "theme/styles";
 
 import { AndroidDatePicker } from "./components/AndroidDatePicker";
 import { IOSDatePicker } from "./components/IODatePicker";
 import { color as themeColor } from "../../../theme/color";
+import { Button } from "components/Button";
 
 export type DatePickerProps = {
   date: Date;
@@ -24,9 +25,14 @@ export function DatePicker(props: DatePickerProps) {
   const { minDate, date, setDate, color = "primary", style } = props;
   const [show, setShow] = useState(false);
   const pickerProps = { visible: show, setVisible: setShow, minDate, date, setDate, color };
+
+  const onShow = () => {
+    setShow(true);
+  };
+
   return (
-    <>
-      <TouchableOpacity onPress={() => setShow(true)} style={style}>
+    <View>
+      <TouchableOpacity onPress={onShow} style={style}>
         <XStack style={container} jc="space-between" ai="center">
           <Text size="sm" preset="bold" text={date.getDate().toString()} style={text} />
           <View style={separatorStyle} />
@@ -41,7 +47,7 @@ export function DatePicker(props: DatePickerProps) {
         </XStack>
       </TouchableOpacity>
       {Platform.OS === "ios" ? <IOSDatePicker {...pickerProps} /> : <AndroidDatePicker {...pickerProps} />}
-    </>
+    </View>
   );
 }
 
