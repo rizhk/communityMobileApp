@@ -128,19 +128,3 @@ export function computeDistance(p1: LatLng, p2: LatLng): number {
   const d = R * c;
   return d; // returns the distance in meter
 }
-
-export function formatHour(date: any, format: string = "HH:mm:ss.SSS") {
-  if (typeof date === "string") {
-    const hour = `${new Date().toISOString()}`.split("T");
-    const newDate = new Date(`${hour[0]}T${date}Z`);
-    const formattedDate = Format(newDate, format);
-    return formattedDate;
-  } else if (typeof date === "number") {
-    const newDate = new Date(date);
-    const formattedDate = Format(newDate, format);
-    return formattedDate;
-  } else {
-    const formattedDate = Format(date, format);
-    return formattedDate;
-  }
-}
