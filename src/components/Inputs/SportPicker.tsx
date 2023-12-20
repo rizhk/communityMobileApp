@@ -1,11 +1,11 @@
 //TODO: Discussion intrete composant SportPicker
-import React from "react";
-
-import { Image, StyleSheet } from "react-native";
-import { SportsData } from "types/sport";
-import { DropPicker, DropPickerItem } from "./DropPicker";
-import useSWR from "swr";
 import { fetchSports } from "api/api";
+import React from "react";
+import { Image, StyleSheet } from "react-native";
+import useSWR from "swr";
+import { SportsData } from "types/sport";
+
+import { DropPicker, DropPickerItem } from "./DropPicker";
 
 interface SportPickerComponentProps {
   items?: SportsData;

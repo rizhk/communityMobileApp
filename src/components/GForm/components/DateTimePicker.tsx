@@ -1,11 +1,11 @@
 import { GFieldProps, useGForm } from "components/GForm/GForm.props";
 import { TimeInterval } from "components/Inputs";
+import { MAXIMAL_ACTIVITY_TIME, MINIMAL_ACTIVITY_TIME } from "constants/global";
+import { differenceInMinutes } from "date-fns";
+import { t } from "i18n-js";
 import { useEffect, useState } from "react";
 
 import { BaseField } from "./BaseField";
-import { differenceInMinutes } from "date-fns";
-import { MAXIMAL_ACTIVITY_TIME, MINIMAL_ACTIVITY_TIME } from "constants/global";
-import { t } from "i18n-js";
 export interface DateTimePickerProps extends Omit<GFieldProps, "valName"> {
   valNames: { start: string; end: string };
   nestedScrollEnabled?: boolean;
@@ -20,7 +20,6 @@ export default function DateTimePicker(props: DateTimePickerProps) {
   const [maximalDate] = useState(new Date(maximumDate ?? new Date(2100, 1, 1)));
 
   useEffect(() => {
-    console.log("DateTime effect");
     const start = new Date(values[valNames.start]);
     const end = new Date(values[valNames.end]);
     const timeDiff = differenceInMinutes(end, start);

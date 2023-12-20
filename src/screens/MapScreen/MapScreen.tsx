@@ -1,31 +1,22 @@
-import { fetchAPIqs } from "api/request";
-import { Button } from "components/Button";
-import MapComponent from "components/Map/Map";
-import { useEffect, useState, useRef } from "react";
-import { StyleSheet, ViewStyle } from "react-native";
-import { useQuery } from "react-query";
 import { fetchActivitiesByRegion, fetchSports } from "api/api";
-import useSWR from "swr";
-
-import { MainLayout } from "layouts";
-import { ActivityIndicator } from "react-native";
-import { LatLng, Region } from "react-native-maps";
-
-import { shadow, color } from "theme";
-import * as Location from "expo-location";
-import { INITIAL_REGION_FRIBOURG } from "constants/global";
-import MapView from "react-native-maps";
-import useCurrentPosition from "hooks/useCurrentPosition";
-
+import { fetchAPIqs } from "api/request";
 import { Star } from "assets/svg";
-import { Icon } from "components/Icon";
-import { Radio, Switch, NumberPicker, DropPicker, TextInput, DateTimePicker } from "components/Inputs";
-import { Text } from "components/Text";
-
-import { ScrollView } from "react-native";
-import { View } from "react-native-animatable";
 import ActivityFilter from "components/ActivityFilter/ActivityFilter";
+import { Button } from "components/Button";
+import { Icon } from "components/Icon";
+import MapComponent from "components/Map/Map";
+import { Text } from "components/Text";
 import { YStack } from "components/containers/Stack";
+import { INITIAL_REGION_FRIBOURG } from "constants/global";
+import * as Location from "expo-location";
+import { MainLayout } from "layouts";
+import { useEffect, useState, useRef } from "react";
+import { StyleSheet, View, ViewStyle } from "react-native";
+import useSWR from "swr";
+import { ActivityIndicator } from "react-native";
+import MapView, { LatLng, Region } from "react-native-maps";
+import { shadow, color } from "theme";
+import useCurrentPosition from "hooks/useCurrentPosition";
 
 export function MapScreen() {
   const [region, setRegion] = useState<Region>(INITIAL_REGION_FRIBOURG);

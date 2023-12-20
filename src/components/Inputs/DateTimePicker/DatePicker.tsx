@@ -8,8 +8,8 @@ import { color as themeColor } from "theme/color";
 import { inputFieldStyle } from "theme/styles";
 
 import { AndroidDatePicker } from "./components/AndroidDatePicker";
-import { IOSDatePicker } from "./components/IODatePicker";
 import { DatePickerProps } from "./components/DatePicker.props";
+import { IOSDatePicker } from "./components/IODatePicker";
 
 export function DatePicker(props: DatePickerProps) {
   const { minimumDate, maximumDate, date, setDate, color = "primary", style, txLabel } = props;

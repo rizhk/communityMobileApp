@@ -8,7 +8,7 @@ import { useState } from "react";
 import { View } from "react-native";
 
 import ColorPicker from "./ColorPicker";
-import { ThemeColorType } from "../../../theme/color";
+import { ThemeColorType } from "theme/color";
 
 export default function GeneralTab() {
   const [slider, setSlider] = useState(false);

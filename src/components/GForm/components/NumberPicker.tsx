@@ -1,14 +1,14 @@
 import { NumberPickerProps } from "components/Inputs/NumberPicker";
+import { Text } from "components/Text";
 import { XStack } from "components/containers/Stack";
+import { INFINIT_PARTICIPANTS } from "constants/global";
+import { useRef, useState } from "react";
+import { Animated, Pressable, TextInput, ViewStyle } from "react-native";
+import { color } from "theme";
+import { inputFieldStyle, shadowFocus } from "theme/styles";
 
 import { BaseField } from "./BaseField";
 import { GFieldProps, useGForm } from "../GForm.props";
-import { Animated, Pressable, TextInput, ViewStyle } from "react-native";
-import { Text } from "components/Text";
-import { color } from "theme";
-import { useRef, useState } from "react";
-import { INFINIT_PARTICIPANTS } from "constants/global";
-import { inputFieldStyle, shadowFocus } from "theme/styles";
 
 export type GFieldItemType = {
   value: string;
@@ -103,7 +103,7 @@ export default function NumberPicker(props: GFieldProps & Omit<NumberPickerProps
             onBlur={() => {
               setFocus(false);
             }}
-            style={[inputStyle, { width: width }, noLimit ? disableInputStyle : {}]}
+            style={[inputStyle, { width }, noLimit ? disableInputStyle : {}]}
             ref={ref}
           />
           <Pressable onPress={toggleLimit} style={iButton}>

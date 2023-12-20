@@ -7,8 +7,8 @@ import { spacing } from "theme";
 import { inputFieldStyle } from "theme/styles";
 
 import { AndroidDatePicker } from "./components/AndroidDatePicker";
-import { IOSDatePicker } from "./components/IODatePicker";
 import { DatePickerProps } from "./components/DatePicker.props";
+import { IOSDatePicker } from "./components/IODatePicker";
 
 export function TimePicker(props: DatePickerProps) {
   const { minimumDate, maximumDate, date, setDate, color = "primary", txLabel, style } = props;

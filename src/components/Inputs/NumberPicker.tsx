@@ -1,8 +1,8 @@
+import { i18n } from "i18n";
 import { TextStyle } from "react-native";
 import { ThemeColorType } from "theme";
 
 import { TextInput } from "./TextInput/TextInput";
-import { i18n } from "i18n";
 
 export interface NumberPickerProps {
   min?: number;
@@ -33,7 +33,7 @@ export function NumberPicker(props: NumberPickerProps) {
       }}
       textAlign="center"
       color={color}
-      style={{ width: width, ...style }}
+      style={{ width, ...style }}
       placeholder={placeholderTx ? i18n.t(placeholderTx) : placeholder}
     />
   );

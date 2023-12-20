@@ -1,10 +1,7 @@
-import { StyleSheet, View, TouchableOpacity, Platform } from "react-native";
 import { Text } from "components/Text";
-
-import { Image } from "react-native";
-import { color, spacing, TextStyles, shadow, text } from "theme";
-
+import { StyleSheet, View, TouchableOpacity, Platform, Image } from "react-native";
 import Svg, { Path } from "react-native-svg";
+import { color, spacing, TextStyles, shadow, text } from "theme";
 
 const PinIcon = ({ bgColor = color.primary }) => {
   return (

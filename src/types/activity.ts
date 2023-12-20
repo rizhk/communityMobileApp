@@ -65,7 +65,7 @@ export interface ActivityFormData extends ActivityFormSchema {
 }
 export interface ActivityFormSchema {
   value: ActivityType;
-  initialValue?: number | string | boolean | Date | Array<any>;
+  initialValue?: number | string | boolean | Date | any[];
   validation: FieldValidation;
 }
 

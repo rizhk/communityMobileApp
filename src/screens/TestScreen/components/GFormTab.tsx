@@ -5,13 +5,13 @@ import { Popup } from "components/Modal";
 import { Text } from "components/Text";
 import { Scroll } from "components/containers/Scroll";
 import { YStack } from "components/containers/Stack";
+import { INFINIT_PARTICIPANTS } from "constants/global";
 import { format } from "date-fns";
 import { useState } from "react";
 import { View } from "react-native-animatable";
 import { ThemeColorType } from "theme";
 
 import ColorPicker from "./ColorPicker";
-import { INFINIT_PARTICIPANTS } from "constants/global";
 
 const initialValues = {
   input: "",

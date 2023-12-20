@@ -1,17 +1,14 @@
-import { useState } from "react";
-
-import { color } from "theme";
-import { Text } from "components/Text";
 import Slider from "@react-native-community/slider";
-
-import { DEFAULT_MAX_DISTANCE } from "constants/global";
-
-import SportPickerComponent from "components/Inputs/SportPicker";
 import { Button } from "components/Button";
-import { ActivityFilters } from "types/activity";
-import { SideSlider } from "components/Modal";
 import { DatePicker } from "components/Inputs";
+import SportPickerComponent from "components/Inputs/SportPicker";
+import { SideSlider } from "components/Modal";
+import { Text } from "components/Text";
 import { XStack, YStack } from "components/containers/Stack";
+import { DEFAULT_MAX_DISTANCE } from "constants/global";
+import { useState } from "react";
+import { color } from "theme";
+import { ActivityFilters } from "types/activity";
 
 //TODO: Add button create activity s'il y pas de données
 //TODO: Pouvoir filter par adresse et rediriger dessus sur la map
@@ -31,7 +28,7 @@ function ActivityFilter(props: ActivityFilterProps) {
   const [endDate, setEndDate] = useState(new Date());
 
   return (
-    <SideSlider transparent={true} visible={isVisible} setVisible={onClose} width={0.8} right>
+    <SideSlider transparent visible={isVisible} setVisible={onClose} width={0.8} right>
       <YStack gap="md" pa="xs">
         <Text text="Sport Picker" />
         <SportPickerComponent value={sport} setValue={setSport} />

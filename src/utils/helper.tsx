@@ -1,13 +1,13 @@
 import { format as Format } from "date-fns";
 import "i18n";
-import i18n from "i18n-js";
 import { fr, enUS as en, de, it } from "date-fns/locale";
+import i18n from "i18n-js";
 import { LatLng } from "react-native-maps";
 
 export const hexToRGBA = (hex: string, alpha: number) => {
-  let r = parseInt(hex.slice(1, 3), 16);
-  let g = parseInt(hex.slice(3, 5), 16);
-  let b = parseInt(hex.slice(5, 7), 16);
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
 
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 };
