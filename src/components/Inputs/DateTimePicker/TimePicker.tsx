@@ -3,32 +3,27 @@ import { XStack } from "components/containers/Stack";
 import { useState } from "react";
 import { TextStyle, View, ViewStyle, Platform } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { ThemeColorType, spacing } from "theme";
+import { spacing } from "theme";
 import { inputFieldStyle } from "theme/styles";
 
 import { AndroidDatePicker } from "./components/AndroidDatePicker";
 import { IOSDatePicker } from "./components/IODatePicker";
-
-export type DatePickerProps = {
-  date: Date;
-  setDate: (date: any) => void;
-  minDate?: Date;
-  color?: ThemeColorType;
-  style?: ViewStyle;
-};
+import { DatePickerProps } from "./components/DatePicker.props";
 
 export function TimePicker(props: DatePickerProps) {
-  const { minDate, date, setDate, color = "primary", style } = props;
+  const { minimumDate, maximumDate, date, setDate, color = "primary", txLabel, style } = props;
   const [show, setShow] = useState(false);
 
   const pickerProps = {
     mode: "time" as const,
     visible: show,
     setVisible: setShow,
-    minDate,
+    minimumDate,
+    maximumDate,
     date,
     setDate,
     color,
+    txLabel,
   };
 
   return (

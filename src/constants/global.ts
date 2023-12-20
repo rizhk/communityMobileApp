@@ -15,3 +15,7 @@ export const INITIAL_REGION_BOUT_DU_MONDE = {
 };
 
 export const KM_PER_DEGREE_LATITUDE = 111; // Approximate km per degree of latitude
+
+//in Minutes
+export const MINIMAL_ACTIVITY_TIME = 15;
+export const MAXIMAL_ACTIVITY_TIME = 60 * 12;

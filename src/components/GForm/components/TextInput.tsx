@@ -12,6 +12,7 @@ export interface TextInputProps extends GFieldProps {
   inputStyle?: StyleProp<ViewStyle>;
   placeholderTx?: I18n.Scope;
   preset?: TextInputPresets;
+  multineline?: boolean;
 }
 
 export default function TextInput(props: TextInputProps & RnTextInputProps) {
@@ -32,8 +33,8 @@ export default function TextInput(props: TextInputProps & RnTextInputProps) {
         placeholderTextColor={color.placeholder}
         style={inputStyles}
         placeholder={placeholderTx ? translate(placeholderTx) : undefined}
-        {...rest}
         color={themeColor}
+        {...rest}
       />
       <BaseField.ErrorLabel valName={valName} />
     </BaseField>
