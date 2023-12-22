@@ -64,24 +64,24 @@ export function ChatProvider({ children }: PropsWithChildren) {
     if (!socket) return;
     if (TEST) {
       socket.on("connect", () => {
-        console.log("connected to chat");
+        // console.log("connected to chat");
       });
 
       socket.on("connect_error", (err) => {
-        console.log("connection error: ", err);
+        // console.log("connection error: ", err);
         socket.disconnect();
         setChatSocket(null);
       });
 
       //TEST PURPOSE
       socket.on("disconnect", (reason: string) => {
-        console.log("disconnected from chat", reason);
+        // console.log("disconnected from chat", reason);
       });
       socket.on("error", (err: string) => {
-        console.log("Server Error :", err);
+        // console.log("Server Error :", err);
       });
       socket.on("log", (log: string) => {
-        console.log("Server LOG: ", log);
+        // console.log("Server LOG: ", log);
       });
     }
 
@@ -119,15 +119,15 @@ export function ChatProvider({ children }: PropsWithChildren) {
       updateLastMessages(message);
     });
     if (TEST)
-      console.log(
-        "ChatSocket newMessage ON! (currentChannelUser : ",
-        currentChannelUser?.id,
-        ", ",
-        currentChannelUser?.channel.id,
-        ", ",
-        currentChannelUser?.channel.name,
-        " )"
-      );
+      // console.log(
+      //   "ChatSocket newMessage ON! (currentChannelUser : ",
+      //   currentChannelUser?.id,
+      //   ", ",
+      //   currentChannelUser?.channel.id,
+      //   ", ",
+      //   currentChannelUser?.channel.name,
+      //   " )"
+      // );
 
     return () => {
       chatSocket.off("newMessage");
@@ -206,7 +206,7 @@ export function ChatProvider({ children }: PropsWithChildren) {
     else if (type && id) channelUser = getChannelUser(type, id);
     if (!channelUser) return;
     chatSocket?.emit("leaveChat", channelUser.channel.id, (res: any) => {
-      console.log("leaveChat res", res);
+      // console.log("leaveChat res", res);
     });
   }
 

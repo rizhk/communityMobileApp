@@ -93,7 +93,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       response && fetchLoggedInUser();
     } catch (err) {
       setErrorMessage(err?.response?.data?.error?.message);
-      console.log(err, "Error loginContext");
+      // console.log(err, "Error loginContext");
       throw err;
     } finally {
       setLoading(false);
@@ -120,7 +120,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         body: JSON.stringify(valuesWithEmail),
       });
       const data = await response.json();
-      console.log(data, "data registerContext");
+      // console.log(data, "data registerContext");
       //Both methods works
 
       if (data?.error?.status === 400) {

@@ -77,7 +77,7 @@ export default function CreateActivity(props: CreateActivityProps) {
   const { open, setOpen } = props;
   const handleSubmit = (values: ValuesType) => {
     //TODO: replace by api request
-    console.log(values);
+    // console.log(values);
   };
 
   return (

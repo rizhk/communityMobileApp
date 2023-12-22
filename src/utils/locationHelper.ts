@@ -53,7 +53,7 @@ export async function fetchAddressFromCoords(coords: { latitude: number; longitu
   const response = await axios.get(
     `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.latitude},${coords.longitude}&key=${GOOGLE_ADDRESS_KEY}`
   );
-  console.log(response.data.results[0], "ressullts");
+  // console.log(response.data.results[0], "ressullts");
   return response.data.results[0].formatted_address;
 }
 
@@ -62,7 +62,7 @@ export async function fetchShortAddressFromCoords(coords: { latitude: number; lo
   const response = await axios.get(
     `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.latitude},${coords.longitude}&key=${GOOGLE_ADDRESS_KEY}`
   );
-  console.log(response.data.results[0], "ressullts");
+  // console.log(response.data.results[0], "ressullts");
   const addressComponents = response.data.results[0].address_components;
   const shortAddress = `${addressComponents[0]?.short_name} ${addressComponents[1]?.short_name}, ${addressComponents[6]?.short_name}  ${addressComponents[2]?.short_name}`;
   return shortAddress;
