@@ -15,8 +15,6 @@ export function Tabs(props: PropsWithChildren<TabsProps>) {
   const [active, setActive] = useState(headers[0]);
 
   function gestureHandler(event: any) {
-    console.log("gestureHandler");
-    console.log(event.nativeEvent);
     if (event.nativeEvent.state !== State.ACTIVE) return;
     const translationX = event.nativeEvent.translationX;
     const index = headers.indexOf(active);

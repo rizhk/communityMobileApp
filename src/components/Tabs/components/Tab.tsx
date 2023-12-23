@@ -1,5 +1,5 @@
 import { Stack } from "components/containers/Stack";
-import { PropsWithChildren, useEffect } from "react";
+import { PropsWithChildren } from "react";
 import { StyleProp, ViewStyle } from "react-native";
 
 import { useTabs } from "../Tabs.props";
