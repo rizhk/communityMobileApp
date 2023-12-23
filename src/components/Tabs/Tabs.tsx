@@ -3,7 +3,8 @@ import { PanGestureHandler, State } from "react-native-gesture-handler";
 import { TabContext, TabsProps } from "./Tabs.props";
 import { Tab } from "./components/Tab";
 import { TabsHeader } from "./components/Header";
-import { Stack, YStack } from "components/containers/Stack";
+import { Stack } from "components/containers/Stack";
+import { View } from "react-native";
 
 Tabs.Tab = Tab;
 
@@ -14,6 +15,8 @@ export function Tabs(props: PropsWithChildren<TabsProps>) {
   const [active, setActive] = useState(headers[0]);
 
   function gestureHandler(event: any) {
+    console.log("gestureHandler");
+    console.log(event.nativeEvent);
     if (event.nativeEvent.state !== State.ACTIVE) return;
     const translationX = event.nativeEvent.translationX;
     const index = headers.indexOf(active);
@@ -23,7 +26,7 @@ export function Tabs(props: PropsWithChildren<TabsProps>) {
 
   return (
     <PanGestureHandler onHandlerStateChange={gestureHandler}>
-      <YStack full>
+      <View style={{ width: "100%", height: "100%" }}>
         <TabContext.Provider value={{ active, setActive, ...rest }}>
           <Stack direction="row" pa="sm" gap="md" {...groupProps}>
             {headers.map((header) => (
@@ -32,7 +35,7 @@ export function Tabs(props: PropsWithChildren<TabsProps>) {
           </Stack>
           {children}
         </TabContext.Provider>
-      </YStack>
+      </View>
     </PanGestureHandler>
   );
 }
