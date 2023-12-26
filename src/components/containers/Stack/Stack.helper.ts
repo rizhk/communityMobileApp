@@ -102,21 +102,37 @@ export function getProps(props: StackProps) {
 const getMargin = (props: StackProps) => {
   const { margin, ma = "none", mx, my, mt, mb, ml, mr } = props;
   const marginValue = margin || ma;
+  const mtValue = mt ?? my ?? marginValue;
+  const mbValue = mb ?? my ?? marginValue;
+  const mlValue = ml ?? mx ?? marginValue;
+  const mrValue = mr ?? mx ?? marginValue;
+  const marginTop = typeof mtValue === "number" ? mtValue : spacing[mtValue];
+  const marginBottom = typeof mbValue === "number" ? mbValue : spacing[mbValue];
+  const marginLeft = typeof mlValue === "number" ? mlValue : spacing[mlValue];
+  const marginRight = typeof mrValue === "number" ? mrValue : spacing[mrValue];
   return {
-    marginTop: spacing[mt ?? my ?? marginValue],
-    marginBottom: spacing[mb ?? my ?? marginValue],
-    marginLeft: spacing[ml ?? mx ?? marginValue],
-    marginRight: spacing[mr ?? mx ?? marginValue],
+    marginTop,
+    marginBottom,
+    marginLeft,
+    marginRight,
   };
 };
 
 const getPadding = (props: StackProps) => {
   const { padding, pa = "none", px, py, pt, pb, pl, pr } = props;
   const paddingValue = padding || pa;
+  const ptValue = pt ?? py ?? paddingValue;
+  const pbValue = pb ?? py ?? paddingValue;
+  const plValue = pl ?? px ?? paddingValue;
+  const prValue = pr ?? px ?? paddingValue;
+  const paddingTop = typeof ptValue === "number" ? ptValue : spacing[ptValue];
+  const paddingBottom = typeof pbValue === "number" ? pbValue : spacing[pbValue];
+  const paddingLeft = typeof plValue === "number" ? plValue : spacing[plValue];
+  const paddingRight = typeof prValue === "number" ? prValue : spacing[prValue];
   return {
-    paddingTop: spacing[pt ?? py ?? paddingValue],
-    paddingBottom: spacing[pb ?? py ?? paddingValue],
-    paddingLeft: spacing[pl ?? px ?? paddingValue],
-    paddingRight: spacing[pr ?? px ?? paddingValue],
+    paddingTop,
+    paddingBottom,
+    paddingLeft,
+    paddingRight,
   };
 };

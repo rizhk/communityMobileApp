@@ -12,21 +12,19 @@ export function Stack(props: StackProps) {
 }
 
 export function XStack(props: Omit<StackProps, "direction">) {
-  const { children, ...rest } = props;
-
+  const { styles, rest } = getProps({ direction: "row", ...props });
   return (
-    <Stack direction="row" {...rest}>
-      {children}
-    </Stack>
+    <View style={styles} {...rest}>
+      {props.children}
+    </View>
   );
 }
 
 export function YStack(props: Omit<StackProps, "direction">) {
-  const { children, ...rest } = props;
-
+  const { styles, rest } = getProps({ direction: "column", ...props });
   return (
-    <Stack direction="column" {...rest}>
-      {children}
-    </Stack>
+    <View style={styles} {...rest}>
+      {props.children}
+    </View>
   );
 }

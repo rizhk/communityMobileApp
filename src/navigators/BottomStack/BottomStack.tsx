@@ -12,9 +12,9 @@ export function BottomStack() {
     <Bottom.Navigator
       initialRouteName="map"
       screenOptions={() => ({
-        // header: () => <Header title="test" />,
-        headerTintColor: color.white,
-        headerTitleStyle: { fontWeight: "bold", fontSize: text.lg },
+        header: () => <Header title="test" />,
+        // headerTintColor: color.white,
+        // headerTitleStyle: { fontWeight: "bold", fontSize: text.lg },
         tabBarStyle: {
           backgroundColor: color.backgroundLight,
           height: 80,

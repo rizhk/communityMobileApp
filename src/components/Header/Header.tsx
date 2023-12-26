@@ -10,7 +10,7 @@ export type HeaderProps = {
 export default function Header({ title, menu }: HeaderProps) {
   const insets = useSafeAreaInsets();
   return (
-    <XStack bc="backgroundLight" h={80} jc="center">
+    <XStack h={80} jc="center">
       <Text text={title} preset="header" />
     </XStack>
   );
