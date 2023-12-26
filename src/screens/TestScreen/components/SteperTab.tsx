@@ -1,7 +1,7 @@
 import { DatePicker, TimeInterval, TimePicker } from "components/Inputs/";
 import { PSteps, PStep } from "components/PSteps";
 import { Text } from "components/Text";
-import { YStack } from "components/containers/Stack";
+import { YStack } from "components/containers/Stack/Stack";
 import { format } from "date-fns";
 import { useState } from "react";
 import { ThemeColorType } from "theme/color";

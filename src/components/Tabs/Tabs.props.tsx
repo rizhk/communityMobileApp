@@ -1,4 +1,4 @@
-import { StackProps } from "components/containers/Stack";
+import { StackProps } from "components/containers/Stack/Stack";
 import { createContext, useContext } from "react";
 import { StyleProp, ViewStyle } from "react-native";
 

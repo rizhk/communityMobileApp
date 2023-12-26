@@ -4,7 +4,7 @@ import { Icon } from "components/Icon";
 import { Popup } from "components/Modal";
 import { Text } from "components/Text";
 import { Scroll } from "components/containers/Scroll";
-import { XStack, YStack } from "components/containers/Stack";
+import { XStack, YStack } from "components/containers/Stack/Stack";
 import { INFINIT_PARTICIPANTS } from "constants/global";
 import { format } from "date-fns";
 import { useState } from "react";

@@ -1,4 +1,4 @@
-import { Stack } from "components/containers/Stack";
+import { Stack } from "components/containers/Stack/Stack";
 import { PropsWithChildren } from "react";
 import { StyleProp, ViewStyle } from "react-native";
 

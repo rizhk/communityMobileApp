@@ -1,5 +1,5 @@
 import { Text } from "components/Text";
-import { XStack } from "components/containers/Stack";
+import { XStack } from "components/containers/Stack/Stack";
 import { format } from "date-fns";
 import { t } from "i18n-js";
 import { useState } from "react";

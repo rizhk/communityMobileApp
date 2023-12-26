@@ -3,6 +3,7 @@ import { color, text } from "theme";
 
 import { BottomNavProps, BottomNavPropsType } from "./BottomNavProps";
 import TabButton from "./TabButton.tsx";
+import Header from "components/Header/Header";
 
 const Bottom = createBottomTabNavigator();
 
@@ -11,6 +12,7 @@ export function BottomStack() {
     <Bottom.Navigator
       initialRouteName="map"
       screenOptions={() => ({
+        // header: () => <Header title="test" />,
         headerTintColor: color.white,
         headerTitleStyle: { fontWeight: "bold", fontSize: text.lg },
         tabBarStyle: {

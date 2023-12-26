@@ -6,7 +6,7 @@ import { Button } from "components/Button";
 import { Icon } from "components/Icon";
 import MapComponent from "components/Map/Map";
 import { Text } from "components/Text";
-import { YStack } from "components/containers/Stack";
+import { YStack } from "components/containers/Stack/Stack";
 import { INITIAL_REGION_FRIBOURG } from "constants/global";
 import * as Location from "expo-location";
 import { MainLayout } from "layouts";

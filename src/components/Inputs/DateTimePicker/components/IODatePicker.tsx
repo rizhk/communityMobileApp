@@ -2,7 +2,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { Button } from "components/Button";
 import { Popup } from "components/Modal";
 import { Text } from "components/Text";
-import { XStack } from "components/containers/Stack";
+import { XStack } from "components/containers/Stack/Stack";
 import { i18n } from "i18n";
 import { useState } from "react";
 

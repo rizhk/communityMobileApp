@@ -2,7 +2,7 @@ import { Star } from "assets/svg";
 import { Icon } from "components/Icon";
 import { Radio, Switch, NumberPicker, DropPicker, TextInput, TimeInterval } from "components/Inputs";
 import { AddressPicker } from "components/Inputs/AddressPicker";
-import { XStack } from "components/containers/Stack";
+import { XStack } from "components/containers/Stack/Stack";
 import { useState } from "react";
 import { ScrollView } from "react-native";
 import { spacing } from "theme";
