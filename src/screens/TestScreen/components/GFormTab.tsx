@@ -4,13 +4,14 @@ import { Icon } from "components/Icon";
 import { Popup } from "components/Modal";
 import { Text } from "components/Text";
 import { Scroll } from "components/containers/Scroll";
-import { XStack, YStack } from "components/containers/Stack";
+import { XStack, YStack } from "components/containers/Stack/Stack";
 import { INFINIT_PARTICIPANTS } from "constants/global";
 import { format } from "date-fns";
 import { useState } from "react";
 import { ThemeColorType } from "theme";
 
 import ColorPicker from "./ColorPicker";
+import { ScrollView } from "react-native";
 
 const initialValues = {
   input: "",
@@ -57,7 +58,7 @@ export default function GFormTab() {
   return (
     <>
       <ColorPicker setColor={setColor} />
-      <Scroll style={{ height: "90%" }}>
+      <ScrollView>
         <GForm initialValues={initialValues} onSubmit={handleSubmit} themeColor={color}>
           <YStack pa="sm">
             <GForm.TextInput valName="input" text="TextInput" placeholder="Placeholder" />
@@ -75,7 +76,7 @@ export default function GFormTab() {
             <GForm.SubmitButton text="Submit" />
           </YStack>
         </GForm>
-      </Scroll>
+      </ScrollView>
       <Popup visible={popup} setVisible={setPopup}>
         <Text preset="header">Modal</Text>
         <Line label="TextInput" value={values.input} />

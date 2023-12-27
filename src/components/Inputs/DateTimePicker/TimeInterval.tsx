@@ -1,5 +1,5 @@
 import { Text } from "components/Text";
-import { XStack, YStack } from "components/containers/Stack";
+import { XStack, YStack } from "components/containers/Stack/Stack";
 import { TextStyle, ViewStyle } from "react-native";
 import { color, spacing } from "theme";
 import { inputFieldStyle } from "theme/styles";

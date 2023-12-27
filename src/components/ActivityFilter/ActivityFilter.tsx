@@ -4,7 +4,7 @@ import { DatePicker } from "components/Inputs";
 import SportPickerComponent from "components/Inputs/SportPicker";
 import { SideSlider } from "components/Modal";
 import { Text } from "components/Text";
-import { XStack, YStack } from "components/containers/Stack";
+import { XStack, YStack } from "components/containers/Stack/Stack";
 import { DEFAULT_MAX_DISTANCE } from "constants/global";
 import { useState } from "react";
 import { color } from "theme";

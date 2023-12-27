@@ -2,7 +2,7 @@ import { Tick } from "assets/svg";
 import { Button, ButtonProps } from "components/Button";
 import { Icon } from "components/Icon";
 import { Text } from "components/Text";
-import { Stack, StackProps, XStack, YStack } from "components/containers/Stack";
+import { Stack, StackProps, XStack, YStack } from "components/containers/Stack/Stack";
 import { i18n } from "i18n";
 import { Children, createContext, useContext, useState } from "react";
 import { View } from "react-native";

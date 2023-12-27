@@ -1,6 +1,6 @@
 import { NumberPickerProps } from "components/Inputs/NumberPicker";
 import { Text } from "components/Text";
-import { XStack } from "components/containers/Stack";
+import { XStack } from "components/containers/Stack/Stack";
 import { INFINIT_PARTICIPANTS } from "constants/global";
 import { useRef, useState } from "react";
 import { Animated, Pressable, TextInput, ViewStyle } from "react-native";

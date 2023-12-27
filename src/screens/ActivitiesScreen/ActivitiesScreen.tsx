@@ -13,7 +13,7 @@ import { ActivityFilters } from "types/activity";
 
 import ActivityCard from "./components/ActivityCard";
 import CreateActivity from "./components/CreateActivity";
-import { YStack } from "components/containers/Stack";
+import { YStack } from "components/containers/Stack/Stack";
 
 type Props = NativeStackScreenProps<MainStackParamList, "activities">;
 

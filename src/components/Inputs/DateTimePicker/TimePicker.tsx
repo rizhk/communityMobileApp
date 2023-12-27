@@ -1,5 +1,5 @@
 import { Text } from "components/Text";
-import { XStack } from "components/containers/Stack";
+import { XStack } from "components/containers/Stack/Stack";
 import { useState } from "react";
 import { TextStyle, View, ViewStyle, Platform } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";

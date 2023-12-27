@@ -2,7 +2,7 @@ import { PaletteIcon } from "assets/svg";
 import { Button } from "components/Button";
 import { Popup } from "components/Modal";
 import { Text } from "components/Text";
-import { XStack } from "components/containers/Stack";
+import { XStack } from "components/containers/Stack/Stack";
 import { useState } from "react";
 import { ThemeColorType } from "theme";
 import { shadowStyle } from "theme/styles";

@@ -3,7 +3,7 @@ import { Button } from "components/Button";
 import { Popup, Slider } from "components/Modal";
 import { SideSlider } from "components/Modal/SideSlider";
 import { Text } from "components/Text";
-import { XStack, YStack } from "components/containers/Stack";
+import { XStack, YStack } from "components/containers/Stack/Stack";
 import { useState } from "react";
 import { View } from "react-native";
 
