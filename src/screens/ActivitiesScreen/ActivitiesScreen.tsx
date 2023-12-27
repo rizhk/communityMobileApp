@@ -1,18 +1,18 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { fetchActivitiesByRegion } from "api/api";
+import ActivityFilter from "components/ActivityFilter/ActivityFilter";
 import { Button } from "components/Button";
 import { Text } from "components/Text";
+import useCurrentPosition from "hooks/useCurrentPosition";
 import { MainLayout } from "layouts";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { useState } from "react";
 import { ActivityIndicator, ScrollView } from "react-native";
-
-import CreateActivity from "./components/CreateActivity";
 import useSWR from "swr";
-import { fetchActivitiesByRegion } from "api/api";
-import useCurrentPosition from "hooks/useCurrentPosition";
-import ActivityFilter from "components/ActivityFilter/ActivityFilter";
 import { ActivityFilters } from "types/activity";
+
 import ActivityCard from "./components/ActivityCard";
+import CreateActivity from "./components/CreateActivity";
 import { YStack } from "components/containers/Stack";
 
 type Props = NativeStackScreenProps<MainStackParamList, "activities">;

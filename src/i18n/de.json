@@ -109,7 +109,8 @@
   "datePicker": {
     "when": "Wann ?",
     "currentDate": "Heute",
-    "chooseDate": "Wählen Sie ein Datum"
+    "chooseDate": "Wählen Sie ein Datum",
+    "chooseTime": "Wählen Sie eine Zeit"
   },
   "createActivity": {
     "title": "Aktivität erstellen",
@@ -127,7 +128,8 @@
     "maxParticipant": "Max Teilnehmer/innen",
     "activityDescription": "Beschreibung der Aktivität",
     "createActivity": "Aktivität erstellen",
-    "descriptionPlaceholder": "Beschreibung der Aktivität"
+    "descriptionPlaceholder": "Beschreibung der Aktivität",
+    "wrongActivityDuration": "Die Aktivitätsdauer muss zwischen {{min}} Minuten und {{max}} Stunden liegen"
   },
   "fieldScreen": {
     "title": "Feld",

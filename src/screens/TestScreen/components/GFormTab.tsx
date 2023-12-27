@@ -4,10 +4,10 @@ import { Icon } from "components/Icon";
 import { Popup } from "components/Modal";
 import { Text } from "components/Text";
 import { Scroll } from "components/containers/Scroll";
-import { YStack } from "components/containers/Stack";
+import { XStack, YStack } from "components/containers/Stack";
+import { INFINIT_PARTICIPANTS } from "constants/global";
 import { format } from "date-fns";
 import { useState } from "react";
-import { View } from "react-native-animatable";
 import { ThemeColorType } from "theme";
 
 import ColorPicker from "./ColorPicker";
@@ -15,7 +15,7 @@ import ColorPicker from "./ColorPicker";
 const initialValues = {
   input: "",
   switch: false,
-  number: 5,
+  number: INFINIT_PARTICIPANTS,
   radio: "item1",
   startDate: new Date(),
   endDate: new Date(),
@@ -37,10 +37,10 @@ const DropItems = [
 
 function Line({ label, value }: { label: string; value: string }) {
   return (
-    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+    <XStack jc="space-between">
       <Text>{label}: </Text>
       <Text>{value}</Text>
-    </View>
+    </XStack>
   );
 }
 
@@ -64,11 +64,11 @@ export default function GFormTab() {
             <GForm.AddressPicker valName="location" placeholder="Enter address" />
             <GForm.DropPicker valName="drop" text="DropPicker" items={DropItems} searchable />
             <GForm.Switch valName="switch" text="Switch" />
-            <GForm.NumberPicker valName="number" text="Number" max={10} />
+            <GForm.NumberPicker valName="number" text="Number" max={1000} />
             <GForm.Radio valName="radio" text="Radio" items={RadioItems} />
             <GForm.DateTimePicker
               valNames={{ start: "startDate", end: "endDate" }}
-              minDate={new Date()}
+              minimumDate={new Date()}
               text="DateTimePicker"
               nestedScrollEnabled
             />

@@ -28,8 +28,8 @@ const ActivityCard = ({
   // console.log( icon :", icon);
 
   fetchShortAddressFromCoords({
-    latitude: latitude,
-    longitude: longitude,
+    latitude,
+    longitude,
   }).then((address) => setAddress(address));
 
   // return (

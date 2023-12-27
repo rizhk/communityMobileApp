@@ -52,16 +52,6 @@ const nowMoreOneHour = () => {
   return now;
 };
 
-const initialValues: ValuesType = {
-  description: "",
-  sport: "",
-  type: "solo",
-  dateStart: new Date(),
-  dateEnd: nowMoreOneHour(),
-  nbParticipant: INFINIT_PARTICIPANTS,
-  location: { latitude: 0, longitude: 0 },
-};
-
 const validations = Yup.object().shape({
   // name: Validations.emailRequired,
   textInput: Validations.name,
@@ -80,15 +70,27 @@ export default function CreateActivity(props: CreateActivityProps) {
     // console.log(values);
   };
 
+  const initialValues: ValuesType = {
+    description: "",
+    sport: "",
+    type: "solo",
+    dateStart: new Date(),
+    dateEnd: nowMoreOneHour(),
+    nbParticipant: INFINIT_PARTICIPANTS,
+    location: { latitude: 0, longitude: 0 },
+  };
+
   return (
     <KeyboardAvoiding>
       <Slider visible={open} setVisible={setOpen}>
         <Text preset="header" tx="createActivity.title" />
         <GForm initialValues={initialValues} validationSchema={validations} onSubmit={handleSubmit}>
+          <GForm.NumberPicker max={10} hasInfinit tx="createActivity.maxParticipant" valName="nbParticipant" />
           <GForm.TextInput
             tx="createActivity.activityDescription"
             valName="descirption"
             placeholderTx="createActivity.descriptionPlaceholder"
+            multiline
           />
           <GForm.DropPicker
             tx="createActivity.sportPicker"
@@ -100,7 +102,6 @@ export default function CreateActivity(props: CreateActivityProps) {
           <GForm.AddressPicker valName="location" />
           <GForm.DateTimePicker tx="createActivity.when" valNames={{ start: "dateStart", end: "dateEnd" }} />
           <GForm.Radio valName="type" items={activityTypeItems} />
-          <GForm.NumberPicker max={10} hasInfinit tx="createActivity.maxParticipant" valName="nbParticipant" />
           <GForm.SubmitButton tx="createActivity.createActivity" style={{ alignSelf: "center" }} />
         </GForm>
       </Slider>

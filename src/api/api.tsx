@@ -1,6 +1,6 @@
+import { API_URL } from "@env";
 import axios from "axios";
 // @ts-ignore
-import { API_URL } from "@env";
 import { Region } from "react-native-maps";
 import { ActivityFilters, populateActivity } from "types/activity";
 import { SportsData } from "types/sport";
@@ -82,8 +82,8 @@ export async function fetchActivitiesByRegion(
   return fetchAxiosAPI(
     `/activities`,
     {
-      maxDistance: maxDistance,
-      region: region,
+      maxDistance,
+      region,
       populate: populateActivity,
       filters: apiFilters,
     },

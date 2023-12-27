@@ -1,11 +1,10 @@
 import { Icon } from "components/Icon";
-import { useEffect, useRef, useState } from "react";
-import { TouchableOpacity, ViewStyle } from "react-native";
-import { View } from "react-native-animatable";
-import * as Animatable from "react-native-animatable";
+import { useEffect, useState } from "react";
+import { Animated, TouchableOpacity, View, ViewStyle } from "react-native";
 import { buttonSize, color } from "theme";
 
 import { BottomNavPropsType } from "./BottomNavProps";
+import { hexToRGBA } from "utils/helper";
 
 export interface TabButtonProps {
   tab: BottomNavPropsType;
@@ -16,25 +15,43 @@ export interface TabButtonProps {
 
 export default function TabButton({ tab, onPress, accessibilityState, isLast }: TabButtonProps) {
   const focused = accessibilityState.selected;
-  const viewRef = useRef<any>(null);
-  const [hasFocus, setFocus] = useState(false);
+  const [animation] = useState<any>(new Animated.Value(0));
+
+  const handleSelect = () => {
+    Animated.timing(animation, {
+      toValue: 1,
+      duration: 300,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  const handleUnselect = () => {
+    Animated.timing(animation, {
+      toValue: 0,
+      duration: 300,
+      useNativeDriver: false,
+    }).start();
+  };
 
   useEffect(() => {
     if (focused) {
-      viewRef.current.animate({ 0: { scale: 1.1 }, 1: { scale: 1.1 } });
-      setFocus(true);
+      handleSelect();
     } else {
-      viewRef.current.animate({ 0: { scale: 1 }, 1: { scale: 1 } });
-      setFocus(false);
+      handleUnselect();
     }
   }, [focused]);
 
+  var bgColor = animation.interpolate({
+    inputRange: [0, 1],
+    outputRange: ["rgba(0,0,0,0)", hexToRGBA(color.secondary, 1)],
+  });
+
   return (
     <View style={container}>
-      <TouchableOpacity onPress={onPress} style={[button, hasFocus ? selected : {}]}>
-        <Animatable.View ref={viewRef}>
+      <TouchableOpacity onPress={onPress} style={button}>
+        <Animated.View style={[{ backgroundColor: bgColor }, button]}>
           <Icon icon={tab.icon} color="white" size={30} />
-        </Animatable.View>
+        </Animated.View>
       </TouchableOpacity>
       {!isLast && <View style={separator} />}
     </View>
@@ -52,6 +69,8 @@ const button = {
   justifyContent: "center",
   height: buttonSize.xxl,
   width: buttonSize.xxl,
+  borderBottomLeftRadius: 25,
+  borderBottomRightRadius: 25,
 } as ViewStyle;
 
 const separator = {
@@ -62,10 +81,4 @@ const separator = {
   right: -1,
   top: 20,
   borderRadius: 5,
-} as ViewStyle;
-
-const selected = {
-  backgroundColor: color.primary,
-  borderBottomLeftRadius: 25,
-  borderBottomRightRadius: 25,
 } as ViewStyle;
