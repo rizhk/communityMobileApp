@@ -1,5 +1,5 @@
 import { Text } from "components/Text";
-import {  XStack, YStack } from "components/containers/Stack";
+import {  XStack, YStack } from "components/containers/Stack/Stack";
 import { format, isToday, isTomorrow } from "date-fns";
 import { useEffect, useState } from "react";
 import { View, StyleSheet, Image, ImageBackground } from "react-native";
