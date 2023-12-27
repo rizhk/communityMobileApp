@@ -22,3 +22,4 @@ export { default as Edit } from "./edit.svg";
 export { default as Cross } from "./cross.svg";
 export { default as Tick } from "./tick.svg";
 export { default as PaletteIcon } from "./color.svg";
+export {default as Logo } from "./logo.svg";

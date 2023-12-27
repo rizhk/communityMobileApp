@@ -1,117 +1,126 @@
 import { Text } from "components/Text";
-import { Stack, XStack, YStack } from "components/containers/Stack";
-import React, { useState } from "react";
-import { View, StyleSheet, Image } from "react-native";
-import { Line } from "react-native-svg";
-import { color, palette, spacing } from "theme";
+import {  XStack, YStack } from "components/containers/Stack";
+import { format, isToday, isTomorrow } from "date-fns";
+import { useEffect, useState } from "react";
+import { View, StyleSheet, Image, ImageBackground } from "react-native";
+import Svg, { Path } from "react-native-svg";
+import { color, spacing } from "theme";
 import { ActivityItemStrapi } from "types/activity";
 import { fetchShortAddressFromCoords } from "utils/locationHelper";
+
+const logoIcon = "M-548.5-413.5a21.2,21.2,0,0,1,21.2-21.2,21.2,21.2,0,0,1,21.2,21.2,21.2,21.2,0,0,1-21.2,21.2h0v19.7C-540.131-384.143-549.187-397.011-548.5-413.5Z";
+//TODO Change for user icon
+const userIcon = "M-548.5-413.5a21.2,21.2,0,0,1,21.2-21.2,21.2,21.2,0,0,1,21.2,21.2,21.2,21.2,0,0,1-21.2,21.2h0v19.7C-540.131-384.143-549.187-397.011-548.5-413.5Z";
 
 interface ActivityCardProps {
   activity: ActivityItemStrapi;
 }
 
+type addr = {
+  road : string;
+  town : string;
+}
+
 const ActivityCard = ({
-  activity,
   activity: {
     attributes: { date, latitude, longitude, sport, participants, maxParticipants },
   },
 }: ActivityCardProps) => {
-  const [address, setAddress] = useState("");
-  const day = new Date(date).getDate();
-  const month = new Date(date).toLocaleString("default", { month: "long" });
+  const [address, setAddress] = useState<addr | null>(null);
   const sportName = sport.data.attributes.name;
   const nbParticipants = participants.data.length;
   const icon = sport.data.attributes.icon.data.attributes.url;
-  const nbmaxParticipants = maxParticipants === 999999 ? "∞" : maxParticipants;
+  const nbmaxParticipants = maxParticipants === 99999 ? "∞" : maxParticipants;
+  const [formatDate, setFormatDate] = useState("");
+  const textSize = formatDate.length > 6 ? 'md' : 'lg';
+  
+  useEffect(() => {
+    fetchShortAddressFromCoords({
+      latitude,
+      longitude,
+    })
+    .then((address) => {
+      const splitted = address.split(', ');
+      setAddress({
+        road: splitted[0],
+        town: splitted[1],
+      });
+    })
+    .catch((error) => {
+      console.error("Fetching Error <ActivityCard> :", error);
+    });
+  }, [latitude, longitude])
+  
+  useEffect(() => {
+    const formatDate = new Date(date);
 
-  // console.log( icon :", icon);
-
-  fetchShortAddressFromCoords({
-    latitude,
-    longitude,
-  }).then((address) => setAddress(address));
-
-  // return (
-  //   <View style={styles.card}>
-  //     <View style={styles.dateContainer}>
-  //       <Image source={{uri : icon}} resizeMode="contain" style={styles.icon}/>
-
-  //     </View>
-  //     <View style={styles.detailsContainer}>
-  //       <Text style={styles.title}>{sportName}</Text>
-  //       <Text style={styles.location}>{address}</Text>
-  //       <Text style={styles.participants}>
-  //         {nbParticipants}/{nbmaxParticipants}
-  //       </Text>
-  //     </View>
-  //   </View>
-  // );
-
-
+    if (isToday(formatDate))
+      setFormatDate("Today");
+    else if (isTomorrow(formatDate))
+      setFormatDate("Tomorow")
+    else
+      setFormatDate(format(formatDate, "dd MMM"));
+  }, [date]);
+  
 
   return (
-    <XStack h={100} bc="secondary" flexGrow br="md">
-      <Stack  ai="center" jc="center" flex={0.2} w={200} bc={"grey300"}>
-        <Image source={{uri : icon}} resizeMode="contain" style={styles.icon}/>
-      </Stack>
-      <YStack bc="grey500" jc="center" flex={0.8}>
-          <Text text={sportName}/>
-      </YStack>
-      
-    </XStack>
+    <View style={styles.bgContainer}>
+      <ImageBackground  source={require("assets/image/tileCard/1.png")}>
+        <XStack  pa="xxs" br="md" gap="xs">
+          <YStack  ai="center" jc="space-between" w={100} >
+            <Image source={{uri : icon}} resizeMode="contain" style={styles.icon} />
+              <Text text={formatDate} preset="bold" color="primary" size={textSize}/>
+          </YStack>
+          <YStack  flexGrow jc="space-around">
+            <Text text={sportName} preset="bold" size="xl"/>
+            <XStack w="100%"  gap="xxs" >
+              <SvgIcon d={logoIcon} color={color.white} h="100%" w="5%"/>
+              <Text text={address?.town} size="xs" />
+            </XStack>
+            <XStack w="100%" gap="xxs">
+              <SvgIcon d={userIcon} color={color.white} h="100%" w="5%"/>
+              <Text text={`${nbParticipants} / ${nbmaxParticipants}`} preset="bold" size="xs"/>
+            </XStack>
+          </YStack>
+        </XStack>
+      </ImageBackground>
+    </View>
   )
 };
 
-const styles = StyleSheet.create({
-  card: {
-    flexDirection: "row",
-    // backgroundColor: "#000",
-    marginBottom: 10,
-    flex : 1,
-    height : "100%",
-    marginHorizontal : 10,
-    backgroundColor : "blue",
-    borderRadius: 6,
-    paddingHorizontal : 5
-  },
-  dateContainer: {
-    padding: 10,
-    flex: 0.3,
-    backgroundColor : "red",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  icon : {
-    height : "100%",
-    width: "100%",
-  },
-  day: {
-    fontSize: 24,
-    color: "#fff",
-  },
-  month: {
-    fontSize: 16,
-    color: "#fff",
-  },
-  detailsContainer: {
-    padding: 10,
-    flex:1,
-    // backgroundColor : "green",
-    justifyContent: "space-around",
-  },
-  title: {
-    fontSize: 20,
-    color: "#fff",
-  },
-  location: {
-    fontSize: 16,
-    color: "#fff",
-  },
-  participants: {
-    fontSize: 16,
-    color: "#fff",
-  },
-});
-
 export default ActivityCard;
+
+
+type svgIconProps = {
+  color : string;
+  d : string;
+  w : string;
+  h : string;
+}
+
+function SvgIcon ({ color, d, w, h } : svgIconProps) {
+
+  return (
+    <Svg width={w} height={h} viewBox="0 0 60.435 80.101">
+      <Path
+        d={d}
+        transform="translate(557.54 443.7)"
+        fill={color}
+      />
+    </Svg>
+  );
+};
+
+const styles = StyleSheet.create({
+  icon : {
+    height : "65%",
+    width: "65%"
+
+  },
+  bgContainer: {
+    borderRadius: spacing.xs,
+    overflow: 'hidden',
+    height:90,
+    backgroundColor: color.backgroundLight
+  }
+});
