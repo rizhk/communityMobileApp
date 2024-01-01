@@ -40,6 +40,14 @@ export type StackProps = ViewProps & {
   h?: DimensionValue | undefined;
   maxWidth?: DimensionValue | undefined;
   maxHeight?: DimensionValue | undefined;
+  top?: DimensionValue | undefined;
+  left?: DimensionValue | undefined;
+  right?: DimensionValue | undefined;
+  bottom?: DimensionValue | undefined;
+  t?: DimensionValue | undefined;
+  l?: DimensionValue | undefined;
+  r?: DimensionValue | undefined;
+  b?: DimensionValue | undefined;
   x?: DimensionValue | undefined;
   y?: DimensionValue | undefined;
   z?: number;

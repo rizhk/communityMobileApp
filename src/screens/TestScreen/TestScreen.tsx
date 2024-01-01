@@ -1,10 +1,14 @@
-import { Tabs } from "components/Tabs";
-
+import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import GFormTab from "./components/GFormTab";
 import GeneralTab from "./components/GeneralTab";
 import { InputsTab } from "./components/InputsTab";
 import SteperTab from "./components/SteperTab";
 import ViewsTab from "./components/ViewsTab";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { Tabs } from "components/Tabs";
+import { BurgerMenu } from "assets/svg";
+import { MenuType } from "components/Menu/Menu.types";
+import { useHeaderMenu } from "hooks/useHeaderMenu";
 
 type TabItem = {
   tab: JSX.Element;
@@ -19,7 +23,12 @@ const TabsItems: TabItem[] = [
   { tab: <SteperTab />, header: "Steper" },
 ];
 
-export default function TestScreen() {
+type Props = NativeStackScreenProps<MainStackParamList, "test">;
+
+export default function TestScreen({ navigation }: Props) {
+  const menu: MenuType = { icon: BurgerMenu, type: "action", action: () => navigation.navigate("activities") };
+  useHeaderMenu(navigation, menu);
+
   return (
     <Tabs headers={TabsItems.map((header) => header.header)}>
       {TabsItems.map((item) => (

@@ -52,6 +52,14 @@ export function getProps(props: StackProps) {
     x,
     y,
     z,
+    top,
+    left,
+    right,
+    bottom,
+    t,
+    l,
+    r,
+    b,
     position,
     flexGrow,
     flexShrink,
@@ -63,8 +71,6 @@ export function getProps(props: StackProps) {
 
   const justifyContent = justify || jc;
   const alignItems = align || ai;
-  const paddingValue = padding || pa;
-  const marginValue = margin || ma;
   const background = backgroundColor || bc;
   const radius = borderRadius || br;
   const fg = typeof flexGrow === "boolean" ? (flexGrow ? 1 : 0) : flexGrow;
@@ -89,8 +95,10 @@ export function getProps(props: StackProps) {
     borderWidth,
     maxWidth,
     maxHeight,
-    top: y,
-    left: x,
+    top: y ?? t ?? top,
+    left: x ?? l ?? left,
+    right: r ?? right,
+    bottom: b ?? bottom,
     width: full ? "100%" : w ?? width,
     height: full ? "100%" : h ?? height,
     position: position ?? (x !== undefined || y !== undefined ? "absolute" : undefined),
