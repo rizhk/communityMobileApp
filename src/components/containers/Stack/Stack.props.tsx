@@ -27,11 +27,15 @@ export type StackProps = ViewProps & {
   ml?: SpacingTypes | number;
   backgroundColor?: ThemeColorType;
   bc?: ThemeColorType;
-  borderRadius?: RadiusTypes;
+  borderRadius?: RadiusTypes | number;
   borderColor?: ThemeColorType;
   borderWidth?: number;
-  br?: RadiusTypes;
-  gap?: SpacingTypes;
+  br?: RadiusTypes | number;
+  brtl?: RadiusTypes | number;
+  brtr?: RadiusTypes | number;
+  brbl?: RadiusTypes | number;
+  brbr?: RadiusTypes | number;
+  gap?: SpacingTypes | number;
   full?: boolean;
   flex?: number;
   width?: DimensionValue | undefined;

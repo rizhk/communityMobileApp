@@ -1,7 +1,7 @@
-import { color, spacing, radius as RADIUS } from "theme";
+import { color, spacing, radius } from "theme";
 import { shadowStyle } from "theme/styles";
 import { StackProps } from "./Stack.props";
-import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
+import { ViewStyle } from "react-native";
 
 export type StackStyleProps = {
   styles: any;
@@ -40,6 +40,10 @@ export function getProps(props: StackProps) {
     borderColor = "transparent",
     borderWidth,
     br = "none",
+    brtl,
+    brtr,
+    brbl,
+    brbr,
     gap = "none",
     flex,
     width,
@@ -72,7 +76,6 @@ export function getProps(props: StackProps) {
   const justifyContent = justify || jc;
   const alignItems = align || ai;
   const background = backgroundColor || bc;
-  const radius = borderRadius || br;
   const fg = typeof flexGrow === "boolean" ? (flexGrow ? 1 : 0) : flexGrow;
   const fs = typeof flexShrink === "boolean" ? (flexShrink ? 1 : 0) : flexShrink;
   const zIndex = z;
@@ -88,9 +91,9 @@ export function getProps(props: StackProps) {
     alignSelf,
     ...getMargin(props),
     ...getPadding(props),
+    ...getBorderRadius(props),
     backgroundColor: color[background],
-    borderRadius: RADIUS[radius],
-    gap: spacing[gap],
+    gap: typeof gap === "number" ? gap : spacing[gap],
     borderColor: color[borderColor],
     borderWidth,
     maxWidth,
@@ -102,13 +105,13 @@ export function getProps(props: StackProps) {
     width: full ? "100%" : w ?? width,
     height: full ? "100%" : h ?? height,
     position: position ?? (x !== undefined || y !== undefined ? "absolute" : undefined),
-  };
+  } as ViewStyle;
 
   return { styles: [shadow ? shadowStyle : {}, styles, style], rest: rest };
 }
 
 const getMargin = (props: StackProps) => {
-  const { margin, ma = "none", mx, my, mt, mb, ml, mr } = props;
+  const { margin, ma = undefined, mx, my, mt, mb, ml, mr } = props;
   const marginValue = margin || ma;
   const mtValue = mt ?? my ?? marginValue;
   const mbValue = mb ?? my ?? marginValue;
@@ -127,7 +130,7 @@ const getMargin = (props: StackProps) => {
 };
 
 const getPadding = (props: StackProps) => {
-  const { padding, pa = "none", px, py, pt, pb, pl, pr } = props;
+  const { padding, pa = undefined, px, py, pt, pb, pl, pr } = props;
   const paddingValue = padding || pa;
   const ptValue = pt ?? py ?? paddingValue;
   const pbValue = pb ?? py ?? paddingValue;
@@ -142,5 +145,25 @@ const getPadding = (props: StackProps) => {
     paddingBottom,
     paddingLeft,
     paddingRight,
+  };
+};
+
+const getBorderRadius = (props: StackProps) => {
+  const { borderRadius, br = undefined, brtl, brtr, brbl, brbr, style } = props;
+  const borderRadiusValue = borderRadius || br;
+  const brtlValue = brtl ?? borderRadiusValue;
+  const brtrValue = brtr ?? borderRadiusValue;
+  const brblValue = brbl ?? borderRadiusValue;
+  const brbrValue = brbr ?? borderRadiusValue;
+  const borderTopLeftRadius = typeof brtlValue === "number" ? brtlValue : radius[brtlValue];
+  const borderTopRightRadius = typeof brtrValue === "number" ? brtrValue : radius[brtrValue];
+  const borderBottomLeftRadius = typeof brblValue === "number" ? brblValue : radius[brblValue];
+  const borderBottomRightRadius = typeof brbrValue === "number" ? brbrValue : radius[brbrValue];
+
+  return {
+    borderTopLeftRadius,
+    borderTopRightRadius,
+    borderBottomLeftRadius,
+    borderBottomRightRadius,
   };
 };

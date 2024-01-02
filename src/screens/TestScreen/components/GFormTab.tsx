@@ -3,15 +3,13 @@ import GForm from "components/GForm/GForm";
 import { Icon } from "components/Icon";
 import { Popup } from "components/Modal";
 import { Text } from "components/Text";
-import { Scroll } from "components/containers/Scroll";
 import { XStack, YStack } from "components/containers/Stack/Stack";
 import { INFINIT_PARTICIPANTS } from "constants/global";
 import { format } from "date-fns";
 import { useState } from "react";
-import { ThemeColorType } from "theme";
 
-import ColorPicker from "./ColorPicker";
 import { ScrollView } from "react-native";
+import { useThemeTestContext } from "./TemeContext";
 
 const initialValues = {
   input: "",
@@ -46,7 +44,7 @@ function Line({ label, value }: { label: string; value: string }) {
 }
 
 export default function GFormTab() {
-  const [color, setColor] = useState("primary" as ThemeColorType);
+  const { color } = useThemeTestContext();
   const [popup, setPopup] = useState(false);
   const [values, setValues] = useState(initialValues);
   const handleSubmit = (values: any) => {
@@ -57,7 +55,6 @@ export default function GFormTab() {
 
   return (
     <>
-      <ColorPicker setColor={setColor} />
       <ScrollView>
         <GForm initialValues={initialValues} onSubmit={handleSubmit} themeColor={color}>
           <YStack pa="sm">

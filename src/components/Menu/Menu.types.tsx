@@ -1,7 +1,7 @@
 import { i18n } from "i18n";
 import { FunctionComponent, SVGAttributes } from "react";
 
-export type MenuItemType = (ActionMenuType | RouteMenuType) & {
+export type MenuItemType = ActionMenuType & {
   text?: string;
   tx?: i18n.Scope;
   icon?: React.ReactNode;
@@ -10,8 +10,6 @@ export type MenuItemType = (ActionMenuType | RouteMenuType) & {
 type MenuListType = {
   type: "menu";
   items: MenuItemType[];
-  // open: boolean,
-  // setOpen:
 };
 
 type ActionMenuType = {
@@ -19,17 +17,16 @@ type ActionMenuType = {
   action: () => void;
 };
 
-type RouteMenuType = {
-  type: "route";
-  route: string;
-  params: any;
+type ElementType = {
+  type: "element";
+  element: React.ReactNode;
 };
 
 type NoneMenuType = {
   type: "none";
 };
 
-export type MenuType = (ActionMenuType | RouteMenuType | MenuListType | NoneMenuType) & {
+export type MenuType = (ElementType | ActionMenuType | MenuListType | NoneMenuType) & {
   icon?: FunctionComponent<SVGAttributes<SVGElement>>;
 };
 
