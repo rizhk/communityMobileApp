@@ -17,6 +17,12 @@ type TabItem = {
   header: string;
 };
 
+const menuTest = [
+  { text: "test1", onPress: () => console.log("test1") },
+  { text: "test2", onPress: () => console.log("test2") },
+  { text: "test3", onPress: () => console.log("test3") },
+];
+
 const TabsItems: TabItem[] = [
   { tab: <InputsTab />, header: "Inputs" },
   { tab: <GFormTab />, header: "GForm" },
@@ -43,6 +49,12 @@ function Test({ navigation }: { navigation: any }) {
     type: "element",
     element: <ColorPicker setColor={setColor} setTextColor={setTextColor} />,
   };
+
+  // const menu: MenuType = {
+  //   icon: PaletteIcon,
+  //   type: "menu",
+  //   items: menuTest,
+  // };
 
   useHeaderMenu({ navigation, iconOptions: { iconScale: 1.5 }, ...menu });
 

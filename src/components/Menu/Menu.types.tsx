@@ -1,10 +1,11 @@
 import { i18n } from "i18n";
 import { FunctionComponent, SVGAttributes } from "react";
 
-export type MenuItemType = ActionMenuType & {
+export type MenuItemType = {
   text?: string;
   tx?: i18n.Scope;
   icon?: React.ReactNode;
+  onPress: () => void;
 };
 
 type MenuListType = {
