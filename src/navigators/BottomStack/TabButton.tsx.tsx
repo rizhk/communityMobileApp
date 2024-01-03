@@ -43,7 +43,7 @@ export default function TabButton({ tab, onPress, accessibilityState, isLast }: 
 
   var bgColor = animation.interpolate({
     inputRange: [0, 1],
-    outputRange: ["rgba(0,0,0,0)", hexToRGBA(color.secondary, 1)],
+    outputRange: ["rgba(0,0,0,0)", hexToRGBA(color.primary, 1)],
   });
 
   return (
