@@ -63,7 +63,7 @@ type CreateActivityProps = {
 export default function CreateActivity(props: CreateActivityProps) {
   const { open, setOpen } = props;
 
-  const { data: dataSports } = useSWR(["sports"], () => fetchSports());
+  const { data: dataSports, isLoading: isLoadingSport } = useSWR(["sports"], () => fetchSports());
   const items = dataSports ? mapSportsDataToDropPickerItems(dataSports) : [];
 
   const handleSubmit = async (values: ActivityFormType) => {
@@ -104,6 +104,8 @@ export default function CreateActivity(props: CreateActivityProps) {
       console.error("Failed to create activity", error);
     }
   };
+
+  isLoadingSport && <Text>Loading...</Text>; //TODO: add loading component
 
   return (
     <KeyboardAvoiding>
