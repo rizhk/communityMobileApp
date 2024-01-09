@@ -23,3 +23,6 @@ export { default as Cross } from "./cross.svg";
 export { default as Tick } from "./tick.svg";
 export { default as PaletteIcon } from "./color.svg";
 export {default as Logo } from "./logo.svg";
+export { default as BRCorner } from "./brCorner.svg";
+export { default as TLCorner } from "./TLCorner.svg";
+export { default as TRCorner } from "./TRCorner.svg";

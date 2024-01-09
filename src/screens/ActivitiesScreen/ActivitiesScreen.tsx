@@ -4,10 +4,9 @@ import ActivityFilter from "components/ActivityFilter/ActivityFilter";
 import { Button } from "components/Button";
 import { Text } from "components/Text";
 import useCurrentPosition from "hooks/useCurrentPosition";
-import { MainLayout } from "layouts";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { useState } from "react";
-import { ActivityIndicator, ScrollView } from "react-native";
+import { ActivityIndicator, FlatList, ScrollView } from "react-native";
 import useSWR from "swr";
 import { ActivityFilters } from "types/activity";
 
@@ -60,6 +59,8 @@ export function ActivitiesScreen({ navigation }: Props) {
         onPress={() => setOpenActivity(true)}
         style={{ alignSelf: "center", bottom: 10, position: "absolute" }}
       />
+      {/* TODO flatList ? */}
+      {/* <FlatList data={activities} renderItem={({item}) => <ActivityCard activity={item} key={item?.id} />}/> */}
       {isLoadingActivities ? (
         <ActivityIndicator />
       ) : (

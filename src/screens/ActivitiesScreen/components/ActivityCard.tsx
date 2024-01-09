@@ -2,7 +2,7 @@ import { Text } from "components/Text";
 import {  Stack, XStack, YStack } from "components/containers/Stack/Stack";
 import { format, isToday, isTomorrow } from "date-fns";
 import { useEffect, useState } from "react";
-import { View, StyleSheet, Image, ImageBackground } from "react-native";
+import { View, StyleSheet, Image, ImageBackground, StyleProp, ImageStyle } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { color, palette, spacing } from "theme";
 import { INFINIT_PARTICIPANTS } from "constants/global";
@@ -10,6 +10,7 @@ import { ActivityItemStrapi } from "types/activity";
 import { fetchShortAddressFromCoords } from "utils/locationHelper";
 import { Pin, User } from "assets/svg";
 import { formatDateFromToday } from "utils/Date";
+import { StackStyleProps } from "components/containers/Stack/Stack.helper";
 
 type ActivityCardProps = {
   activity: ActivityItemStrapi;
@@ -27,6 +28,8 @@ const ActivityCard = ({
   },
 }: ActivityCardProps) => {
   const [address, setAddress] = useState<addr | null>(null);
+
+  console.log("saltu");
 
   //TODO to change
   const sportName = sport.data.attributes.name;
@@ -57,11 +60,11 @@ const ActivityCard = ({
   }, [latitude, longitude])
 
   return (
-    <Stack style={styles.bgContainer} h={90} br="xs" bc="backgroundLight">
+    <Stack h={90} br="xs" bc="backgroundLight" overflow="hidden">
       <ImageBackground  source={require("assets/image/tileCard/1.png")}>
         <XStack  pa="xxs" br="md" gap="xs">
           <YStack  ai="center" jc="space-between" w={100} >
-            <Image source={{uri : icon}} resizeMode="contain" style={styles.icon} />
+            <Image source={{uri : icon}} resizeMode="contain" style={iconStyle} />
               <Text text={formatDateFromToday(date, "dd MMM")} preset="bold" color="primary" size={textSize}/>
           </YStack>
           <YStack  flexGrow jc="space-around">
@@ -83,13 +86,7 @@ const ActivityCard = ({
 
 export default ActivityCard;
 
-const styles = StyleSheet.create({
-  icon : {
+const iconStyle = {
     height : "65%",
     width: "65%"
-
-  },
-  bgContainer: {
-    overflow: 'hidden',
-  }
-});
+} as StyleProp<ImageStyle>; 
