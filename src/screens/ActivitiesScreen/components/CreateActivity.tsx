@@ -108,15 +108,27 @@ export default function CreateActivity(props: CreateActivityProps) {
     }
   };
 
+  // const initialValues: ValuesType = {
+  //   description: "",
+  //   sport: "",
+  //   type: "solo",
+  //   dateStart: new Date(),
+  //   dateEnd: nowMoreOneHour(),
+  //   nbParticipant: INFINIT_PARTICIPANTS,
+  //   location: { latitude: 0, longitude: 0 },
+  // };
+
   return (
     <KeyboardAvoiding>
       <Slider visible={open} setVisible={setOpen}>
         <Text preset="header" tx="createActivity.title" />
         <GForm initialValues={initialValues} validationSchema={validations} onSubmit={handleSubmit}>
+          <GForm.NumberPicker max={10} tx="createActivity.maxParticipant" valName="nbParticipant" />
           <GForm.TextInput
             tx="createActivity.activityDescription"
             valName="descirption"
             placeholderTx="createActivity.descriptionPlaceholder"
+            multiline
           />
           <GForm.SportPicker
             tx="createActivity.sportPicker"
@@ -129,7 +141,7 @@ export default function CreateActivity(props: CreateActivityProps) {
           <GForm.DateTimePicker
             tx="createActivity.when"
             valNames={{ start: "dateStart", end: "dateEnd" }}
-            minDate={new Date()}
+            minimumDate={new Date()}
           />
           <GForm.Radio valName="type" items={activityTypeItems} />
           <GForm.NumberPicker max={10} tx="createActivity.maxParticipant" valName="nbParticipant" />

@@ -1,14 +1,13 @@
-import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
-import MapView, { Marker, Region, Circle } from "react-native-maps";
-import { MapPresets, presets } from "./map.presets";
 import { Text } from "components/Text";
-import { ActivitiesData } from "types/activity";
-import { CustomMarker } from "./components/Marker";
-import { color } from "theme";
-import { hexToRGBA } from "utils/helper";
 import { KM_PER_DEGREE_LATITUDE } from "constants/global";
 import useCurrentPosition from "hooks/useCurrentPosition";
+import MapView, { Marker, Region, Circle } from "react-native-maps";
+import { color } from "theme";
+import { ActivitiesData } from "types/activity";
+import { hexToRGBA } from "utils/helper";
+
+import { CustomMarker } from "./components/Marker";
+import { MapPresets, presets } from "./map.presets";
 
 //TODO: - Display fields on the map
 
@@ -23,16 +22,8 @@ interface MapProps {
   onRegionChangeComplete?: (newRegion: Region) => void; // Add this line
 }
 
-const MapComponent = ({
-  preset = "default",
-  region,
-  onRegionChangeComplete,
-  mapRef,
-  activities,
-  maxDistance,
-  style,
-  ...rest
-}: MapProps) => {
+function MapComponent(props: MapProps) {
+  const { preset = "default", region, onRegionChangeComplete, mapRef, activities, maxDistance, style, ...rest } = props;
   const styles = [presets[preset], style];
 
   const calculateRadius = (latitudeDelta: number): number => {
@@ -87,6 +78,6 @@ const MapComponent = ({
       </MapView>
     </>
   );
-};
+}
 
 export default MapComponent;

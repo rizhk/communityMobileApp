@@ -1,4 +1,5 @@
-import { ViewStyle } from "react-native";
+import { i18n } from "i18n";
+import { TextStyle } from "react-native";
 import { ThemeColorType } from "theme";
 
 import { TextInput } from "./TextInput/TextInput";
@@ -8,13 +9,15 @@ export interface NumberPickerProps {
   max: number;
   value: number;
   setValue: (value: number) => void;
-  style?: ViewStyle;
+  style?: TextStyle;
   width?: number;
   color?: ThemeColorType;
+  placeholderTx?: i18n.Scope;
+  placeholder?: string;
 }
 
 export function NumberPicker(props: NumberPickerProps) {
-  const { value, setValue, min = 0, max, color, width = 80 } = props;
+  const { value, setValue, min, max, color, width = 80, placeholder, placeholderTx, style } = props;
 
   return (
     <TextInput
@@ -22,15 +25,16 @@ export function NumberPicker(props: NumberPickerProps) {
       value={value.toString()}
       onChangeText={(text) => {
         const n = Number(text);
-        if (n < min) setValue(min);
-        else if (n > max) setValue(max);
+        if (min !== undefined && n < min) setValue(min);
+        else if (max !== undefined && n > max) setValue(max);
         else {
           setValue(n);
         }
       }}
       textAlign="center"
       color={color}
-      style={{ minWidth: width }}
+      style={{ width, ...style }}
+      placeholder={placeholderTx ? i18n.t(placeholderTx) : placeholder}
     />
   );
 }

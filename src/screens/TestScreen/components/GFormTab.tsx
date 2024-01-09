@@ -3,19 +3,18 @@ import GForm from "components/GForm/GForm";
 import { Icon } from "components/Icon";
 import { Popup } from "components/Modal";
 import { Text } from "components/Text";
-import { Scroll } from "components/containers/Scroll";
-import { YStack } from "components/containers/Stack";
+import { XStack, YStack } from "components/containers/Stack/Stack";
+import { INFINIT_PARTICIPANTS } from "constants/global";
 import { format } from "date-fns";
 import { useState } from "react";
-import { View } from "react-native-animatable";
-import { ThemeColorType } from "theme";
 
-import ColorPicker from "./ColorPicker";
+import { ScrollView } from "react-native";
+import { useThemeTestContext } from "./TemeContext";
 
 const initialValues = {
   input: "",
   switch: false,
-  number: 5,
+  number: INFINIT_PARTICIPANTS,
   radio: "item1",
   startDate: new Date(),
   endDate: new Date(),
@@ -37,15 +36,15 @@ const DropItems = [
 
 function Line({ label, value }: { label: string; value: string }) {
   return (
-    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+    <XStack jc="space-between">
       <Text>{label}: </Text>
       <Text>{value}</Text>
-    </View>
+    </XStack>
   );
 }
 
 export default function GFormTab() {
-  const [color, setColor] = useState("primary" as ThemeColorType);
+  const { color } = useThemeTestContext();
   const [popup, setPopup] = useState(false);
   const [values, setValues] = useState(initialValues);
   const handleSubmit = (values: any) => {
@@ -56,26 +55,25 @@ export default function GFormTab() {
 
   return (
     <>
-      <ColorPicker setColor={setColor} />
-      <Scroll style={{ height: "90%" }}>
+      <ScrollView>
         <GForm initialValues={initialValues} onSubmit={handleSubmit} themeColor={color}>
           <YStack pa="sm">
             <GForm.TextInput valName="input" text="TextInput" placeholder="Placeholder" />
             <GForm.AddressPicker valName="location" placeholder="Enter address" />
             <GForm.DropPicker valName="drop" text="DropPicker" items={DropItems} searchable />
             <GForm.Switch valName="switch" text="Switch" />
-            <GForm.NumberPicker valName="number" text="Number" max={10} />
+            <GForm.NumberPicker valName="number" text="Number" max={1000} />
             <GForm.Radio valName="radio" text="Radio" items={RadioItems} />
             <GForm.DateTimePicker
               valNames={{ start: "startDate", end: "endDate" }}
-              minDate={new Date()}
+              minimumDate={new Date()}
               text="DateTimePicker"
               nestedScrollEnabled
             />
             <GForm.SubmitButton text="Submit" />
           </YStack>
         </GForm>
-      </Scroll>
+      </ScrollView>
       <Popup visible={popup} setVisible={setPopup}>
         <Text preset="header">Modal</Text>
         <Line label="TextInput" value={values.input} />

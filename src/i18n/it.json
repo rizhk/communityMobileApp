@@ -113,7 +113,8 @@
   "datePicker": {
     "when": "Quando?",
     "currentDate": "Oggi",
-    "chooseDate": "Scegliere una data"
+    "chooseDate": "Scegliere una data",
+    "chooseTime": "Scegliere un'ora"
   },
   "createActivity": {
     "title": "Creare attività",
@@ -131,7 +132,8 @@
     "activityDescription": "Descrizione dell'attività",
     "createActivity": "Creare attività",
     "descriptionPlaceholder": "Descrizione dell'attività",
-    "chooseOnMap": "Scegliere sulla mappa"
+    "chooseOnMap": "Scegliere sulla mappa",
+    "wrongActivityDuration": "La durata dell'attività deve essere tra {{min}} minuti e {{max}} ore"
   },
   "fieldScreen": {
     "title": "Terreno",

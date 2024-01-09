@@ -1,11 +1,11 @@
 import { Icon } from "components/Icon";
-import { useEffect, useRef, useState } from "react";
-import { TouchableOpacity, ViewStyle } from "react-native";
-import { View } from "react-native-animatable";
-import * as Animatable from "react-native-animatable";
+import { useEffect, useState } from "react";
+import { Animated, TouchableOpacity, View, ViewStyle } from "react-native";
 import { buttonSize, color } from "theme";
 
 import { BottomNavPropsType } from "./BottomNavProps";
+import { hexToRGBA } from "utils/helper";
+import { Stack } from "components/containers";
 
 export interface TabButtonProps {
   tab: BottomNavPropsType;
@@ -16,56 +16,55 @@ export interface TabButtonProps {
 
 export default function TabButton({ tab, onPress, accessibilityState, isLast }: TabButtonProps) {
   const focused = accessibilityState.selected;
-  const viewRef = useRef<any>(null);
-  const [hasFocus, setFocus] = useState(false);
+  const [animation] = useState<any>(new Animated.Value(0));
+
+  const handleSelect = () => {
+    Animated.timing(animation, {
+      toValue: 1,
+      duration: 300,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  const handleUnselect = () => {
+    Animated.timing(animation, {
+      toValue: 0,
+      duration: 300,
+      useNativeDriver: false,
+    }).start();
+  };
 
   useEffect(() => {
     if (focused) {
-      viewRef.current.animate({ 0: { scale: 1.1 }, 1: { scale: 1.1 } });
-      setFocus(true);
+      handleSelect();
     } else {
-      viewRef.current.animate({ 0: { scale: 1 }, 1: { scale: 1 } });
-      setFocus(false);
+      handleUnselect();
     }
   }, [focused]);
 
+  var bgColor = animation.interpolate({
+    inputRange: [0, 1],
+    outputRange: ["rgba(0,0,0,0)", hexToRGBA(color.primary, 1)],
+  });
+
   return (
-    <View style={container}>
-      <TouchableOpacity onPress={onPress} style={[button, hasFocus ? selected : {}]}>
-        <Animatable.View ref={viewRef}>
+    <Stack position="relative" flex={1} ai="center">
+      <TouchableOpacity onPress={onPress} style={button}>
+        <Animated.View style={[{ backgroundColor: bgColor }, button]}>
           <Icon icon={tab.icon} color="white" size={30} />
-        </Animatable.View>
+        </Animated.View>
       </TouchableOpacity>
-      {!isLast && <View style={separator} />}
-    </View>
+      {!isLast && <Stack bc="grey600" h={24} w={2} position="absolute" right={-1} top={20} br="sm" />}
+    </Stack>
   );
 }
-
-const container = {
-  position: "relative",
-  flex: 1,
-  alignItems: "center",
-} as ViewStyle;
 
 const button = {
   alignItems: "center",
   justifyContent: "center",
   height: buttonSize.xxl,
-  width: buttonSize.xxl,
-} as ViewStyle;
-
-const separator = {
-  backgroundColor: color.grey600,
-  height: 24,
-  width: 2,
-  position: "absolute",
-  right: -1,
-  top: 20,
-  borderRadius: 5,
-} as ViewStyle;
-
-const selected = {
-  backgroundColor: color.primary,
+  width: "100%",
+  paddingHorizontal: "15%",
   borderBottomLeftRadius: 25,
   borderBottomRightRadius: 25,
 } as ViewStyle;

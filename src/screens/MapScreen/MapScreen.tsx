@@ -1,25 +1,21 @@
-import { fetchAPIqs } from "api/request";
-import { Button } from "components/Button";
-import MapComponent from "components/Map/Map";
-import { useEffect, useState, useRef } from "react";
-import { StyleSheet, ViewStyle } from "react-native";
-
 import { fetchActivitiesByRegion, fetchSports } from "api/api";
-import useSWR from "swr";
 
-import { MainLayout } from "layouts";
-import { ActivityIndicator } from "react-native";
-import { LatLng, Region } from "react-native-maps";
-
-import { shadow, color } from "theme";
-import * as Location from "expo-location";
-import { INITIAL_REGION_FRIBOURG } from "constants/global";
-import MapView from "react-native-maps";
-import useCurrentPosition from "hooks/useCurrentPosition";
-
+import { Button } from "components/Button";
+import { Icon } from "components/Icon";
+import MapComponent from "components/Map/Map";
 import { Text } from "components/Text";
+import { YStack } from "components/containers/Stack/Stack";
+import { INITIAL_REGION_FRIBOURG } from "constants/global";
+import * as Location from "expo-location";
 
-import { View } from "react-native-animatable";
+import { useEffect, useState, useRef } from "react";
+
+import { StyleSheet, View, ViewStyle } from "react-native";
+import useSWR from "swr";
+import { ActivityIndicator } from "react-native";
+import MapView, { LatLng, Region } from "react-native-maps";
+import { shadow, color } from "theme";
+import useCurrentPosition from "hooks/useCurrentPosition";
 import ActivityFilter from "components/ActivityFilter/ActivityFilter";
 import CreateActivity from "screens/ActivitiesScreen/components/CreateActivity";
 
@@ -98,7 +94,7 @@ export function MapScreen() {
   }
 
   return (
-    <MainLayout>
+    <YStack full>
       <Button onPress={handleOpenFilter} text="Filter" />
       <CreateActivity open={openActivity} setOpen={setOpenActivity} />
       <Button
@@ -123,6 +119,6 @@ export function MapScreen() {
         region={region}
         onRegionChangeComplete={handleRegionChangeComplete}
       /> */}
-    </MainLayout>
+    </YStack>
   );
 }

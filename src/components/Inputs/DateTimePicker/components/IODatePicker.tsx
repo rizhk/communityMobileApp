@@ -1,32 +1,26 @@
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Button } from "components/Button";
 import { Popup } from "components/Modal";
-import { XStack } from "components/containers/Stack";
+import { Text } from "components/Text";
+import { XStack } from "components/containers/Stack/Stack";
 import { i18n } from "i18n";
 import { useState } from "react";
-import { ThemeColorType } from "theme";
 
-type IOSDatePickerProps = {
-  visible: boolean;
-  setVisible: (vis: boolean) => void;
-  minDate?: Date;
-  date: Date;
-  setDate: (date: any) => void;
-  color?: ThemeColorType;
-  mode?: "date" | "time";
-  label?: i18n.Scope;
-};
+import { NativeDatePickerProps } from "./DatePicker.props";
 
-export function IOSDatePicker(props: IOSDatePickerProps) {
-  const { visible, setVisible, minDate, date, setDate, color, mode } = props;
+export function IOSDatePicker(props: NativeDatePickerProps) {
+  const { visible, setVisible, minimumDate, maximumDate, date, setDate, color, mode = "date", txLabel } = props;
   const [datePick, setDatePick] = useState(date);
 
+  const tx = txLabel ?? `datePicker.${mode == "date" ? "chooseDate" : "chooseTime"}`;
   return (
     <Popup visible={visible} setVisible={() => setVisible(false)} color={color}>
+      <Text tx={tx} preset="header" />
       <DateTimePicker
         value={date}
         display="spinner"
-        minimumDate={minDate}
+        minimumDate={minimumDate}
+        maximumDate={maximumDate}
         onChange={(_event, selectedDate) => {
           const currentDate = selectedDate || date;
           setDatePick(currentDate);

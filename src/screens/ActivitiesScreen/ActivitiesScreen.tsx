@@ -1,19 +1,18 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { fetchActivitiesByRegion } from "api/api";
+import ActivityFilter from "components/ActivityFilter/ActivityFilter";
 import { Button } from "components/Button";
 import { Text } from "components/Text";
-import { MainLayout } from "layouts";
+import useCurrentPosition from "hooks/useCurrentPosition";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { useState } from "react";
 import { ActivityIndicator, ScrollView } from "react-native";
-
-import CreateActivity from "./components/CreateActivity";
 import useSWR from "swr";
-import { fetchActivitiesByRegion } from "api/api";
-import useCurrentPosition from "hooks/useCurrentPosition";
-import ActivityFilter from "components/ActivityFilter/ActivityFilter";
 import { ActivityFilters } from "types/activity";
+
 import ActivityCard from "./components/ActivityCard";
-import { YStack } from "components/containers/Stack";
+import CreateActivity from "./components/CreateActivity";
+import { YStack } from "components/containers/Stack/Stack";
 
 type Props = NativeStackScreenProps<MainStackParamList, "activities">;
 
@@ -56,7 +55,7 @@ export function ActivitiesScreen({ navigation }: Props) {
         onPress={() => setOpenActivity(true)}
         style={{ alignSelf: "center", bottom: 10, position: "absolute" }}
       />
-      {isLoadingActivities ? (
+      {/* {isLoadingActivities ? (
         <ActivityIndicator />
       ) : (
         <>
@@ -70,7 +69,7 @@ export function ActivitiesScreen({ navigation }: Props) {
             {activities?.data?.map((activity: any) => <ActivityCard activity={activity} key={activity?.id} />)}
           </ScrollView>
         </>
-      )}
+      )} */}
       <CreateActivity open={openActivity} setOpen={setOpenActivity} />
       <Button
         tx="createActivity.button"

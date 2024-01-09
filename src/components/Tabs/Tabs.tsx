@@ -1,50 +1,39 @@
 import { PropsWithChildren, useState } from "react";
-import { View, ViewStyle } from "react-native";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
-
 import { TabContext, TabsProps } from "./Tabs.props";
-import { TabsBody } from "./components/Body";
-import { TabsGroup } from "./components/Group";
+import { Tab } from "./components/Tab";
 import { TabsHeader } from "./components/Header";
+import { Stack } from "components/containers/Stack/Stack";
+import { View } from "react-native";
 
-Tabs.Header = TabsHeader;
-Tabs.Group = TabsGroup;
-Tabs.Body = TabsBody;
+Tabs.Tab = Tab;
 
 const offset = 20;
 
 export function Tabs(props: PropsWithChildren<TabsProps>) {
-  const { children, selected, handleSelect, style, ...rest } = props;
-  const [values, setValues] = useState<any[]>([]);
-
-  const addValue = (val: any) => {
-    setValues((prev) => {
-      if (prev.includes(val)) return prev;
-      return [...prev, val];
-    });
-  };
+  const { children, style, groupProps, headers, ...rest } = props;
+  const [active, setActive] = useState(headers[0]);
 
   function gestureHandler(event: any) {
     if (event.nativeEvent.state !== State.ACTIVE) return;
     const translationX = event.nativeEvent.translationX;
-    const index = values.indexOf(selected);
-    if (translationX < -offset && index !== values.length - 1) handleSelect(values[index + 1]);
-    else if (translationX > +offset && index !== 0) handleSelect(values[index - 1]);
+    const index = headers.indexOf(active);
+    if (translationX < -offset && index !== headers.length - 1) setActive(headers[index + 1]);
+    else if (translationX > +offset && index !== 0) setActive(headers[index - 1]);
   }
 
   return (
     <PanGestureHandler onHandlerStateChange={gestureHandler}>
-      <View style={[main, style]}>
-        <TabContext.Provider value={{ selected, handleSelect, addValue, ...rest }}>{children}</TabContext.Provider>
+      <View style={{ width: "100%", height: "100%" }}>
+        <TabContext.Provider value={{ active, setActive, ...rest }}>
+          <Stack direction="row" pa="sm" gap="md" {...groupProps}>
+            {headers.map((header) => (
+              <TabsHeader name={header} key={header} />
+            ))}
+          </Stack>
+          {children}
+        </TabContext.Provider>
       </View>
     </PanGestureHandler>
   );
 }
-
-const main = {
-  display: "flex",
-  flexDirection: "column",
-  flexGrow: 1,
-  // gap: spacing.sm,
-  height: "100%",
-} as ViewStyle;

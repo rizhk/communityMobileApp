@@ -3,7 +3,7 @@ import I18n from "i18n-js";
 import { useState } from "react";
 import { ViewStyle, TextInput as RNTextInput, TextInputProps as RnTextInputProps } from "react-native";
 import { ThemeColorType, color as themeColor } from "theme";
-import { shadowFocus } from "theme/styles";
+import { inputFieldStyle, shadowFocus } from "theme/styles";
 
 import { TextInputPresets, presets } from "./TextInput.presets";
 
@@ -13,11 +13,18 @@ export interface TextInputProps extends RnTextInputProps {
   error?: boolean;
   textAlign?: "left" | "center" | "right";
   color?: ThemeColorType;
+  multiline?: boolean;
 }
 
 export function TextInput(props: TextInputProps) {
-  const { preset = "default", placeholderTx, placeholder, style, error, textAlign, color, ...rest } = props;
-  const inputStyles = [presets[preset].inputField, error ? inputError : {}, { textAlign }, style];
+  const { preset = "default", placeholderTx, placeholder, style, error, textAlign, multiline, color, ...rest } = props;
+  const inputStyles = [
+    presets[preset].inputField,
+    error ? inputError : {},
+    { textAlign },
+    style,
+    multiline ? multilineStyle : {},
+  ];
   const [focus, setFocus] = useState(false);
 
   return (
@@ -31,6 +38,7 @@ export function TextInput(props: TextInputProps) {
       }}
       placeholder={placeholderTx ? translate(placeholderTx) : placeholder}
       style={[inputStyles, focus ? shadowFocus(color) : {}]}
+      multiline={multiline}
       {...rest}
     />
   );
@@ -39,4 +47,9 @@ export function TextInput(props: TextInputProps) {
 const inputError = {
   borderWidth: 2,
   borderColor: themeColor.primary,
+} as ViewStyle;
+
+const multilineStyle = {
+  height: "auto",
+  paddingTop: inputFieldStyle.paddingVertical,
 } as ViewStyle;

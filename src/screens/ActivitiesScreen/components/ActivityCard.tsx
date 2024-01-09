@@ -21,8 +21,8 @@ const ActivityCard = ({
   const nbmaxParticipants = maxParticipants === 999999 ? "∞" : maxParticipants;
 
   fetchShortAddressFromCoords({
-    latitude: latitude,
-    longitude: longitude,
+    latitude,
+    longitude,
   }).then((address) => setAddress(address));
 
   return (

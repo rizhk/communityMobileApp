@@ -1,39 +1,69 @@
-import { Tabs } from "components/Tabs";
-import { useState } from "react";
-
+import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import GFormTab from "./components/GFormTab";
 import GeneralTab from "./components/GeneralTab";
 import { InputsTab } from "./components/InputsTab";
 import SteperTab from "./components/SteperTab";
 import ViewsTab from "./components/ViewsTab";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { Tabs } from "components/Tabs";
+import { PaletteIcon } from "assets/svg";
+import { MenuType } from "components/Menu/Menu.types";
+import { useHeaderMenu } from "hooks/useHeaderMenu";
+import ColorPicker from "./components/ColorPicker";
+import ThemeProvider, { useThemeTestContext } from "./components/TemeContext";
 
 type TabItem = {
   tab: JSX.Element;
-  value: string;
+  header: string;
 };
 
-const TabsItems: TabItem[] = [
-  { tab: <InputsTab />, value: "Inputs" },
-  { tab: <GFormTab />, value: "GForm" },
-  { tab: <GeneralTab />, value: "General" },
-  { tab: <ViewsTab />, value: "Views" },
-  { tab: <SteperTab />, value: "Steper" },
+const menuTest = [
+  { text: "test1", onPress: () => console.log("test1") },
+  { text: "test2", onPress: () => console.log("test2") },
+  { text: "test3", onPress: () => console.log("test3") },
 ];
 
-export default function MapScreen() {
-  const [selected, setSelected] = useState("Inputs");
+const TabsItems: TabItem[] = [
+  { tab: <InputsTab />, header: "Inputs" },
+  { tab: <GFormTab />, header: "GForm" },
+  { tab: <GeneralTab />, header: "General" },
+  { tab: <ViewsTab />, header: "Views" },
+  { tab: <SteperTab />, header: "Steper" },
+];
+
+type Props = NativeStackScreenProps<MainStackParamList, "test">;
+
+export default function TestScreen({ navigation }: Props) {
+  return (
+    <ThemeProvider>
+      <Test navigation={navigation} />
+    </ThemeProvider>
+  );
+}
+
+//the weird refactoring here, is because of the ThemeProvider
+function Test({ navigation }: { navigation: any }) {
+  const { setColor, setTextColor } = useThemeTestContext();
+  const menu: MenuType = {
+    icon: PaletteIcon,
+    type: "element",
+    element: <ColorPicker setColor={setColor} setTextColor={setTextColor} />,
+  };
+
+  // const menu: MenuType = {
+  //   icon: PaletteIcon,
+  //   type: "menu",
+  //   items: menuTest,
+  // };
+
+  useHeaderMenu({ navigation, iconOptions: { iconScale: 1.5 }, ...menu });
 
   return (
-    <Tabs selected={selected} handleSelect={(val: any) => setSelected(val)}>
-      <Tabs.Group>
-        {TabsItems.map((item) => (
-          <Tabs.Header key={item.value} value={item.value} text={item.value} />
-        ))}
-      </Tabs.Group>
+    <Tabs headers={TabsItems.map((header) => header.header)}>
       {TabsItems.map((item) => (
-        <Tabs.Body key={item.value} value={item.value}>
+        <Tabs.Tab key={item.header} header={item.header}>
           {item.tab}
-        </Tabs.Body>
+        </Tabs.Tab>
       ))}
     </Tabs>
   );

@@ -3,23 +3,20 @@ import { Button } from "components/Button";
 import { Popup, Slider } from "components/Modal";
 import { SideSlider } from "components/Modal/SideSlider";
 import { Text } from "components/Text";
-import { XStack, YStack } from "components/containers/Stack";
+import { XStack, YStack } from "components/containers/Stack/Stack";
 import { useState } from "react";
 import { View } from "react-native";
-
-import ColorPicker from "./ColorPicker";
-import { ThemeColorType } from "../../../theme/color";
+import { useThemeTestContext } from "./TemeContext";
 
 export default function GeneralTab() {
   const [slider, setSlider] = useState(false);
   const [leftSlider, setLeftSlider] = useState(false);
   const [rightSlider, setRightSlider] = useState(false);
-  const [color, setColor] = useState("primary" as ThemeColorType);
-  const [textColor, setTextColor] = useState("white" as ThemeColorType);
+  const { color, textColor } = useThemeTestContext();
   const [popup, setPopup] = useState(false);
+
   return (
     <YStack gap="sm" flexGrow jc="space-between" pa="sm">
-      <ColorPicker setColor={setColor} setTextColor={setTextColor} />
       <Text preset="header" color={textColor}>
         Text Header
       </Text>

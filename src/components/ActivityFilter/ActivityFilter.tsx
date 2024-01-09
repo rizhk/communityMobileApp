@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { Animated, Modal, View, TouchableOpacity, StyleSheet, Dimensions, ViewStyle, Pressable } from "react-native";
-
-import { color } from "theme";
-import { Text } from "components/Text";
 import Slider from "@react-native-community/slider";
-
-import { DEFAULT_MAX_DISTANCE } from "constants/global";
-
-import SportPickerComponent from "components/Inputs/SportPicker";
 import { Button } from "components/Button";
-import { ActivityFilters } from "types/activity";
-import { SideSlider } from "components/Modal";
 import { DatePicker } from "components/Inputs";
+import SportPickerComponent from "components/Inputs/SportPicker";
+import { SideSlider } from "components/Modal";
+import { Text } from "components/Text";
+import { XStack, YStack } from "components/containers/Stack/Stack";
+import { DEFAULT_MAX_DISTANCE } from "constants/global";
+import { useState } from "react";
+import { color } from "theme";
+import { ActivityFilters } from "types/activity";
 
 //TODO: Add button create activity s'il y pas de données
 //TODO: Pouvoir filter par adresse et rediriger dessus sur la map
@@ -23,15 +20,16 @@ interface ActivityFilterProps {
   currentFilters: ActivityFilters;
 }
 
-const ActivityFilter = ({ isVisible, onClose, onApply, currentFilters }: ActivityFilterProps) => {
+function ActivityFilter(props: ActivityFilterProps) {
+  const { isVisible, onClose, onApply, currentFilters } = props;
   const [maxDistance, setMaxDistance] = useState(currentFilters?.maxDistance || DEFAULT_MAX_DISTANCE);
   const [sport, setSport] = useState(currentFilters?.sport?.name || "");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
   return (
-    <SideSlider transparent={true} visible={isVisible} setVisible={onClose} width={0.8} right>
-      <View style={{ gap: 16, padding: 8 }}>
+    <SideSlider transparent visible={isVisible} setVisible={onClose} width={0.8} right>
+      <YStack gap="md" pa="xs">
         <Text text="Sport Picker" />
         <SportPickerComponent value={sport} setValue={setSport} />
 
@@ -54,19 +52,19 @@ const ActivityFilter = ({ isVisible, onClose, onApply, currentFilters }: Activit
         <DatePicker date={startDate} setDate={setStartDate} minDate={new Date()} />
         {/* <Text text="Au" />
             <DatePicker date={endDate} setDate={setEndDate} minDate={startDate} /> */}
-      </View>
+      </YStack>
 
-      <View style={{ flexDirection: "row", justifyContent: "space-evenly", alignItems: "center" }}>
+      <XStack jc="space-evenly" ai="center">
+        <Button text="Cancel" size="sm" onPress={onClose} preset="plainText" style={{ flex: 1 }} />
         <Button
           text="Apply"
-          size="md"
+          size="sm"
           onPress={() => onApply({ ...currentFilters, ...(sport && { sport: { name: sport } }), maxDistance })}
+          style={{ flex: 1 }}
         />
-
-        <Button text="Cancel" size="md" onPress={onClose} preset="outlined" />
-      </View>
+      </XStack>
     </SideSlider>
   );
-};
+}
 
 export default ActivityFilter;

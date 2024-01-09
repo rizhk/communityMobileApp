@@ -10,7 +10,7 @@ export function BottomStack() {
   return (
     <Bottom.Navigator
       initialRouteName="map"
-      screenOptions={() => ({
+      screenOptions={(route) => ({
         headerTintColor: color.white,
         headerTitleStyle: { fontWeight: "bold", fontSize: text.lg },
         tabBarStyle: {
@@ -23,12 +23,12 @@ export function BottomStack() {
     >
       {BottomNavProps.map((tab: BottomNavPropsType) => (
         <Bottom.Screen
-          key={tab.id}
+          key={tab.route}
           name={tab.label}
           component={tab.component}
           options={{
             tabBarButton: (props) => (
-              <TabButton {...props} tab={tab} isLast={tab.id === BottomNavProps[BottomNavProps.length - 1].id} />
+              <TabButton {...props} tab={tab} isLast={tab.route === BottomNavProps[BottomNavProps.length - 1].route} />
             ),
           }}
         />
