@@ -14,7 +14,7 @@ export function Tab({ children, header }: PropsWithChildren<BodyProps>) {
 
   if (header !== active) return null;
   return (
-    <Stack flexGrow {...bodyProps}>
+    <Stack flexGrow flexShrink {...bodyProps}>
       {children}
     </Stack>
   );
