@@ -1,4 +1,4 @@
-import { postAxiosApiFormData } from "api/api";
+import { fetchSports, postAxiosApiFormData } from "api/api";
 import { Star } from "assets/svg";
 import GForm from "components/GForm/GForm";
 import { DropPickerItem } from "components/GForm/components/DropPicker";
@@ -9,8 +9,9 @@ import { Text } from "components/Text";
 import { Validations } from "constants/Validations";
 import { INFINIT_PARTICIPANTS } from "constants/global";
 import { format } from "date-fns";
-import { mutate } from "swr";
+import useSWR, { mutate } from "swr";
 import { LocationType } from "types/global";
+import { mapSportsDataToDropPickerItems } from "utils/helper";
 import { fetchShortAddressFromCoords } from "utils/locationHelper";
 import * as Yup from "yup";
 
@@ -21,9 +22,6 @@ type ActivityFormType = {
   type: string;
   dateStart: Date;
   dateEnd: Date;
-  // startHour: Date;
-  // endHour: Date;
-  // dateEnd: Date;
   nbParticipant: number;
   location: LocationType;
   [key: string]: any; // Add index signature
@@ -44,7 +42,7 @@ const nowMoreOneHour = () => {
 const initialValues: ActivityFormType = {
   description: "",
   //@ts-ignore
-  sport: "2", //TODO: replace by [number] but it's not working
+  sport: 3, //TODO: replace by [number] but it's not working
   type: "solo",
   dateStart: new Date(),
   dateEnd: nowMoreOneHour(),
@@ -53,7 +51,6 @@ const initialValues: ActivityFormType = {
 };
 
 const validations = Yup.object().shape({
-  // name: Validations.emailRequired,
   textInput: Validations.name,
   numberPicker: Validations.number,
 });
@@ -66,9 +63,10 @@ type CreateActivityProps = {
 export default function CreateActivity(props: CreateActivityProps) {
   const { open, setOpen } = props;
 
-  const handleSubmit = async (values: ActivityFormType) => {
-    console.log(values, "values");
+  const { data: dataSports } = useSWR(["sports"], () => fetchSports());
+  const items = dataSports ? mapSportsDataToDropPickerItems(dataSports) : [];
 
+  const handleSubmit = async (values: ActivityFormType) => {
     const address = await fetchShortAddressFromCoords({
       latitude: values.location.latitude,
       longitude: values.location.longitude,
@@ -88,14 +86,13 @@ export default function CreateActivity(props: CreateActivityProps) {
           id: 40, //TODO: replace by user id
         },
         sport: [values.sport],
-        // type: values.type, //TODO : ça bug
+        type: values.type,
       };
 
       const formData = new FormData();
       formData.append("data", JSON.stringify(formattedValues));
 
       const response = await postAxiosApiFormData("/activities", formData);
-
       // Here we call `mutate` to revalidate the local data and update the list of activities
       mutate("/activities");
 
@@ -107,16 +104,6 @@ export default function CreateActivity(props: CreateActivityProps) {
       console.error("Failed to create activity", error);
     }
   };
-
-  // const initialValues: ValuesType = {
-  //   description: "",
-  //   sport: "",
-  //   type: "solo",
-  //   dateStart: new Date(),
-  //   dateEnd: nowMoreOneHour(),
-  //   nbParticipant: INFINIT_PARTICIPANTS,
-  //   location: { latitude: 0, longitude: 0 },
-  // };
 
   return (
     <KeyboardAvoiding>
@@ -130,11 +117,14 @@ export default function CreateActivity(props: CreateActivityProps) {
             placeholderTx="createActivity.descriptionPlaceholder"
             multiline
           />
-          <GForm.SportPicker
+
+          <GForm.DropPicker
             tx="createActivity.sportPicker"
             placeholderTx="createActivity.sportPicker"
             searchPlaceholder="Search a Sport"
             valName="sport"
+            items={items}
+            searchable
           />
 
           <GForm.AddressPicker valName="location" />

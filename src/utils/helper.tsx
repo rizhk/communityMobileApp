@@ -3,6 +3,8 @@ import "i18n";
 import { fr, enUS as en, de, it } from "date-fns/locale";
 import i18n from "i18n-js";
 import { LatLng } from "react-native-maps";
+import { Image } from "react-native";
+import { SportsData } from "types/sport";
 
 export const hexToRGBA = (hex: string, alpha: number) => {
   const r = parseInt(hex.slice(1, 3), 16);
@@ -10,6 +12,23 @@ export const hexToRGBA = (hex: string, alpha: number) => {
   const b = parseInt(hex.slice(5, 7), 16);
 
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
+export const mapSportsDataToDropPickerItems = (sportsData: SportsData) => {
+  return sportsData?.data?.map((sport) => ({
+    icon: () => (
+      <Image
+        source={{ uri: sport.attributes.icon.data.attributes.url }}
+        resizeMode="contain"
+        style={{
+          width: 24,
+          height: 24,
+        }}
+      />
+    ),
+    label: sport?.attributes?.name,
+    value: String(sport.id),
+  }));
 };
 
 export type GravityType =
