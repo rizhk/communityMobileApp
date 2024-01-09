@@ -22,6 +22,7 @@ export function Button(props: ButtonProps) {
     size = "md",
     color = "primary",
     textColor,
+    iconColor,
     ...rest
   } = props;
 
@@ -34,7 +35,9 @@ export function Button(props: ButtonProps) {
 
   function ButtonIcon() {
     if (icon === undefined) return null;
-    return <Icon icon={icon} size={iconScale * iconSize[size]} preset="button" />;
+    return (
+      <Icon icon={icon} color={iconColor ?? textColor ?? "white"} size={iconScale * iconSize[size]} preset="button" />
+    );
   }
 
   return (
