@@ -4,20 +4,16 @@ import { Text } from "components/Text";
 import { YStack } from "components/containers/Stack/Stack";
 import { format } from "date-fns";
 import { useState } from "react";
-import { ThemeColorType } from "theme/color";
-
-import ColorPicker from "./ColorPicker";
+import { useThemeTestContext } from "./TemeContext";
 
 export default function SteperTab() {
-  const [color, setColor] = useState("primary" as ThemeColorType);
   const [date, setDate] = useState(new Date());
   const [date1, setDate1] = useState(new Date());
   const [date2, setDate2] = useState(new Date());
   const [time, setTime] = useState(new Date());
-
+  const { color } = useThemeTestContext();
   return (
     <>
-      <ColorPicker setColor={setColor} />
       <PSteps color={color}>
         <PStep label="First Step">
           <Text>This is the content within step 1!</Text>
