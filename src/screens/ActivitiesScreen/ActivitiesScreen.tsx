@@ -13,6 +13,9 @@ import { ActivityFilters } from "types/activity";
 
 import ActivityCard from "./components/ActivityCard";
 import CreateActivity from "./components/CreateActivity";
+import { useHeaderMenu } from "hooks/useHeaderMenu";
+import { Filter } from "assets/svg";
+import { MenuType } from "components/Menu/Menu.types";
 
 type Props = NativeStackScreenProps<MainStackParamList, "activities">;
 
@@ -23,17 +26,9 @@ export function ActivitiesScreen({ navigation }: Props) {
 
   const [isFilterVisible, setIsFilterVisible] = useState(false);
 
-  const handleOpenFilter = () => {
-    setIsFilterVisible(true);
-  };
-
-  const handleCloseFilter = () => {
-    setIsFilterVisible(false);
-  };
-
   const handleApplyFilter = (newFilters: ActivityFilters) => {
     setFilters(newFilters);
-    handleCloseFilter();
+    setIsFilterVisible(false);
   };
 
   const [filters, setFilters] = useState<ActivityFilters>({});
@@ -48,32 +43,29 @@ export function ActivitiesScreen({ navigation }: Props) {
     fetchActivitiesByRegion(userRegion, maxDistance, filters)
   );
 
+  const menu: MenuType = {
+    type: "element",
+    icon: Filter,
+    element: <ActivityFilter onApply={handleApplyFilter} currentFilters={filters} />,
+  };
+  useHeaderMenu({ navigation, ...menu });
+
   return (
     <YStack full>
       <Text preset="header">{activities?.meta?.pagination?.total} Activities found </Text>
-
-      <Button onPress={handleOpenFilter} text="Filter" />
       <CreateActivity open={openActivity} setOpen={setOpenActivity} />
       <Button
         tx="createActivity.button"
         onPress={() => setOpenActivity(true)}
         style={{ alignSelf: "center", bottom: 10, position: "absolute" }}
       />
-      {/* {isLoadingActivities ? (
+      {isLoadingActivities ? (
         <ActivityIndicator />
       ) : (
-        <>
-          <ActivityFilter
-            isVisible={isFilterVisible}
-            onClose={handleCloseFilter}
-            onApply={handleApplyFilter}
-            currentFilters={filters}
-          />
-          <ScrollView>
-            {activities?.data?.map((activity: any) => <ActivityCard activity={activity} key={activity?.id} />)}
-          </ScrollView>
-        </>
-      )} */}
+        <ScrollView>
+          {activities?.data?.map((activity: any) => <ActivityCard activity={activity} key={activity?.id} />)}
+        </ScrollView>
+      )}
       <CreateActivity open={openActivity} setOpen={setOpenActivity} />
       <Button
         tx="createActivity.button"

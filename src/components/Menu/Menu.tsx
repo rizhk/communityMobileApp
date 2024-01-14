@@ -4,7 +4,7 @@ import { Button } from "components/Button";
 import { Icon } from "components/Icon";
 import { Text } from "components/Text";
 import { Stack, XStack, YStack } from "components/containers";
-import { useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { Dimensions, Pressable, ViewStyle } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { ThemeColorType, buttonSize, spacing } from "theme";
@@ -22,6 +22,16 @@ export type MenuProps = MenuType & {
     iconScale?: number;
   };
 };
+
+export type menuContextType = {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const MenuContext = createContext<menuContextType>({
+  open: false,
+  setOpen: () => {},
+});
 
 export function Menu(props: MenuProps) {
   const { color = "primary", iconOptions } = props;
@@ -70,22 +80,24 @@ export function Menu(props: MenuProps) {
               <Icon icon={BRCorner} color={color} size={buttonSize.md} />
               <Stack w={buttonSize.md} h={buttonSize.md} bc={color} brtr="full" brtl="full" />
             </XStack>
-            <YStack bc={color} w={width - 2 * MARGIN} br="lg" brtr="none">
-              {props.type === "menu" &&
-                props.items.map((item: MenuItemType, index) => (
-                  <Stack key={item.text} w="100%" jc="center">
-                    <TouchableOpacity
-                      onPress={() => {
-                        item.onPress();
-                        setOpen(false);
-                      }}
-                      style={{ padding: spacing.sm }}
-                    >
-                      <Text text={item.text} preset="button" style={{ alignSelf: "flex-start" }} />
-                    </TouchableOpacity>
-                  </Stack>
-                ))}
-              {props.type === "element" && props.element}
+            <YStack bc={color} w={width - 2 * MARGIN} br="lg" brtr="none" pa="xxs" style={{ overflow: "hidden" }}>
+              <MenuContext.Provider value={{ open, setOpen }}>
+                {props.type === "menu" &&
+                  props.items.map((item: MenuItemType, index) => (
+                    <Stack key={item.text} w="100%" jc="center">
+                      <TouchableOpacity
+                        onPress={() => {
+                          item.onPress();
+                          setOpen(false);
+                        }}
+                        style={{ padding: spacing.sm }}
+                      >
+                        <Text text={item.text} preset="button" style={{ alignSelf: "flex-start" }} />
+                      </TouchableOpacity>
+                    </Stack>
+                  ))}
+                {props.type === "element" && props.element}
+              </MenuContext.Provider>
             </YStack>
           </YStack>
         </>
@@ -93,6 +105,8 @@ export function Menu(props: MenuProps) {
     </Stack>
   );
 }
+
+export const useContextMenu = () => useContext(MenuContext);
 
 const background = {
   position: "absolute",

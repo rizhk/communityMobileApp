@@ -26,3 +26,4 @@ export { default as AddCircle } from "./addCircle.svg";
 export { default as BRCorner } from "./brCorner.svg";
 export { default as TLCorner } from "./TLCorner.svg";
 export { default as TRCorner } from "./TRCorner.svg";
+export { default as Filter } from "./filter.svg";
