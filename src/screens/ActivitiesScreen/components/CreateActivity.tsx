@@ -101,6 +101,7 @@ export default function CreateActivity(props: CreateActivityProps) {
           />
           <GForm.AddressPicker valName="location" />
           <GForm.DateTimePicker tx="createActivity.when" valNames={{ start: "dateStart", end: "dateEnd" }} />
+
           <GForm.Radio valName="type" items={activityTypeItems} />
           <GForm.SubmitButton tx="createActivity.createActivity" style={{ alignSelf: "center" }} />
         </GForm>

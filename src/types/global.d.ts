@@ -5,8 +5,8 @@ export type LocationType = {
   latitude: number;
 };
 
-export type ItemType<T> = {
-  value: T;
+export type ItemType = {
+  value: ValueType;
   label: I18n.Scope;
 };
 

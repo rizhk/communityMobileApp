@@ -10,7 +10,7 @@ export function MainStack() {
     <Main.Navigator>
       <Main.Screen name="Main" component={BottomStack} options={{ headerShown: false }} />
       {MainNavProps.map((tab: MainNavPropsType) => (
-        <Main.Screen key={tab.id} name={tab.route} component={tab.component} options={{ headerShown: false }} />
+        <Main.Screen key={tab.route} name={tab.route} component={tab.component} options={{ headerShown: false }} />
       ))}
     </Main.Navigator>
   );

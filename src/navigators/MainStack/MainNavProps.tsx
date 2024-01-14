@@ -1,17 +1,11 @@
 import { NavType } from "navigators/NavType";
 import { ActivityScreen, MessageScreen } from "screens";
-import { ChannelUserItem } from "types/message";
-
+import { BottomTabParamList } from "../BottomStack/BottomNavProps";
 export interface MainNavPropsType extends NavType<MainStackParamList> {
   noHeader?: boolean;
 }
 
-export type MainStackParamList = {
-  map: undefined;
-  activities: undefined;
-  chat: undefined;
-  profile: undefined;
-  message: { channelUser: ChannelUserItem };
+export type MainStackParamList = BottomTabParamList & {
   chats: undefined;
   activity: { activityId: number };
   // activity: { activity: ActivityItemStrapi };
@@ -32,13 +26,11 @@ export type MainStackParamList = {
 
 export const MainNavProps: MainNavPropsType[] = [
   {
-    id: 1,
     route: "activity",
     component: ActivityScreen,
   },
   {
-    id: 1,
-    route: "message",
+    route: "chats",
     component: MessageScreen,
   },
 ];

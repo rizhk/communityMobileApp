@@ -1,13 +1,13 @@
 import { PSteps, PStep } from "components/PSteps";
 import { Text } from "components/Text";
 import { useState } from "react";
-import { ThemeColorType } from "theme/color";
 
-import ColorPicker from "./ColorPicker";
 import ListPicker from "components/ListPicker/ListPicker";
+import { useThemeTestContext } from "./TemeContext";
+import { Star } from "assets/svg";
 
 const Items = [
-  { text: "drop-item1", value: "drop-item1" },
+  { icon: <Star color="white" />, text: "drop-item1", value: "drop-item1" },
   { text: "drop-item2", value: "drop-item2" },
   { text: "drop-item3", value: "drop-item3" },
   { text: "drop-item4", value: "drop-item4" },
@@ -18,24 +18,23 @@ const Items = [
 ];
 
 export default function SteperTab() {
-  const [color, setColor] = useState("primary" as ThemeColorType);
   const [single, setSingle] = useState("drop-item1");
   const [multiple, setMultiple] = useState(["drop-item1", "drop-item2"]);
+  const { color } = useThemeTestContext();
 
   return (
     <>
-      <ColorPicker setColor={setColor} />
       <PSteps color={color}>
         <PStep label="First Step">
           <Text>This is the content within step 1!</Text>
           <Text preset="bold" text="Single Picker" />
-          <ListPicker addText="Add item..." items={Items} value={single} setValue={(value: any) => setSingle(value)} />
+          <ListPicker addText="Add item..." items={Items} value={single} setSingle={(value: any) => setSingle(value)} />
           <Text preset="bold" text="Multi Picker" />
           <ListPicker
             addText="Add item..."
             items={Items}
             value={multiple}
-            setValue={(value: any) => setMultiple(value)}
+            setMultiple={(value: any) => setMultiple(value)}
             multiple
           />
         </PStep>

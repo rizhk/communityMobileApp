@@ -159,11 +159,11 @@ export type PStepProps = StackProps & {
 };
 
 export function PStep(props: PStepProps) {
-  const { children, label, flexGrow = true, direction = "column", pa = "sm", style = {}, ...rest } = props;
+  const { children, label, flexGrow = true, pa = "sm", style = {}, ...rest } = props;
   const { currentStep, labels } = usePSteps();
   if (label === labels[currentStep])
     return (
-      <Stack flexGrow={flexGrow} direction={direction} pa={pa} {...rest} style={[{ marginTop: 10 }, style]}>
+      <Stack flexGrow={flexGrow} pa={pa} {...rest} style={[{ marginTop: 10 }, style]}>
         {children}
       </Stack>
     );

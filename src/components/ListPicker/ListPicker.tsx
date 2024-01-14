@@ -1,4 +1,3 @@
-import { AddCircle } from "assets/svg";
 import { Button } from "components/Button";
 import { Slider } from "components/Modal";
 import { Stack, XStack } from "components/containers";
@@ -6,20 +5,18 @@ import { SVGAttributes, useState } from "react";
 import { ButtonSizeTypes, ThemeColorType, buttonSize } from "theme";
 import ListItem, { ListItemType } from "./components/ListItem";
 import { i18n } from "i18n";
-import { presets } from "components/Inputs/TextInput/TextInput.presets";
-import { preset } from "swr/_internal";
 import { ButtonPresets } from "components/Button/button.presets";
 
 type ListPickerSingle = {
   multiple?: false;
   value: any;
-  setValue: (value: any) => void;
+  setSingle: (value: any) => void;
 };
 
 type ListPickerMultiple = {
   multiple: true;
   value: any[];
-  setValue: (value: any[]) => void;
+  setMultiple: (value: any[]) => void;
 };
 
 export type ListPickerProps = (ListPickerSingle | ListPickerMultiple) & {
@@ -48,6 +45,22 @@ export default function ListPicker(props: ListPickerProps) {
   const selectedProps = { preset: selectedView as ButtonPresets, color: selectColor, size: "xs" as ButtonSizeTypes };
   const addProps = { ...selectedProps, color: color };
 
+  const checkSelected = (value: any | any[], itemValue: any) => {
+    return multiple ? value.includes(itemValue) : value === itemValue;
+  };
+
+  const handleSelect = (value: any) => {
+    if ("setMultiple" in props) {
+      if (props.value.includes(value)) {
+        props.setMultiple(props.value.filter((item: any) => item !== value));
+      } else {
+        props.setMultiple([...props.value, value]);
+      }
+    } else if ("setSingle" in props) {
+      props.setSingle((prev: any) => (prev === value ? "" : value));
+    }
+  };
+
   return (
     <Stack style={{ backgroundColor: "#ff93" }}>
       <XStack ai="center" flexWrap="wrap" gap="sm" pa="xxs">
@@ -57,7 +70,13 @@ export default function ListPicker(props: ListPickerProps) {
       </XStack>
       <Slider visible={open} setVisible={setOpen} color={color}>
         {items.map((item, index) => (
-          <ListItem key={index} {...item} isSelected />
+          <ListItem
+            key={index}
+            {...item}
+            isSelected={checkSelected(props.value, item.value)}
+            color={color}
+            onPress={() => handleSelect(item.value)}
+          />
         ))}
       </Slider>
     </Stack>

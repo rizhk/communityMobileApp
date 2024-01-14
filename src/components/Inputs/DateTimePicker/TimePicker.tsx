@@ -1,11 +1,9 @@
 import { Text } from "components/Text";
 import { XStack } from "components/containers/Stack/Stack";
 import { useState } from "react";
-import { TextStyle, View, ViewStyle, Platform } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TextStyle, View, ViewStyle, Platform, TouchableOpacity } from "react-native";
 import { spacing } from "theme";
 import { inputFieldStyle } from "theme/styles";
-
 import { AndroidDatePicker } from "./components/AndroidDatePicker";
 import { DatePickerProps } from "./components/DatePicker.props";
 import { IOSDatePicker } from "./components/IODatePicker";

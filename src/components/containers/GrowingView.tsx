@@ -9,7 +9,7 @@ type GrowingViewProps = {
   duration?: number;
   style?: ViewStyle;
 };
-
+//TODO: TO DELETE after listpicke implemented
 export function GrowingView(props: PropsWithChildren<GrowingViewProps>) {
   const { open, from, to, duration = 100, style = {}, children } = props;
   const { sizeValue, shrink, grow } = useAnimatedSize(from, to, duration);

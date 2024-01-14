@@ -4,8 +4,8 @@ import { TextSizeTypes, ThemeColorType } from "theme";
 
 import { TextPresets } from "./text.presets";
 
-export interface TextProps extends TextProperties {
-  children?: React.ReactNode;
+export type TextProps = TextProperties & {
+  // children?: React.ReactNode;
   tx?: i18n.Scope;
   txOptions?: i18n.TranslateOptions;
   text?: string;
@@ -14,4 +14,4 @@ export interface TextProps extends TextProperties {
   //thoses props will override preset
   color?: ThemeColorType;
   size?: TextSizeTypes | number;
-}
+};
