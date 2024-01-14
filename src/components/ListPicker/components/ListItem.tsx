@@ -23,7 +23,7 @@ export default function ListItem(props: ListItemProps) {
   const { containerProps, text, tx, icon, checkSize = 30, color, isSelected, onPress } = props;
 
   return (
-    <XStack onPress={onPress} jc="center" ai="center" bc="test" my="xxs" pa="xxs" {...containerProps}>
+    <XStack onPress={onPress} jc="center" ai="center" my="xxs" pa="xxs" {...containerProps}>
       <Stack w={40} jc="center" ai="center">
         {icon}
       </Stack>

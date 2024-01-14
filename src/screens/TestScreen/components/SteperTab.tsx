@@ -8,18 +8,20 @@ import { Star } from "assets/svg";
 
 const Items = [
   { icon: <Star color="white" />, text: "drop-item1", value: "drop-item1" },
-  { text: "drop-item2", value: "drop-item2" },
-  { text: "drop-item3", value: "drop-item3" },
-  { text: "drop-item4", value: "drop-item4" },
-  { text: "drop-item5", value: "drop-item5" },
-  { text: "drop-item6", value: "6" },
-  { text: "drop-item7", value: "item7" },
-  { text: "drop-item8", value: "drop-item8 dsa  das a" },
+  { icon: <Star color="white" />, text: "drop-item2", value: "drop-item2" },
+  { icon: <Star color="white" />, text: "drop-item3", value: "drop-item3" },
+  { icon: <Star color="white" />, text: "drop-item4", value: "drop-item4" },
+  { icon: <Star color="white" />, text: "drop-item5", value: "drop-item5" },
+  { icon: <Star color="white" />, text: "drop-item6", value: "6" },
+  { icon: <Star color="white" />, text: "drop-item7", value: "item7" },
+  { icon: <Star color="white" />, text: "drop-item8", value: "drop-item8 dsa  das a" },
 ];
 
 export default function SteperTab() {
   const [single, setSingle] = useState("drop-item1");
   const [multiple, setMultiple] = useState(["drop-item1", "drop-item2"]);
+  const [singleAvatar, setSingleAvatar] = useState("drop-item1");
+  const [multipleAvatar, setMultipleAvatar] = useState(["drop-item1", "drop-item2"]);
   const { color } = useThemeTestContext();
 
   return (
@@ -28,7 +30,12 @@ export default function SteperTab() {
         <PStep label="First Step">
           <Text>This is the content within step 1!</Text>
           <Text preset="bold" text="Single Picker" />
-          <ListPicker addText="Add item..." items={Items} value={single} setSingle={(value: any) => setSingle(value)} />
+          <ListPicker
+            addText="Choose item..."
+            items={Items}
+            value={single}
+            setSingle={(value: any) => setSingle(value)}
+          />
           <Text preset="bold" text="Multi Picker" />
           <ListPicker
             addText="Add item..."
@@ -36,6 +43,23 @@ export default function SteperTab() {
             value={multiple}
             setMultiple={(value: any) => setMultiple(value)}
             multiple
+          />
+          <Text preset="bold" text="Single Picker" />
+          <ListPicker
+            addText="Choose item..."
+            items={Items}
+            value={singleAvatar}
+            setSingle={(value: any) => setSingleAvatar(value)}
+            selectedView="avatar"
+          />
+          <Text preset="bold" text="Multi Picker" />
+          <ListPicker
+            addText="Add item..."
+            items={Items}
+            value={multipleAvatar}
+            setMultiple={(value: any) => setMultipleAvatar(value)}
+            multiple
+            selectedView="avatar"
           />
         </PStep>
         <PStep label="Second Step">

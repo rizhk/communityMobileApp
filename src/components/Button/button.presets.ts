@@ -45,6 +45,7 @@ export const presets = {
   },
   badge: (color: ThemeColorType) => {
     return {
+      ...BASE(color),
       borderRadius: radius.sm,
       backgroundColor: themeColor[color],
     } as ViewStyle;

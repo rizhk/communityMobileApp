@@ -1,11 +1,12 @@
-import { Button } from "components/Button";
 import { Slider } from "components/Modal";
-import { Stack, XStack } from "components/containers";
+import { Stack } from "components/containers";
 import { SVGAttributes, useState } from "react";
-import { ButtonSizeTypes, ThemeColorType, buttonSize } from "theme";
+import { ThemeColorType } from "theme";
 import ListItem, { ListItemType } from "./components/ListItem";
 import { i18n } from "i18n";
-import { ButtonPresets } from "components/Button/button.presets";
+import { FlatList } from "react-native";
+import { SelectedBadgeList } from "./components/SelectedBadgeList";
+import { SelectedAvatarList } from "./components/SelectedAvatarList";
 
 type ListPickerSingle = {
   multiple?: false;
@@ -42,10 +43,7 @@ export default function ListPicker(props: ListPickerProps) {
     selectColor = "grey400",
   } = props;
   const [open, setOpen] = useState(false);
-  const selectedProps = { preset: selectedView as ButtonPresets, color: selectColor, size: "xs" as ButtonSizeTypes };
-  const addProps = { ...selectedProps, color: color };
-
-  const checkSelected = (value: any | any[], itemValue: any) => {
+  const checkSelected = (value: any, itemValue: any) => {
     return multiple ? value.includes(itemValue) : value === itemValue;
   };
 
@@ -61,23 +59,28 @@ export default function ListPicker(props: ListPickerProps) {
     }
   };
 
+  const selectedListProps = { setOpen, color, selectColor, value: props.value, handleSelect, multiple };
+  const selectedBadgeListProps = { addText, addTx, ...selectedListProps };
+  const selectedAvatarListProps = { items, ...selectedListProps };
+
   return (
     <Stack style={{ backgroundColor: "#ff93" }}>
-      <XStack ai="center" flexWrap="wrap" gap="sm" pa="xxs">
-        {!multiple && <Button text={props.value} {...selectedProps} />}
-        {multiple && props.value.map((value: any, index: number) => <Button text={value} {...selectedProps} />)}
-        <Button tx={addTx} text={addText} onPress={() => setOpen(true)} {...addProps} />
-      </XStack>
+      {selectedView === "badge" && <SelectedBadgeList {...selectedBadgeListProps} />}
+      {selectedView === "avatar" && <SelectedAvatarList {...selectedAvatarListProps} />}
       <Slider visible={open} setVisible={setOpen} color={color}>
-        {items.map((item, index) => (
-          <ListItem
-            key={index}
-            {...item}
-            isSelected={checkSelected(props.value, item.value)}
-            color={color}
-            onPress={() => handleSelect(item.value)}
-          />
-        ))}
+        <FlatList
+          data={items}
+          renderItem={({ item, index }) => (
+            <ListItem
+              key={index}
+              {...item}
+              isSelected={checkSelected(props.value, item.value)}
+              color={color}
+              onPress={() => handleSelect(item.value)}
+            />
+          )}
+          ItemSeparatorComponent={() => <Stack h={1} bc="grey300" />}
+        />
       </Slider>
     </Stack>
   );
