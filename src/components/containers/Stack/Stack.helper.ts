@@ -117,10 +117,10 @@ const getMargin = (props: StackProps) => {
   const mbValue = mb ?? my ?? marginValue;
   const mlValue = ml ?? mx ?? marginValue;
   const mrValue = mr ?? mx ?? marginValue;
-  const marginTop = typeof mtValue === "number" ? mtValue : spacing[mtValue];
-  const marginBottom = typeof mbValue === "number" ? mbValue : spacing[mbValue];
-  const marginLeft = typeof mlValue === "number" ? mlValue : spacing[mlValue];
-  const marginRight = typeof mrValue === "number" ? mrValue : spacing[mrValue];
+  const marginTop = mtValue ? (typeof mtValue === "number" ? mtValue : spacing[mtValue]) : undefined;
+  const marginBottom = mbValue ? (typeof mbValue === "number" ? mbValue : spacing[mbValue]) : undefined;
+  const marginLeft = mlValue ? (typeof mlValue === "number" ? mlValue : spacing[mlValue]) : undefined;
+  const marginRight = mrValue ? (typeof mrValue === "number" ? mrValue : spacing[mrValue]) : undefined;
   return {
     marginTop,
     marginBottom,
@@ -136,10 +136,10 @@ const getPadding = (props: StackProps) => {
   const pbValue = pb ?? py ?? paddingValue;
   const plValue = pl ?? px ?? paddingValue;
   const prValue = pr ?? px ?? paddingValue;
-  const paddingTop = typeof ptValue === "number" ? ptValue : spacing[ptValue];
-  const paddingBottom = typeof pbValue === "number" ? pbValue : spacing[pbValue];
-  const paddingLeft = typeof plValue === "number" ? plValue : spacing[plValue];
-  const paddingRight = typeof prValue === "number" ? prValue : spacing[prValue];
+  const paddingTop = ptValue ? (typeof ptValue === "number" ? ptValue : spacing[ptValue]) : undefined;
+  const paddingBottom = pbValue ? (typeof pbValue === "number" ? pbValue : spacing[pbValue]) : undefined;
+  const paddingLeft = plValue ? (typeof plValue === "number" ? plValue : spacing[plValue]) : undefined;
+  const paddingRight = prValue ? (typeof prValue === "number" ? prValue : spacing[prValue]) : undefined;
   return {
     paddingTop,
     paddingBottom,
@@ -155,10 +155,18 @@ const getBorderRadius = (props: StackProps) => {
   const brtrValue = brtr ?? borderRadiusValue;
   const brblValue = brbl ?? borderRadiusValue;
   const brbrValue = brbr ?? borderRadiusValue;
-  const borderTopLeftRadius = typeof brtlValue === "number" ? brtlValue : radius[brtlValue];
-  const borderTopRightRadius = typeof brtrValue === "number" ? brtrValue : radius[brtrValue];
-  const borderBottomLeftRadius = typeof brblValue === "number" ? brblValue : radius[brblValue];
-  const borderBottomRightRadius = typeof brbrValue === "number" ? brbrValue : radius[brbrValue];
+  const borderTopLeftRadius = brtlValue ? (typeof brtlValue === "number" ? brtlValue : radius[brtlValue]) : undefined;
+  const borderTopRightRadius = brtrValue ? (typeof brtrValue === "number" ? brtrValue : radius[brtrValue]) : undefined;
+  const borderBottomLeftRadius = brblValue
+    ? typeof brblValue === "number"
+      ? brblValue
+      : radius[brblValue]
+    : undefined;
+  const borderBottomRightRadius = brbrValue
+    ? typeof brbrValue === "number"
+      ? brbrValue
+      : radius[brbrValue]
+    : undefined;
 
   return {
     borderTopLeftRadius,
