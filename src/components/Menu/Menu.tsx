@@ -1,14 +1,15 @@
+import { useNavigation } from "@react-navigation/native";
 import { BRCorner, BurgerMenu } from "assets/svg";
 import { Button } from "components/Button";
+import { Icon } from "components/Icon";
+import { Text } from "components/Text";
 import { Stack, XStack, YStack } from "components/containers";
 import { useEffect, useState } from "react";
-import { ThemeColorType, buttonSize, spacing } from "theme";
 import { Dimensions, Pressable, ViewStyle } from "react-native";
-import { MenuItemType, MenuType } from "./Menu.types";
-import { useNavigation } from "@react-navigation/native";
-import { Icon } from "components/Icon";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { Text } from "components/Text";
+import { ThemeColorType, buttonSize, spacing } from "theme";
+
+import { MenuItemType, MenuType } from "./Menu.types";
 
 const { width, height } = Dimensions.get("window");
 const MARGIN = 10;
@@ -70,7 +71,7 @@ export function Menu(props: MenuProps) {
               <Stack w={buttonSize.md} h={buttonSize.md} bc={color} brtr="full" brtl="full" />
             </XStack>
             <YStack bc={color} w={width - 2 * MARGIN} br="lg" brtr="none">
-              {props.type == "menu" &&
+              {props.type === "menu" &&
                 props.items.map((item: MenuItemType, index) => (
                   <Stack key={item.text} w="100%" jc="center">
                     <TouchableOpacity
@@ -95,8 +96,8 @@ export function Menu(props: MenuProps) {
 
 const background = {
   position: "absolute",
-  width: width,
-  height: height,
+  width,
+  height,
   zIndex: 10,
   right: 0,
 } as ViewStyle;

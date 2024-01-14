@@ -18,9 +18,9 @@ export type SelectedListBadgeProps = {
 };
 
 export function SelectedBadgeList(props: SelectedListBadgeProps) {
-  const { color, selectColor, value, handleSelect, multiple, addText, addTx, setOpen } = props;
+  const { color, selectColor, handleSelect, multiple, addText, addTx, setOpen } = props;
   const selectedProps = { preset: "badge" as ButtonPresets, color: selectColor, size: "xs" as ButtonSizeTypes };
-  const addProps = { ...selectedProps, color: color, style: { width: multiple ? undefined : "100%" } as ViewStyle };
+  const addProps = { ...selectedProps, color, style: { width: multiple ? undefined : "100%" } as ViewStyle };
 
   return (
     <XStack ai="center" flexWrap={multiple ? "wrap" : undefined} gap="sm" my="xxs">

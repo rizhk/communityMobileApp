@@ -1,10 +1,10 @@
+import { Star } from "assets/svg";
+import ListPicker from "components/ListPicker/ListPicker";
 import { PSteps, PStep } from "components/PSteps";
 import { Text } from "components/Text";
 import { useState } from "react";
 
-import ListPicker from "components/ListPicker/ListPicker";
 import { useThemeTestContext } from "./TemeContext";
-import { Star } from "assets/svg";
 
 const Items = [
   { icon: <Star color="white" />, text: "drop-item1", value: "drop-item1" },

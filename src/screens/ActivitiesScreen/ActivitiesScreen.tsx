@@ -3,6 +3,7 @@ import { fetchActivitiesByRegion } from "api/api";
 import ActivityFilter from "components/ActivityFilter/ActivityFilter";
 import { Button } from "components/Button";
 import { Text } from "components/Text";
+import { YStack } from "components/containers/Stack/Stack";
 import useCurrentPosition from "hooks/useCurrentPosition";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { useState } from "react";
@@ -12,7 +13,6 @@ import { ActivityFilters } from "types/activity";
 
 import ActivityCard from "./components/ActivityCard";
 import CreateActivity from "./components/CreateActivity";
-import { YStack } from "components/containers/Stack/Stack";
 
 type Props = NativeStackScreenProps<MainStackParamList, "activities">;
 

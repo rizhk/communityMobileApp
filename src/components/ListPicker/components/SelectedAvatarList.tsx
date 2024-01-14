@@ -2,8 +2,8 @@ import { AddCircle } from "assets/svg";
 import { ButtonPresets } from "components/Button/button.presets";
 import { XStack } from "components/containers";
 import { TouchableOpacity, ViewStyle } from "react-native";
-import { ButtonSizeTypes, ThemeColorType } from "theme";
-import { color as themeColor } from "theme";
+import { ButtonSizeTypes, ThemeColorType, color as themeColor } from "theme";
+
 import { ListItemType } from "./ListItem";
 
 export type SelectedListBadgeProps = {
@@ -28,7 +28,7 @@ function Avatar(props: { image?: JSX.Element; text: string; color: ThemeColorTyp
 export function SelectedAvatarList(props: SelectedListBadgeProps) {
   const { color, selectColor, value, handleSelect, multiple, setOpen, items } = props;
   const selectedProps = { preset: "badge" as ButtonPresets, color: selectColor, size: "xs" as ButtonSizeTypes };
-  const addProps = { ...selectedProps, color: color, style: { width: multiple ? undefined : "100%" } as ViewStyle };
+  const addProps = { ...selectedProps, color, style: { width: multiple ? undefined : "100%" } as ViewStyle };
 
   return (
     <XStack ai="center" jc="center" flexWrap={multiple ? "wrap" : undefined} gap="sm">

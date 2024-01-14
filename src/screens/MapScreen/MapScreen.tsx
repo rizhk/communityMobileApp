@@ -9,14 +9,13 @@ import { Text } from "components/Text";
 import { YStack } from "components/containers/Stack/Stack";
 import { INITIAL_REGION_FRIBOURG } from "constants/global";
 import * as Location from "expo-location";
+import useCurrentPosition from "hooks/useCurrentPosition";
 import { MainLayout } from "layouts";
 import { useEffect, useState, useRef } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
-import useSWR from "swr";
-import { ActivityIndicator } from "react-native";
+import { StyleSheet, View, ViewStyle, ActivityIndicator } from "react-native";
 import MapView, { LatLng, Region } from "react-native-maps";
+import useSWR from "swr";
 import { shadow, color } from "theme";
-import useCurrentPosition from "hooks/useCurrentPosition";
 
 export function MapScreen() {
   const [region, setRegion] = useState<Region>(INITIAL_REGION_FRIBOURG);

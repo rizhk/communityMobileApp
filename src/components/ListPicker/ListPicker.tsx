@@ -1,12 +1,13 @@
 import { Slider } from "components/Modal";
 import { Stack } from "components/containers";
-import { SVGAttributes, useState } from "react";
-import { ThemeColorType } from "theme";
-import ListItem, { ListItemType } from "./components/ListItem";
 import { i18n } from "i18n";
+import { SVGAttributes, useState } from "react";
 import { FlatList } from "react-native";
-import { SelectedBadgeList } from "./components/SelectedBadgeList";
+import { ThemeColorType } from "theme";
+
+import ListItem, { ListItemType } from "./components/ListItem";
 import { SelectedAvatarList } from "./components/SelectedAvatarList";
+import { SelectedBadgeList } from "./components/SelectedBadgeList";
 
 type ListPickerSingle = {
   multiple?: false;
@@ -79,6 +80,7 @@ export default function ListPicker(props: ListPickerProps) {
               onPress={() => handleSelect(item.value)}
             />
           )}
+          keyExtractor={(item) => item.value}
           ItemSeparatorComponent={() => <Stack h={1} bc="grey300" />}
         />
       </Slider>

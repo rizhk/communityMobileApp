@@ -1,10 +1,11 @@
 import { TouchableOpacity, View } from "react-native";
-import { StackProps } from "./Stack.props";
+
 import { getProps } from "./Stack.helper";
+import { StackProps } from "./Stack.props";
 
 export function Stack(props: StackProps) {
   const { styles, rest } = getProps(props);
-  if (props.onPress == undefined)
+  if (props.onPress === undefined)
     return (
       <View style={styles} {...rest}>
         {props.children}
@@ -19,7 +20,7 @@ export function Stack(props: StackProps) {
 
 export function XStack(props: Omit<StackProps, "direction">) {
   const { styles, rest } = getProps({ direction: "row", ...props });
-  if (props.onPress == undefined)
+  if (props.onPress === undefined)
     return (
       <View style={styles} {...rest}>
         {props.children}
@@ -34,7 +35,7 @@ export function XStack(props: Omit<StackProps, "direction">) {
 
 export function YStack(props: Omit<StackProps, "direction">) {
   const { styles, rest } = getProps({ direction: "column", ...props });
-  if (props.onPress == undefined)
+  if (props.onPress === undefined)
     return (
       <View style={styles} {...rest}>
         {props.children}

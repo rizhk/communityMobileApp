@@ -7,6 +7,7 @@ import { i18n } from "i18n";
 import { Children, createContext, useContext, useState } from "react";
 import { View } from "react-native";
 import { ThemeColorType } from "theme/color";
+
 import { StackProps } from "./containers/Stack/Stack.props";
 
 export type PStepsContextType = {

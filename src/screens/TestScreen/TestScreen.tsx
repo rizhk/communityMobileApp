@@ -1,16 +1,18 @@
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { PaletteIcon } from "assets/svg";
+import { MenuType } from "components/Menu/Menu.types";
+import { Tabs } from "components/Tabs";
+import { Stack } from "components/containers";
+import { useHeaderMenu } from "hooks/useHeaderMenu";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
+
+import ColorPicker from "./components/ColorPicker";
 import GFormTab from "./components/GFormTab";
 import GeneralTab from "./components/GeneralTab";
 import { InputsTab } from "./components/InputsTab";
 import SteperTab from "./components/SteperTab";
-import ViewsTab from "./components/ViewsTab";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Tabs } from "components/Tabs";
-import { PaletteIcon } from "assets/svg";
-import { MenuType } from "components/Menu/Menu.types";
-import { useHeaderMenu } from "hooks/useHeaderMenu";
-import ColorPicker from "./components/ColorPicker";
 import ThemeProvider, { useThemeTestContext } from "./components/TemeContext";
+import ViewsTab from "./components/ViewsTab";
 
 type TabItem = {
   tab: JSX.Element;
@@ -44,13 +46,14 @@ export default function TestScreen({ navigation }: Props) {
 //the weird refactoring here, is because of the ThemeProvider
 function Test({ navigation }: { navigation: any }) {
   const { setColor, setTextColor } = useThemeTestContext();
+
   const menu: MenuType = {
     icon: PaletteIcon,
     type: "element",
     element: <ColorPicker setColor={setColor} setTextColor={setTextColor} />,
   };
 
-  // const menu: MenuType = {
+  // const menu2: MenuType = {
   //   icon: PaletteIcon,
   //   type: "menu",
   //   items: menuTest,
@@ -59,12 +62,14 @@ function Test({ navigation }: { navigation: any }) {
   useHeaderMenu({ navigation, iconOptions: { iconScale: 1.5 }, ...menu });
 
   return (
-    <Tabs headers={TabsItems.map((header) => header.header)}>
-      {TabsItems.map((item) => (
-        <Tabs.Tab key={item.header} header={item.header}>
-          {item.tab}
-        </Tabs.Tab>
-      ))}
-    </Tabs>
+    <Stack position="relative">
+      <Tabs headers={TabsItems.map((header) => header.header)}>
+        {TabsItems.map((item) => (
+          <Tabs.Tab key={item.header} header={item.header}>
+            {item.tab}
+          </Tabs.Tab>
+        ))}
+      </Tabs>
+    </Stack>
   );
 }

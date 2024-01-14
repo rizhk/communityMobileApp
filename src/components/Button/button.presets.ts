@@ -50,7 +50,6 @@ export const presets = {
       backgroundColor: themeColor[color],
     } as ViewStyle;
   },
-  avatar: (color: ThemeColorType) => {},
 };
 
 export type ButtonPresets = keyof typeof presets;
