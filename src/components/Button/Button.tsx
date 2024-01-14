@@ -1,6 +1,6 @@
 import { Icon } from "components/Icon";
 import { Text } from "components/Text";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, ViewStyle } from "react-native";
 import { buttonSize, color as themeColor, icon as iconSize, spacing } from "theme";
 
 import { presets } from "./button.presets";
@@ -41,7 +41,7 @@ export function Button(props: ButtonProps) {
   }
 
   return (
-    <TouchableOpacity style={buttonStyle} {...rest}>
+    <TouchableOpacity style={buttonStyle as ViewStyle} {...rest}>
       {icon !== undefined && iconPosition === "left" && <ButtonIcon />}
       {(tx !== undefined || text !== undefined) && (
         <Text color={textColor} {...textProps} size={size} style={textStyles} />
