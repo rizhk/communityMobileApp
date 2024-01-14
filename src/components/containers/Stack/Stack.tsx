@@ -1,6 +1,4 @@
 import { View } from "react-native";
-import { color, spacing, radius as RADIUS } from "theme";
-import { shadowStyle } from "theme/styles";
 import { StackProps } from "./Stack.props";
 import { getProps } from "./Stack.helper";
 

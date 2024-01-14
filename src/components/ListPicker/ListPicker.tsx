@@ -57,7 +57,7 @@ export default function ListPicker(props: ListPickerProps) {
       </XStack>
       <Slider visible={open} setVisible={setOpen} color={color}>
         {items.map((item, index) => (
-          <ListItem key={index} {...item} />
+          <ListItem key={index} {...item} isSelected />
         ))}
       </Slider>
     </Stack>
