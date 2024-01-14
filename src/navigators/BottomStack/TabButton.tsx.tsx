@@ -5,6 +5,7 @@ import { buttonSize, color } from "theme";
 
 import { BottomNavPropsType } from "./BottomNavProps";
 import { hexToRGBA } from "utils/helper";
+import { Stack } from "components/containers";
 
 export interface TabButtonProps {
   tab: BottomNavPropsType;
@@ -47,38 +48,23 @@ export default function TabButton({ tab, onPress, accessibilityState, isLast }: 
   });
 
   return (
-    <View style={container}>
+    <Stack position="relative" flex={1} ai="center">
       <TouchableOpacity onPress={onPress} style={button}>
         <Animated.View style={[{ backgroundColor: bgColor }, button]}>
           <Icon icon={tab.icon} color="white" size={30} />
         </Animated.View>
       </TouchableOpacity>
-      {!isLast && <View style={separator} />}
-    </View>
+      {!isLast && <Stack bc="grey600" h={24} w={2} position="absolute" right={-1} top={20} br="sm" />}
+    </Stack>
   );
 }
-
-const container = {
-  position: "relative",
-  flex: 1,
-  alignItems: "center",
-} as ViewStyle;
 
 const button = {
   alignItems: "center",
   justifyContent: "center",
   height: buttonSize.xxl,
-  width: buttonSize.xxl,
+  width: "100%",
+  paddingHorizontal: "15%",
   borderBottomLeftRadius: 25,
   borderBottomRightRadius: 25,
-} as ViewStyle;
-
-const separator = {
-  backgroundColor: color.grey600,
-  height: 24,
-  width: 2,
-  position: "absolute",
-  right: -1,
-  top: 20,
-  borderRadius: 5,
 } as ViewStyle;
