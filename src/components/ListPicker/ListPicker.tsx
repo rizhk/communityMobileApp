@@ -64,7 +64,7 @@ export default function ListPicker(props: ListPickerProps) {
   const selectedAvatarListProps = { items, ...selectedListProps };
 
   return (
-    <Stack style={{ backgroundColor: "#ff93" }}>
+    <Stack>
       {selectedView === "badge" && <SelectedBadgeList {...selectedBadgeListProps} />}
       {selectedView === "avatar" && <SelectedAvatarList {...selectedAvatarListProps} />}
       <Slider visible={open} setVisible={setOpen} color={color}>

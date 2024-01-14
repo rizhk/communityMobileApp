@@ -23,7 +23,7 @@ export function SelectedBadgeList(props: SelectedListBadgeProps) {
   const addProps = { ...selectedProps, color: color, style: { width: multiple ? undefined : "100%" } as ViewStyle };
 
   return (
-    <XStack ai="center" flexWrap={multiple ? "wrap" : undefined} gap="sm" pa="xxs">
+    <XStack ai="center" flexWrap={multiple ? "wrap" : undefined} gap="sm" my="xxs">
       {!multiple && props.value !== "" && (
         <Button
           text={props.value}

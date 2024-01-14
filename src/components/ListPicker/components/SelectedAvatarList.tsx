@@ -31,7 +31,7 @@ export function SelectedAvatarList(props: SelectedListBadgeProps) {
   const addProps = { ...selectedProps, color: color, style: { width: multiple ? undefined : "100%" } as ViewStyle };
 
   return (
-    <XStack ai="center" jc="center" flexWrap={multiple ? "wrap" : undefined} gap="sm" pa="xxs">
+    <XStack ai="center" jc="center" flexWrap={multiple ? "wrap" : undefined} gap="sm">
       {!multiple && props.value !== "" && (
         <Avatar image={items.find((item) => item.value === value)?.icon} text={value} color={color} />
       )}
