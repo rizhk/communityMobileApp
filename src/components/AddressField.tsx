@@ -16,64 +16,61 @@ export type AddressFieldProps = {
   color?: ThemeColorType;
 };
 
-const FormatStringIndexes = {
-  streetNb: { i: 0, long : 0},
-  street: { i: 1, long : 0},
-  city: { i: 2, long : 0},
-  state: { i: 4, long : 0},
-  stateLong: { i: 4, long : 0},
-  country: { i: 5, long : 0},
-  countryLong: { i: 5, long : 0},
-  NPA: { i: 6, long : 0},
+type FormatStringIndexesType = {
+  [key : string ] : {type : string, name : "short_name" | "long_name"};
+}
+type AddrComponentType = google.maps.GeocoderAddressComponent[];
+type  FormatStringIndexesKeyType = keyof typeof FormatStringIndexes;
+
+const FormatStringIndexes : FormatStringIndexesType  = {
+  streetNb: { type : "street_number", name : "short_name"},
+  street: { type : "route", name : "short_name"},
+  city: { type : "locality", name : "short_name"},
+  state: { type : "administrative_area_level_1", name : "short_name"},
+  stateLong: { type : "administrative_area_level_1", name : "long_name"},
+  country: { type : "country", name : "short_name"},
+  countryLong: { type : "country", name : "long_name"},
+  NPA: { type : "postal_code", name : "short_name"},
 };
 
-const FormatStringKeys = Object.keys(FormatStringIndexes);
+const fetchAddrComponent = async (lt: number, lg: number) => {
+  return await axios.get(
+    `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lt},${lg}&key=${GOOGLE_API_KEY}`
+  )
+  .then((res) => res?.data?.results[0]?.address_components)
+  .catch((erro) => {console.log(erro); return (undefined)});
+}
 
-const getAddrData = async (lt: number, lg: number, format : string): Promise<string> => {
-  try {
-    const response = await axios.get(
-      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lt},${lg}&key=${GOOGLE_API_KEY}`
-    );
-    const matches = format.match(/%(\w+)%/g);
-      if (matches) 
-      { 
-        matches.forEach(match => {
-          const token = match.substring(1, match.length - 1);
-            if (FormatStringIndexes.hasOwnProperty(token)) 
-            {
-              const key = FormatStringIndexes[token];
-              if (key.long)
-                format = format.replace(match, response.data.results[0].address_components[key.i].long_name);
-              else
-              format = format.replace(match, response.data.results[0].address_components[key.i].short_name);
-            }
-        })
-      };
-  } catch (error : any) {
-    throw (error);
-  }
-  return (format)
-};
+const addrFormat = (addressComponent : AddrComponentType, format : string) : string => {
+  var formatTmp = format;
+
+  const matches = formatTmp.match(/%(\w+)%/g);
+  if (matches) 
+  { 
+    matches.forEach(match => {
+      const token = match.substring(1, match.length - 1);
+      if (FormatStringIndexes.hasOwnProperty(token)) 
+      {
+        console.log("first")
+        const key = FormatStringIndexes[token as FormatStringIndexesKeyType];
+        const addrType = addressComponent.find((addr : any) => addr.types.includes(key.type));
+        formatTmp = formatTmp.replace(match, addrType ? addrType[key.name] : "n/a")
+      }
+    })
+  };
+  console.log("tmp : ", formatTmp);
+  return (formatTmp);
+}
 
 export default function AddressField(props: AddressFieldProps) {
   const [address, setAddress] = useState("");
   const { color = "primary", format, textProps = {}, coord } = props;
 
   useEffect(() => {
-    const getGeoInv = async () => {
-      if (coord.lt === 0 && coord.lg === 0) {
-        setAddress("");
-        return;
-      }
-      try {
-        const addrData: string = await getAddrData(coord.lt, coord.lg, format);
-        setAddress(addrData);
-      } catch (error: any) {
-        console.error("Error in useAddress:", error.message);
-      }
-    };
-
-    getGeoInv();
+    fetchAddrComponent(coord.lt, coord.lg).then((res : AddrComponentType | undefined) => {
+      if (res !== undefined)
+        setAddress(addrFormat(res, format));
+    })
   }, []);
   
   return (
