@@ -7,7 +7,7 @@ import { INFINIT_PARTICIPANTS } from "constants/global";
 import { ActivityItemStrapi } from "types/activity";
 import { User } from "assets/svg";
 import { formatDateFromToday } from "utils/Date";
-import AddressField from "components/AddressFIeld";
+import AddressField from "components/AddressField";
 
 type ActivityCardProps = {
   activity: ActivityItemStrapi;
@@ -37,7 +37,7 @@ const ActivityCard = ({
           </YStack>
           <YStack flexGrow jc="space-around">
             <Text text={sportName} preset="bold" size="xl" />
-            <AddressField coord={{ lg: longitude, lt: latitude }} format={["city", "ctS", "ctL"]} />
+            <AddressField coord={{ lg: longitude, lt: latitude }} format={"%city% jambon %state%- salut %countryLong%"} />
             <XStack w="100%" gap="xs">
               <User color={color.white} />
               <Text text={`${nbParticipants} / ${nbmaxParticipants}`} preset="bold" size="xs" />

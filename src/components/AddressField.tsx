@@ -9,82 +9,50 @@ import { useEffect, useState } from "react";
 import { Text } from "./Text";
 import { color as themeColor } from "theme";
 
+export type AddressFieldProps = {
+  format: string;
+  coord: { lg: number; lt: number };
+  textProps?: TextProps;
+  color?: ThemeColorType;
+};
+
 const FormatStringIndexes = {
-  city: { i: 0, term: "short_term" },
-  street: { i: 0, term: "short_term" },
-  streetNb: { i: 0, term: "short_term" },
-  NPA: { i: 0, term: "short_term" },
-  country: { i: 0, term: "short_term" },
-  countryLong: { i: 0, term: "short_term" },
-  state: { i: 0, term: "short_term" },
-  stateLong: { i: 0, term: "short_term" },
+  streetNb: { i: 0, long : 0},
+  street: { i: 1, long : 0},
+  city: { i: 2, long : 0},
+  state: { i: 4, long : 0},
+  stateLong: { i: 4, long : 0},
+  country: { i: 5, long : 0},
+  countryLong: { i: 5, long : 0},
+  NPA: { i: 6, long : 0},
 };
 
 const FormatStringKeys = Object.keys(FormatStringIndexes);
 
-type addrObj = {
-  st: string;
-  stNbr: string;
-  city: string;
-  dist: string;
-  ctL: string;
-  ctS: string;
-  landL: string;
-  landS: string;
-  pstc: string;
-  [key: string]: string;
-};
-
-const getAddrData = async (lt: number, lg: number): Promise<addrObj> => {
-  const addrObj: addrObj = {
-    st: "",
-    stNbr: "",
-    city: "",
-    dist: "",
-    ctL: "",
-    ctS: "",
-    landL: "",
-    landS: "",
-    pstc: "",
-  };
+const getAddrData = async (lt: number, lg: number, format : string): Promise<string> => {
   try {
     const response = await axios.get(
       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lt},${lg}&key=${GOOGLE_API_KEY}`
     );
-    if (response !== undefined) {
-      addrObj.st = response?.data.results[0].address_components[1]?.short_name;
-      addrObj.stNbr = response.data.results[0].address_components[0].short_name;
-      addrObj.city = response?.data.results[0].address_components[2]?.short_name;
-      addrObj.dist = response?.data.results[0].address_components[3]?.short_name;
-      addrObj.ctL = response?.data.results[0].address_components[4]?.long_name;
-      addrObj.ctS = response?.data.results[0].address_components[4]?.short_name;
-      addrObj.landL = response?.data.results[0].address_components[5]?.long_name;
-      addrObj.landS = response?.data.results[0].address_components[5]?.short_name;
-      addrObj.pstc = response?.data.results[0].address_components[6]?.short_name;
-      return addrObj;
-    }
-  } catch {
-    throw "error : invers geocode in useAddress";
+    const matches = format.match(/%(\w+)%/g);
+      if (matches) 
+      { 
+        matches.forEach(match => {
+          const token = match.substring(1, match.length - 1);
+            if (FormatStringIndexes.hasOwnProperty(token)) 
+            {
+              const key = FormatStringIndexes[token];
+              if (key.long)
+                format = format.replace(match, response.data.results[0].address_components[key.i].long_name);
+              else
+              format = format.replace(match, response.data.results[0].address_components[key.i].short_name);
+            }
+        })
+      };
+  } catch (error : any) {
+    throw (error);
   }
-  return addrObj;
-};
-
-const createAddr = (addrData: addrObj, format: string[], brk: string): string => {
-  return format
-    .map((v) => {
-      if (addrData[v]) return addrData[v];
-      else {
-        console.error("Bad address format");
-      }
-    })
-    .join(brk);
-};
-
-export type AddressFieldProps = {
-  format: string[];
-  coord: { lg: number; lt: number };
-  textProps?: TextProps;
-  color?: ThemeColorType;
+  return (format)
 };
 
 export default function AddressField(props: AddressFieldProps) {
@@ -98,8 +66,8 @@ export default function AddressField(props: AddressFieldProps) {
         return;
       }
       try {
-        const addrData: addrObj = await getAddrData(coord.lt, coord.lg);
-        setAddress(createAddr(addrData, format, " "));
+        const addrData: string = await getAddrData(coord.lt, coord.lg, format);
+        setAddress(addrData);
       } catch (error: any) {
         console.error("Error in useAddress:", error.message);
       }
@@ -107,6 +75,7 @@ export default function AddressField(props: AddressFieldProps) {
 
     getGeoInv();
   }, []);
+  
   return (
     <XStack w="100%" gap="xs">
       <Pin color={themeColor[color]} />
