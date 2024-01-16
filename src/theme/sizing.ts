@@ -8,12 +8,43 @@ export const avatar = {
   xl: 84, // 63pt
 };
 
-export const images = {
-  sm: 20,
-  md: 40,
-  lg: 60,
-  xl: 200,
+export const SIZE = {
+  // sm: 20,
+  // md: 40,
+  // lg: 60,
+  // xl: 200,
+  xxs: 6,
+  xs: 8,
+  sm: 10,
+  md: 12,
+  lg: 16,
+  xl: 24,
+  xxl: 32,
+  xxxl: 48,
+  xxxxl: 80,
+  xxxxxl: 112,
 };
+
+export type SizeTypes = keyof typeof SIZE;
+
+export const IMAGE_SIZE = {
+  // sm: 20,
+  // md: 40,
+  // lg: 60,
+  // xl: 200,
+  xxxs: 16,
+  xxs: 24,
+  xs: 36,
+  sm: 48,
+  md: 60,
+  lg: 72,
+  xl: 84,
+  xxl: 96,
+  xxxl: 108,
+  xxxxl: 120,
+};
+
+export type ImagesSizeTypes = keyof typeof IMAGE_SIZE;
 
 export const icon = {
   xxs: 6,

@@ -5,6 +5,8 @@ import { Text } from "components/Text";
 import { useState } from "react";
 
 import { useThemeTestContext } from "./TemeContext";
+import { XStack, YStack } from "components/containers";
+import { Avatar } from "components/Avatar";
 
 const Items = [
   { icon: <Star color="white" />, text: "drop-item1", value: "drop-item1" },
@@ -40,6 +42,9 @@ const Items = [
   { icon: <Star color="white" />, text: "drop-item7", value: "item7" },
   { icon: <Star color="white" />, text: "drop-item8", value: "drop-item8 dsa  das a" },
 ];
+
+const source1 = "https://waterfordwhispersnews.com/wp-content/uploads/2021/02/dicap.jpg";
+const source2 = "https://res.cloudinary.com/dq7uyauun/image/upload/v1629784759/avatars/1.jpg";
 
 export default function SteperTab() {
   const [single, setSingle] = useState("drop-item1");
@@ -87,7 +92,32 @@ export default function SteperTab() {
           />
         </PStep>
         <PStep label="Second Step">
-          <Text>This is the content within step 2!</Text>
+          <YStack jc="center" ai="center" gap="md">
+            <Avatar url={source1} />
+            <XStack jc="center" ai="center" gap="md">
+              <Avatar url={source1} borderWidth={3} color="secondary" />
+              <Avatar url={source1} borderWidth={2} color="primary" />
+              <Avatar url={source1} borderWidth={4} color="tertiary" />
+              <Avatar url={source1} borderWidth={5} color="grey400" />
+            </XStack>
+            <XStack jc="center" ai="center" gap="md">
+              <Avatar url={source1} borderRadius="sm" borderWidth={2} color="primary" />
+              <Avatar url={source1} borderRadius="md" borderWidth={3} color="secondary" />
+              <Avatar url={source1} borderRadius="lg" borderWidth={4} color="tertiary" />
+              <Avatar url={source1} borderRadius="xl" borderWidth={5} color="grey400" />
+            </XStack>
+            <XStack jc="center" ai="center" gap="md">
+              <Avatar url={source1} size="sm" borderWidth={2} color="primary" />
+              <Avatar url={source1} size="md" borderWidth={2} color="secondary" />
+              <Avatar url={source1} size="lg" borderWidth={2} color="tertiary" />
+              <Avatar url={source1} size="xl" borderWidth={2} color="grey400" />
+            </XStack>
+            <XStack jc="center" ai="center" gap="md">
+              <Avatar url={source1} borderRadius="sm" size="xl" />
+              <Avatar url={source1} borderRadius="md" size="xxl" />
+              <Avatar url={source1} borderRadius="xl" size="xxxl" />
+            </XStack>
+          </YStack>
         </PStep>
         <PStep label="third Step">
           <Text>This is the content within step 2!</Text>

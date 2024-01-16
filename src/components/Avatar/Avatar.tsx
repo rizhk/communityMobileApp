@@ -1,45 +1,44 @@
-import { Image, View } from "react-native";
-import { GravityType, ResizeType, cloudinaryUrl } from "utils/helper";
+import { Stack } from "components/containers";
+import { StackProps } from "components/containers/Stack/Stack.props";
+import { IMAGE_SIZE, ImagesSizeTypes, RadiusTypes, SIZE, SizeTypes, ThemeColorType, radius } from "theme";
+import { cloudinaryUrl } from "utils/helper";
+import { Image } from "expo-image";
+import { ImageStyle, StyleProp } from "react-native";
 
 type AvatarProps = {
-  source: string | number | undefined;
-  size?: number;
-  sx?: any;
-  containerStyle?: any;
-  noBorder?: boolean;
-  resize?: ResizeType;
-  gravity?: GravityType;
+  url: string;
+  size?: ImagesSizeTypes | number;
+  borderWidth?: number;
+  borderRadius?: RadiusTypes | number;
+  color?: ThemeColorType;
+  containerSx?: StackProps;
 };
 
-const SOURCE_SIZE = 150;
+function Avatar(props: AvatarProps) {
+  const { url, size = "md", borderWidth = 3, color = "primary", borderRadius = "full", containerSx } = props;
+  const avatarSize = typeof size === "number" ? size : IMAGE_SIZE[size];
 
-function Avatar({
-  source = undefined,
-  size = 30,
-  sx = undefined,
-  containerStyle = {},
-  resize = "fill",
-  gravity = "face",
-}: AvatarProps) {
-  const style = {
-    width: size,
-    height: size,
-    borderRadius: size / 2,
-  };
   return (
-    <View style={containerStyle}>
-      {source && typeof source == "string" && (
-        <Image
-          source={{
-            uri: cloudinaryUrl(source, SOURCE_SIZE, SOURCE_SIZE, resize, gravity),
-          }}
-          style={{ ...style, ...sx }}
-        />
-      )}
-      {/* REPLACE BY NEW ICON */}
-      {/* {!source && <Icon icon={icons["default-avatar"]} style={{ ...style, ...sx }} />} */}
-    </View>
+    <Stack
+      h={avatarSize}
+      w={avatarSize}
+      jc="center"
+      ai="center"
+      overflow="hidden"
+      br={borderRadius}
+      borderWidth={borderWidth}
+      borderColor={color}
+      {...containerSx}
+    >
+      <Image source={url} style={imageStyle} />
+    </Stack>
   );
 }
 
 export default Avatar;
+
+const imageStyle = {
+  flex: 1,
+  width: "100%",
+  backgroundColor: "red",
+} as StyleProp<ImageStyle>;
