@@ -9,7 +9,6 @@ import { useState } from "react";
 import { ActivityIndicator, FlatList, ScrollView } from "react-native";
 import useSWR from "swr";
 import { ActivityFilters } from "types/activity";
-
 import ActivityCard from "./components/ActivityCard";
 import CreateActivity from "./components/CreateActivity";
 import { YStack } from "components/containers/Stack/Stack";

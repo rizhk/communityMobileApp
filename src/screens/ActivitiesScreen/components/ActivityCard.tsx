@@ -37,7 +37,7 @@ const ActivityCard = ({
           </YStack>
           <YStack flexGrow jc="space-around">
             <Text text={sportName} preset="bold" size="xl" />
-            <AddressField coord={{ lg: longitude, lt: latitude }} format={"%street% %streetNb% -%countryLong% BRUNO %NPA%"} />
+            <AddressField coord={{ lg: longitude, lt: latitude }} format={"%city%, %state"} />
             <XStack w="100%" gap="xs">
               <User color={color.white} />
               <Text text={`${nbParticipants} / ${nbmaxParticipants}`} preset="bold" size="xs" />

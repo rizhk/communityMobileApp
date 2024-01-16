@@ -51,14 +51,12 @@ const addrFormat = (addressComponent : AddrComponentType, format : string) : str
       const token = match.substring(1, match.length - 1);
       if (FormatStringIndexes.hasOwnProperty(token)) 
       {
-        console.log("first")
         const key = FormatStringIndexes[token as FormatStringIndexesKeyType];
         const addrType = addressComponent.find((addr : any) => addr.types.includes(key.type));
         formatTmp = formatTmp.replace(match, addrType ? addrType[key.name] : "n/a")
       }
     })
   };
-  console.log("tmp : ", formatTmp);
   return (formatTmp);
 }
 
