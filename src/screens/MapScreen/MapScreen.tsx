@@ -112,13 +112,13 @@ export function MapScreen() {
       /> */}
       {/* <ShowRefetchButton /> */}
 
-      {/* <MapComponent
+      <MapComponent
         maxDistance={maxDistance}
         mapRef={mapRef}
         activities={data}
         region={region}
         onRegionChangeComplete={handleRegionChangeComplete}
-      /> */}
+      />
     </YStack>
   );
 }

@@ -8,6 +8,7 @@ import { hexToRGBA } from "utils/helper";
 
 import { CustomMarker } from "./components/Marker";
 import { MapPresets, presets } from "./map.presets";
+import { useNavigation } from "@react-navigation/native";
 
 //TODO: - Display fields on the map
 
@@ -31,6 +32,7 @@ function MapComponent(props: MapProps) {
     const deltaInKm = latitudeDelta * 0.4 * KM_PER_DEGREE_LATITUDE;
     return deltaInKm * 1000;
   };
+  const navigation = useNavigation();
 
   const radius = calculateRadius(region.latitudeDelta);
 
@@ -64,12 +66,12 @@ function MapComponent(props: MapProps) {
                   latitude: activity.attributes.latitude,
                   longitude: activity.attributes.longitude,
                 }}
-                // onPress={(e) => {
-                //   e.stopPropagation(),
-                //     navigation.navigate("activity", {
-                //       activity,
-                //     });
-                // }}
+                onPress={(e) => {
+                  e.stopPropagation(),
+                    navigation.navigate("activity", {
+                      activity,
+                    });
+                }}
               >
                 <CustomMarker participantCount={participantsCount} image={cloudinaryUrl} type="activity" />
               </Marker>
