@@ -1,83 +1,57 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { Text } from "components/Text";
+import { Stack, XStack, YStack } from "components/containers/Stack/Stack";
+import { useState } from "react";
+import { Image, ImageBackground, StyleProp, ImageStyle } from "react-native";
+import { color } from "theme";
+import { INFINIT_PARTICIPANTS } from "constants/global";
 import { ActivityItemStrapi } from "types/activity";
-import { fetchShortAddressFromCoords } from "utils/locationHelper";
+import { User } from "assets/svg";
+import { formatDateFromToday } from "utils/Date";
+import AddressField from "components/AddressField";
 
-interface ActivityCardProps {
+type ActivityCardProps = {
   activity: ActivityItemStrapi;
-}
+};
 
 const ActivityCard = ({
-  activity,
   activity: {
     attributes: { date, latitude, longitude, sport, participants, maxParticipants },
   },
 }: ActivityCardProps) => {
-  const [address, setAddress] = useState("");
-  const day = new Date(date).getDate();
-  const month = new Date(date).toLocaleString("default", { month: "long" });
+  //TODO to change
   const sportName = sport.data.attributes.name;
   const nbParticipants = participants.data.length;
-  const nbmaxParticipants = maxParticipants === 999999 ? "∞" : maxParticipants;
+  const icon = sport.data.attributes.icon.data.attributes.url;
 
-  fetchShortAddressFromCoords({
-    latitude,
-    longitude,
-  }).then((address) => setAddress(address));
+  const nbmaxParticipants = maxParticipants === INFINIT_PARTICIPANTS ? "∞" : maxParticipants;
+  const [formatDate, setFormatDate] = useState("");
+  const textSize = formatDate.length > 6 ? "md" : "lg";
 
   return (
-    <View style={styles.card}>
-      <View style={styles.dateContainer}>
-        <Text style={styles.day}>{day}</Text>
-        <Text style={styles.month}>{month}</Text>
-      </View>
-      <View style={styles.detailsContainer}>
-        <Text style={styles.title}>{sportName}</Text>
-        <Text style={styles.location}>{address}</Text>
-        <Text style={styles.participants}>
-          {nbParticipants}/{nbmaxParticipants}
-        </Text>
-      </View>
-    </View>
+    <Stack h={90} br="xs" bc="backgroundLight" overflow="hidden">
+      <ImageBackground source={require("assets/image/tileCard/1.png")}>
+        <XStack pa="xxs" br="md" gap="xs">
+          <YStack ai="center" jc="space-between" w={100}>
+            <Image source={{ uri: icon }} resizeMode="contain" style={iconStyle} />
+            <Text text={formatDateFromToday(date, "dd MMM")} preset="bold" color="primary" size={textSize} />
+          </YStack>
+          <YStack flexGrow jc="space-around">
+            <Text text={sportName} preset="bold" size="xl" />
+            <AddressField coord={{ lg: longitude, lt: latitude }} format={"%city%, %state"} />
+            <XStack w="100%" gap="xs">
+              <User color={color.white} />
+              <Text text={`${nbParticipants} / ${nbmaxParticipants}`} preset="bold" size="xs" />
+            </XStack>
+          </YStack>
+        </XStack>
+      </ImageBackground>
+    </Stack>
   );
 };
 
-const styles = StyleSheet.create({
-  card: {
-    flexDirection: "row",
-    backgroundColor: "#000",
-    marginBottom: 10,
-    borderRadius: 6,
-  },
-  dateContainer: {
-    padding: 10,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  day: {
-    fontSize: 24,
-    color: "#fff",
-  },
-  month: {
-    fontSize: 16,
-    color: "#fff",
-  },
-  detailsContainer: {
-    padding: 10,
-    justifyContent: "space-around",
-  },
-  title: {
-    fontSize: 20,
-    color: "#fff",
-  },
-  location: {
-    fontSize: 16,
-    color: "#fff",
-  },
-  participants: {
-    fontSize: 16,
-    color: "#fff",
-  },
-});
-
 export default ActivityCard;
+
+const iconStyle = {
+  height: "65%",
+  width: "65%",
+} as StyleProp<ImageStyle>;

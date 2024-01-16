@@ -6,10 +6,9 @@ import { Text } from "components/Text";
 import useCurrentPosition from "hooks/useCurrentPosition";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { useState } from "react";
-import { ActivityIndicator, ScrollView } from "react-native";
+import { ActivityIndicator, FlatList, ScrollView } from "react-native";
 import useSWR from "swr";
 import { ActivityFilters } from "types/activity";
-
 import ActivityCard from "./components/ActivityCard";
 import CreateActivity from "./components/CreateActivity";
 import { YStack } from "components/containers/Stack/Stack";
@@ -55,7 +54,9 @@ export function ActivitiesScreen({ navigation }: Props) {
         onPress={() => setOpenActivity(true)}
         style={{ alignSelf: "center", bottom: 10, position: "absolute" }}
       />
-      {/* {isLoadingActivities ? (
+      {/* TODO flatList ? */}
+      {/* <FlatList data={activities} renderItem={({item}) => <ActivityCard activity={item} key={item?.id} />}/> */}
+      {isLoadingActivities ? (
         <ActivityIndicator />
       ) : (
         <>
@@ -65,11 +66,13 @@ export function ActivitiesScreen({ navigation }: Props) {
             onApply={handleApplyFilter}
             currentFilters={filters}
           />
-          <ScrollView>
-            {activities?.data?.map((activity: any) => <ActivityCard activity={activity} key={activity?.id} />)}
+          <ScrollView style={{backgroundColor:"blue"}}>
+            <YStack gap={"md"} pa={"md"}>
+              {activities?.data?.map((activity: any) => <ActivityCard activity={activity} key={activity?.id} />)}
+            </YStack>
           </ScrollView>
         </>
-      )} */}
+      )}
       <CreateActivity open={openActivity} setOpen={setOpenActivity} />
       <Button
         tx="createActivity.button"

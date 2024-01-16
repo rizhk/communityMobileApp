@@ -1,3 +1,5 @@
+import { Text } from "components/Text";
+import { Stack } from "components/containers";
 import { Image, View } from "react-native";
 import { GravityType, ResizeType, cloudinaryUrl } from "utils/helper";
 
@@ -26,15 +28,21 @@ function Avatar({
     height: size,
     borderRadius: size / 2,
   };
+  // console.log("source :", source)
   return (
     <View style={containerStyle}>
+      
       {source && typeof source == "string" && (
+        <Stack>
         <Image
-          source={{
-            uri: cloudinaryUrl(source, SOURCE_SIZE, SOURCE_SIZE, resize, gravity),
-          }}
-          style={{ ...style, ...sx }}
+        
+        source={{
+          uri: cloudinaryUrl(source, SOURCE_SIZE, SOURCE_SIZE, resize, gravity),
+        }}
+        style={{ ...style, ...sx }}
         />
+        <Text>salut</Text>
+        </Stack>
       )}
       {/* REPLACE BY NEW ICON */}
       {/* {!source && <Icon icon={icons["default-avatar"]} style={{ ...style, ...sx }} />} */}

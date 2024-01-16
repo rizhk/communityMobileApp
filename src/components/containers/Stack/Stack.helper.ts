@@ -70,6 +70,7 @@ export function getProps(props: StackProps) {
     shadow,
     wrap,
     flexWrap,
+    overflow,
     ...rest
   } = props;
 
@@ -105,6 +106,7 @@ export function getProps(props: StackProps) {
     width: full ? "100%" : w ?? width,
     height: full ? "100%" : h ?? height,
     position: position ?? (x !== undefined || y !== undefined ? "absolute" : undefined),
+    overflow,
   } as ViewStyle;
 
   return { styles: [shadow ? shadowStyle : {}, styles, style], rest: rest };
@@ -117,10 +119,10 @@ const getMargin = (props: StackProps) => {
   const mbValue = mb ?? my ?? marginValue;
   const mlValue = ml ?? mx ?? marginValue;
   const mrValue = mr ?? mx ?? marginValue;
-  const marginTop = typeof mtValue === "number" ? mtValue : spacing[mtValue];
-  const marginBottom = typeof mbValue === "number" ? mbValue : spacing[mbValue];
-  const marginLeft = typeof mlValue === "number" ? mlValue : spacing[mlValue];
-  const marginRight = typeof mrValue === "number" ? mrValue : spacing[mrValue];
+  const marginTop = typeof mtValue === "number" || mtValue === undefined ? mtValue : spacing[mtValue];
+  const marginBottom = typeof mbValue === "number" || mbValue === undefined ? mbValue : spacing[mbValue];
+  const marginLeft = typeof mlValue === "number" || mlValue === undefined ? mlValue : spacing[mlValue];
+  const marginRight = typeof mrValue === "number" || mrValue === undefined ? mrValue : spacing[mrValue];
   return {
     marginTop,
     marginBottom,
@@ -136,10 +138,10 @@ const getPadding = (props: StackProps) => {
   const pbValue = pb ?? py ?? paddingValue;
   const plValue = pl ?? px ?? paddingValue;
   const prValue = pr ?? px ?? paddingValue;
-  const paddingTop = typeof ptValue === "number" ? ptValue : spacing[ptValue];
-  const paddingBottom = typeof pbValue === "number" ? pbValue : spacing[pbValue];
-  const paddingLeft = typeof plValue === "number" ? plValue : spacing[plValue];
-  const paddingRight = typeof prValue === "number" ? prValue : spacing[prValue];
+  const paddingTop = typeof ptValue ===  "number" || ptValue === undefined ? ptValue : spacing[ptValue];
+  const paddingBottom = typeof pbValue === "number" || pbValue === undefined ? pbValue : spacing[pbValue];
+  const paddingLeft = typeof plValue === "number" || plValue === undefined ? plValue : spacing[plValue];
+  const paddingRight = typeof prValue === "number" || prValue === undefined ? prValue : spacing[prValue];
   return {
     paddingTop,
     paddingBottom,
@@ -155,10 +157,10 @@ const getBorderRadius = (props: StackProps) => {
   const brtrValue = brtr ?? borderRadiusValue;
   const brblValue = brbl ?? borderRadiusValue;
   const brbrValue = brbr ?? borderRadiusValue;
-  const borderTopLeftRadius = typeof brtlValue === "number" ? brtlValue : radius[brtlValue];
-  const borderTopRightRadius = typeof brtrValue === "number" ? brtrValue : radius[brtrValue];
-  const borderBottomLeftRadius = typeof brblValue === "number" ? brblValue : radius[brblValue];
-  const borderBottomRightRadius = typeof brbrValue === "number" ? brbrValue : radius[brbrValue];
+  const borderTopLeftRadius = typeof brtlValue === "number" || brtlValue === undefined ? brtlValue : radius[brtlValue];
+  const borderTopRightRadius = typeof brtrValue === "number" || brtrValue === undefined ? brtrValue : radius[brtrValue];
+  const borderBottomLeftRadius = typeof brblValue === "number" || brblValue === undefined ? brblValue : radius[brblValue];
+  const borderBottomRightRadius = typeof brbrValue === "number" || brbrValue === undefined ? brbrValue : radius[brbrValue];
 
   return {
     borderTopLeftRadius,

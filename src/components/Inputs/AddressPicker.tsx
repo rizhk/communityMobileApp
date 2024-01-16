@@ -52,7 +52,7 @@ export function AddressPicker(props: AddressPickerProps) {
     setAddress(selectedAddress.description);
     setSuggestions([]);
     fetchPlaceDetails(selectedAddress.place_id).then((location) => {
-      console.log(location);
+      // console.log(location);
       setValue({ latitude: location.lat as number, longitude: location.lng as number });
     });
   };
