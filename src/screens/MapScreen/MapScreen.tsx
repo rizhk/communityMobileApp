@@ -1,30 +1,23 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { fetchActivitiesByRegion, fetchSports } from "api/api";
-import { fetchAPIqs } from "api/request";
-import { Filter, Star } from "assets/svg";
+import { Filter } from "assets/svg";
 import ActivityFilter from "components/ActivityFilter/ActivityFilter";
 import { Button } from "components/Button";
-import { Icon } from "components/Icon";
 import MapComponent from "components/Map/Map";
 import { MenuType } from "components/Menu/Menu.types";
 import { Text } from "components/Text";
 import { YStack } from "components/containers/Stack/Stack";
 import { INITIAL_REGION_FRIBOURG } from "constants/global";
-import * as Location from "expo-location";
 import useCurrentPosition from "hooks/useCurrentPosition";
 import { useHeaderMenu } from "hooks/useHeaderMenu";
-import { MainLayout } from "layouts";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { useEffect, useState, useRef } from "react";
-
-import { StyleSheet, View, ViewStyle, ActivityIndicator } from "react-native";
-import MapView, { LatLng, Region } from "react-native-maps";
+import { View } from "react-native";
+import MapView, { Region } from "react-native-maps";
 import useSWR from "swr";
-import { shadow, color } from "theme";
+import CreateActivity from "screens/ActivitiesScreen/components/CreateActivity";
 
 type Props = NativeStackScreenProps<MainStackParamList, "map">;
-import ActivityFilter from "components/ActivityFilter/ActivityFilter";
-import CreateActivity from "screens/ActivitiesScreen/components/CreateActivity";
 
 export function MapScreen({ navigation }: Props) {
   const [region, setRegion] = useState<Region>(INITIAL_REGION_FRIBOURG);

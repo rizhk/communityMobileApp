@@ -3,6 +3,7 @@ import { fetchActivitiesByRegion } from "api/api";
 import ActivityFilter from "components/ActivityFilter/ActivityFilter";
 import { Button } from "components/Button";
 import { Text } from "components/Text";
+import { YStack } from "components/containers/Stack/Stack";
 import useCurrentPosition from "hooks/useCurrentPosition";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { useState } from "react";
@@ -11,7 +12,9 @@ import useSWR from "swr";
 import { ActivityFilters } from "types/activity";
 import ActivityCard from "./components/ActivityCard";
 import CreateActivity from "./components/CreateActivity";
-import { YStack } from "components/containers/Stack/Stack";
+import { useHeaderMenu } from "hooks/useHeaderMenu";
+import { Filter } from "assets/svg";
+import { MenuType } from "components/Menu/Menu.types";
 
 type Props = NativeStackScreenProps<MainStackParamList, "activities">;
 
@@ -22,17 +25,9 @@ export function ActivitiesScreen({ navigation }: Props) {
 
   const [isFilterVisible, setIsFilterVisible] = useState(false);
 
-  const handleOpenFilter = () => {
-    setIsFilterVisible(true);
-  };
-
-  const handleCloseFilter = () => {
-    setIsFilterVisible(false);
-  };
-
   const handleApplyFilter = (newFilters: ActivityFilters) => {
     setFilters(newFilters);
-    handleCloseFilter();
+    setIsFilterVisible(false);
   };
 
   const [filters, setFilters] = useState<ActivityFilters>({});
@@ -43,11 +38,16 @@ export function ActivitiesScreen({ navigation }: Props) {
     () => fetchActivitiesByRegion(userRegion, maxDistance, filters)
   );
 
+  const menu: MenuType = {
+    type: "element",
+    icon: Filter,
+    element: <ActivityFilter onApply={handleApplyFilter} currentFilters={filters} />,
+  };
+  useHeaderMenu({ navigation, ...menu });
+
   return (
     <YStack full>
       <Text preset="header">{activities?.meta?.pagination?.total} Activities found </Text>
-
-      <Button onPress={handleOpenFilter} text="Filter" />
       <CreateActivity open={openActivity} setOpen={setOpenActivity} />
       <Button
         tx="createActivity.button"
@@ -60,13 +60,13 @@ export function ActivitiesScreen({ navigation }: Props) {
         <ActivityIndicator />
       ) : (
         <>
-          <ActivityFilter
+          {/* <ActivityFilter
             isVisible={isFilterVisible}
             onClose={handleCloseFilter}
             onApply={handleApplyFilter}
             currentFilters={filters}
-          />
-          <ScrollView style={{backgroundColor:"blue"}}>
+          /> */}
+          <ScrollView>
             <YStack gap={"md"} pa={"md"}>
               {activities?.data?.map((activity: any) => <ActivityCard activity={activity} key={activity?.id} />)}
             </YStack>
