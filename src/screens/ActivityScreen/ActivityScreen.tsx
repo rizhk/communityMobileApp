@@ -2,18 +2,15 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Button } from "components/Button";
 import { Stack, YStack } from "components/containers";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
-import { Image, ImageStyle, SafeAreaView, StyleProp, View } from "react-native";
+import { ActivityIndicator, Image, ImageStyle, SafeAreaView, StyleProp, View } from "react-native";
 import { Text } from "components/Text";
 import { LeftArrow } from "assets/svg";
-import { color } from "theme";
 import AddressField from "components/AddressField";
 import { formatDateFromToday } from "utils/Date";
-import { Avatar } from "components/Avatar";
 import { ScrollView } from "react-native-gesture-handler";
-import axios from "axios";
-import { useEffect } from "react";
 import { useDistance } from "hooks/useDistance";
 import { LocationType } from "types/global";
+import AvatarSlider, { AvatarUser } from "components/Avatar/AvatarSlider";
 
 type Props = NativeStackScreenProps<MainStackParamList, "activity">;
 
@@ -23,8 +20,13 @@ export function ActivityScreen({ navigation, route }: Props) {
   const icon = activity.sport.data.attributes.icon.data.attributes.url;
   const sportName = activity.sport.data.attributes.name;
   const date = formatDateFromToday(activity.date, "dd MMMM yyy");
-  const participants = activity.participants.data;
+  const participants: AvatarUser[] = activity.participants.data.map((participant: any) => ({
+    id: participant.id,
+    url: participant?.attributes?.avatar?.data?.attributes?.url,
+    name : participant?.attributes?.firstName
+  }));
   const description = activity.description;
+  const authorId = activity.author.data.id;
   const hour = {
     start : "12:00",
     end : "14:00",
@@ -36,49 +38,63 @@ export function ActivityScreen({ navigation, route }: Props) {
   const distance = useDistance(coord);
 
 
+  // console.log("activity : ", participants[0])
+
   return (
     <SafeAreaView style={{flex:1}}>
-
-      <ScrollView>
-      <YStack flex={1} pa={"md"} overflow="scroll">
-        <Button
-          icon={LeftArrow}
-          iconScale={3}
-          rounded
-          onPress={() => {
-            navigation.goBack();
-          }}
-          />
-        <YStack jc="center" ai="center"  h={200}>
-          <Image source={{ uri: icon }} resizeMode="contain" style={iconStyle} />
-        </YStack>
-        <YStack h={150} jc="space-evenly">
-          <YStack jc="center">
-            <Text size="xl" preset="bold">{sportName}</Text>
-            <AddressField textProps={{size : "sm"}} coord={coord} format={"%city% (%state%), %street% %streetNb%"} color="white"/> 
-            <Text>{distance}</Text>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <YStack flex={1} pa={"md"}>
+          <Button
+            icon={LeftArrow}
+            iconScale={3}
+            rounded
+            onPress={() => {
+              navigation.goBack();
+            }}
+            />
+          <Stack jc="center" ai="center"  h={200}>
+            <Image source={{ uri: icon }} resizeMode="contain" style={iconStyle} />
+          </Stack>
+          <YStack h={150} jc="space-evenly">
+            <YStack jc="center">
+              <Text size="xl" preset="bold">{sportName}</Text>
+              <AddressField textProps={{size : "sm"}} coord={coord} format={"%city% (%state%), %street% %streetNb%"} color="white"/> 
+              {distance ? (
+                  <Text>{distance}</Text>
+                ) : (
+                  <Stack ai="flex-start">
+                    <ActivityIndicator animating={true} hidesWhenStopped={true} />
+                  </Stack>
+                )}
+            </YStack>
+            <YStack  jc="center">
+              <Text color="primary" preset="bold">{date}</Text>
+              <Text color="primary">{hour.start} - {hour.end}</Text>
+            </YStack>
           </YStack>
-          <YStack  jc="center">
-            <Text color="primary" preset="bold">{date}</Text>
-            <Text color="primary">{hour.start} - {hour.end}</Text>
+          <Stack h={1} bc="grey600"></Stack>
+          <YStack h={140}jc="space-evenly">
+              <Text preset="bold" size="md">{participants.length} Participant.e.s</Text>
+              <AvatarSlider users={participants} />
           </YStack>
+          <Stack h={1} bc="grey600"></Stack>
+          {description && 
+            <YStack mt={10}>
+              <Text preset="bold" size="md" style={{marginBottom: 10}}>Info : </Text>
+              <Text style={{marginBottom: 10}} color="dim">{description}</Text>
+              <Stack h={1} bc="grey600"></Stack>
+            </YStack>
+          }
+          {/* TODO ajouter logique */}
+          <Stack ai="center" h={40}  jc="center">
+            <Text color="error">Supprimé l'activité</Text>
+          </Stack>
         </YStack>
-        <Stack h={1} bc="grey600"></Stack>
-        <YStack h={130} jc="space-evenly">
-          <Text preset="bold" size="md">{participants.length} Participant.e.s</Text>
-          <Avatar source={participants[1].attributes.avatar.data.attributes.url} containerStyle={{ width:30}}/>
-        </YStack>
-        <Stack h={1} bc="grey600"></Stack>
-        {description && 
-          <YStack mt={10}>
-            <Text preset="bold" size="md" style={{marginBottom: 10}}>Info : </Text>
-            <Text style={{marginBottom: 10}} color="dim">{description}</Text>
-            <Stack h={1} bc="grey600"></Stack>
-          </YStack>
-        }
-
-      </YStack>
-    </ScrollView>
+      </ScrollView>
+    {/* TODO ajouter logique */}
+      <Stack pa="md">
+        <Button text="Participer"/>
+      </Stack>
     </SafeAreaView>
   );
 }

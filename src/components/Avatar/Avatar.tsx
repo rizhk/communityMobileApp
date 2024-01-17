@@ -1,7 +1,6 @@
 import { Stack } from "components/containers";
 import { StackProps } from "components/containers/Stack/Stack.props";
-import { IMAGE_SIZE, ImagesSizeTypes, RadiusTypes, SIZE, SizeTypes, ThemeColorType, radius } from "theme";
-import { cloudinaryUrl } from "utils/helper";
+import { IMAGE_SIZE, ImagesSizeTypes, RadiusTypes, ThemeColorType, color } from "theme";
 import { Image } from "expo-image";
 import { ImageStyle, StyleProp } from "react-native";
 
@@ -40,5 +39,5 @@ export default Avatar;
 const imageStyle = {
   flex: 1,
   width: "100%",
-  backgroundColor: "red",
+  backgroundColor: color.backgroundLight,
 } as StyleProp<ImageStyle>;

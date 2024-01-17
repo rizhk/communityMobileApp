@@ -8,29 +8,33 @@ import { ActivityItemStrapi } from "types/activity";
 import { User } from "assets/svg";
 import { formatDateFromToday } from "utils/Date";
 import AddressField from "components/AddressField";
+import { useNavigation } from "@react-navigation/native";
 
 type ActivityCardProps = {
   activity: ActivityItemStrapi;
 };
 
-const ActivityCard = ({
-  activity: {
-    attributes: { date, latitude, longitude, sport, participants, maxParticipants },
-  },
-}: ActivityCardProps) => {
+const ActivityCard = ({activity} : ActivityCardProps) => {
   //TODO to change
-  const sportName = sport.data.attributes.name;
-  const nbParticipants = participants.data.length;
-  const icon = sport.data.attributes.icon.data.attributes.url;
-
-  const nbmaxParticipants = maxParticipants === INFINIT_PARTICIPANTS ? "∞" : maxParticipants;
+  const sportName = activity.attributes.sport.data.attributes.name;
+  const nbParticipants = activity.attributes.participants.data.length;
+  const icon = activity.attributes.sport.data.attributes.icon.data.attributes.url;
+  const date = activity.attributes.date
+  const nbmaxParticipants = activity.attributes.maxParticipants === INFINIT_PARTICIPANTS ? "∞" : activity.attributes.maxParticipants;
   const [formatDate, setFormatDate] = useState("");
   const textSize = formatDate.length > 6 ? "md" : "lg";
+  const navigation = useNavigation();
+  const longitude = activity.attributes.longitude;
+  const latitude = activity.attributes.latitude;
 
   return (
     <Stack h={90} br="xs" bc="backgroundLight" overflow="hidden">
       <ImageBackground source={require("assets/image/tileCard/1.png")}>
-        <XStack pa="xxs" br="md" gap="xs">
+        <XStack pa="xxs" br="md" gap="xs"  onPress={() => {
+                    navigation.navigate("activity", {
+                      activity,
+                    });
+                }}>
           <YStack ai="center" jc="space-between" w={100}>
             <Image source={{ uri: icon }} resizeMode="contain" style={iconStyle} />
             <Text text={formatDateFromToday(date, "dd MMM")} preset="bold" color="primary" size={textSize} />
