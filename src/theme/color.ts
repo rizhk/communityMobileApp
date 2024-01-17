@@ -71,6 +71,7 @@ export const color = {
    * The main font color.
    */
   headercolor: palette.whitetext,
+  test: "#ff69b450",
 };
 
 export type ThemeColorType = keyof typeof color;

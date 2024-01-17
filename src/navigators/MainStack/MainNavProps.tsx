@@ -1,5 +1,6 @@
 import { NavType } from "navigators/NavType";
 import { ActivityScreen, MessageScreen } from "screens";
+
 import { BottomTabParamList } from "../BottomStack/BottomNavProps";
 export interface MainNavPropsType extends NavType<MainStackParamList> {
   noHeader?: boolean;

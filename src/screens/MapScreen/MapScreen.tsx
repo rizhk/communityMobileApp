@@ -1,25 +1,32 @@
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { fetchActivitiesByRegion, fetchSports } from "api/api";
-
+import { fetchAPIqs } from "api/request";
+import { Filter, Star } from "assets/svg";
+import ActivityFilter from "components/ActivityFilter/ActivityFilter";
 import { Button } from "components/Button";
 import { Icon } from "components/Icon";
 import MapComponent from "components/Map/Map";
+import { MenuType } from "components/Menu/Menu.types";
 import { Text } from "components/Text";
 import { YStack } from "components/containers/Stack/Stack";
 import { INITIAL_REGION_FRIBOURG } from "constants/global";
 import * as Location from "expo-location";
-
+import useCurrentPosition from "hooks/useCurrentPosition";
+import { useHeaderMenu } from "hooks/useHeaderMenu";
+import { MainLayout } from "layouts";
+import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { useEffect, useState, useRef } from "react";
 
-import { StyleSheet, View, ViewStyle } from "react-native";
-import useSWR from "swr";
-import { ActivityIndicator } from "react-native";
+import { StyleSheet, View, ViewStyle, ActivityIndicator } from "react-native";
 import MapView, { LatLng, Region } from "react-native-maps";
+import useSWR from "swr";
 import { shadow, color } from "theme";
-import useCurrentPosition from "hooks/useCurrentPosition";
+
+type Props = NativeStackScreenProps<MainStackParamList, "map">;
 import ActivityFilter from "components/ActivityFilter/ActivityFilter";
 import CreateActivity from "screens/ActivitiesScreen/components/CreateActivity";
 
-export function MapScreen() {
+export function MapScreen({ navigation }: Props) {
   const [region, setRegion] = useState<Region>(INITIAL_REGION_FRIBOURG);
   const [userRegion, isLocationFetched] = useCurrentPosition();
   const [maxDistance, setMaxDistance] = useState(30000); // 30km
@@ -92,6 +99,13 @@ export function MapScreen() {
   if (error) {
     return <Text>error...</Text>;
   }
+
+  const menu: MenuType = {
+    type: "element",
+    icon: Filter,
+    element: <ActivityFilter onApply={handleApplyFilter} currentFilters={filters} />,
+  };
+  useHeaderMenu({ navigation, ...menu });
 
   return (
     <YStack full>

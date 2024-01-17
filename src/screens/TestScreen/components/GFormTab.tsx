@@ -7,8 +7,8 @@ import { XStack, YStack } from "components/containers/Stack/Stack";
 import { INFINIT_PARTICIPANTS } from "constants/global";
 import { format } from "date-fns";
 import { useState } from "react";
-
 import { ScrollView } from "react-native";
+
 import { useThemeTestContext } from "./TemeContext";
 
 const initialValues = {

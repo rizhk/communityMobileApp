@@ -61,5 +61,6 @@ export type StackProps = ViewProps & {
   shadow?: boolean;
   wrap?: boolean;
   flexWrap?: "wrap" | "nowrap" | "wrap-reverse";
-  overflow?: "hidden" | "visible" | "scroll";
+  overflow?: "visible" | "hidden" | "scroll";
+  onPress?: () => void;
 };

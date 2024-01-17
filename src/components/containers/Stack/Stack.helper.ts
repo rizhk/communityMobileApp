@@ -1,7 +1,8 @@
+import { ViewStyle } from "react-native";
 import { color, spacing, radius } from "theme";
 import { shadowStyle } from "theme/styles";
+
 import { StackProps } from "./Stack.props";
-import { ViewStyle } from "react-native";
 
 export type StackStyleProps = {
   styles: any;
@@ -109,7 +110,7 @@ export function getProps(props: StackProps) {
     overflow,
   } as ViewStyle;
 
-  return { styles: [shadow ? shadowStyle : {}, styles, style], rest: rest };
+  return { styles: [shadow ? shadowStyle : {}, styles, style], rest };
 }
 
 const getMargin = (props: StackProps) => {

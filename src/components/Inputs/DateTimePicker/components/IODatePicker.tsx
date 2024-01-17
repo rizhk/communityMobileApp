@@ -12,7 +12,7 @@ export function IOSDatePicker(props: NativeDatePickerProps) {
   const { visible, setVisible, minimumDate, maximumDate, date, setDate, color, mode = "date", txLabel } = props;
   const [datePick, setDatePick] = useState(date);
 
-  const tx = txLabel ?? `datePicker.${mode == "date" ? "chooseDate" : "chooseTime"}`;
+  const tx = txLabel ?? `datePicker.${mode === "date" ? "chooseDate" : "chooseTime"}`;
   return (
     <Popup visible={visible} setVisible={() => setVisible(false)} color={color}>
       <Text tx={tx} preset="header" />
