@@ -11,29 +11,25 @@ import { ScrollView } from "react-native-gesture-handler";
 import { useDistance } from "hooks/useDistance";
 import { LocationType } from "types/global";
 import AvatarSlider, { AvatarUser } from "components/Avatar/AvatarSlider";
+import { ActivityItem } from "types/activity";
 
 type Props = NativeStackScreenProps<MainStackParamList, "activity">;
 
 export function ActivityScreen({ navigation, route }: Props) {
 
-  const activity = route.params.activity.attributes;
-  const icon = activity.sport.data.attributes.icon.data.attributes.url;
-  const sportName = activity.sport.data.attributes.name;
-  const date = formatDateFromToday(activity.date, "dd MMMM yyy");
-  const participants: AvatarUser[] = activity.participants.data.map((participant: any) => ({
+  const {latitude, longitude, sport, participants, maxParticipants, date, description, author} : ActivityItem = route.params.activity;
+  const avatarUser: AvatarUser[] = participants?.map((participant: any) => ({
     id: participant.id,
-    url: participant?.attributes?.avatar?.data?.attributes?.url,
-    name : participant?.attributes?.firstName
+    url: participant?.avatar?.url,
+    name : participant?.firstName
   }));
-  const description = activity.description;
-  const authorId = activity.author.data.id;
   const hour = {
     start : "12:00",
     end : "14:00",
   }
   const coord : LocationType= {
-    longitude : activity.longitude,
-    latitude : activity.latitude,
+    longitude : longitude,
+    latitude : latitude,
   }
   const distance = useDistance(coord);
 
@@ -53,11 +49,11 @@ export function ActivityScreen({ navigation, route }: Props) {
             }}
             />
           <Stack jc="center" ai="center"  h={200}>
-            <Image source={{ uri: icon }} resizeMode="contain" style={iconStyle} />
+            <Image source={{ uri: sport.icon.url }} resizeMode="contain" style={iconStyle} />
           </Stack>
           <YStack h={150} jc="space-evenly">
             <YStack jc="center">
-              <Text size="xl" preset="bold">{sportName}</Text>
+              <Text size="xl" preset="bold">{sport.name}</Text>
               <AddressField textProps={{size : "sm"}} coord={coord} format={"%city% (%state%), %street% %streetNb%"} color="white"/> 
               {distance ? (
                   <Text>{distance}</Text>
@@ -68,16 +64,18 @@ export function ActivityScreen({ navigation, route }: Props) {
                 )}
             </YStack>
             <YStack  jc="center">
-              <Text color="primary" preset="bold">{date}</Text>
+              <Text color="primary" preset="bold">{formatDateFromToday(date, "dd MMMM yyy")}</Text>
               <Text color="primary">{hour.start} - {hour.end}</Text>
             </YStack>
           </YStack>
           <Stack h={1} bc="grey600"></Stack>
+          {participants.length > 0 && 
           <YStack h={140}jc="space-evenly">
               <Text preset="bold" size="md">{participants.length} Participant.e.s</Text>
-              <AvatarSlider users={participants} />
+              <AvatarSlider users={avatarUser} />
+              <Stack h={1} bc="grey600"></Stack>
           </YStack>
-          <Stack h={1} bc="grey600"></Stack>
+          }
           {description && 
             <YStack mt={10}>
               <Text preset="bold" size="md" style={{marginBottom: 10}}>Info : </Text>

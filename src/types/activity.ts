@@ -39,19 +39,20 @@ export interface ActivityItem {
   location: string;
   description: string;
   author: UserItem;
-  participants: { data: UserItem[] }; //TODO: Check types
-  blockedUsers: { data: UserItem[] };
-  sport: { data: SportItemStrapi };
+  participants: UserItem[]; //TODO: Check types
+  blockedUsers: UserItem[];
+  sport:  SportItem ;
   channel: any;
 }
 
+//TODO normalement plus utilisé
 export interface ActivityItemStrapi {
   id: number;
   attributes: ActivityItem;
 }
 
 export interface ActivitiesData {
-  data: ActivityItemStrapi[];
+  data: ActivityItem[];
   meta: any;
 }
 
@@ -74,6 +75,7 @@ export interface ImageItem {
   public_id: string;
   url: string;
 }
+//TODO normalement plus utile
 export interface ImageItemStrapi {
   data: {
     id: number;

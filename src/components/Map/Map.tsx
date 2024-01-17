@@ -55,16 +55,15 @@ function MapComponent(props: MapProps) {
 
         {activities?.data &&
           activities.data.map((activity, index) => {
-            const participantsCount = activity?.attributes?.participants?.data?.length;
-
-            const cloudinaryUrl = activity?.attributes?.sport?.data?.attributes?.icon?.data?.attributes?.url;
+            const participantsCount = activity?.participants?.length;
+            const cloudinaryUrl = activity?.sport?.icon?.url;
 
             return (
               <Marker
                 key={index}
                 coordinate={{
-                  latitude: activity.attributes.latitude,
-                  longitude: activity.attributes.longitude,
+                  latitude: activity.latitude,
+                  longitude: activity.longitude,
                 }}
                 onPress={(e) => {
                   e.stopPropagation(),

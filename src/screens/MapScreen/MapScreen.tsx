@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { fetchActivitiesByRegion, fetchSports } from "api/api";
+import { fetchSports, fetchActivitiesCustom } from "api/api";
 import { Filter } from "assets/svg";
 import ActivityFilter from "components/ActivityFilter/ActivityFilter";
 import { Button } from "components/Button";
@@ -81,9 +81,9 @@ export function MapScreen({ navigation }: Props) {
   // }
 
   const { data, error, isLoading, mutate } = useSWR(["activities", region, maxDistance, filters], () =>
-    fetchActivitiesByRegion(region, maxDistance, filters)
+    fetchActivitiesCustom(filters)
+  
   );
-
   const { data: dataSports, isLoading: isLoadingSport } = useSWR(["sports"], () => fetchSports());
 
   // if (isLoadingSport) {

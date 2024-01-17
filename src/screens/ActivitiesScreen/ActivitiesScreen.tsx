@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { fetchActivitiesByRegion } from "api/api";
+import { fetchActivitiesByRegion, fetchActivitiesCustom } from "api/api";
 import ActivityFilter from "components/ActivityFilter/ActivityFilter";
 import { Button } from "components/Button";
 import { Text } from "components/Text";
@@ -35,7 +35,7 @@ export function ActivitiesScreen({ navigation }: Props) {
   //Fetch Activities
   const { data: activities, isLoading: isLoadingActivities } = useSWR(
     ["activities", userRegion, maxDistance, filters],
-    () => fetchActivitiesByRegion(userRegion, maxDistance, filters)
+    () => fetchActivitiesCustom(filters)
   );
 
   const menu: MenuType = {
