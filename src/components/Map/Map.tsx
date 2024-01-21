@@ -21,10 +21,21 @@ interface MapProps {
   activities: ActivitiesData;
   mapRef?: any;
   onRegionChangeComplete?: (newRegion: Region) => void; // Add this line
+  navigation: any;
 }
 
 function MapComponent(props: MapProps) {
-  const { preset = "default", region, onRegionChangeComplete, mapRef, activities, maxDistance, style, ...rest } = props;
+  const {
+    preset = "default",
+    region,
+    onRegionChangeComplete,
+    mapRef,
+    activities,
+    maxDistance,
+    style,
+    navigation,
+    ...rest
+  } = props;
   const styles = [presets[preset], style];
 
   const calculateRadius = (latitudeDelta: number): number => {
@@ -32,8 +43,6 @@ function MapComponent(props: MapProps) {
     const deltaInKm = latitudeDelta * 0.4 * KM_PER_DEGREE_LATITUDE;
     return deltaInKm * 1000;
   };
-  const navigation = useNavigation();
-
   const radius = calculateRadius(region.latitudeDelta);
 
   return (
@@ -53,7 +62,7 @@ function MapComponent(props: MapProps) {
           fillColor={hexToRGBA(color.primary, 0.2)}
         />
 
-        {activities?.data &&
+        {/* {activities?.data &&
           activities.data.map((activity, index) => {
             const participantsCount = activity?.participants?.length;
             const cloudinaryUrl = activity?.sport?.icon?.url;
@@ -75,7 +84,7 @@ function MapComponent(props: MapProps) {
                 <CustomMarker participantCount={participantsCount} image={cloudinaryUrl} type="activity" />
               </Marker>
             );
-          })}
+          })} */}
       </MapView>
     </>
   );

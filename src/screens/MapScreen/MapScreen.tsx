@@ -118,6 +118,7 @@ export function MapScreen({ navigation }: Props) {
         activities={data}
         region={region}
         onRegionChangeComplete={handleRegionChangeComplete}
+        navigation={navigation}
       />
       <Button
         tx="createActivity.button"
