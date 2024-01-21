@@ -68,7 +68,9 @@ export function ActivitiesScreen({ navigation }: Props) {
           /> */}
           <ScrollView>
             <YStack gap={"md"} pa={"md"}>
-              {activities?.data?.map((activity: any) => <ActivityCard activity={activity} key={activity?.id} />)}
+              {activities?.data?.map((activity: any) => (
+                <ActivityCard activity={activity} navigation={navigation} key={activity?.id} />
+              ))}
             </YStack>
           </ScrollView>
         </>

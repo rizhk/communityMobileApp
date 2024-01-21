@@ -8,34 +8,32 @@ import { ActivityItem } from "types/activity";
 import { User } from "assets/svg";
 import { formatDateFromToday } from "utils/Date";
 import AddressField from "components/AddressField";
-import { useNavigation } from "@react-navigation/native";
-import { SportItem } from "types/sport";
-import { UserItem } from "types/user";
 
 type ActivityCardProps = {
   activity: ActivityItem;
+  navigation: any;
 };
 
-const ActivityCard = ({
-  activity,
-  activity: {
-     latitude, longitude, sport, participants, maxParticipants, date
-  },
-}: ActivityCardProps) => {
-
+export function ActivityCard(props: ActivityCardProps) {
+  const { navigation, activity } = props;
+  const { latitude, longitude, sport, participants, maxParticipants, date } = activity;
   const nbmaxParticipants = maxParticipants === INFINIT_PARTICIPANTS ? "∞" : maxParticipants;
   const [formatDate, setFormatDate] = useState("");
   const textSize = formatDate.length > 6 ? "md" : "lg";
-  const navigation = useNavigation();
 
   return (
     <Stack h={90} br="xs" bc="backgroundLight" overflow="hidden">
       <ImageBackground source={require("assets/image/tileCard/1.png")}>
-        <XStack pa="xxs" br="md" gap="xs"  onPress={() => {
-                    navigation.navigate("activity", {
-                      activity,
-                    });
-                }}>
+        <XStack
+          pa="xxs"
+          br="md"
+          gap="xs"
+          onPress={() => {
+            navigation.navigate("activity", {
+              activity: activity,
+            });
+          }}
+        >
           <YStack ai="center" jc="space-between" w={100}>
             <Image source={{ uri: sport.icon.url }} resizeMode="contain" style={iconStyle} />
             <Text text={formatDateFromToday(date, "dd MMM")} preset="bold" color="primary" size={textSize} />
@@ -52,7 +50,7 @@ const ActivityCard = ({
       </ImageBackground>
     </Stack>
   );
-};
+}
 
 export default ActivityCard;
 

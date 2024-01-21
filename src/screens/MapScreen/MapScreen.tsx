@@ -82,7 +82,6 @@ export function MapScreen({ navigation }: Props) {
 
   const { data, error, isLoading, mutate } = useSWR(["activities", region, maxDistance, filters], () =>
     fetchActivitiesCustom(filters)
-  
   );
   const { data: dataSports, isLoading: isLoadingSport } = useSWR(["sports"], () => fetchSports());
 
@@ -102,13 +101,7 @@ export function MapScreen({ navigation }: Props) {
 
   return (
     <YStack full>
-      <Button onPress={handleOpenFilter} text="Filter" />
       <CreateActivity open={openActivity} setOpen={setOpenActivity} />
-      <Button
-        tx="createActivity.button"
-        onPress={() => setOpenActivity(true)}
-        style={{ alignSelf: "center", bottom: 10, position: "absolute" }}
-      />
       {/* <ActivityFilter
         isVisible={isFilterVisible}
         onClose={handleCloseFilter}
@@ -125,6 +118,11 @@ export function MapScreen({ navigation }: Props) {
         activities={data}
         region={region}
         onRegionChangeComplete={handleRegionChangeComplete}
+      />
+      <Button
+        tx="createActivity.button"
+        onPress={() => setOpenActivity(true)}
+        style={{ alignSelf: "center", bottom: 10, position: "absolute" }}
       />
     </YStack>
   );

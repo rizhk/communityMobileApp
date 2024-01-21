@@ -16,28 +16,26 @@ import { ActivityItem } from "types/activity";
 type Props = NativeStackScreenProps<MainStackParamList, "activity">;
 
 export function ActivityScreen({ navigation, route }: Props) {
-
-  const {latitude, longitude, sport, participants, maxParticipants, date, description, author} : ActivityItem = route.params.activity;
+  const { latitude, longitude, sport, participants, maxParticipants, date, description, author }: ActivityItem =
+    route.params.activity;
   const avatarUser: AvatarUser[] = participants?.map((participant: any) => ({
     id: participant.id,
     url: participant?.avatar?.url,
-    name : participant?.firstName
+    name: participant?.firstName,
   }));
   const hour = {
-    start : "12:00",
-    end : "14:00",
-  }
-  const coord : LocationType= {
-    longitude : longitude,
-    latitude : latitude,
-  }
+    start: "12:00",
+    end: "14:00",
+  };
+  const coord: LocationType = {
+    longitude: longitude,
+    latitude: latitude,
+  };
   const distance = useDistance(coord);
-
-
   // console.log("activity : ", participants[0])
 
   return (
-    <SafeAreaView style={{flex:1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <YStack flex={1} pa={"md"}>
           <Button
@@ -47,51 +45,64 @@ export function ActivityScreen({ navigation, route }: Props) {
             onPress={() => {
               navigation.goBack();
             }}
-            />
-          <Stack jc="center" ai="center"  h={200}>
+          />
+          <Stack jc="center" ai="center" h={200}>
             <Image source={{ uri: sport.icon.url }} resizeMode="contain" style={iconStyle} />
           </Stack>
           <YStack h={150} jc="space-evenly">
             <YStack jc="center">
-              <Text size="xl" preset="bold">{sport.name}</Text>
-              <AddressField textProps={{size : "sm"}} coord={coord} format={"%city% (%state%), %street% %streetNb%"} color="white"/> 
+              <Text size="xl" preset="bold">
+                {sport.name}
+              </Text>
+              <AddressField
+                textProps={{ size: "sm" }}
+                coord={coord}
+                format={"%city% (%state%), %street% %streetNb%"}
+                color="white"
+              />
               {distance ? (
-                  <Text>{distance}</Text>
-                ) : (
-                  <Stack ai="flex-start">
-                    <ActivityIndicator animating={true} hidesWhenStopped={true} />
-                  </Stack>
-                )}
+                <Text>{distance}</Text>
+              ) : (
+                <Stack ai="flex-start">
+                  <ActivityIndicator animating={true} hidesWhenStopped={true} />
+                </Stack>
+              )}
             </YStack>
-            <YStack  jc="center">
-              <Text color="primary" preset="bold">{formatDateFromToday(date, "dd MMMM yyy")}</Text>
-              <Text color="primary">{hour.start} - {hour.end}</Text>
+            <YStack jc="center">
+              <Text color="primary" preset="bold">
+                {formatDateFromToday(date, "dd MMMM yyy")}
+              </Text>
+              <Text color="primary">
+                {hour.start} - {hour.end}
+              </Text>
             </YStack>
           </YStack>
           <Stack h={1} bc="grey600"></Stack>
-          {participants.length > 0 && 
-          <YStack h={140}jc="space-evenly">
-              <Text preset="bold" size="md">{participants.length} Participant.e.s</Text>
+          {participants.length > 0 && (
+            <YStack h={140} jc="space-evenly">
+              <Text preset="bold" size="md">
+                {participants.length} Participant.e.s
+              </Text>
               <AvatarSlider users={avatarUser} />
               <Stack h={1} bc="grey600"></Stack>
-          </YStack>
-          }
-          {description && 
+            </YStack>
+          )}
+          {description && (
             <YStack mt={10}>
-              <Text preset="bold" size="md" style={{marginBottom: 10}}>Info : </Text>
-              <Text style={{marginBottom: 10}} color="dim">{description}</Text>
+              <Text preset="bold" size="md" style={{ marginBottom: 10 }} text="Info : " />
+              <Text style={{ marginBottom: 10 }} color="dim" text={description} />
               <Stack h={1} bc="grey600"></Stack>
             </YStack>
-          }
+          )}
           {/* TODO ajouter logique */}
-          <Stack ai="center" h={40}  jc="center">
-            <Text color="error">Supprimé l'activité</Text>
+          <Stack ai="center" h={40} jc="center">
+            <Text color="error" text="Supprimé l'activité" />
           </Stack>
         </YStack>
       </ScrollView>
-    {/* TODO ajouter logique */}
+      {/* TODO ajouter logique */}
       <Stack pa="md">
-        <Button text="Participer"/>
+        <Button text="Participer" />
       </Stack>
     </SafeAreaView>
   );

@@ -4,17 +4,18 @@ import { IMAGE_SIZE, ImagesSizeTypes, RadiusTypes, ThemeColorType, color } from 
 import { Image } from "expo-image";
 import { ImageStyle, StyleProp } from "react-native";
 
-type AvatarProps = {
+export type AvatarProps = {
   url: string;
   size?: ImagesSizeTypes | number;
   borderWidth?: number;
   borderRadius?: RadiusTypes | number;
   color?: ThemeColorType;
   containerSx?: StackProps;
+  onPress?: () => void;
 };
 
 function Avatar(props: AvatarProps) {
-  const { url, size = "md", borderWidth = 3, color = "primary", borderRadius = "full", containerSx } = props;
+  const { url, size = "md", borderWidth = 3, color = "primary", borderRadius = "full", containerSx, onPress } = props;
   const avatarSize = typeof size === "number" ? size : IMAGE_SIZE[size];
 
   return (
@@ -27,6 +28,7 @@ function Avatar(props: AvatarProps) {
       br={borderRadius}
       borderWidth={borderWidth}
       borderColor={color}
+      onPress={onPress}
       {...containerSx}
     >
       <Image source={url} style={imageStyle} />
