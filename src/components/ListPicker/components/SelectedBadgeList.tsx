@@ -1,4 +1,4 @@
-import { Cross } from "assets/svg";
+import { CrossFat } from "assets/svg";
 import { Button } from "components/Button";
 import { ButtonPresets } from "components/Button/button.presets";
 import { XStack } from "components/containers";
@@ -37,7 +37,7 @@ export function SelectedBadgeList(props: SelectedListBadgeProps) {
           <Button
             text={value}
             onPress={() => handleSelect(value)}
-            icon={Cross}
+            icon={CrossFat}
             iconColor={color}
             iconScale={2}
             {...selectedProps}
