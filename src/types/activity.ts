@@ -1,5 +1,6 @@
 import { SportItem, SportItemStrapi, SportsData } from "./sport";
 import { UserItem } from "./user";
+import { object, string, number, date, InferType } from "yup";
 
 export const populateActivity = [
   "cover",
@@ -27,7 +28,36 @@ export interface ActivityFilters {
   maxDistance?: number;
 }
 
-export interface ActivityItem {
+export const activityItemSchema = object({
+  id: number().required().positive().integer(),
+  name: string(),
+  maxParticipants: number().required().positive().integer(),
+  latitude: number().required(),
+  longitude: number().required(),
+  date: date().required(),
+  startHour: string().required(),
+  endHour: string().required(),
+  location: string().required(),
+  description: string().required(),
+  // author: userItemSchema.required(),
+  // participants: object({
+  //   data: array().of(userItemSchema).required(),
+  // }),
+  // blockedUsers: object({
+  //   data: array().of(userItemSchema).required(),
+  // }),
+  // sport: object({
+  //   data: sportItemStrapiSchema.required(),
+  // }),
+  // 'mixed' type for complex or unknown types
+});
+
+// parse and assert validity
+// const user = await userSchema.validate(console.log("ok"));
+
+export type ActivityItem = InferType<typeof activityItemSchema>;
+
+export interface ActivityItem2 {
   id: number;
   name: string;
   maxParticipants: number;

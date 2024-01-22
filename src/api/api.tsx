@@ -1,6 +1,6 @@
+// @ts-ignore
 import { API_URL } from "@env";
 import axios from "axios";
-// @ts-ignore
 import { Region } from "react-native-maps";
 import { ActivityFilters, populateActivity } from "types/activity";
 import { SportsData } from "types/sport";
