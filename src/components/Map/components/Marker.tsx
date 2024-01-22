@@ -1,87 +1,43 @@
+import { PinPlain } from "assets/svg";
 import { Text } from "components/Text";
-import { StyleSheet, View, TouchableOpacity, Platform, Image } from "react-native";
-import Svg, { Path } from "react-native-svg";
-import { color, spacing, TextStyles, shadow, text } from "theme";
-
-const PinIcon = ({ bgColor = color.primary }) => {
-  return (
-    <Svg width="60.435" height="80.101" viewBox="0 0 60.435 80.101">
-      <Path
-        d="M-548.5-413.5a21.2,21.2,0,0,1,21.2-21.2,21.2,21.2,0,0,1,21.2,21.2,21.2,21.2,0,0,1-21.2,21.2h0v19.7C-540.131-384.143-549.187-397.011-548.5-413.5Z"
-        transform="translate(557.54 443.7)"
-        fill={bgColor}
-      />
-    </Svg>
-  );
-};
+import { Stack } from "components/containers";
+import { StyleSheet,Image } from "react-native";
+import { color as themeColor} from "theme";
 
 interface CustomMarkerProps {
   participantCount: number | undefined;
   image: string | undefined;
-  //   pinImage?: IconTypes | ImageRequireSource;
-  pinImage?: any;
   type?: "activity" | "field" | "tournament";
 }
+
+const ICON_SIZE = 60;
 
 export function CustomMarker(props: CustomMarkerProps) {
   const {
     type,
-
     participantCount,
     image,
-    pinImage,
   } = props;
   const pinType = type ? `pin-${type}` : "pin-activity";
 
   return (
-    <TouchableOpacity activeOpacity={1} style={styles.pinWrapper}>
-      <View style={styles.pinContainer}>
-        <PinIcon />
+    <Stack h={ICON_SIZE} top={-ICON_SIZE/2}>
+        <PinPlain color={themeColor["primary"]} height={ICON_SIZE} width={ICON_SIZE}/>
         {/* TODO: Use CLoudinary image ? Or improve function to get image from cloudinary */}
         {image && <Image source={{ uri: image }} resizeMode="contain" style={styles.pinImage} />}
-        <View style={styles.notificationBubble}>
-          <Text style={styles.notificationText}>{participantCount}</Text>
-        </View>
-      </View>
-    </TouchableOpacity>
+        <Stack position="absolute" bc="white" br="full" w={"25%"} h={"25%"} jc="center" ai="center" left={"70%"}>
+          <Text preset="bold" color="black" size={ICON_SIZE/7} text={participantCount?.toString()}/>
+        </Stack>
+    </Stack>
   );
 }
 
-// const pin;
-
 const styles = StyleSheet.create({
-  pinWrapper: {
-    paddingVertical: spacing.md,
-    paddingHorizontal: spacing.md,
-  },
-  pinContainer: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
   pinImage: {
-    width: 30,
-    height: 30,
+    width: ICON_SIZE/2,
+    height: ICON_SIZE/2,
     position: "absolute",
-    top: 16,
-    left: 14,
-  },
-  notificationBubble: {
-    position: "absolute",
-    top: 8,
-    right: -12,
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    backgroundColor: color.white,
-    justifyContent: "center",
-    alignItems: "center",
-    zIndex: 1,
-    ...shadow.sm,
-  },
-  notificationText: {
-    color: color.black,
-    fontSize: text.xxs,
-    // fontWeight: TextStyles.weight.bold.fontWeight,
-    ...TextStyles.weight.bold,
+    top: "10%",
+    left: "25%",
   },
 });
