@@ -69,7 +69,9 @@ function MapComponent(props: MapProps) {
             if (activity?.latitude !== null && activity?.longitude !== null)
             {
               return (
+
               <Marker
+
                   key={index}
                   coordinate={{
                     latitude: activity.latitude,
