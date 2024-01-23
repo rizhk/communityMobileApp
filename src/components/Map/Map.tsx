@@ -62,29 +62,31 @@ function MapComponent(props: MapProps) {
           fillColor={hexToRGBA(color.primary, 0.2)}
         />
 
-        {/* {activities?.data &&
+        {activities?.data &&
           activities.data.map((activity, index) => {
             const participantsCount = activity?.participants?.length;
             const cloudinaryUrl = activity?.sport?.icon?.url;
-
-            return (
+            if (activity?.latitude !== null && activity?.longitude !== null)
+            {
+              return (
               <Marker
-                key={index}
-                coordinate={{
-                  latitude: activity.latitude,
-                  longitude: activity.longitude,
-                }}
-                onPress={(e) => {
-                  e.stopPropagation(),
-                    navigation.navigate("activity", {
-                      activity,
-                    });
-                }}
-              >
-                <CustomMarker participantCount={participantsCount} image={cloudinaryUrl} type="activity" />
-              </Marker>
-            );
-          })} */}
+                  key={index}
+                  coordinate={{
+                    latitude: activity.latitude,
+                    longitude: activity.longitude,
+                  }}
+                  onPress={(e) => {
+                    e.stopPropagation(),
+                      navigation.navigate("activity", {
+                        activity,
+                      });
+                  }}
+                >
+                  <CustomMarker participantCount={participantsCount} image={cloudinaryUrl} type="activity" />
+                </Marker>
+              );
+            }
+          })}
       </MapView>
     </>
   );
