@@ -6,6 +6,7 @@ import { Text } from "components/Text";
 import { XStack, YStack } from "components/containers/Stack/Stack";
 import { useState } from "react";
 import { View } from "react-native";
+
 import { useThemeTestContext } from "./TemeContext";
 
 export default function GeneralTab() {

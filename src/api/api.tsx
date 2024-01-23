@@ -80,12 +80,38 @@ export async function fetchActivitiesByRegion(
   }
 
   return fetchAxiosAPI(
-    `/activities`,
+    `/activity/find-activities`,
     {
       maxDistance,
       region,
       populate: populateActivity,
       filters: apiFilters,
+    },
+    userToken
+  );
+}
+
+export async function fetchActivitiesCustom(
+  filters: ActivityFilters,
+  userToken?: string | null
+) {
+  const apiFilters: { [key: string]: any } = {};
+
+  // if (filters?.sport) {
+  //   apiFilters.sport = { name: { $contains: filters?.sport.name } };
+  // }
+  if (filters?.sport) {
+    apiFilters.sport = { name: { $eq: filters?.sport.name } };
+  }
+  if (filters?.date) {
+    apiFilters["date"] = { $eq: filters?.date };
+  }
+
+  return fetchAxiosAPI(
+    `/activity/find-activities`,
+    {
+      // populate: populateActivity,
+      // filters: apiFilters,
     },
     userToken
   );

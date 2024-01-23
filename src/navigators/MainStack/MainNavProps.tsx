@@ -1,14 +1,15 @@
 import { NavType } from "navigators/NavType";
 import { ActivityScreen, MessageScreen } from "screens";
+
 import { BottomTabParamList } from "../BottomStack/BottomNavProps";
+import { ActivityItem } from "types/activity";
 export interface MainNavPropsType extends NavType<MainStackParamList> {
   noHeader?: boolean;
 }
 
 export type MainStackParamList = BottomTabParamList & {
   chats: undefined;
-  activity: { activityId: number };
-  // activity: { activity: ActivityItemStrapi };
+  activity: { activity: ActivityItem };
   //   activities: undefined;
   //   "create-activity": { coordinate: Region | null; fieldId: number | null };
   //   "edit-profile": any;

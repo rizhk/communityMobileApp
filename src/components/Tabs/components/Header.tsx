@@ -1,9 +1,9 @@
 import { Text } from "components/Text";
+import { TextProps } from "components/Text/text.props";
 import { StyleProp, TouchableOpacity, ViewStyle } from "react-native";
 import { color } from "theme";
 
 import { useTabs } from "../Tabs.props";
-import { TextProps } from "components/Text/text.props";
 
 type TabsHeaderProps = TextProps & {
   name: string;

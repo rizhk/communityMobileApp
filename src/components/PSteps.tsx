@@ -2,11 +2,13 @@ import { Tick } from "assets/svg";
 import { Button, ButtonProps } from "components/Button";
 import { Icon } from "components/Icon";
 import { Text } from "components/Text";
-import { Stack, StackProps, XStack, YStack } from "components/containers/Stack/Stack";
+import { Stack, XStack, YStack } from "components/containers/Stack/Stack";
 import { i18n } from "i18n";
 import { Children, createContext, useContext, useState } from "react";
 import { View } from "react-native";
 import { ThemeColorType } from "theme/color";
+
+import { StackProps } from "./containers/Stack/Stack.props";
 
 export type PStepsContextType = {
   currentStep: number;
@@ -152,17 +154,17 @@ export function PSteps(props: PStepsProps) {
   );
 }
 
-export interface PStepProps extends StackProps {
+export type PStepProps = StackProps & {
   children: React.ReactNode;
   label: string;
-}
+};
 
 export function PStep(props: PStepProps) {
-  const { children, label, flexGrow = true, direction = "column", jc = "center", style = {}, ...rest } = props;
+  const { children, label, flexGrow = true, pa = "sm", style = {}, ...rest } = props;
   const { currentStep, labels } = usePSteps();
   if (label === labels[currentStep])
     return (
-      <Stack flexGrow={flexGrow} direction={direction} jc={jc} pa="sm" {...rest} style={[{ marginTop: 10 }, style]}>
+      <Stack flexGrow={flexGrow} pa={pa} {...rest} style={[{ marginTop: 10 }, style]}>
         {children}
       </Stack>
     );

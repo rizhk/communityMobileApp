@@ -1,10 +1,11 @@
-import { PropsWithChildren, useState } from "react";
-import { PanGestureHandler, State } from "react-native-gesture-handler";
-import { TabContext, TabsProps } from "./Tabs.props";
-import { Tab } from "./components/Tab";
-import { TabsHeader } from "./components/Header";
 import { Stack } from "components/containers/Stack/Stack";
+import { PropsWithChildren, useState } from "react";
 import { View } from "react-native";
+import { PanGestureHandler, State } from "react-native-gesture-handler";
+
+import { TabContext, TabsProps } from "./Tabs.props";
+import { TabsHeader } from "./components/Header";
+import { Tab } from "./components/Tab";
 
 Tabs.Tab = Tab;
 

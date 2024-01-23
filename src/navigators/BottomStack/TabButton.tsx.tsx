@@ -1,11 +1,11 @@
 import { Icon } from "components/Icon";
+import { Stack } from "components/containers";
 import { useEffect, useState } from "react";
-import { Animated, TouchableOpacity, View, ViewStyle } from "react-native";
+import { Animated, TouchableOpacity, ViewStyle } from "react-native";
 import { buttonSize, color } from "theme";
+import { hexToRGBA } from "utils/helper";
 
 import { BottomNavPropsType } from "./BottomNavProps";
-import { hexToRGBA } from "utils/helper";
-import { Stack } from "components/containers";
 
 export interface TabButtonProps {
   tab: BottomNavPropsType;
@@ -42,7 +42,7 @@ export default function TabButton({ tab, onPress, accessibilityState, isLast }: 
     }
   }, [focused]);
 
-  var bgColor = animation.interpolate({
+  const bgColor = animation.interpolate({
     inputRange: [0, 1],
     outputRange: ["rgba(0,0,0,0)", hexToRGBA(color.primary, 1)],
   });

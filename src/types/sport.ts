@@ -1,12 +1,12 @@
-import { ImageItemStrapi } from "./activity";
+import { ImageItem } from "./activity";
 
 export interface SportItem {
   id: number;
   name: string;
-  icon: ImageItemStrapi;
+  icon: ImageItem;
   data: any;
 }
-
+//TODO normalement plus utile
 export interface SportItemStrapi {
   id: number;
   attributes: SportItem;

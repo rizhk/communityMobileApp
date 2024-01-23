@@ -1,5 +1,5 @@
 import { ViewStyle } from "react-native";
-import { ThemeColorType, color as themeColor, radius, spacing } from "theme";
+import { ThemeColorType, color as themeColor, radius, spacing, avatar } from "theme";
 
 const BASE = (color: ThemeColorType) => {
   return {
@@ -41,6 +41,13 @@ export const presets = {
       height: 35,
       padding: 0,
       paddingHorizontal: spacing.sm,
+    } as ViewStyle;
+  },
+  badge: (color: ThemeColorType) => {
+    return {
+      ...BASE(color),
+      borderRadius: radius.sm,
+      backgroundColor: themeColor[color],
     } as ViewStyle;
   },
 };
