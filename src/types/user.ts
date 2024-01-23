@@ -40,8 +40,8 @@ const userItemSchema: any = lazy(() =>
     lastName: string().nullable(),
     followers: array().of(userItemSchema).nullable(),
     followings: array().of(userItemSchema).nullable(),
-    // avatar: mediaItemSchema.nullable(),
     activitiesParticipate: array().of(activityItemSchema).nullable(),
+    // avatar: mediaItemSchema.nullable(),
     // favoriteSports: array().of(sportItemSchema).nullable(),
     // Other fields as necessary
   })
