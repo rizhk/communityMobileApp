@@ -1,3 +1,4 @@
+import { PaginationMeta } from "./global";
 import { SportItem, SportsData } from "./sport";
 
 //****** TOURNAMENT ******\\
@@ -28,7 +29,7 @@ export interface TournamentItem {
   maxTeamParticipant?: number;
 }
 
-export interface TournamentItemStrapi {
-  id: number;
-  attributes: TournamentItem;
+export interface TournamentData {
+  data: TournamentItem[];
+  meta: PaginationMeta;
 }

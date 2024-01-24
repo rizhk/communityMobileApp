@@ -1,13 +1,13 @@
 import { ImageItem, PaginationMeta } from "./global";
 
-export interface SportItem {
+export interface TeamIteam {
   id: number;
   name: string;
   icon: ImageItem;
   data: any;
 }
 
-export interface SportsData {
-  data: SportItem[];
+export interface TeamsData {
+  data: TeamIteam[];
   meta: PaginationMeta;
 }

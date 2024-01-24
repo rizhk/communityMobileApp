@@ -1,3 +1,4 @@
+import { PaginationMeta } from "./global";
 import { SportItem } from "./sport";
 import { UserItem } from "./user";
 
@@ -17,7 +18,8 @@ export interface FieldItem {
   status: "public" | "semi-private" | "private";
   disponibility?: string;
 }
-export interface FieldItemStrapi {
-  id: number;
-  attributes: FieldItem;
+
+export interface FieldsData {
+  data: FieldItem[];
+  meta: PaginationMeta;
 }

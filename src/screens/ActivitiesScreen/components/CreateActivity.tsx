@@ -1,4 +1,5 @@
-import { fetchSports, postAxiosApiFormData } from "api/api";
+import { postAxiosApiFormData } from "api/api";
+import { fetchSports } from "api/sport-request";
 import { Star } from "assets/svg";
 import GForm from "components/GForm/GForm";
 import { DropPickerItem } from "components/GForm/components/DropPicker";
