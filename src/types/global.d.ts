@@ -11,3 +11,40 @@ export type ItemType = {
 };
 
 export type ValueType = string | number | boolean;
+
+//****** IMAGE ******\\
+export interface ImageItem {
+  public_id: string;
+  url: string;
+}
+
+//****** FORM ******\\
+export type FieldValidation = {
+  type: string;
+  required?: boolean;
+  minLength?: number;
+  min?: number;
+  maxLenght?: number;
+  format?: string;
+};
+
+//****** REQUEST ******\\
+export interface restQueryParams {
+  fields?: string | string[];
+  filters?: object;
+  pagination?: {
+    page: number;
+    pageSize: number;
+  };
+  sort?: string;
+  populate?: string | object;
+  locale?: string | string[];
+  publicationState?: "live" | "preview";
+}
+
+export interface PaginationMeta {
+  page?: number;
+  pageSize?: number;
+  pageCount: number;
+  total: number;
+}

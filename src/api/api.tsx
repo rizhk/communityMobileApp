@@ -43,24 +43,6 @@ export async function fetchActivities(userToken?: string | null) {
   );
 }
 
-// type Filters = {
-//   [key: string]: any; // Allow any property with a string key
-// };
-
-//   // Dynamically build the filters
-//   Object.keys(filters).forEach((key) => {
-//     if (typeof filters[key] === "object" && filters[key] !== null) {
-//       // Nested object (e.g., sport: { name: "Spikeball" })
-//       apiFilters[key] = {};
-//       Object.keys(filters[key]).forEach((innerKey) => {
-//         apiFilters[key][innerKey] = { $eq: filters[key][innerKey] };
-//       });
-//     } else {
-//       // Direct value (e.g., date: "2023-07-19")
-//       apiFilters[key] = { $eq: filters[key] };
-//     }
-//   });
-
 export async function fetchActivitiesByRegion(
   region: Region | null,
   maxDistance: number = 5000000,
@@ -91,14 +73,13 @@ export async function fetchActivitiesByRegion(
   );
 }
 
-export async function fetchActivitiesCustom(
-  filters: ActivityFilters,
-  userToken?: string | null
-) {
+export async function fetchActivitiesCustom(filters: ActivityFilters, userToken?: string | null) {
   const apiFilters: { [key: string]: any } = {};
 
+  console.log("ici coquin");
+
   // if (filters?.sport) {
-  //   apiFilters.sport = { name: { $contains: filters?.sport.name } };
+  //   apiFilters.sport = { name: { $contains: filters?.sport.name } };r
   // }
   if (filters?.sport) {
     apiFilters.sport = { name: { $eq: filters?.sport.name } };
@@ -110,8 +91,10 @@ export async function fetchActivitiesCustom(
   return fetchAxiosAPI(
     `/activity/find-activities`,
     {
-      // populate: populateActivity,
-      // filters: apiFilters,
+      populate: populateActivity,
+      filters: apiFilters,
+      start: 0,
+      limit: 1000,
     },
     userToken
   );

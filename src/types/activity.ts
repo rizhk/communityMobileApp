@@ -1,3 +1,5 @@
+import { FieldValidation } from "./global";
+import { PaginationMeta, restQueryParams } from "./global";
 import { SportItem, SportItemStrapi, SportsData } from "./sport";
 import { UserItem } from "./user";
 import { object, string, number, date, InferType } from "yup";
@@ -17,6 +19,11 @@ export const populateActivity = [
 ];
 
 //****** ACTIVITY ******\\
+export interface ActivityQueryParams extends restQueryParams {
+  filters: ActivityFilters;
+}
+
+//TODO: Put right filters
 export interface ActivityFilters {
   sportName?: string;
   sportId?: number;
@@ -57,7 +64,7 @@ export const activityItemSchema = object({
 
 export type ActivityItem = InferType<typeof activityItemSchema>;
 
-export interface ActivityItem2 {
+export interface ActivityItemManual {
   id: number;
   name: string;
   maxParticipants: number;
@@ -71,19 +78,13 @@ export interface ActivityItem2 {
   author: UserItem;
   participants: UserItem[]; //TODO: Check types
   blockedUsers: UserItem[];
-  sport:  SportItem ;
+  sport: SportItem;
   channel: any;
-}
-
-//TODO normalement plus utilisé
-export interface ActivityItemStrapi {
-  id: number;
-  attributes: ActivityItem;
 }
 
 export interface ActivitiesData {
   data: ActivityItem[];
-  meta: any;
+  meta: PaginationMeta;
 }
 
 export interface ActivityFormData extends ActivityFormSchema {
@@ -99,85 +100,6 @@ export interface ActivityFormSchema {
   initialValue?: number | string | boolean | Date | any[];
   validation: FieldValidation;
 }
-
-//****** IMAGE ******\\
-export interface ImageItem {
-  public_id: string;
-  url: string;
-}
-//TODO normalement plus utile
-export interface ImageItemStrapi {
-  data: {
-    id: number;
-    attributes: ImageItem;
-  };
-
-  provider_metadata: ImageItem;
-  id: number;
-}
-
-//****** FIELD ******\\
-export interface FieldItem {
-  sports: SportItem;
-  certified: boolean;
-  author: UserItem;
-  contactNumber: string;
-  contactWebSite: string;
-  description: string;
-  images: any;
-  latitude: number;
-  longitude: number;
-  nbrField: number;
-  name: string | null;
-  status: "public" | "semi-private" | "private";
-  disponibility?: string;
-}
-export interface FieldItemStrapi {
-  id: number;
-  attributes: FieldItem;
-}
-
-//****** TOURNAMENT ******\\
-export interface TournamentItem {
-  maxParticipants?: number;
-  latitude: number;
-  longitude: number;
-  date: Date;
-  startHour?: string;
-  endHour?: string;
-  location?: string;
-  description?: string;
-  author?: {
-    data?: {
-      id: number;
-    };
-    id?: number;
-  };
-  participants?: {
-    id?: number;
-    data?: {
-      id: number;
-    }[];
-  };
-  sport?: SportItemStrapi | SportsData;
-  maxTeam?: number;
-  teams?: any;
-  maxTeamParticipant?: number;
-}
-
-export interface TournamentItemStrapi {
-  id: number;
-  attributes: TournamentItem;
-}
-
-export type FieldValidation = {
-  type: string;
-  required?: boolean;
-  minLength?: number;
-  min?: number;
-  maxLenght?: number;
-  format?: string;
-};
 
 export interface ActivityFormData extends ActivityFormSchema {
   label?: string;
