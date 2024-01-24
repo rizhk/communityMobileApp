@@ -33,8 +33,8 @@ export interface restQueryParams {
   fields?: string | string[];
   filters?: object;
   pagination?: {
-    page: number;
-    pageSize: number;
+    page?: number;
+    pageSize?: number;
   };
   sort?: string;
   populate?: string | object;

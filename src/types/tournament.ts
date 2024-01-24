@@ -1,4 +1,4 @@
-import { SportItemStrapi, SportsData } from "./sport";
+import { SportItem, SportsData } from "./sport";
 
 //****** TOURNAMENT ******\\
 export interface TournamentItem {
@@ -22,7 +22,7 @@ export interface TournamentItem {
       id: number;
     }[];
   };
-  sport?: SportItemStrapi | SportsData;
+  sport?: SportItem | SportsData;
   maxTeam?: number;
   teams?: any;
   maxTeamParticipant?: number;

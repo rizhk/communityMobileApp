@@ -1,12 +1,12 @@
 // @ts-ignore
 import { API_URL } from "@env";
 import axios from "axios";
-import { Region } from "react-native-maps";
-import { ActivityFilters, populateActivity } from "types/activity";
+
+import { restQueryParams } from "types/global";
 import { SportsData } from "types/sport";
 axios.defaults.baseURL = `${API_URL}/api`;
 
-export async function fetchAxiosAPI(path: string, params?: any, userToken?: string | null) {
+export async function fetchAxiosAPI(path: string, params?: restQueryParams, userToken?: string | null) {
   const headers: any = {};
 
   if (userToken) {
@@ -18,86 +18,6 @@ export async function fetchAxiosAPI(path: string, params?: any, userToken?: stri
   } catch (err) {
     console.error(err, "fetchAxiosAPI fetching error, path:", path);
   }
-}
-
-export async function fetchSports(userToken?: string | null): Promise<SportsData> {
-  return fetchAxiosAPI(
-    `/sports`,
-    {
-      populate: ["icon"],
-      pagination: {
-        limit: 1000,
-      },
-    },
-    userToken
-  );
-}
-
-export async function fetchActivities(userToken?: string | null) {
-  return fetchAxiosAPI(
-    `/activities`,
-    {
-      populate: populateActivity,
-    },
-    userToken
-  );
-}
-
-export async function fetchActivitiesByRegion(
-  region: Region | null,
-  maxDistance: number = 5000000,
-  filters: ActivityFilters,
-  userToken?: string | null
-) {
-  const apiFilters: { [key: string]: any } = {};
-
-  // if (filters?.sport) {
-  //   apiFilters.sport = { name: { $contains: filters?.sport.name } };
-  // }
-  if (filters?.sport) {
-    apiFilters.sport = { name: { $eq: filters?.sport.name } };
-  }
-  if (filters?.date) {
-    apiFilters["date"] = { $eq: filters?.date };
-  }
-
-  return fetchAxiosAPI(
-    `/activity/find-activities`,
-    {
-      maxDistance,
-      region,
-      populate: populateActivity,
-      filters: apiFilters,
-    },
-    userToken
-  );
-}
-
-export async function fetchActivitiesCustom(filters: ActivityFilters, userToken?: string | null) {
-  const apiFilters: { [key: string]: any } = {};
-
-  console.log("ici coquin");
-
-  // if (filters?.sport) {
-  //   apiFilters.sport = { name: { $contains: filters?.sport.name } };r
-  // }
-  if (filters?.sport) {
-    apiFilters.sport = { name: { $eq: filters?.sport.name } };
-  }
-  if (filters?.date) {
-    apiFilters["date"] = { $eq: filters?.date };
-  }
-
-  return fetchAxiosAPI(
-    `/activity/find-activities`,
-    {
-      populate: populateActivity,
-      filters: apiFilters,
-      start: 0,
-      limit: 1000,
-    },
-    userToken
-  );
 }
 
 export async function postAxiosApiFormData(path: string, data: any, userToken?: string | null) {

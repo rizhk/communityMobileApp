@@ -1,4 +1,4 @@
-import { ImageItem } from "./activity";
+import { ImageItem } from "./global";
 
 export interface SportItem {
   id: number;
@@ -6,13 +6,8 @@ export interface SportItem {
   icon: ImageItem;
   data: any;
 }
-//TODO normalement plus utile
-export interface SportItemStrapi {
-  id: number;
-  attributes: SportItem;
-}
 
 export interface SportsData {
-  data: SportItemStrapi[];
+  data: SportItem[];
   meta: any;
 }

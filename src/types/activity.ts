@@ -1,27 +1,18 @@
+import { Region } from "react-native-maps";
 import { FieldValidation } from "./global";
 import { PaginationMeta, restQueryParams } from "./global";
-import { SportItem, SportItemStrapi, SportsData } from "./sport";
+import { SportItem } from "./sport";
 import { UserItem } from "./user";
 import { object, string, number, date, InferType } from "yup";
 
-export const populateActivity = [
-  "cover",
-  "author",
-  "author.avatar",
-  "author.blockedUsers",
-  "participants",
-  "participants.avatar",
-  "sport",
-  "sport.icon",
-  "sport.localizations",
-  "channel",
-  "blockedUsers",
-];
-
 //****** ACTIVITY ******\\
-export interface ActivityQueryParams extends restQueryParams {
-  filters: ActivityFilters;
-}
+// export interface ActivityQueryParams extends restQueryParams {
+export type ActivityQueryParams = restQueryParams & {
+  filters?: ActivityFilters;
+};
+
+// export interface ActivityByRegionQueryParams extends ActivityQueryParams {
+export type ActivityByRegionQueryParams = ActivityQueryParams & { maxDistance?: number; region: Region | null };
 
 //TODO: Put right filters
 export interface ActivityFilters {
@@ -35,6 +26,7 @@ export interface ActivityFilters {
   maxDistance?: number;
 }
 
+//YUP Validation
 export const activityItemSchema = object({
   id: number().required().positive().integer(),
   name: string(),
