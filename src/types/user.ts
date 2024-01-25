@@ -25,7 +25,7 @@ export interface UserItemOld {
   // label: string;
 }
 
-const userItemSchema: any = lazy(() =>
+export const userItemSchema: any = lazy(() =>
   object({
     id: number().required().positive().integer(),
     username: string().nullable(),

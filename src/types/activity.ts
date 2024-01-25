@@ -1,9 +1,9 @@
 import { Region } from "react-native-maps";
 import { FieldValidation } from "./global";
 import { PaginationMeta, restQueryParams } from "./global";
-import { SportItem } from "./sport";
-import { UserItem } from "./user";
-import { object, string, number, date, InferType } from "yup";
+import { SportItem, sportItemSchema } from "./sport";
+import { UserItem, userItemSchema } from "./user";
+import { object, string, number, date, InferType, array } from "yup";
 
 //****** ACTIVITY ******\\
 // export interface ActivityQueryParams extends restQueryParams {
@@ -28,33 +28,37 @@ export interface ActivityFilters {
 
 //YUP Validation
 export const activityItemSchema = object({
-  id: number().required().positive().integer(),
+  id: number().positive().integer(),
   name: string(),
   maxParticipants: number().required().positive().integer(),
+  date: date(),
+  dateStart: date().required(),
+  dateEnd: date().required(),
   latitude: number().required(),
   longitude: number().required(),
-  date: date().required(),
-  startHour: string().required(),
-  endHour: string().required(),
-  location: string().required(),
-  description: string().required(),
-  // author: userItemSchema.required(),
+  location: string(),
+  description: string(),
+  author: userItemSchema,
+  type: string().oneOf(["solo", "private", "public"]).required(),
+
   // participants: object({
   //   data: array().of(userItemSchema).required(),
   // }),
   // blockedUsers: object({
   //   data: array().of(userItemSchema).required(),
   // }),
-  // sport: object({
-  //   data: sportItemStrapiSchema.required(),
-  // }),
-  // 'mixed' type for complex or unknown types
+  sport: array().of(sportItemSchema).required(),
 });
 
 // parse and assert validity
 // const user = await userSchema.validate(console.log("ok"));
 
 export type ActivityItem = InferType<typeof activityItemSchema>;
+
+// export interface ActivityFormValues extends ActivityItem {
+export type ActivityFormValues = Omit<ActivityItem, "sport"> & {
+  sport: number;
+};
 
 export interface ActivityItemManual {
   id: number;
@@ -70,7 +74,7 @@ export interface ActivityItemManual {
   author: UserItem;
   participants: UserItem[]; //TODO: Check types
   blockedUsers: UserItem[];
-  sport: SportItem;
+  sport: SportItem[];
   channel: any;
 }
 

@@ -11,22 +11,22 @@ import { Validations } from "constants/Validations";
 import { INFINIT_PARTICIPANTS } from "constants/global";
 import { format } from "date-fns";
 import useSWR, { mutate } from "swr";
+import { ActivityFormValues, ActivityItem } from "types/activity";
 import { LocationType } from "types/global";
 import { mapSportsDataToDropPickerItems } from "utils/helper";
 import { fetchShortAddressFromCoords } from "utils/locationHelper";
 import * as Yup from "yup";
 
-type ActivityFormType = {
-  description: string;
-  // sport: [number]; //right
-  sport: [number]; //TODO: replace by [number];
-  type: string;
-  dateStart: Date;
-  dateEnd: Date;
-  nbParticipant: number;
-  location: LocationType;
-  [key: string]: any; // Add index signature
-};
+// type ActivityFormType = {
+//   description: string;
+//   sport: [number];
+//   type: "solo" | "private" | "public";
+//   dateStart: Date;
+//   dateEnd: Date;
+//   maxParticipants: number;
+//   location: LocationType;
+//   [key: string]: any; // Add index signature
+// };
 
 const activityTypeItems = [
   { value: "solo", label: "createActivity.solo" },
@@ -40,15 +40,15 @@ const nowMoreOneHour = () => {
   return now;
 };
 
-const initialValues: ActivityFormType = {
+const initialValues: ActivityFormValues = {
   description: "",
-  //@ts-ignore
-  sport: 3, //TODO: replace by [number] but it's not working
+  sport: 3, //TODO: check if [number]
   type: "solo",
   dateStart: new Date(),
   dateEnd: nowMoreOneHour(),
-  nbParticipant: INFINIT_PARTICIPANTS,
-  location: { latitude: 0, longitude: 0 },
+  maxParticipants: INFINIT_PARTICIPANTS,
+  latitude: 0,
+  longitude: 0,
 };
 
 const validations = Yup.object().shape({
@@ -67,35 +67,42 @@ export default function CreateActivity(props: CreateActivityProps) {
   const { data: dataSports, isLoading: isLoadingSport } = useSWR(["sports"], () => fetchSports());
   const items = dataSports ? mapSportsDataToDropPickerItems(dataSports) : [];
 
-  const handleSubmit = async (values: ActivityFormType) => {
+  const handleSubmit = async (values: ActivityFormValues) => {
     const address = await fetchShortAddressFromCoords({
-      latitude: values.location.latitude,
-      longitude: values.location.longitude,
+      latitude: values.latitude,
+      longitude: values.longitude,
     });
 
     try {
-      const formattedValues = {
+      const formattedValues: ActivityFormValues = {
         description: values.description,
-        latitude: values.location.latitude,
-        longitude: values.location.longitude,
+        latitude: values.latitude,
+        longitude: values.longitude,
         location: address,
-        startHour: format(values.dateStart, "HH:mm:ss.SSS"),
-        endHour: format(values.dateEnd, "HH:mm:ss.SSS"),
-        date: values.dateStart, //TODO: Bug date jour avant, on avait déjà eu ça je crois
-        maxParticipants: values.nbParticipant,
+        dateStart: values.dateStart,
+        dateEnd: values.dateEnd,
+
+        maxParticipants: values.maxParticipants,
         author: {
           id: 40, //TODO: replace by user id
         },
-        sport: [values.sport],
+        sport: 1,
+
+        // startHour: format(values.dateStart, "HH:mm:ss.SSS"),
+        // endHour: format(values.dateEnd, "HH:mm:ss.SSS"),
+        // date: values.dateStart, //TODO: Bug date jour avant, on avait déjà eu ça je crois
         type: values.type,
       };
 
       const formData = new FormData();
       formData.append("data", JSON.stringify(formattedValues));
 
-      const response = await postAxiosApiFormData("/activities", formData);
-      // Here we call `mutate` to revalidate the local data and update the list of activities
-      mutate("/activities");
+      try {
+        await postAxiosApiFormData("/activities", formData);
+        mutate("/activities");
+      } catch (error) {
+        console.error("Failed to create activity", error);
+      }
 
       // mutate("/activities", (cachedData) => {
       //   // Supposant que cachedData est un tableau d'activités
@@ -113,7 +120,7 @@ export default function CreateActivity(props: CreateActivityProps) {
       <Slider visible={open} setVisible={setOpen}>
         <Text preset="header" tx="createActivity.title" />
         <GForm initialValues={initialValues} validationSchema={validations} onSubmit={handleSubmit}>
-          <GForm.NumberPicker max={10} tx="createActivity.maxParticipant" valName="nbParticipant" />
+          <GForm.NumberPicker max={10} tx="createActivity.maxParticipant" valName="maxParticipants" />
           <GForm.TextInput
             tx="createActivity.activityDescription"
             valName="descirption"
@@ -137,7 +144,7 @@ export default function CreateActivity(props: CreateActivityProps) {
             minimumDate={new Date()}
           />
           <GForm.Radio valName="type" items={activityTypeItems} />
-          <GForm.NumberPicker max={10} tx="createActivity.maxParticipant" valName="nbParticipant" />
+          <GForm.NumberPicker max={10} tx="createActivity.maxParticipant" valName="maxParticipants" />
           <GForm.SubmitButton tx="createActivity.createActivity" style={{ alignSelf: "center" }} />
         </GForm>
       </Slider>

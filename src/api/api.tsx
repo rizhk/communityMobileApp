@@ -20,7 +20,7 @@ export async function fetchAxiosAPI(path: string, params?: restQueryParams, user
   }
 }
 
-export async function postAxiosApiFormData(path: string, data: any, userToken?: string | null) {
+export async function postAxiosApiFormData(path: string, data: FormData, userToken?: string | null) {
   const headers: any = {
     "Content-Type": "multipart/form-data",
   };
