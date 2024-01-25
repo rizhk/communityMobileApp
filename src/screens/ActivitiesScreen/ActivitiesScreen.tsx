@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { fetchActivitiesByRegion, fetchActivitiesCustom } from "api/api";
+
 import ActivityFilter from "components/ActivityFilter/ActivityFilter";
 import { Button } from "components/Button";
 import { Text } from "components/Text";
@@ -15,6 +15,7 @@ import CreateActivity from "./components/CreateActivity";
 import { useHeaderMenu } from "hooks/useHeaderMenu";
 import { Filter } from "assets/svg";
 import { MenuType } from "components/Menu/Menu.types";
+import { fetchActivities } from "api/activity-request";
 
 type Props = NativeStackScreenProps<MainStackParamList, "activities">;
 
@@ -31,11 +32,13 @@ export function ActivitiesScreen({ navigation }: Props) {
   };
 
   const [filters, setFilters] = useState<ActivityFilters>({});
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
 
   //Fetch Activities
   const { data: activities, isLoading: isLoadingActivities } = useSWR(
     ["activities", userRegion, maxDistance, filters],
-    () => fetchActivitiesCustom(filters)
+    () => fetchActivities({ filters, pagination: { page, pageSize } })
   );
 
   const menu: MenuType = {

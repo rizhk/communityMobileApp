@@ -12,6 +12,7 @@ export type BaseDatePickerProps = {
   setDate: (date: any) => void;
   minimumDate?: Date;
   maximumDate?: Date;
+
   color?: ThemeColorType;
   txLabel?: string;
 };

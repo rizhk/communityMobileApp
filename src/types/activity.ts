@@ -23,7 +23,7 @@ export interface ActivityFilters {
     id?: number;
   };
   date?: string;
-  maxDistance?: number;
+  // maxDistance?: number;
 }
 
 //YUP Validation

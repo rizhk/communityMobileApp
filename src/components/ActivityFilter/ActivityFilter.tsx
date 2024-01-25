@@ -20,7 +20,7 @@ interface ActivityFilterProps {
 
 function ActivityFilter(props: ActivityFilterProps) {
   const { onApply, currentFilters } = props;
-  const [maxDistance, setMaxDistance] = useState(currentFilters?.maxDistance || DEFAULT_MAX_DISTANCE);
+  // const [maxDistance, setMaxDistance] = useState(currentFilters?.maxDistance || DEFAULT_MAX_DISTANCE);
   const [sport, setSport] = useState(currentFilters?.sport?.name || "");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -32,7 +32,7 @@ function ActivityFilter(props: ActivityFilterProps) {
         <Text text="Sport Picker" />
         <SportPickerComponent value={sport} setValue={setSport} />
 
-        <Text text={"Distance: " + maxDistance + " km"} />
+        {/* <Text text={"Distance: " + maxDistance + " km"} />
         <Slider
           style={{ width: "100%", height: 40 }}
           minimumValue={20}
@@ -43,12 +43,12 @@ function ActivityFilter(props: ActivityFilterProps) {
           thumbTintColor={color.primary}
           value={maxDistance}
           onValueChange={setMaxDistance}
-        />
+        /> */}
 
         {/* //TODO: Add address Picker */}
 
         <Text text="Depuis le" />
-        <DatePicker date={startDate} setDate={setStartDate} minDate={new Date()} />
+        <DatePicker date={startDate} setDate={setStartDate} minimumDate={new Date()} />
         {/* <Text text="Au" />
             <DatePicker date={endDate} setDate={setEndDate} minDate={startDate} /> */}
       </YStack>
@@ -59,7 +59,7 @@ function ActivityFilter(props: ActivityFilterProps) {
           text="Apply"
           size="sm"
           onPress={() => {
-            onApply({ ...currentFilters, ...(sport && { sport: { name: sport } }), maxDistance });
+            onApply({ ...currentFilters, ...(sport && { sport: { name: sport } }) });
             setOpen(false);
           }}
           style={{ flex: 1 }}
