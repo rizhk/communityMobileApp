@@ -40,22 +40,19 @@ export const activityItemSchema = object({
   description: string(),
   author: userItemSchema,
   type: string().oneOf(["solo", "private", "public"]).required(),
-
+  participants: array().of(userItemSchema),
+  blockedUsers: array().of(userItemSchema),
   // participants: object({
-  //   data: array().of(userItemSchema).required(),
+  //   data: array().of(userItemSchema),
   // }),
   // blockedUsers: object({
-  //   data: array().of(userItemSchema).required(),
+  //   data: array().of(userItemSchema),
   // }),
-  sport: array().of(sportItemSchema).required(),
+  sport: array().of(sportItemSchema),
 });
-
-// parse and assert validity
-// const user = await userSchema.validate(console.log("ok"));
 
 export type ActivityItem = InferType<typeof activityItemSchema>;
 
-// export interface ActivityFormValues extends ActivityItem {
 export type ActivityFormValues = Omit<ActivityItem, "sport"> & {
   sport: number;
 };

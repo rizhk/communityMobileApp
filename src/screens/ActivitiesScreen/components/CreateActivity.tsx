@@ -81,7 +81,6 @@ export default function CreateActivity(props: CreateActivityProps) {
         location: address,
         dateStart: values.dateStart,
         dateEnd: values.dateEnd,
-
         maxParticipants: values.maxParticipants,
         author: {
           id: 40, //TODO: replace by user id
