@@ -8,6 +8,7 @@ import { Text } from "components/Text";
 import { XStack, YStack } from "components/containers/Stack/Stack";
 import { DEFAULT_MAX_DISTANCE } from "constants/global";
 import { useState } from "react";
+import { View } from "react-native";
 import useSWR from "swr";
 import { color } from "theme";
 import { ActivityFilters } from "types/activity";
@@ -35,9 +36,11 @@ function ActivityFilter(props: ActivityFilterProps) {
   return (
     <YStack bc="background" br="md" pa="xs">
       <YStack gap="md" pa="xs">
-        <Text text="Sport Picker" />
-        {/* <SportPickerComponent value={sport} setValue={setSport} /> */}
-        <DropPicker items={items} value={sport} setValue={setSport} />
+        <View>
+          <Text text="Sport Picker" />
+          {/* <SportPickerComponent value={sport} setValue={setSport} /> */}
+          <DropPicker items={items} value={sport} setValue={setSport} />
+        </View>
 
         {/* <Text text={"Distance: " + maxDistance + " km"} />
         <Slider
@@ -60,7 +63,7 @@ function ActivityFilter(props: ActivityFilterProps) {
             <DatePicker date={endDate} setDate={setEndDate} minDate={startDate} /> */}
       </YStack>
 
-      <XStack jc="space-evenly" ai="center">
+      <XStack jc="space-evenly" ai="center" style={{ zIndex: -1 }}>
         <Button text="Cancel" size="sm" onPress={() => setOpen(false)} preset="plainText" style={{ flex: 1 }} />
         <Button
           text="Apply"

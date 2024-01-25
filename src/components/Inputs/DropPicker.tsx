@@ -2,6 +2,7 @@ import { DownArrow, Tick, UpArrow } from "assets/svg";
 import { Icon } from "components/Icon";
 import { t } from "i18n-js";
 import React, { useState } from "react";
+import { StyleProp, ViewStyle } from "react-native";
 import DropDownPicker, { ItemType } from "react-native-dropdown-picker";
 import { ThemeColorType, color as themeColor, radius, spacing } from "theme";
 import { inputFieldStyle } from "theme/styles";
@@ -23,6 +24,7 @@ interface DropPickerProps {
   searchPlaceholderTx?: string;
   color?: ThemeColorType;
   open?: boolean;
+  style?: StyleProp<ViewStyle>;
   setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   onChangeValue?: (value: any) => void;
 }
@@ -37,6 +39,7 @@ export function DropPicker(props: DropPickerProps) {
     color = "primary",
     searchable = false,
     open,
+    style,
     setOpen,
     onChangeValue,
   } = props;
@@ -45,6 +48,8 @@ export function DropPicker(props: DropPickerProps) {
   const searchPlaceholder =
     (searchPlaceholderTx && t(searchPlaceholderTx)) || props.searchPlaceholder || "Search item...";
   const [itemsSet, setItemsSet] = useState<ItemType<string>[]>(items);
+
+  const pickerStyle = [inputFieldStyle, style, { minHeight: inputFieldStyle.height }, { borderWidth: 0 }];
 
   return (
     <DropDownPicker
@@ -56,11 +61,7 @@ export function DropPicker(props: DropPickerProps) {
       value={value}
       setValue={setValue}
       onChangeValue={onChangeValue}
-      style={{
-        ...inputFieldStyle,
-        minHeight: inputFieldStyle.height,
-        borderWidth: 0,
-      }}
+      style={pickerStyle}
       placeholderStyle={{ color: themeColor.placeholder }}
       textStyle={{ color: themeColor.text }}
       dropDownContainerStyle={{

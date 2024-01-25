@@ -7,7 +7,7 @@ import { YStack } from "components/containers/Stack/Stack";
 import useCurrentPosition from "hooks/useCurrentPosition";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { useState } from "react";
-import { ActivityIndicator, FlatList, ScrollView } from "react-native";
+import { ActivityIndicator, FlatList, ScrollView, View } from "react-native";
 import useSWR from "swr";
 import { ActivityFilters, ActivityQueryParams } from "types/activity";
 import ActivityCard from "./components/ActivityCard";
@@ -78,13 +78,14 @@ export function ActivitiesScreen({ navigation }: Props) {
             onApply={handleApplyFilter}
             currentFilters={filters}
           /> */}
-          <ScrollView>
+          {/* <FlatList data={activities} renderItem={({item}) => <ActivityCard activity={item} key={item?.id} />}/> */}
+          <View>
             <YStack gap={"md"} pa={"md"}>
               {activities?.data?.map((activity: any) => (
                 <ActivityCard activity={activity} navigation={navigation} key={activity?.id} />
               ))}
             </YStack>
-          </ScrollView>
+          </View>
         </>
       )}
       <CreateActivity open={openActivity} setOpen={setOpenActivity} />
