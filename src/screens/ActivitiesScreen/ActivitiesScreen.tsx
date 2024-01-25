@@ -34,6 +34,7 @@ export function ActivitiesScreen({ navigation }: Props) {
   };
 
   const [filters, setFilters] = useState<ActivityFilters>({});
+  console.log(filters, "filters");
 
   //TODO: Pagination
   const [page, setPage] = useState(1);
@@ -73,8 +74,6 @@ export function ActivitiesScreen({ navigation }: Props) {
         onPress={() => setOpenActivity(true)}
         style={{ alignSelf: "center", bottom: 10, position: "absolute" }}
       />
-      {/* TODO flatList ? */}
-      {/* <FlatList data={activities} renderItem={({item}) => <ActivityCard activity={item} key={item?.id} />}/> */}
       {isLoadingActivities ? (
         <ActivityIndicator />
       ) : (
@@ -87,9 +86,9 @@ export function ActivitiesScreen({ navigation }: Props) {
           /> */}
           <ScrollView>
             <YStack gap={"md"} pa={"md"}>
-              {/* {activities?.data?.map((activity: any) => (
+              {activities?.data?.map((activity: any) => (
                 <ActivityCard activity={activity} navigation={navigation} key={activity?.id} />
-              ))} */}
+              ))}
             </YStack>
           </ScrollView>
         </>

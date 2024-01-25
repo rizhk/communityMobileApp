@@ -20,7 +20,7 @@ export function DatePicker(props: DatePickerProps) {
     <>
       <TouchableOpacity onPress={() => setShow(true)} style={style}>
         <XStack style={container} jc="space-between" ai="center">
-          <Text size="sm" preset="bold" text={date.getDate().toString()} style={text} />
+          <Text size="sm" preset="bold" text={date?.getDate().toString()} style={text} />
           <View style={separatorStyle} />
           <Text
             size="sm"
@@ -29,7 +29,7 @@ export function DatePicker(props: DatePickerProps) {
             style={{ flex: 2, textAlign: "center" }}
           />
           <View style={separatorStyle} />
-          <Text size="sm" preset="bold" text={date.getFullYear().toString()} style={text} />
+          <Text size="sm" preset="bold" text={date?.getFullYear().toString()} style={text} />
         </XStack>
       </TouchableOpacity>
       {Platform.OS === "ios" ? <IOSDatePicker {...pickerProps} /> : <AndroidDatePicker {...pickerProps} />}

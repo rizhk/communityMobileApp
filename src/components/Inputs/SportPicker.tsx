@@ -1,11 +1,12 @@
-//TODO: Discussion intrete composant SportPicker
-import { fetchSports } from "api/api";
+//TODO: Discussion intérêt composant SportPicker
+
 import React from "react";
 import { Image, StyleSheet } from "react-native";
 import useSWR from "swr";
 import { SportsData } from "types/sport";
 
 import { DropPicker, DropPickerItem } from "./DropPicker";
+import { fetchSports } from "api/sport-request";
 
 interface SportPickerComponentProps {
   items?: SportsData;
@@ -15,11 +16,9 @@ interface SportPickerComponentProps {
 
 function mapSportsDataToDropPickerItems(sportsData: SportsData) {
   return sportsData?.data?.map((sport) => ({
-    icon: () => (
-      <Image source={{ uri: sport.attributes.icon.data.attributes.url }} resizeMode="contain" style={styles.pinImage} />
-    ),
-    label: sport?.attributes?.name,
-    value: String(sport.attributes?.name),
+    icon: () => <Image source={{ uri: sport?.icon?.url }} resizeMode="contain" style={styles.pinImage} />,
+    label: sport?.name,
+    value: String(sport?.name),
   }));
 }
 

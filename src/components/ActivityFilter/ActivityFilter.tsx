@@ -1,14 +1,17 @@
 import Slider from "@react-native-community/slider";
+import { fetchSports } from "api/sport-request";
 import { Button } from "components/Button";
-import { DatePicker } from "components/Inputs";
-import SportPickerComponent from "components/Inputs/SportPicker";
+import { DatePicker, DropPicker } from "components/Inputs";
+
 import { useContextMenu } from "components/Menu/Menu";
 import { Text } from "components/Text";
 import { XStack, YStack } from "components/containers/Stack/Stack";
 import { DEFAULT_MAX_DISTANCE } from "constants/global";
 import { useState } from "react";
+import useSWR from "swr";
 import { color } from "theme";
 import { ActivityFilters } from "types/activity";
+import { mapSportsDataToDropPickerItems } from "utils/helper";
 
 //TODO: Add button create activity s'il y pas de données
 //TODO: Pouvoir filter par adresse et rediriger dessus sur la map
@@ -26,11 +29,15 @@ function ActivityFilter(props: ActivityFilterProps) {
   const [endDate, setEndDate] = useState(new Date());
   const { setOpen } = useContextMenu();
 
+  const { data: dataSports, isLoading: isLoadingSport } = useSWR(["sports"], () => fetchSports());
+  const items = dataSports ? mapSportsDataToDropPickerItems(dataSports) : [];
+
   return (
     <YStack bc="background" br="md" pa="xs">
       <YStack gap="md" pa="xs">
         <Text text="Sport Picker" />
-        <SportPickerComponent value={sport} setValue={setSport} />
+        {/* <SportPickerComponent value={sport} setValue={setSport} /> */}
+        <DropPicker items={items} value={sport} setValue={setSport} />
 
         {/* <Text text={"Distance: " + maxDistance + " km"} />
         <Slider

@@ -18,7 +18,7 @@ export const mapSportsDataToDropPickerItems = (sportsData: SportsData) => {
   return sportsData?.data?.map((sport) => ({
     icon: () => (
       <Image
-        source={{ uri: sport.attributes.icon.data.attributes.url }}
+        source={{ uri: sport?.icon?.url }}
         resizeMode="contain"
         style={{
           width: 24,
@@ -26,7 +26,7 @@ export const mapSportsDataToDropPickerItems = (sportsData: SportsData) => {
         }}
       />
     ),
-    label: sport?.attributes?.name,
+    label: sport?.name,
     value: String(sport.id),
   }));
 };
