@@ -9,7 +9,7 @@ import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { useState } from "react";
 import { ActivityIndicator, FlatList, ScrollView } from "react-native";
 import useSWR from "swr";
-import { ActivityFilters } from "types/activity";
+import { ActivityFilters, ActivityQueryParams } from "types/activity";
 import ActivityCard from "./components/ActivityCard";
 import CreateActivity from "./components/CreateActivity";
 import { useHeaderMenu } from "hooks/useHeaderMenu";
@@ -38,8 +38,18 @@ export function ActivitiesScreen({ navigation }: Props) {
   const [pageSize, setPageSize] = useState(10);
 
   //Fetch Activities
-  const { data: activities, isLoading: isLoadingActivities } = useSWR(["activities", filters, page, pageSize], () =>
-    fetchActivities({ filters, populate: populateActivity, pagination: { page, pageSize } })
+  const restQueryParams: ActivityQueryParams = {
+    filters: filters,
+    populate: populateActivity,
+    pagination: {
+      page,
+      pageSize,
+    },
+    sort: "startDate:desc",
+  };
+
+  const { data: activities, isLoading: isLoadingActivities } = useSWR(["activities", filters], () =>
+    fetchActivities(restQueryParams)
   );
 
   const menu: MenuType = {

@@ -1,5 +1,5 @@
 import { number, object, string } from "yup";
-import { ImageItem, PaginationMeta } from "./global";
+import { ImageItem, PaginationMeta, imageItemSchema } from "./global";
 
 export interface SportItem {
   id: number;
@@ -16,5 +16,5 @@ export interface SportsData {
 export const sportItemSchema = object({
   id: number().required().positive().integer(),
   name: string(),
-  // icon: imageItemSchema.required(),
+  icon: imageItemSchema.required(),
 });

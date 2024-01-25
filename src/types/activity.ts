@@ -6,7 +6,6 @@ import { UserItem, userItemSchema } from "./user";
 import { object, string, number, date, InferType, array } from "yup";
 
 //****** ACTIVITY ******\\
-
 export type ActivityQueryParams = restQueryParams & {
   filters?: ActivityFilters;
 };
@@ -37,11 +36,12 @@ export const activityItemSchema = object({
   longitude: number().required(),
   location: string(),
   description: string(),
-  author: userItemSchema,
+  author: userItemSchema.required(),
   type: string().oneOf(["solo", "private", "public"]).required(),
   participants: array().of(userItemSchema),
   blockedUsers: array().of(userItemSchema),
-  sport: array().of(sportItemSchema),
+  sport: sportItemSchema.required(),
+  // sport: array().of(sportItemSchema).required(),
 });
 
 export type ActivityItem = InferType<typeof activityItemSchema>;
@@ -65,7 +65,7 @@ export interface ActivityItemManual {
   author: UserItem;
   participants: UserItem[]; //TODO: Check types
   blockedUsers: UserItem[];
-  sport: SportItem[];
+  sport: SportItem;
   channel: any;
 }
 

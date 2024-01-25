@@ -17,16 +17,7 @@ export const populateActivity = [
 ];
 
 export const defaultActivityQueryParams: ActivityQueryParams = {
-  //   filters: {
-  //     sportName: "",
-  //     date: "",
-  //     maxDistance: 0,
-  //   },
-  //   pagination: {
-  //     page: 1,
-  //     pageSize: 10,
-  //   },
-  sort: "date:desc",
+  sort: "startDate:desc",
   populate: populateActivity,
 };
 
@@ -34,7 +25,6 @@ export async function fetchActivities(
   params: ActivityQueryParams = defaultActivityQueryParams,
   userToken?: string | null
 ): Promise<ActivitiesData> {
-  console.log(params, "params");
   return fetchAxiosAPI(`/activities`, params, userToken);
 }
 

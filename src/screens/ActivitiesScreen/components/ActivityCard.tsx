@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Image, ImageBackground, StyleProp, ImageStyle } from "react-native";
 import { color } from "theme";
 import { INFINIT_PARTICIPANTS } from "constants/global";
-import { ActivityItem } from "types/activity";
+import { ActivityItem, ActivityItemManual } from "types/activity";
 import { User } from "assets/svg";
 import { formatDateFromToday } from "utils/Date";
 import AddressField from "components/AddressField";
@@ -35,16 +35,21 @@ export function ActivityCard(props: ActivityCardProps) {
           }}
         >
           <YStack ai="center" jc="space-between" w={100}>
-            <Image source={{ uri: sport.icon.url }} resizeMode="contain" style={iconStyle} />
-            <Text text={formatDateFromToday(date, "dd MMM")} preset="bold" color="primary" size={textSize} />
+            <Image source={{ uri: sport?.icon?.url }} resizeMode="contain" style={iconStyle} />
+            <Text
+              text={formatDateFromToday(date ?? new Date(), "dd MMM")}
+              preset="bold"
+              color="primary"
+              size={textSize}
+            />
           </YStack>
           <YStack flexGrow jc="space-around">
-            <Text text={sport.name} preset="bold" size="xl" />
+            <Text text={sport?.name} preset="bold" size="xl" />
             <AddressField coord={{ longitude: longitude, latitude: latitude }} format={"%city%, %state%"} />
-            <XStack w="100%" gap="xs">
+            {/* <XStack w="100%" gap="xs">
               <User color={color.white} />
               <Text text={`${participants.length} / ${nbmaxParticipants}`} preset="bold" size="xs" />
-            </XStack>
+            </XStack> */}
           </YStack>
         </XStack>
       </ImageBackground>

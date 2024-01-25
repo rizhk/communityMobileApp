@@ -13,10 +13,17 @@ export type ItemType = {
 export type ValueType = string | number | boolean;
 
 //****** IMAGE ******\\
-export interface ImageItem {
-  public_id: string;
-  url: string;
-}
+export const imageItemSchema = object({
+  public_id: string(),
+  url: string(),
+});
+
+export type ImageItem = InferType<typeof imageItemSchema>;
+
+// export interface ImageItem {
+//   public_id: string;
+//   url: string;
+// }
 
 //****** FORM ******\\
 export type FieldValidation = {
@@ -37,7 +44,7 @@ export interface restQueryParams {
     pageSize?: number;
   };
   sort?: string;
-  populate?: string | object;
+  populate: string | object;
   locale?: string | string[];
   publicationState?: "live" | "preview";
 }
