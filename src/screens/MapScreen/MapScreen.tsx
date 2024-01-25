@@ -17,7 +17,7 @@ import MapView, { Region } from "react-native-maps";
 import useSWR from "swr";
 import CreateActivity from "screens/ActivitiesScreen/components/CreateActivity";
 import { fetchSports } from "api/sport-request";
-import { fetchActivities } from "api/activity-request";
+import { fetchActivities, populateActivity } from "api/activity-request";
 
 type Props = NativeStackScreenProps<MainStackParamList, "map">;
 
@@ -83,8 +83,9 @@ export function MapScreen({ navigation }: Props) {
   //   return <ActivityIndicator />;
   // }
 
-  const { data, error, isLoading, mutate } = useSWR(["activities", filters], () => fetchActivities({ filters }));
-  const { data: dataSports, isLoading: isLoadingSport } = useSWR(["sports"], () => fetchSports());
+  const { data, error, isLoading, mutate } = useSWR(["activities", filters], () =>
+    fetchActivities({ filters, populate: populateActivity })
+  );
 
   // if (isLoadingSport) {
   //   return <ActivityIndicator></ActivityIndicator>;

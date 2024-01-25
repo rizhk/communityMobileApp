@@ -16,8 +16,6 @@ import { useHeaderMenu } from "hooks/useHeaderMenu";
 import { Filter } from "assets/svg";
 import { MenuType } from "components/Menu/Menu.types";
 import { fetchActivities, populateActivity } from "api/activity-request";
-import { fetchSports, populateSport } from "api/sport-request";
-import { fetchTeams } from "api/team-request";
 
 type Props = NativeStackScreenProps<MainStackParamList, "activities">;
 
@@ -34,7 +32,6 @@ export function ActivitiesScreen({ navigation }: Props) {
   };
 
   const [filters, setFilters] = useState<ActivityFilters>({});
-  console.log(filters, "filters");
 
   //TODO: Pagination
   const [page, setPage] = useState(1);
@@ -44,19 +41,6 @@ export function ActivitiesScreen({ navigation }: Props) {
   const { data: activities, isLoading: isLoadingActivities } = useSWR(["activities", filters, page, pageSize], () =>
     fetchActivities({ filters, populate: populateActivity, pagination: { page, pageSize } })
   );
-  console.log("activities: ", activities);
-
-  //Fetch Sports
-  const { data: sports, isLoading: isLoadingSports } = useSWR(["sports", filters, page, pageSize], () =>
-    fetchSports({ filters, populate: populateSport, pagination: { page, pageSize } })
-  );
-  console.log("sports: ", sports);
-
-  // //Fetch Teams
-  // const { data: teams, isLoading: isLoadingTeams } = useSWR(["teams", filters, page, pageSize], () =>
-  //   fetchTeams({ filters, pagination: { page, pageSize } })
-  // );
-  // console.log("teams: ", teams);
 
   const menu: MenuType = {
     type: "element",
