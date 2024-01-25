@@ -34,6 +34,7 @@ export async function fetchActivities(
   params: ActivityQueryParams = defaultActivityQueryParams,
   userToken?: string | null
 ): Promise<ActivitiesData> {
+  console.log(params, "params");
   return fetchAxiosAPI(`/activities`, params, userToken);
 }
 
