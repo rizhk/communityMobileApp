@@ -6,12 +6,11 @@ import { UserItem, userItemSchema } from "./user";
 import { object, string, number, date, InferType, array } from "yup";
 
 //****** ACTIVITY ******\\
-// export interface ActivityQueryParams extends restQueryParams {
+
 export type ActivityQueryParams = restQueryParams & {
   filters?: ActivityFilters;
 };
 
-// export interface ActivityByRegionQueryParams extends ActivityQueryParams {
 export type ActivityByRegionQueryParams = ActivityQueryParams & { maxDistance?: number; region: Region | null };
 
 //TODO: Put right filters
@@ -26,7 +25,7 @@ export interface ActivityFilters {
   // maxDistance?: number;
 }
 
-//YUP Validation
+//YUP Schema
 export const activityItemSchema = object({
   id: number().positive().integer(),
   name: string(),
@@ -42,12 +41,6 @@ export const activityItemSchema = object({
   type: string().oneOf(["solo", "private", "public"]).required(),
   participants: array().of(userItemSchema),
   blockedUsers: array().of(userItemSchema),
-  // participants: object({
-  //   data: array().of(userItemSchema),
-  // }),
-  // blockedUsers: object({
-  //   data: array().of(userItemSchema),
-  // }),
   sport: array().of(sportItemSchema),
 });
 
@@ -57,6 +50,7 @@ export type ActivityFormValues = Omit<ActivityItem, "sport"> & {
   sport: number;
 };
 
+//Deprecated
 export interface ActivityItemManual {
   id: number;
   name: string;
@@ -80,14 +74,6 @@ export interface ActivitiesData {
   meta: PaginationMeta;
 }
 
-export interface ActivityFormData extends ActivityFormSchema {
-  label?: string;
-  type: ActivityFormType;
-  multiple?: boolean;
-  searchable?: boolean;
-  labelLocation?: string;
-  labelActualLocation?: string;
-}
 export interface ActivityFormSchema {
   value: ActivityType;
   initialValue?: number | string | boolean | Date | any[];
@@ -111,11 +97,5 @@ export type ActivityFormType =
   | "maxParticipantsPicker"
   | "hidden"
   | "string"; //default
-
-export interface ActivityFormSchema {
-  value: ActivityType;
-  initialValue?: number | string | boolean | Date | any[];
-  validation: FieldValidation;
-}
 
 export type ActivityType = "sport" | "location" | "date" | "startHour" | "endHour" | "maxParticipants" | "description";

@@ -17,17 +17,6 @@ import { mapSportsDataToDropPickerItems } from "utils/helper";
 import { fetchShortAddressFromCoords } from "utils/locationHelper";
 import * as Yup from "yup";
 
-// type ActivityFormType = {
-//   description: string;
-//   sport: [number];
-//   type: "solo" | "private" | "public";
-//   dateStart: Date;
-//   dateEnd: Date;
-//   maxParticipants: number;
-//   location: LocationType;
-//   [key: string]: any; // Add index signature
-// };
-
 const activityTypeItems = [
   { value: "solo", label: "createActivity.solo" },
   { value: "private", label: "createActivity.private" },
