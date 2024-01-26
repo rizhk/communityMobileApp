@@ -1,7 +1,6 @@
-import { fetchAxiosAPI, postAxiosApiFormData, postAxiosAPI } from "api/request";
 import { faker } from "@faker-js/faker";
-import { ActivityFormValues, ActivityItem } from "types/activity";
-
+import { ActivityFormValues, ActivityItem } from "../types/activity";
+import { postAxiosAPI, postAxiosApiFormData } from "../api/request";
 import FormData from "form-data";
 
 // Mock FormData
@@ -10,14 +9,6 @@ function FormDataMock(this: { append: (name: string, value: any) => void }) {
 }
 
 global.FormData = FormDataMock as any;
-
-// describe("fetchAxiosAPI", () => {
-//   it("Returns a 200 status", async () => {
-//     const path = "/actualities";
-//     const result = await fetchAxiosAPI(path);
-//     expect(result?.status).toBe(200);
-//   });
-// });
 
 let userToken: string; //to test authenticated requests
 
@@ -29,8 +20,16 @@ const createRandomActivity = ({ name = "Test Activity" }: { name: string }): Act
   return {
     name: name,
     maxParticipants: faker.number.int({ min: 1, max: 100 }),
-    latitude: faker.number.float({ min: 46.519653, max: 46.802071, multipleOf: 0.00001 }),
-    longitude: faker.number.float({ min: 6.632273, max: 7.151756, multipleOf: 0.00001 }),
+    latitude: faker.number.float({
+      min: 46.519653,
+      max: 46.802071,
+      precision: 0.00001,
+    }),
+    longitude: faker.number.float({
+      min: 6.632273,
+      max: 7.151756,
+      precision: 0.00001,
+    }),
     startDate: startDate,
     endDate: endDate,
     author: faker.number.int({ min: 170, max: 180 }),
@@ -46,76 +45,52 @@ const createRandomActivity = ({ name = "Test Activity" }: { name: string }): Act
 describe("Actuality API", () => {
   let activityId: number;
   it("Create an activity", async () => {
-    const activityData: ActivityFormValues = createRandomActivity({ name: "Activity Test Form" }); // Assuming this function returns valid activity data
+    const activityData: ActivityFormValues = createRandomActivity({
+      name: "Activity Test Form",
+    });
 
     const result = await postAxiosAPI(
-      "/activities",
+      "/activities/post",
 
       {
         data: activityData,
       }
     );
-    // expect(result?.status).toBe(200);
+    expect(result.status).toBe(201);
 
-    const activity = result?.data;
-    console.log(result, "result");
+    const activity = result.data;
     expect(activity?.id).toBeDefined();
-    // activityId = activity?.id;
+    activityId = activity.id;
 
-    // console.log(activity, "activity");
-
-    // expect(activity).toMatchObject<ActivityItem>({
-    //   id: expect.any(Number),
-    //   description: activityData.description,
-    //   // latitude: activityData.latitude,
-    //   // longitude: activityData.longitude,
-    //   // location: activityData.location,
-    //   // date: expect.any(String),
-    //   // startDate: activityData.startDate,
-    //   // endDate: activityData.endDate,
-    //   // maxParticipants: activityData.maxParticipants,
-    // });
+    expect(activity).toMatchObject<any>({
+      id: expect.any(Number),
+      description: activityData.description,
+      latitude: activityData.latitude,
+      longitude: activityData.longitude,
+      startDate: activityData.startDate.toISOString(),
+      endDate: activityData.endDate.toISOString(),
+      maxParticipants: activityData.maxParticipants,
+    });
   });
-  // it("Create an activity with FormData", async () => {
-  //   const activityData: ActivityFormValues = createRandomActivity({ name: "Activity Test Form Data" }); // Assuming this function returns valid activity data
-  //   const formData = new FormData();
-  //   formData.append("data", JSON.stringify(activityData));
+  it("Create an activity with FormData", async () => {
+    const activityData: ActivityFormValues = createRandomActivity({
+      name: "Activity Test Form Data",
+    }); // Assuming this function returns valid activity data
+    const formData = new FormData();
+    formData.append("data", JSON.stringify(activityData));
 
-  //   const result = await postAxiosApiFormData("/activities", formData as any);
-  //   // const result = await postAxiosAPI(
-  //   //   "/activities",
+    const result = await postAxiosApiFormData("/activities/post", formData as any);
 
-  //   //   {
-  //   //     data: createRandomActivity(),
-  //   //   }
-  //   // );
-  //   expect(result?.status).toBe(200);
-  //   // console.log(result, "results activiies");
-  //   // const { data: activity } = result?.data;
-  //   // expect(activity?.id).toBeDefined();
-  //   // activityId = activity?.id;
-
-  //   // expect(activity).toMatchObject<ActivityItemStrapi>({
-  //   //   id: expect.any(Number),
-  //   //   attributes: {
-  //   //     name: values.name,
-  //   //     description: values.description,
-  //   //     latitude: values.latitude,
-  //   //     longitude: values.longitude,
-  //   //     location: values.location,
-  //   //     date: expect.any(String),
-  //   //     startHour: values.startHour,
-  //   //     endHour: values.endHour,
-  //   //     maxParticipants: values.maxParticipants,
-  //   //   },
-  //   // });
-  // });
+    expect(result?.status).toBe(201);
+    const activity = result.data;
+    expect(activity).toMatchObject<any>({
+      // id: expect.any(Number),
+      description: activityData.description,
+      latitude: activityData.latitude,
+      longitude: activityData.longitude,
+      startDate: activityData.startDate.toISOString(),
+      endDate: activityData.endDate.toISOString(),
+      maxParticipants: activityData.maxParticipants,
+    });
+  });
 });
-
-// function sum(a, b) {
-//   return a + b;
-// }
-
-// test("adds 1 + 2 to equal 3", () => {
-//   expect(sum(1, 2)).toBe(3);
-// });
