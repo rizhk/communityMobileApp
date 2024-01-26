@@ -3,7 +3,7 @@ import { ActivityFormValues, ActivityItem } from "../types/activity";
 import { postAxiosAPI, postAxiosApiFormData } from "../api/request";
 import FormData from "form-data";
 
-const API_URL = "http://127.0.0.1:1337"; //for local request.test.tsx
+const API_URL = "http://127.0.0.1:1337"; //for local test
 
 // Mock FormData
 function FormDataMock(this: { append: (name: string, value: any) => void }) {
