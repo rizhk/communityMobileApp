@@ -1,7 +1,6 @@
-import { fetchAxiosAPI, postAxiosApiFormData } from "api/request";
+import { fetchAxiosAPI, postAxiosApiFormData, postAxiosAPI } from "api/request";
 import { faker } from "@faker-js/faker";
 import { ActivityFormValues, ActivityItem } from "types/activity";
-import { postAxiosAPI } from "api/request";
 
 import FormData from "form-data";
 

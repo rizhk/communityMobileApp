@@ -1,5 +1,7 @@
 import { ActivitiesData, ActivityByRegionQueryParams, ActivityFilters, ActivityQueryParams } from "types/activity";
+
 import { fetchAxiosAPI } from "./request";
+
 import { Region } from "react-native-maps";
 
 export const populateActivity = [
