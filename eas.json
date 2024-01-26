@@ -11,7 +11,7 @@
       },
       "env": {
         "GOOGLE_API_KEY": "AIzaSyDHvSOnWzsHZW9u-txq7-9R9fTZcCYBkmk",
-        "API_URL": "https://pelops.herokuapp.com"
+        "API_URL": "https://pelops-staging.herokuapp.com"
       }
     },
     "preview": {

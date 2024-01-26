@@ -1,9 +1,11 @@
 // @ts-ignore
 import { API_URL } from "@env";
+// const API_URL = "http://127.0.0.1:1337"; //for local request.test.tsx
 import axios, { AxiosRequestHeaders } from "axios";
 
 import { ImageUpload, restQueryParams } from "types/global";
 import { SportsData } from "types/sport";
+
 axios.defaults.baseURL = `${API_URL}/api`;
 
 export async function fetchAxiosAPI(path: string, params?: restQueryParams, userToken?: string | null) {
@@ -64,6 +66,22 @@ export async function putAxiosAPI(path: string, data: any, userToken?: string | 
     return response;
   } catch (err) {
     console.error(err, "Axios PUT error, path:", path);
+    throw err;
+  }
+}
+
+export async function deleteAxiosAPI(path: string, userToken?: string | null) {
+  const headers: any = {};
+
+  if (userToken) {
+    headers.Authorization = `Bearer ${userToken}`;
+  }
+
+  try {
+    const response = await axios.delete(path, { headers });
+    return response;
+  } catch (err) {
+    console.error(err, "Axios Delete error, path:", path);
     throw err;
   }
 }
