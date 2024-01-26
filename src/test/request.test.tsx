@@ -83,10 +83,10 @@ describe("Actuality API", () => {
       author: {
         id: 170,
       },
-      // type: "solo",
+      type: "solo",
       // // author: 42,
       // // author: [45],
-      // sport: [1],
+      sport: [1],
     };
 
     const formData = new FormData();
@@ -96,7 +96,7 @@ describe("Actuality API", () => {
       "/activities",
 
       {
-        data: values,
+        data: createRandomActivity(),
       }
     );
     expect(result?.status).toBe(200);
