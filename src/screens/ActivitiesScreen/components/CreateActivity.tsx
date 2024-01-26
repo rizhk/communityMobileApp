@@ -33,8 +33,8 @@ const initialValues: ActivityFormValues = {
   description: "",
   sport: 3, //TODO: check if [number]
   type: "solo",
-  dateStart: new Date(),
-  dateEnd: nowMoreOneHour(),
+  startDate: new Date(),
+  endDate: nowMoreOneHour(),
   maxParticipants: INFINIT_PARTICIPANTS,
   latitude: 0,
   longitude: 0,
@@ -68,17 +68,17 @@ export default function CreateActivity(props: CreateActivityProps) {
         latitude: values.latitude,
         longitude: values.longitude,
         location: address,
-        dateStart: values.dateStart,
-        dateEnd: values.dateEnd,
+        startDate: values.startDate,
+        endDate: values.endDate,
         maxParticipants: values.maxParticipants,
         author: {
           id: 40, //TODO: replace by user id
         },
         sport: 1,
 
-        // startHour: format(values.dateStart, "HH:mm:ss.SSS"),
-        // endHour: format(values.dateEnd, "HH:mm:ss.SSS"),
-        // date: values.dateStart, //TODO: Bug date jour avant, on avait déjà eu ça je crois
+        // startHour: format(values.startDate, "HH:mm:ss.SSS"),
+        // endHour: format(values.endDate, "HH:mm:ss.SSS"),
+        // date: values.startDate, //TODO: Bug date jour avant, on avait déjà eu ça je crois
         type: values.type,
       };
 
@@ -128,7 +128,7 @@ export default function CreateActivity(props: CreateActivityProps) {
           <GForm.AddressPicker valName="location" />
           <GForm.DateTimePicker
             tx="createActivity.when"
-            valNames={{ start: "dateStart", end: "dateEnd" }}
+            valNames={{ start: "startDate", end: "endDate" }}
             minimumDate={new Date()}
           />
           <GForm.Radio valName="type" items={activityTypeItems} />

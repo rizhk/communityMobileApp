@@ -3,6 +3,7 @@ import { fetchAPIqs, postAxiosAPI } from "api/request";
 import I18n from "i18n-js";
 import React, { createContext, useState, useEffect, ReactNode, Dispatch, SetStateAction, useContext } from "react";
 import { Alert } from "react-native";
+import { ImageUpload } from "types/global";
 const API_URL = process.env.API_URL;
 
 interface UserLoginInterface {
