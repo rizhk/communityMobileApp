@@ -52,7 +52,7 @@ describe("Actuality API", () => {
     });
 
     const result = await postAxiosAPI(
-      `${API_URL}/api/activities/post`,
+      `${API_URL}/api/activities`,
 
       {
         data: activityData,
@@ -81,7 +81,7 @@ describe("Actuality API", () => {
     const formData = new FormData();
     formData.append("data", JSON.stringify(activityData));
 
-    const result = await postAxiosApiFormData(`${API_URL}/api/activities/post`, formData as any);
+    const result = await postAxiosApiFormData(`${API_URL}/api/activities`, formData as any);
 
     expect(result?.status).toBe(201);
     const activity = result.data;
