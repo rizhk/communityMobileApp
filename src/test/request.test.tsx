@@ -3,6 +3,8 @@ import { ActivityFormValues, ActivityItem } from "../types/activity";
 import { postAxiosAPI, postAxiosApiFormData } from "../api/request";
 import FormData from "form-data";
 
+const API_URL = "http://127.0.0.1:1337"; //for local request.test.tsx
+
 // Mock FormData
 function FormDataMock(this: { append: (name: string, value: any) => void }) {
   this.append = jest.fn();
@@ -23,12 +25,12 @@ const createRandomActivity = ({ name = "Test Activity" }: { name: string }): Act
     latitude: faker.number.float({
       min: 46.519653,
       max: 46.802071,
-      precision: 0.00001,
+      multipleOf: 0.00001,
     }),
     longitude: faker.number.float({
       min: 6.632273,
       max: 7.151756,
-      precision: 0.00001,
+      multipleOf: 0.00001,
     }),
     startDate: startDate,
     endDate: endDate,
@@ -50,7 +52,7 @@ describe("Actuality API", () => {
     });
 
     const result = await postAxiosAPI(
-      "/activities/post",
+      `${API_URL}/api/activities/post`,
 
       {
         data: activityData,
@@ -79,7 +81,7 @@ describe("Actuality API", () => {
     const formData = new FormData();
     formData.append("data", JSON.stringify(activityData));
 
-    const result = await postAxiosApiFormData("/activities/post", formData as any);
+    const result = await postAxiosApiFormData(`${API_URL}/api/activities/post`, formData as any);
 
     expect(result?.status).toBe(201);
     const activity = result.data;
