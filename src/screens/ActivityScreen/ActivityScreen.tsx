@@ -12,17 +12,21 @@ import { useDistance } from "hooks/useDistance";
 import { LocationType } from "types/global";
 import AvatarSlider, { AvatarUser } from "components/Avatar/AvatarSlider";
 import { ActivityItem } from "types/activity";
+import { UserItem } from "types/user";
 
 type Props = NativeStackScreenProps<MainStackParamList, "activity">;
 
 export function ActivityScreen({ navigation, route }: Props) {
-  const { latitude, longitude, sport, participants, maxParticipants, date, description, author }: ActivityItem =
+  const { latitude, longitude, sport, participants, maxParticipants, startDate, description, author }: ActivityItem =
     route.params.activity;
-  const avatarUser: AvatarUser[] = participants?.map((participant: any) => ({
-    id: participant.id,
-    url: participant?.avatar?.url,
-    name: participant?.firstName,
-  }));
+
+  const avatarUser: AvatarUser[] =
+    participants?.map((participant: UserItem) => ({
+      id: participant.id,
+      url: participant?.avatar?.url,
+      name: participant?.firstName,
+    })) || [];
+
   const hour = {
     start: "12:00",
     end: "14:00",
@@ -70,7 +74,7 @@ export function ActivityScreen({ navigation, route }: Props) {
             </YStack>
             <YStack jc="center">
               <Text color="primary" preset="bold">
-                {formatDateFromToday(date, "dd MMMM yyy")}
+                {formatDateFromToday(startDate, "dd MMMM yyy")}
               </Text>
               <Text color="primary">
                 {hour.start} - {hour.end}
@@ -78,7 +82,7 @@ export function ActivityScreen({ navigation, route }: Props) {
             </YStack>
           </YStack>
           <Stack h={1} bc="grey600"></Stack>
-          {participants.length > 0 && (
+          {participants && participants.length > 0 && (
             <YStack h={140} jc="space-evenly">
               <Text preset="bold" size="md">
                 {participants.length} Participant.e.s

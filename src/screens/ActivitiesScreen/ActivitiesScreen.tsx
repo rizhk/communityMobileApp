@@ -79,13 +79,13 @@ export function ActivitiesScreen({ navigation }: Props) {
             currentFilters={filters}
           /> */}
           {/* <FlatList data={activities} renderItem={({item}) => <ActivityCard activity={item} key={item?.id} />}/> */}
-          <View>
-            <YStack gap={"md"} pa={"md"}>
+          <ScrollView>
+            <YStack gap={"md"} mb={76} pa={"md"}>
               {activities?.data?.map((activity: any) => (
                 <ActivityCard activity={activity} navigation={navigation} key={activity?.id} />
               ))}
             </YStack>
-          </View>
+          </ScrollView>
         </>
       )}
       <CreateActivity open={openActivity} setOpen={setOpenActivity} />

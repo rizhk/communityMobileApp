@@ -16,7 +16,7 @@ type ActivityCardProps = {
 
 export function ActivityCard(props: ActivityCardProps) {
   const { navigation, activity } = props;
-  const { latitude, longitude, sport, participants, maxParticipants, date } = activity;
+  const { latitude, longitude, sport, participants, maxParticipants, startDate } = activity;
   const nbmaxParticipants = maxParticipants === INFINIT_PARTICIPANTS ? "∞" : maxParticipants;
   const [formatDate, setFormatDate] = useState("");
   const textSize = formatDate.length > 6 ? "md" : "lg";
@@ -37,7 +37,7 @@ export function ActivityCard(props: ActivityCardProps) {
           <YStack ai="center" jc="space-between" w={100}>
             <Image source={{ uri: sport?.icon?.url }} resizeMode="contain" style={iconStyle} />
             <Text
-              text={formatDateFromToday(date ?? new Date(), "dd MMM")}
+              text={formatDateFromToday(startDate ?? new Date(), "dd MMM")}
               preset="bold"
               color="primary"
               size={textSize}

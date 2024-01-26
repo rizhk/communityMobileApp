@@ -8,7 +8,7 @@ import { Text } from "components/Text";
 export type AvatarUser = {
   id: number;
   url: string;
-  name?: string;
+  name: string;
 };
 
 type AvatarSliderProps = {

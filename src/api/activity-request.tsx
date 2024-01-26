@@ -43,9 +43,6 @@ export async function fetchActivitiesByRegion(
   if (filters?.sport) {
     apiFilters.sport = { name: { $eq: filters?.sport.name } };
   }
-  if (filters?.date) {
-    apiFilters["date"] = { $eq: filters?.date };
-  }
 
   const params: ActivityByRegionQueryParams = {
     maxDistance,
@@ -71,9 +68,9 @@ export async function fetchActivitiesCustom(
   if (filters?.sport) {
     apiFilters.sport = { name: { $eq: filters?.sport.name } };
   }
-  if (filters?.date) {
-    apiFilters["date"] = { $eq: filters?.date };
-  }
+  // if (filters?.date) {
+  //   apiFilters["date"] = { $eq: filters?.date };
+  // }
 
   return fetchAxiosAPI(
     `/activities`,

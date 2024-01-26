@@ -75,10 +75,6 @@ export default function CreateActivity(props: CreateActivityProps) {
           id: 40, //TODO: replace by user id
         },
         sport: 1,
-
-        // startHour: format(values.startDate, "HH:mm:ss.SSS"),
-        // endHour: format(values.endDate, "HH:mm:ss.SSS"),
-        // date: values.startDate, //TODO: Bug date jour avant, on avait déjà eu ça je crois
         type: values.type,
       };
 
