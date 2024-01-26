@@ -32,7 +32,7 @@ const nowMoreOneHour = () => {
 const initialValues: ActivityFormValues = {
   description: "",
   sport: 3, //TODO: check if [number]
-  type: "solo",
+  // type: "solo",
   startDate: new Date(),
   endDate: nowMoreOneHour(),
   maxParticipants: INFINIT_PARTICIPANTS,
@@ -75,7 +75,7 @@ export default function CreateActivity(props: CreateActivityProps) {
           id: 40, //TODO: replace by user id
         },
         sport: 1,
-        type: values.type,
+        // type: values.type,
       };
 
       const formData = new FormData();

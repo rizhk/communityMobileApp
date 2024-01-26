@@ -3,7 +3,7 @@ import { faker } from "@faker-js/faker";
 import { ActivityFormValues, ActivityItem } from "types/activity";
 import { postAxiosAPI } from "api/request";
 
-import FormDataPolyfill from "form-data";
+import FormData from "form-data";
 
 // Mock FormData
 function FormDataMock(this: { append: (name: string, value: any) => void }) {
@@ -22,12 +22,13 @@ global.FormData = FormDataMock as any;
 
 let userToken: string; //to test authenticated requests
 
-const createRandomActivity = (): ActivityFormValues => {
+const createRandomActivity = ({ name = "Test Activity" }: { name: string }): ActivityFormValues => {
   const startDate = faker.date.soon();
   const additionalHours = faker.number.int({ min: 1, max: 3 });
   const endDate = new Date(startDate.getTime() + additionalHours * 60 * 60 * 1000); // Convert hours to milliseconds
 
   return {
+    name: name,
     maxParticipants: faker.number.int({ min: 1, max: 100 }),
     latitude: faker.number.float({ min: 46.519653, max: 46.802071, multipleOf: 0.00001 }),
     longitude: faker.number.float({ min: 6.632273, max: 7.151756, multipleOf: 0.00001 }),
@@ -39,64 +40,49 @@ const createRandomActivity = (): ActivityFormValues => {
       min: 0,
       max: 6,
     }),
-
     sport: faker.number.int({ min: 1, max: 100 }),
   } as ActivityFormValues;
 };
 
 describe("Actuality API", () => {
   let activityId: number;
-  // it("Create an activity", async () => {
-  //   const values: ActivityFormValues = createRandomActivity();
-  //   const formData = new FormData();
-  //   formData.append("data", JSON.stringify(values));
-  //   const result = await postAxiosApiFormData("/actualities", formData);
-  //   expect(result?.status).toBe(200);
-  //   // console.log(result, "results activiies");
-  //   const { data: activity } = result?.data;
-  //   expect(activity?.id).toBeDefined();
-  //   // activityId = activity?.id;
+  it("Create an activity", async () => {
+    const activityData: ActivityFormValues = createRandomActivity({ name: "Activity Test Form" }); // Assuming this function returns valid activity data
 
-  //   // expect(activity).toMatchObject<any>({
-  //   //   id: expect.any(Number),
-  //   //   attributes: {
-  //   //     description: values.description,
-  //   //     latitude: values.latitude,
-  //   //     longitude: values.longitude,
-  //   //     startDate: values.startDate,
-  //   //     endDate: values.endDate,
-  //   //     maxParticipants: values.maxParticipants,
-  //   //   },
-  //   // });
-  // });
-  it("Create an activity2 (authenticated request)", async () => {
-    const values: ActivityItem = {
-      name: "Tour de foot aniamaux",
-      description: "Du foot pour les aniamauxs",
-      latitude: 46.8212,
-      longitude: 7.7221,
-      // location: "Route des avions 1, 1260 Nyon",
-      startDate: new Date(),
-      endDate: new Date(),
-      // // startHour: formatHour(new Date().setHours(9, 0, 0, 0)),
-      // // endHour: formatHour(new Date().setHours(16, 0, 0, 0)),
-      maxParticipants: 15,
-      author: {
-        id: 170,
-      },
-      type: "solo",
-      // // author: 42,
-      // // author: [45],
-      sport: [1],
-    };
-    const activityData: ActivityFormValues = createRandomActivity(); // Assuming this function returns valid activity data
+    const result = await postAxiosAPI(
+      "/activities",
 
-    console.log(activityData, "activityData");
-    // const formData = new FormData();
-    const formData = new FormDataPolyfill();
+      {
+        data: activityData,
+      }
+    );
+    expect(result?.status).toBe(200);
+    // console.log(result, "results activiies");
+    // const { data: activity } = result?.data;
+    // expect(activity?.id).toBeDefined();
+    // activityId = activity?.id;
+
+    // expect(activity).toMatchObject<ActivityItemStrapi>({
+    //   id: expect.any(Number),
+    //   attributes: {
+    //     name: values.name,
+    //     description: values.description,
+    //     latitude: values.latitude,
+    //     longitude: values.longitude,
+    //     location: values.location,
+    //     date: expect.any(String),
+    //     startHour: values.startHour,
+    //     endHour: values.endHour,
+    //     maxParticipants: values.maxParticipants,
+    //   },
+    // });
+  });
+  it("Create an activity with FormData", async () => {
+    const activityData: ActivityFormValues = createRandomActivity({ name: "Activity Test Form Data" }); // Assuming this function returns valid activity data
+    const formData = new FormData();
     formData.append("data", JSON.stringify(activityData));
 
-    const result = await postAxiosApiFormData("/activities", formData);
+    const result = await postAxiosApiFormData("/activities", formData as any);
     // const result = await postAxiosAPI(
     //   "/activities",
 

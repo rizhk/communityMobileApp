@@ -37,7 +37,7 @@ export const activityItemSchema = object({
   location: string(),
   description: string(),
   author: userItemSchema.required(),
-  type: string().oneOf(["solo", "private", "public"]).required(),
+  // type: string().oneOf(["solo", "private", "public"]), //TODO: Il y a une erreur avec ça
   participants: array().of(userItemSchema),
   blockedUsers: array().of(userItemSchema),
   sport: sportItemSchema.required(),
