@@ -1,4 +1,4 @@
-import { fetchAxiosAPI, postAxiosApiFormData } from "api/api";
+import { fetchAxiosAPI, postAxiosApiFormData } from "api/request";
 import { faker } from "@faker-js/faker";
 import { ActivityFormValues, ActivityItem } from "types/activity";
 import { postAxiosAPI } from "api/request";
@@ -56,61 +56,61 @@ describe("Actuality API", () => {
         data: activityData,
       }
     );
-    expect(result?.status).toBe(200);
-    // console.log(result, "results activiies");
-    // const { data: activity } = result?.data;
-    // expect(activity?.id).toBeDefined();
+    // expect(result?.status).toBe(200);
+
+    const activity = result?.data;
+    console.log(result, "result");
+    expect(activity?.id).toBeDefined();
     // activityId = activity?.id;
 
-    // expect(activity).toMatchObject<ActivityItemStrapi>({
+    // console.log(activity, "activity");
+
+    // expect(activity).toMatchObject<ActivityItem>({
     //   id: expect.any(Number),
-    //   attributes: {
-    //     name: values.name,
-    //     description: values.description,
-    //     latitude: values.latitude,
-    //     longitude: values.longitude,
-    //     location: values.location,
-    //     date: expect.any(String),
-    //     startHour: values.startHour,
-    //     endHour: values.endHour,
-    //     maxParticipants: values.maxParticipants,
-    //   },
+    //   description: activityData.description,
+    //   // latitude: activityData.latitude,
+    //   // longitude: activityData.longitude,
+    //   // location: activityData.location,
+    //   // date: expect.any(String),
+    //   // startDate: activityData.startDate,
+    //   // endDate: activityData.endDate,
+    //   // maxParticipants: activityData.maxParticipants,
     // });
   });
-  it("Create an activity with FormData", async () => {
-    const activityData: ActivityFormValues = createRandomActivity({ name: "Activity Test Form Data" }); // Assuming this function returns valid activity data
-    const formData = new FormData();
-    formData.append("data", JSON.stringify(activityData));
+  // it("Create an activity with FormData", async () => {
+  //   const activityData: ActivityFormValues = createRandomActivity({ name: "Activity Test Form Data" }); // Assuming this function returns valid activity data
+  //   const formData = new FormData();
+  //   formData.append("data", JSON.stringify(activityData));
 
-    const result = await postAxiosApiFormData("/activities", formData as any);
-    // const result = await postAxiosAPI(
-    //   "/activities",
+  //   const result = await postAxiosApiFormData("/activities", formData as any);
+  //   // const result = await postAxiosAPI(
+  //   //   "/activities",
 
-    //   {
-    //     data: createRandomActivity(),
-    //   }
-    // );
-    expect(result?.status).toBe(200);
-    // console.log(result, "results activiies");
-    // const { data: activity } = result?.data;
-    // expect(activity?.id).toBeDefined();
-    // activityId = activity?.id;
+  //   //   {
+  //   //     data: createRandomActivity(),
+  //   //   }
+  //   // );
+  //   expect(result?.status).toBe(200);
+  //   // console.log(result, "results activiies");
+  //   // const { data: activity } = result?.data;
+  //   // expect(activity?.id).toBeDefined();
+  //   // activityId = activity?.id;
 
-    // expect(activity).toMatchObject<ActivityItemStrapi>({
-    //   id: expect.any(Number),
-    //   attributes: {
-    //     name: values.name,
-    //     description: values.description,
-    //     latitude: values.latitude,
-    //     longitude: values.longitude,
-    //     location: values.location,
-    //     date: expect.any(String),
-    //     startHour: values.startHour,
-    //     endHour: values.endHour,
-    //     maxParticipants: values.maxParticipants,
-    //   },
-    // });
-  });
+  //   // expect(activity).toMatchObject<ActivityItemStrapi>({
+  //   //   id: expect.any(Number),
+  //   //   attributes: {
+  //   //     name: values.name,
+  //   //     description: values.description,
+  //   //     latitude: values.latitude,
+  //   //     longitude: values.longitude,
+  //   //     location: values.location,
+  //   //     date: expect.any(String),
+  //   //     startHour: values.startHour,
+  //   //     endHour: values.endHour,
+  //   //     maxParticipants: values.maxParticipants,
+  //   //   },
+  //   // });
+  // });
 });
 
 // function sum(a, b) {

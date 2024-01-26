@@ -1,4 +1,4 @@
-import { fetchAxiosAPI } from "./api";
+import { fetchAxiosAPI } from "./request";
 
 import { SportsData } from "types/sport";
 import { restQueryParams } from "types/global";

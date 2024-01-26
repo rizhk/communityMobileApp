@@ -1,74 +1,12 @@
-//DEPRECATED
+// @ts-ignore
 import { API_URL } from "@env";
 import axios, { AxiosRequestHeaders } from "axios";
-import { qs } from "qs";
-import { ImageUpload } from "types/global";
+
+import { ImageUpload, restQueryParams } from "types/global";
+import { SportsData } from "types/sport";
 axios.defaults.baseURL = `${API_URL}/api`;
 
-export type GetDataStrapi = {
-  data: object;
-  meta: [];
-};
-
-export function getApiUrl(path = "") {
-  return `${API_URL || "http://localhost:1337"}${path}`;
-}
-
-/**
- * Helper to make GET requests to Strapi API endpoints
- * @param {string} path Path of the API route
- * @param {Object} urlParamsObject URL params object, will be stringified
- * @param {Object} options Options passed to fetch
- * @returns Parsed API call response
- */
-export async function fetchAPIqs(path: string, urlParamsObject = {}, options = {}, userToken?: string | null) {
-  // Merge default and user options
-
-  const mergedOptions = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    ...options,
-  };
-  if (userToken) {
-    mergedOptions.headers.Authorization = `Bearer ${userToken}`;
-  }
-
-  // Build request URL
-  const queryString = qs.stringify(urlParamsObject);
-  const requestUrl = `${getApiUrl(`/api${path}${queryString ? `?${queryString}` : ""}`)}`;
-
-  // Trigger API call
-  const response = await fetch(requestUrl, mergedOptions);
-
-  // Handle response
-  if (!response.ok) {
-    console.error(response.statusText, "fetchAPIqs fetching error, request:", requestUrl);
-    throw new Error(`An error occured please try again`);
-  }
-  const data = await response.json();
-  return data;
-}
-
-//https://stackoverflow.com/questions/41103360/how-to-use-fetch-in-typescript
-//https://bobbyhadz.com/blog/typescript-http-request-axios#making-http-get-requests-with-axios-in-typescript
-
-// Helper to make GET requests to Strapi
-export async function fetchAPI(path: string) {
-  try {
-    const requestUrl = API_URL + `/api${path}`;
-    const response = await fetch(requestUrl);
-    const data = await response.json();
-    return data;
-  } catch (err) {
-    console.error(err, "Axios fetching error, path:", path);
-    throw err;
-    // return undefined as any as GetDataStrapi;
-  }
-}
-
-// Helper to make GET requests to Strapi with axios
-export async function fetchAxiosAPI(path: string, userToken?: string | null, params?: any) {
+export async function fetchAxiosAPI(path: string, params?: restQueryParams, userToken?: string | null) {
   const headers: any = {};
 
   if (userToken) {
@@ -76,32 +14,17 @@ export async function fetchAxiosAPI(path: string, userToken?: string | null, par
   }
   try {
     const response = await axios.get(`${path}`, { headers, params });
-    return response;
+    return response.data;
   } catch (err) {
     console.error(err, "fetchAxiosAPI fetching error, path:", path);
   }
 }
 
-export async function deleteAxiosAPI(path: string, userToken?: string | null) {
-  const headers: any = {};
-
-  if (userToken) {
-    headers.Authorization = `Bearer ${userToken}`;
-  }
-
-  try {
-    const response = await axios.delete(path, { headers });
-    return response;
-  } catch (err) {
-    console.error(err, "Axios fetching error, path:", path);
-    throw err;
-  }
-}
-
-// Helper to make Authenficated POST requests to Strapi with axios
-export async function postAxiosAPI(path: string, data: any, userToken?: string | null) {
-  const headers: any = {};
-
+//TODO FormData : optimize this function with the last one (for Strapi, when we add an image to a form, we normally need to use FormData)
+export async function postAxiosApiFormData(path: string, data: FormData, userToken?: string | null) {
+  const headers = {
+    "Content-Type": "multipart/form-data",
+  } as AxiosRequestHeaders;
   if (userToken) {
     headers.Authorization = `Bearer ${userToken}`;
   }
@@ -113,11 +36,11 @@ export async function postAxiosAPI(path: string, data: any, userToken?: string |
     throw err;
   }
 }
-//TODO FormData : optimize this function with the last one (for Strapi, when we add an image to a form, we normally need to use FormData)
-export async function postAxiosApiFormData(path: string, data: any, userToken?: string | null) {
-  const headers: any = {
-    "Content-Type": "multipart/form-data",
-  };
+
+// Helper to make Authenficated POST requests to Strapi with axios
+export async function postAxiosAPI(path: string, data: any, userToken?: string | null) {
+  const headers = {} as AxiosRequestHeaders;
+
   if (userToken) {
     headers.Authorization = `Bearer ${userToken}`;
   }

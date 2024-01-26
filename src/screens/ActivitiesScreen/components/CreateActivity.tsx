@@ -1,4 +1,4 @@
-import { postAxiosApiFormData } from "api/api";
+import { postAxiosApiFormData } from "api/request";
 import { fetchSports } from "api/sport-request";
 import { Star } from "assets/svg";
 import GForm from "components/GForm/GForm";
