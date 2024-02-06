@@ -1,5 +1,4 @@
 export { ActivityScreen } from "screens/ActivityScreen/ActivityScreen";
-export { LoginScreen } from "./LoginScreen/LoginScreen";
 
 export { ActivitiesScreen } from "./ActivitiesScreen/ActivitiesScreen";
 

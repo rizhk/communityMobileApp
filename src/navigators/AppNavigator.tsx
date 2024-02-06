@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { useAuth } from "context/AuthContext";
 import { color } from "theme";
 
-import { AuthStack } from "./AuthStack/AuthStack";
+// import { AuthStack } from "./AuthStack/AuthStack";
 import { MainStack } from "./MainStack/MainStack";
 
 export function AppNavigator() {
