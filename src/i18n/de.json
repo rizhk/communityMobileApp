@@ -35,7 +35,7 @@
     "activity": "Aktivitäten",
     "profil": "Profil",
     "chat": "Chat",
-    "pelops": "Pelops",
+    "community": "CommunityApp",
     "messages": "Mitteilungen",
     "designSystem": "Design System"
   },
@@ -144,7 +144,7 @@
     "deleteOwnField": "Dieses Feld löschen",
     "deleteField": "Feld streichen?",
     "deleteFieldConfirm": "Wenn Sie auf Löschen drücken, wird das Feld endgültig gelöscht.",
-    "uncertifiedInfo": "Dieses Feld ist nicht von Pelops zertifiziert. Daher können wir die Gültigkeit der Informationen über ihn nicht garantieren.",
+    "uncertifiedInfo": "Dieses Feld ist nicht von CommunityApp zertifiziert. Daher können wir die Gültigkeit der Informationen über ihn nicht garantieren.",
     "noImage": "Kein Bild vom Feld :("
   },
   "createFieldScreen": {
@@ -358,7 +358,7 @@
   "cgu": {
     "title": "Thermen und Bedingungen",
     "sub1": "1. Einleitung",
-    "p1": "Die vorliegenden Allgemeinen Nutzungsbedingungen (die CGU) gelten für die Nutzung der von Pelops Sport Sàrl entwickelten mobilen Anwendung Pelops, die es Nutzern ermöglicht, sich zu treffen, um gemeinsam Sport zu treiben. Die App nutzt die Dienste von Google Maps und die Geolokalisierung der Nutzer, um ihre Dienste bereitzustellen.",
+    "p1": "Die vorliegenden Allgemeinen Nutzungsbedingungen (die CGU) gelten für die Nutzung der von CommunityApp Sport Sàrl entwickelten mobilen Anwendung CommunityApp, die es Nutzern ermöglicht, sich zu treffen, um gemeinsam Sport zu treiben. Die App nutzt die Dienste von Google Maps und die Geolokalisierung der Nutzer, um ihre Dienste bereitzustellen.",
     "sub2": "2. Annahme der Thermen und Bedingungen",
     "p2": "Indem du die Anwendung herunterlädst und nutzt, stimmst du diesen AGB sowie unserer Datenschutzrichtlinie zu, die die Erhebung und Nutzung deiner persönlichen Daten regelt.",
     "sub3": "3. Nutzung der Anwendung",
@@ -374,7 +374,7 @@
     "sub8": "8. Änderungen der Anwendung und der CGU",
     "p8": "Wir behalten uns das Recht vor, die Anwendung sowie die vorliegenden Nutzungsbedingungen jederzeit zu ändern oder auszusetzen. Wir empfehlen Ihnen, die CGU regelmäßig zu überprüfen, um sich über etwaige Änderungen zu informieren. Wenn Sie die Anwendung nach der Veröffentlichung von Änderungen der CGU weiterhin nutzen, bedeutet dies, dass Sie die neuen CGU akzeptieren.",
     "sub9": "9. Anwendbares Recht und zuständige Gerichtsbarkeit",
-    "p9": "Diese CGU unterliegen dem Schweizer Recht. Alle Streitigkeiten, die sich aus der Nutzung der Anwendung ergeben, unterliegen der ausschließlichen Zuständigkeit der Schweizer Gerichte.ãWenn Sie Fragen oder Bedenken bezüglich dieser CGU haben, kontaktieren Sie uns bitte unter pelops.ch@gmail.com."
+    "p9": "Diese CGU unterliegen dem Schweizer Recht. Alle Streitigkeiten, die sich aus der Nutzung der Anwendung ergeben, unterliegen der ausschließlichen Zuständigkeit der Schweizer Gerichte.ãWenn Sie Fragen oder Bedenken bezüglich dieser CGU haben, kontaktieren Sie uns bitte unter community.ch@gmail.com."
   },
   "month": {
     "january": "Januar",

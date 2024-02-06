@@ -27,7 +27,7 @@ export type BottomRoute = keyof BottomTabParamList;
 export const BottomNavProps: BottomNavPropsType[] = [
   {
     route: "map",
-    label: `${translate("screenTitle.pelops")}`,
+    label: `${translate("screenTitle.community")}`,
     icon: Home,
     iconSize: 26,
     component: MapScreen,

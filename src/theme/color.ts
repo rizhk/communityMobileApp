@@ -20,36 +20,36 @@ export const color = {
    */
   transparent: "rgba(0, 0, 0, 0)",
 
-  background: palette.pelopsGrey900,
-  backgroundLight: palette.pelopsGrey800,
-  primary: palette.pelopsRed,
-  primaryLight: palette.pelopsLightRed,
-  secondary: palette.pelopsOrange,
-  tertiary: palette.pelopsGreen,
-  primaryDark: palette.pelopsDarkRed,
+  background: palette.communityGrey900,
+  backgroundLight: palette.communityGrey800,
+  primary: palette.communityRed,
+  primaryLight: palette.communityLightRed,
+  secondary: palette.communityOrange,
+  tertiary: palette.communityGreen,
+  primaryDark: palette.communityDarkRed,
 
   line: palette.offWhite,
   text: palette.white,
-  placeholder: palette.pelopsGrey100,
+  placeholder: palette.communityGrey100,
 
-  grey100: palette.pelopsGrey100,
-  grey200: palette.pelopsGrey200,
-  grey300: palette.pelopsGrey300,
-  grey400: palette.pelopsGrey400,
-  grey500: palette.pelopsGrey500,
-  grey600: palette.pelopsGrey600,
-  grey700: palette.pelopsGrey700,
-  grey800: palette.pelopsGrey800,
-  grey900: palette.pelopsGrey900,
+  grey100: palette.communityGrey100,
+  grey200: palette.communityGrey200,
+  grey300: palette.communityGrey300,
+  grey400: palette.communityGrey400,
+  grey500: palette.communityGrey500,
+  grey600: palette.communityGrey600,
+  grey700: palette.communityGrey700,
+  grey800: palette.communityGrey800,
+  grey900: palette.communityGrey900,
 
-  white: palette.pelopsWhite,
+  white: palette.communityWhite,
   black: palette.black,
 
-  inputBackground: palette.pelopsGrey600,
+  inputBackground: palette.communityGrey600,
   /**
    * Secondary information.
    */
-  dim: palette.pelopsGrey200,
+  dim: palette.communityGrey200,
   /**
    * Error messages and icons.
    */

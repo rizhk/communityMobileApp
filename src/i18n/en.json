@@ -34,7 +34,7 @@
     "activity": "Activities",
     "profil": "Profile",
     "chat": "Chat",
-    "pelops": "Pelops",
+    "community": "CommunityApp",
     "messages": "Messages",
     "designSystem": "Design System"
   },
@@ -180,7 +180,7 @@
     "deleteOwnField": "Delete this field",
     "deleteField": "Delete field ?",
     "deleteFieldConfirm": "Pressing delete will permanently delete the field",
-    "uncertifiedInfo": "This site is not certified by Pelops. Therefore, we cannot guarantee the validity of the information provided.",
+    "uncertifiedInfo": "This site is not certified by CommunityApp. Therefore, we cannot guarantee the validity of the information provided.",
     "noImage": "No picture for this field :("
   },
   "createFieldScreen": {
@@ -364,7 +364,7 @@
   "cgu": {
     "title": "Terms and Conditions",
     "sub1": "1. Introduction",
-    "p1": "The present General Conditions of Use (the GCU) apply to the use of the mobile application Pelops developed by Pelops Sport Sàrl, which allows users to meet to play sport together. The Application uses the services of Google Maps and the geolocation of the users to provide its services.",
+    "p1": "The present General Conditions of Use (the GCU) apply to the use of the mobile application CommunityApp developed by CommunityApp Sport Sàrl, which allows users to meet to play sport together. The Application uses the services of Google Maps and the geolocation of the users to provide its services.",
     "sub2": "2. Acceptance of the Terms and Conditions",
     "p2": "By downloading and using the Application, you agree to these CGU, as well as to our Privacy Policy, which governs the collection and use of your personal data.",
     "sub3": "3. Use of the Application",
@@ -380,7 +380,7 @@
     "sub8": "8. Changes to the Application and the CGU",
     "p8": "We reserve the right to modify or discontinue the Application at any time, as well as these CGU. We encourage you to review the CGU regularly for any changes. Your continue use of the Application following the posting of changes to the CGU will mean that you accept the new CGU.",
     "sub9": "9. Applicable law and jurisdiction",
-    "p9": "These CGU are governed by Swiss law. Any dispute arising from the use of the Application shall be subject to the exclusive jurisdiction of the Swiss courts.\nIf you have any questions or concerns regarding these CGU, please contact us at pelops.ch@gmail.com"
+    "p9": "These CGU are governed by Swiss law. Any dispute arising from the use of the Application shall be subject to the exclusive jurisdiction of the Swiss courts.\nIf you have any questions or concerns regarding these CGU, please contact us at community.ch@gmail.com"
   },
   "chat": {
     "privateMsg": "Privates",

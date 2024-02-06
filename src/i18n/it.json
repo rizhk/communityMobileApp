@@ -34,7 +34,7 @@
     "activity": "Attività",
     "profil": "Profilo",
     "chat": "Chat",
-    "pelops": "Pelops",
+    "community": "CommunityApp",
     "messages": "Messagi",
     "designSystem": "Design System"
   },
@@ -148,7 +148,7 @@
     "deleteOwnField": "Cancellare questa posizione",
     "deleteField": "Cancellare l'attività?",
     "deleteFieldConfirm": "Premendo cancella, il campo sportivo viene eliminato definitivamente.",
-    "uncertifiedInfo": "Questo sito non è certificato da Pelops. Di conseguenza, non possiamo garantire la validità delle informazioni in esso contenute.",
+    "uncertifiedInfo": "Questo sito non è certificato da CommunityApp. Di conseguenza, non possiamo garantire la validità delle informazioni in esso contenute.",
     "noImage": "Nessuna immagine del campo :("
   },
   "createFieldScreen": {
@@ -356,7 +356,7 @@
   "cgu": {
     "title": "Termini e condizioni",
     "sub1": "1. Introduzione",
-    "p1": "Le presenti Condizioni Generali d'Uso (le CGU) si applicano all'utilizzo dell'applicazione mobile Pelops sviluppata da Pelops Sport Sàrl, che consente agli utenti di incontrarsi per fare sport insieme. L'Applicazione utilizza i servizi di Google Maps e la geolocalizzazione degli utenti per fornire i propri servizi.",
+    "p1": "Le presenti Condizioni Generali d'Uso (le CGU) si applicano all'utilizzo dell'applicazione mobile CommunityApp sviluppata da CommunityApp Sport Sàrl, che consente agli utenti di incontrarsi per fare sport insieme. L'Applicazione utilizza i servizi di Google Maps e la geolocalizzazione degli utenti per fornire i propri servizi.",
     "sub2": "2. Accettazione dei Termini e delle Condizioni",
     "p2": "Scaricando e utilizzando l'Applicazione, l'utente accetta le presenti CGU, nonché la nostra Informativa sulla privacy, che disciplina la raccolta e l'utilizzo dei suoi dati personali.",
     "sub3": "3. Utilizzo dell'applicazione",
@@ -372,7 +372,7 @@
     "sub8": "8. Modifiche all'applicazione e alla CGU",
     "p8": "Ci riserviamo il diritto di modificare o interrompere l'Applicazione in qualsiasi momento, così come le presenti CGU. Vi invitiamo a rivedere regolarmente le CGU per verificare eventuali modifiche. L'uso continuato dell'Applicazione dopo la pubblicazione delle modifiche alle CGU implica l'accettazione delle nuove CGU.",
     "sub9": "9. Legge applicabile e giurisdizione",
-    "p9": "Le presenti CGU sono disciplinate dal diritto svizzero. Qualsiasi controversia derivante dall'uso dell'Applicazione sarà soggetta alla giurisdizione esclusiva dei tribunali svizzeri.\nSe avete domande o dubbi in merito alle presenti CGU, contattateci all'indirizzo pelops.ch@gmail.com."
+    "p9": "Le presenti CGU sono disciplinate dal diritto svizzero. Qualsiasi controversia derivante dall'uso dell'Applicazione sarà soggetta alla giurisdizione esclusiva dei tribunali svizzeri.\nSe avete domande o dubbi in merito alle presenti CGU, contattateci all'indirizzo community.ch@gmail.com."
   },
   "month": {
     "january": "Gennaio",

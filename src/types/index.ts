@@ -1,4 +1,4 @@
-export type PelopsScreen = (({ navigation, route }: any) => JSX.Element | null) & {
+export type CommunityScreen = (({ navigation, route }: any) => JSX.Element | null) & {
   displayName: string;
 };
 

@@ -23,7 +23,7 @@ export default function AuthLayout({ route, title, children }: PropsWithChildren
           {route !== "login" && <Button icon={LeftArrow} onPress={() => navigation.goBack()} style={goBack} />}
           <View style={innerContainer}>
             <Icon icon={Pin} preset="title" />
-            <Text text="Pelops" style={titleStyle} />
+            <Text text="CommunityApp" style={titleStyle} />
             <Text tx={title} preset="header" />
             {children}
           </View>

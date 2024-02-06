@@ -2,10 +2,10 @@ import "dotenv/config";
 
 export default {
   expo: {
-    name: "pelops",
-    slug: "pelops",
+    name: "community",
+    slug: "community",
     owner: "kaherdin",
-    version: "1.1.7",
+    version: "0.1",
     entrypoint: "./src/app.tsx",
     orientation: "portrait",
     icon: "./assets/icon-black.png",
@@ -20,7 +20,7 @@ export default {
     assetBundlePatterns: ["**/*"],
     ios: {
       supportsTablet: true,
-      bundleIdentifier: "com.kaherdin.pelops",
+      bundleIdentifier: "com.kaherdin.community",
       infoPlist: {
         NSLocationWhenInUseUsageDescription:
           "We require your permission to access your location while using the app. This allows us to suggest nearby activities and utilize your current location for creating new ones.",
@@ -31,7 +31,7 @@ export default {
         foregroundImage: "./assets/adaptive-icon.png",
         backgroundColor: "#000000",
       },
-      package: "com.kaherdin.pelops",
+      package: "com.kaherdin.community",
       versionCode: 6,
       config: {
         googleMaps: {

@@ -5,8 +5,8 @@ import App from "./src/app";
 
 SplashScreen.preventAutoHideAsync();
 
-function PelopsApp() {
+function CommunityApp() {
   return <App hideSplashScreen={SplashScreen.hideAsync} />;
 }
 
-export default PelopsApp;
+export default CommunityApp;
