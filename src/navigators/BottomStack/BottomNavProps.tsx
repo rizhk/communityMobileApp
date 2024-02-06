@@ -3,7 +3,7 @@ import Joker from "assets/svg/joker.svg";
 import { translate } from "i18n";
 import { NavType } from "navigators/NavType";
 import { SVGAttributes } from "react";
-import { ActivitiesScreen, ChatScreen, MapScreen } from "screens";
+import { ActivitiesScreen, CalendarScreen, InfoScreen, MapScreen, NewsScreen, OfficialScreen } from "screens";
 import TestScreen from "screens/TestScreen/TestScreen";
 import { ChannelUserItem } from "types/message";
 
@@ -34,14 +34,14 @@ export const BottomNavProps: BottomNavPropsType[] = [
     label: `${translate("screenTitle.community")}`,
     icon: News,
     iconSize: 26,
-    component: MapScreen,
+    component: NewsScreen,
   },
   {
     route: "agenda",
     label: `Agenda`,
     icon: Calendar,
     iconSize: 26,
-    component: MapScreen,
+    component: CalendarScreen,
   },
   {
     route: "map",
@@ -55,7 +55,7 @@ export const BottomNavProps: BottomNavPropsType[] = [
     label: `Official`,
     icon: Official,
     iconSize: 26,
-    component: MapScreen,
+    component: OfficialScreen,
   },
 
   {
@@ -63,7 +63,7 @@ export const BottomNavProps: BottomNavPropsType[] = [
     label: `Info`,
     icon: Info,
     iconSize: 26,
-    component: MapScreen,
+    component: InfoScreen,
   },
 
   // {

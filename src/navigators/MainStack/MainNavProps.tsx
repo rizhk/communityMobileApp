@@ -1,5 +1,5 @@
 import { NavType } from "navigators/NavType";
-import { ActivityScreen, MessageScreen } from "screens";
+import { ActivityScreen } from "screens";
 
 import { BottomTabParamList } from "../BottomStack/BottomNavProps";
 import { ActivityItem } from "types/activity";
@@ -8,7 +8,11 @@ export interface MainNavPropsType extends NavType<MainStackParamList> {
 }
 
 export type MainStackParamList = BottomTabParamList & {
-  chats: undefined;
+  news: undefined;
+  calendar: undefined;
+  map: undefined;
+  offical: undefined;
+  info: undefined;
   activity: { activity: ActivityItem };
   //   activities: undefined;
   //   "create-activity": { coordinate: Region | null; fieldId: number | null };
@@ -29,9 +33,5 @@ export const MainNavProps: MainNavPropsType[] = [
   {
     route: "activity",
     component: ActivityScreen,
-  },
-  {
-    route: "chats",
-    component: MessageScreen,
   },
 ];
