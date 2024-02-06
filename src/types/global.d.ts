@@ -5,6 +5,14 @@ export type LocationType = {
   latitude: number;
 };
 
+export const baseSchema = object({
+  title: string().required(),
+  content: string(), // Assuming RTE content is a string
+  contentRtM: string(), // Assuming RTE content is a string
+  startDate: date(),
+  endDate: date(),
+});
+
 export type ItemType = {
   value: ValueType;
   label: I18n.Scope;
@@ -49,6 +57,7 @@ export interface restQueryParams {
   publicationState?: "live" | "preview";
 }
 
+//General
 export interface PaginationMeta {
   pagination: {
     page?: number;
@@ -56,4 +65,9 @@ export interface PaginationMeta {
     pageCount: number;
     total: number;
   };
+}
+
+export interface Data {
+  data: any;
+  meta: PaginationMeta;
 }

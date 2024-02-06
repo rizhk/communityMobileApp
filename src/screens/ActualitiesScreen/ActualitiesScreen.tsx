@@ -9,7 +9,7 @@ type Props = NativeStackScreenProps<MainStackParamList, "actualities">;
 export function ActualitiesScreen({ navigation }: Props) {
   return (
     <View>
-      <Text>NewsScreen</Text>
+      <Text>ActualitiesScreen</Text>
     </View>
   );
 }

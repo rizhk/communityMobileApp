@@ -3,12 +3,11 @@ import { API_URL } from "@env";
 // const API_URL = "http://127.0.0.1:1337"; //for local request.test.tsx
 import axios, { AxiosRequestHeaders } from "axios";
 
-import { ImageUpload, restQueryParams } from "types/global";
-import { SportsData } from "types/sport";
+import { Data, ImageUpload, restQueryParams } from "types/global";
 
 axios.defaults.baseURL = `${API_URL}/api`;
 
-export async function fetchAxiosAPI(path: string, params?: restQueryParams, userToken?: string | null) {
+export async function fetchAxiosAPI(path: string, params?: restQueryParams, userToken?: string | null): Promise<Data> {
   const headers: any = {};
 
   if (userToken) {
@@ -19,6 +18,7 @@ export async function fetchAxiosAPI(path: string, params?: restQueryParams, user
     return response.data;
   } catch (err) {
     console.error(err, "fetchAxiosAPI fetching error, path:", path);
+    throw err;
   }
 }
 

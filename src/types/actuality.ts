@@ -1,4 +1,4 @@
-import { PaginationMeta, restQueryParams } from "./global";
+import { PaginationMeta, baseSchema, restQueryParams } from "./global";
 
 import { object, string, number, date, InferType, array, mixed } from "yup";
 import { mediaItemSchema } from "./user";
@@ -14,15 +14,13 @@ export interface ActualityFilters {
   startDate?: Date;
 }
 
-const actualitiesSchema = object({
-  title: string().required(),
-  content: string().required(), // Assuming RTE content is a string
-  startDate: date(),
-  endDate: date(),
-  type: mixed().oneOf(["news", "jobs"]).required(),
-  cover: mediaItemSchema,
-  document: mediaItemSchema,
-});
+const actualitiesSchema = baseSchema.concat(
+  object({
+    type: mixed().oneOf(["news", "jobs"]).required(),
+    cover: mediaItemSchema,
+    document: mediaItemSchema,
+  })
+);
 
 export type ActualityItem = InferType<typeof actualitiesSchema>;
 
