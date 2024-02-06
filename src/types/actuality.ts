@@ -1,15 +1,16 @@
 import { PaginationMeta, restQueryParams } from "./global";
 
 import { object, string, number, date, InferType, array, mixed } from "yup";
+import { mediaItemSchema } from "./user";
 
-//****** ACTIVITY ******\\
-export type ActivityQueryParams = restQueryParams & {
-  filters?: ActivityFilters;
+//****** ACTUALITY ******\\
+export type ActualityQueryParams = restQueryParams & {
+  filters?: ActualityFilters;
 };
 
-//export type ActivityByRegionQueryParams = ActivityQueryParams & { maxDistance?: number; region: Region | null };
+//export type ActualityByRegionQueryParams = ActualityQueryParams & { maxDistance?: number; region: Region | null };
 
-export interface ActivityFilters {
+export interface ActualityFilters {
   startDate?: Date;
 }
 
@@ -19,13 +20,13 @@ const actualitiesSchema = object({
   startDate: date(),
   endDate: date(),
   type: mixed().oneOf(["news", "jobs"]).required(),
-  // cover: mediaSchema,
-  // document: mediaSchema,
+  cover: mediaItemSchema,
+  document: mediaItemSchema,
 });
 
-export type ActivityItem = InferType<typeof actualitiesSchema>;
+export type ActualityItem = InferType<typeof actualitiesSchema>;
 
-export interface ActivitiesData {
-  data: ActivityItem[];
+export interface ActData {
+  data: ActualityItem[];
   meta: PaginationMeta;
 }

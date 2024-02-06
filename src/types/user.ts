@@ -1,29 +1,4 @@
-import { ActivityItem, activityItemSchema } from "./activity";
-import { SportItem } from "./sport";
 import { object, string, number, date, InferType, lazy, boolean, array } from "yup";
-
-export interface UserItemOld {
-  id: number;
-  username?: string;
-  email?: string;
-  provider?: string;
-  password?: string;
-  resetPasswordToken?: string;
-  confirmationToken?: string;
-  confirmed?: boolean;
-  blocked?: boolean;
-  firstName?: string;
-  lastName?: string;
-  followers?: UserItem[];
-  followings?: UserItem[];
-  avatar?: MediaItem;
-  activitiesParticipate?: ActivityItem[];
-  favoriteSports?: SportItem[];
-  // value: number | string;
-  // category?: string;
-  // attributes: any;
-  // label: string;
-}
 
 export const userItemSchema: any = lazy(() =>
   object({
@@ -40,7 +15,6 @@ export const userItemSchema: any = lazy(() =>
     lastName: string().nullable(),
     followers: array().of(userItemSchema).nullable(),
     followings: array().of(userItemSchema).nullable(),
-    activitiesParticipate: array().of(activityItemSchema).nullable(),
     // avatar: mediaItemSchema.nullable(),
     // favoriteSports: array().of(sportItemSchema).nullable(),
     // Other fields as necessary
@@ -49,13 +23,8 @@ export const userItemSchema: any = lazy(() =>
 
 export type UserItem = InferType<typeof userItemSchema>;
 
-export interface UserItemStrapi {
-  id: number;
-  attributes: UserItem;
-}
-
 export interface UsersData {
-  data: UserItemStrapi[];
+  data: UserItem[];
   meta: any;
 }
 
@@ -63,6 +32,19 @@ export interface MediaItem {
   id?: string;
   url?: string;
   provider_metadata?: any;
-  // Define the properties of MediaItem here
-  // ...
 }
+
+export const mediaItemSchema = object({
+  id: string().required(),
+  url: string().required(),
+  provider_metadata: object().nullable(),
+});
+
+//TODO: Use lazy to get children schema for different size of media (thumbnail, small, medium, large, etc.)
+// export const mediaIteamSchema: any = lazy(() =>
+//   object({
+//     id: number().required().positive().integer(),
+//     username: string().nullable(),
+
+//   })
+// );
