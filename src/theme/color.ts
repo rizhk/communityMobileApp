@@ -22,11 +22,11 @@ export const color = {
 
   background: palette.communityGrey900,
   backgroundLight: palette.communityGrey800,
-  primary: palette.communityRed,
-  primaryLight: palette.communityLightRed,
+  primary: palette.communityPrimary,
+  primaryLight: palette.communityPrimary200,
   secondary: palette.communityOrange,
   tertiary: palette.communityGreen,
-  primaryDark: palette.communityDarkRed,
+  primaryDark: palette.communityPrimary700,
 
   line: palette.offWhite,
   text: palette.white,
