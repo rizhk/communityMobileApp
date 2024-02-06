@@ -3,7 +3,7 @@ import Joker from "assets/svg/joker.svg";
 import { translate } from "i18n";
 import { NavType } from "navigators/NavType";
 import { SVGAttributes } from "react";
-import { ActivitiesScreen, CalendarScreen, InfoScreen, MapScreen, NewsScreen, OfficialScreen } from "screens";
+import { ActivitiesScreen, ActualitiesScreen, CalendarScreen, InfoScreen, MapScreen, OfficialScreen } from "screens";
 import TestScreen from "screens/TestScreen/TestScreen";
 import { ChannelUserItem } from "types/message";
 
@@ -18,7 +18,7 @@ export type BottomTabParamList = {
   profile: { user: any };
   messages: { channelUser: ChannelUserItem };
   test: undefined;
-  news: undefined;
+  actualities: undefined;
   agenda: undefined;
   map: { region?: { latitude: number; longitude: number } };
   official: undefined;
@@ -30,11 +30,11 @@ export type BottomRoute = keyof BottomTabParamList;
 //TODO: change icons from png to svg
 export const BottomNavProps: BottomNavPropsType[] = [
   {
-    route: "news",
+    route: "actualities",
     label: `${translate("screenTitle.community")}`,
     icon: News,
     iconSize: 26,
-    component: NewsScreen,
+    component: ActualitiesScreen,
   },
   {
     route: "agenda",

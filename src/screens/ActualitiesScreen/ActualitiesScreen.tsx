@@ -4,9 +4,9 @@ import { Text } from "components/Text/Text";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { View } from "react-native";
 
-type Props = NativeStackScreenProps<MainStackParamList, "news">;
+type Props = NativeStackScreenProps<MainStackParamList, "actualities">;
 
-export function NewsScreen({ navigation }: Props) {
+export function ActualitiesScreen({ navigation }: Props) {
   return (
     <View>
       <Text>NewsScreen</Text>

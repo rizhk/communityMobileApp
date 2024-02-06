@@ -8,7 +8,7 @@ export interface MainNavPropsType extends NavType<MainStackParamList> {
 }
 
 export type MainStackParamList = BottomTabParamList & {
-  news: undefined;
+  actualities: undefined;
   calendar: undefined;
   map: undefined;
   offical: undefined;

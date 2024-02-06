@@ -50,52 +50,7 @@ export type ActivityFormValues = Omit<ActivityItem, "sport"> & {
   sport: number;
 };
 
-//Deprecated
-export interface ActivityItemManual {
-  id: number;
-  name: string;
-  maxParticipants: number;
-  latitude: number;
-  longitude: number;
-  date: Date;
-  startHour: string;
-  endHour: string;
-  location: string;
-  description: string;
-  author: UserItem;
-  participants: UserItem[]; //TODO: Check types
-  blockedUsers: UserItem[];
-  sport: SportItem;
-  channel: any;
-}
-
 export interface ActivitiesData {
   data: ActivityItem[];
   meta: PaginationMeta;
 }
-
-export interface ActivityFormSchema {
-  value: ActivityType;
-  initialValue?: number | string | boolean | Date | any[];
-  validation: FieldValidation;
-}
-
-export interface ActivityFormData extends ActivityFormSchema {
-  label?: string;
-  type: ActivityFormType;
-  multiple?: boolean;
-  searchable?: boolean;
-  labelLocation?: string;
-  labelActualLocation?: string;
-}
-
-export type ActivityFormType =
-  | "media"
-  | "LocationPicker"
-  | "DateTimerPicker"
-  | "DropPicker"
-  | "maxParticipantsPicker"
-  | "hidden"
-  | "string"; //default
-
-export type ActivityType = "sport" | "location" | "date" | "startHour" | "endHour" | "maxParticipants" | "description";
