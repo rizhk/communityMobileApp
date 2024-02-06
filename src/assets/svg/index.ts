@@ -29,3 +29,8 @@ export { default as BRCorner } from "./brCorner.svg";
 export { default as TLCorner } from "./TLCorner.svg";
 export { default as TRCorner } from "./TRCorner.svg";
 export { default as Filter } from "./filter.svg";
+export { default as Info } from "./community/info.svg";
+export { default as Calendar } from "./community/calendar.svg";
+export { default as Map } from "./community/map.svg";
+export { default as News } from "./community/news.svg";
+export { default as Official } from "./community/official.svg";

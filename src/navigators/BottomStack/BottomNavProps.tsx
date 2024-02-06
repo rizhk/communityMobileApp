@@ -1,4 +1,4 @@
-import { Chat, Home, PinOutline } from "assets/svg";
+import { Calendar, Chat, Home, Info, Map, News, Official, PinOutline } from "assets/svg";
 import Joker from "assets/svg/joker.svg";
 import { translate } from "i18n";
 import { NavType } from "navigators/NavType";
@@ -14,11 +14,15 @@ export interface BottomNavPropsType extends NavType<BottomTabParamList> {
 }
 
 export type BottomTabParamList = {
-  map: { region?: { latitude: number; longitude: number } };
   activities: undefined;
   profile: { user: any };
   messages: { channelUser: ChannelUserItem };
   test: undefined;
+  news: undefined;
+  agenda: undefined;
+  map: { region?: { latitude: number; longitude: number } };
+  official: undefined;
+  info: undefined;
 };
 
 export type BottomRoute = keyof BottomTabParamList;
@@ -26,33 +30,70 @@ export type BottomRoute = keyof BottomTabParamList;
 //TODO: change icons from png to svg
 export const BottomNavProps: BottomNavPropsType[] = [
   {
-    route: "map",
+    route: "news",
     label: `${translate("screenTitle.community")}`,
-    icon: Home,
+    icon: News,
     iconSize: 26,
     component: MapScreen,
   },
   {
-    route: "activities",
-    label: `${translate("screenTitle.activity")}`,
-    icon: PinOutline,
+    route: "agenda",
+    label: `Agenda`,
+    icon: Calendar,
     iconSize: 26,
-    component: ActivitiesScreen,
+    component: MapScreen,
   },
   {
-    route: "messages",
-    label: `${translate("screenTitle.messages")}`,
-    icon: Chat,
+    route: "map",
+    label: `Map`,
+    icon: Map,
     iconSize: 26,
-    component: ChatScreen,
+    component: MapScreen,
   },
   {
-    route: "test",
-    label: "Design System",
-    icon: Joker,
+    route: "official",
+    label: `Official`,
+    icon: Official,
     iconSize: 26,
-    component: TestScreen,
+    component: MapScreen,
   },
+
+  {
+    route: "info",
+    label: `Info`,
+    icon: Info,
+    iconSize: 26,
+    component: MapScreen,
+  },
+
+  // {
+  //   route: "map",
+  //   label: `${translate("screenTitle.community")}`,
+  //   icon: Home,
+  //   iconSize: 26,
+  //   component: MapScreen,
+  // },
+  // {
+  //   route: "activities",
+  //   label: `${translate("screenTitle.activity")}`,
+  //   icon: PinOutline,
+  //   iconSize: 26,
+  //   component: ActivitiesScreen,
+  // },
+  // {
+  //   route: "messages",
+  //   label: `${translate("screenTitle.messages")}`,
+  //   icon: Chat,
+  //   iconSize: 26,
+  //   component: ChatScreen,
+  // },
+  // {
+  //   route: "test",
+  //   label: "Design System",
+  //   icon: Joker,
+  //   iconSize: 26,
+  //   component: TestScreen,
+  // },
 ];
 // {
 //   id: 3,

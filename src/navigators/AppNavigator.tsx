@@ -8,7 +8,7 @@ import { MainStack } from "./MainStack/MainStack";
 export function AppNavigator() {
   const { user } = useAuth();
   const AppTheme = {
-    dark: true,
+    dark: false,
     colors: {
       primary: color.primary,
       background: color.background,
@@ -18,5 +18,9 @@ export function AppNavigator() {
       notification: color.primary,
     },
   };
-  return <NavigationContainer theme={AppTheme}>{user ? <MainStack /> : <AuthStack />}</NavigationContainer>;
+  return (
+    <NavigationContainer theme={AppTheme}>
+      <MainStack />
+    </NavigationContainer>
+  );
 }
