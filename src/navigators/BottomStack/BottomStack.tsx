@@ -15,7 +15,7 @@ export function BottomStack() {
         headerTitleStyle: { fontWeight: "bold", fontSize: text.lg },
         tabBarStyle: {
           backgroundColor: color.backgroundLight,
-          height: 80,
+          height: 72,
           borderTopWidth: 0.5,
           borderTopColor: color.grey600,
         },

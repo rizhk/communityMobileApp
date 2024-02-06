@@ -1,4 +1,3 @@
-export { ChatScreen } from "./ChatScreen/ChatScreen";
 export { ActivityScreen } from "screens/ActivityScreen/ActivityScreen";
 export { LoginScreen } from "./LoginScreen/LoginScreen";
 export { MessageScreen } from "./MessageScreen/MessageScreen";
