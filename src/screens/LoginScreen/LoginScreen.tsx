@@ -4,10 +4,10 @@ import GForm from "components/GForm/GForm";
 import { Validations } from "constants/Validations";
 import { useAuth } from "context/AuthContext";
 import AuthLayout from "layouts/AuthLayout";
-import { AuthNavigatorParamList } from "navigators/AuthStack/AuthStack";
+import { AuthNavigatorParamList, AuthStrategy } from "navigators/AuthStack/AuthStack";
 import { View, ViewStyle } from "react-native";
 import { spacing } from "theme";
-import { AuthStrategy } from "types";
+
 import * as Yup from "yup";
 
 type Props = NativeStackScreenProps<AuthNavigatorParamList, "login">;

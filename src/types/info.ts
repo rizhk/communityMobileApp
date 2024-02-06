@@ -3,18 +3,15 @@ import { PaginationMeta, restQueryParams } from "./global";
 import { object, string, number, date, InferType, array, mixed } from "yup";
 import { mediaItemSchema } from "./user";
 
-//****** ACTUALITY ******\\
-export type ActualityQueryParams = restQueryParams & {
-  filters?: ActualityFilters;
+export type InfoQueryParams = restQueryParams & {
+  filters?: InfoFilters;
 };
 
-//export type ActualityByRegionQueryParams = ActualityQueryParams & { maxDistance?: number; region: Region | null };
-
-export interface ActualityFilters {
+export interface InfoFilters {
   startDate?: Date;
 }
 
-const actualitiesSchema = object({
+const infosSchema = object({
   title: string().required(),
   content: string().required(), // Assuming RTE content is a string
   startDate: date(),
@@ -24,9 +21,9 @@ const actualitiesSchema = object({
   document: mediaItemSchema,
 });
 
-export type ActualityItem = InferType<typeof actualitiesSchema>;
+export type InfoItem = InferType<typeof infosSchema>;
 
-export interface ActualityData {
-  data: ActualityItem[];
+export interface InfoData {
+  data: InfoItem[];
   meta: PaginationMeta;
 }
