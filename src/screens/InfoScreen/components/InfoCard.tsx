@@ -1,20 +1,20 @@
+import { InfoData, InfoItem } from "types/info";
 import { Text } from "components/Text";
 import { Stack, XStack, YStack } from "components/containers/Stack/Stack";
 
 import { formatDateFromToday } from "utils/Date";
 
-import { ActualityItem } from "types/actuality";
 import { QuickImage } from "components/ImageComponent";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 
-type ActualityCardProps = {
-  actuality: ActualityItem;
+type InfoCardProps = {
+  info: InfoItem;
   navigation: NativeStackNavigationProp<MainStackParamList>; // Consider using a more specific type for navigation if possible
 };
 
-export function ActualityCard({ navigation, actuality }: ActualityCardProps) {
-  const { title, content, startDate, cover } = actuality;
+export function InfoCard({ navigation, info }: InfoCardProps) {
+  const { title, content, startDate, cover } = info;
 
   return (
     <Stack br="xs" bc="backgroundCard" overflow="hidden">
@@ -23,12 +23,12 @@ export function ActualityCard({ navigation, actuality }: ActualityCardProps) {
         br="md"
         gap="xs"
         onPress={() => {
-          navigation.navigate("actuality", {
-            actuality,
+          navigation.navigate("info", {
+            info,
           });
         }}
       >
-        <Text text={formatDateFromToday(startDate ?? new Date(), "dd MMM")} size="xs" color="grey400" />
+        {/* <Text text={formatDateFromToday(startDate ?? new Date(), "dd MMM")} size="xs" color="grey400" /> */}
         <Text size="lg" text={title} preset="bold" color="primary" />
 
         <XStack ai="center" jc="space-between" w={100}>
@@ -39,5 +39,3 @@ export function ActualityCard({ navigation, actuality }: ActualityCardProps) {
     </Stack>
   );
 }
-
-export default ActualityCard;

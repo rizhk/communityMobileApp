@@ -48,9 +48,9 @@ export function ActualitiesScreen({ navigation }: Props) {
         {/* <SearchBar /> */}
         {/* <FilterComponent onApply={handleApplyFilter} currentFilters={filters} /> */}
 
-        {actualities?.data.map((actuality: ActualityItem) => {
+        {/* {actualities?.data.map((actuality: ActualityItem) => {
           return <ActualityCard key={actuality.id} navigation={navigation} actuality={actuality} />;
-        })}
+        })} */}
       </YStack>
     </ScrollView>
   );

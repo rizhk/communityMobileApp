@@ -51,6 +51,7 @@ export function ActivitiesScreen({ navigation }: Props) {
     fetchActivities(restQueryParams)
   );
 
+  //TODO: Check why filter are not showing in the header
   const menu: MenuType = {
     type: "element",
     icon: Filter,
@@ -72,7 +73,7 @@ export function ActivitiesScreen({ navigation }: Props) {
         <>
           {/* <ActivityFilter
             isVisible={isFilterVisible}
-            onClose={handleCloseFilter}
+            // onClose={handleCloseFilter}
             onApply={handleApplyFilter}
             currentFilters={filters}
           /> */}
@@ -86,11 +87,6 @@ export function ActivitiesScreen({ navigation }: Props) {
           </ScrollView>
         </>
       )}
-      <Button
-        tx="createActivity.button"
-        onPress={() => setOpenActivity(true)}
-        style={{ alignSelf: "center", bottom: 10, position: "absolute" }}
-      />
     </YStack>
   );
 }

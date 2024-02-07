@@ -5,6 +5,7 @@ import { BottomTabParamList } from "../BottomStack/BottomNavProps";
 import { ActivityItem } from "types/activity";
 import { ActualityItem } from "types/actuality";
 import { ActualityScreen } from "screens/ActualityScreen/ActualityScreen";
+import { InfoItem } from "types/info";
 export interface MainNavPropsType extends NavType<MainStackParamList> {
   noHeader?: boolean;
 }
@@ -12,6 +13,7 @@ export interface MainNavPropsType extends NavType<MainStackParamList> {
 export type MainStackParamList = BottomTabParamList & {
   activity: { activity: ActivityItem };
   actuality: { actuality: ActualityItem };
+  info: { info: InfoItem };
 
   // actuality: { actuality: ActualityItem };
   // activity: { activity: ActivityItem };
@@ -37,6 +39,10 @@ export const MainNavProps: MainNavPropsType[] = [
   },
   {
     route: "actuality",
+    component: ActualityScreen,
+  },
+  {
+    route: "info",
     component: ActualityScreen,
   },
 ];

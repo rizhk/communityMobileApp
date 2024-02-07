@@ -20,8 +20,8 @@ export type BottomTabParamList = {
   actualities: undefined;
   agenda: undefined;
   map: { region?: { latitude: number; longitude: number } };
-  official: undefined;
-  info: undefined;
+  officials: undefined;
+  infos: undefined;
 };
 
 export type BottomRoute = keyof BottomTabParamList;
@@ -50,7 +50,7 @@ export const BottomNavProps: BottomNavPropsType[] = [
     component: MapScreen,
   },
   {
-    route: "official",
+    route: "officials",
     label: `Official`,
     icon: Official,
     iconSize: 26,
@@ -58,7 +58,7 @@ export const BottomNavProps: BottomNavPropsType[] = [
   },
 
   {
-    route: "info",
+    route: "infos",
     label: `Info`,
     icon: Info,
     iconSize: 26,
