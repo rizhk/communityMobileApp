@@ -1,14 +1,11 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
+import { QuickImage } from "./ImageComponent";
 
 const CustomHeader = () => {
   return (
     <View style={styles.headerContainer}>
-      {/* <Image
-        source={require("./path-to-your-logo.png")} // Update with the path to your logo image
-        style={styles.logo}
-      /> */}
-      <Text style={styles.headerText}>Your App Name</Text>
+      <QuickImage source={require("../assets/image/logo-daillens.png")} width={188} height={62} style={styles.logo} />
     </View>
   );
 };
@@ -17,17 +14,15 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 10,
-    // Add more styling as needed
+    marginTop: 48,
+    marginBottom: 12,
+    paddingHorizontal: 12,
   },
   logo: {
-    width: 50, // Adjust according to your logo's size
-    height: 50, // Adjust according to your logo's size
-    marginRight: 10,
+    marginLeft: 12,
   },
   headerText: {
     fontWeight: "bold",
-    // Add more styling as needed
   },
 });
 
