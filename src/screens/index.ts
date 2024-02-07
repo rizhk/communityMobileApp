@@ -1,10 +1,9 @@
 export { ActivityScreen } from "screens/ActivityScreen/ActivityScreen";
 
-export { ActivitiesScreen } from "./ActivitiesScreen/ActivitiesScreen";
-
 //community
 export { ActualitiesScreen } from "./ActualitiesScreen/ActualitiesScreen";
-export { CalendarScreen } from "./CalendarScreen/CalendarScreen";
+
+export { ActivitiesScreen } from "./ActivitiesScreen/ActivitiesScreen";
 export { MapScreen } from "./MapScreen/MapScreen";
 export { OfficialScreen } from "./OfficialScreen/OfficialScreen";
 export { InfoScreen } from "./InfoScreen/InfoScreen";

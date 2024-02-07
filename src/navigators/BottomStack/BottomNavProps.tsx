@@ -3,7 +3,7 @@ import Joker from "assets/svg/joker.svg";
 import { translate } from "i18n";
 import { NavType } from "navigators/NavType";
 import { SVGAttributes } from "react";
-import { ActivitiesScreen, ActualitiesScreen, CalendarScreen, InfoScreen, MapScreen, OfficialScreen } from "screens";
+import { ActivitiesScreen, ActualitiesScreen, InfoScreen, MapScreen, OfficialScreen } from "screens";
 import TestScreen from "screens/TestScreen/TestScreen";
 
 export interface BottomNavPropsType extends NavType<BottomTabParamList> {
@@ -40,7 +40,7 @@ export const BottomNavProps: BottomNavPropsType[] = [
     label: `Agenda`,
     icon: Calendar,
     iconSize: 26,
-    component: CalendarScreen,
+    component: ActivitiesScreen,
   },
   {
     route: "map",
