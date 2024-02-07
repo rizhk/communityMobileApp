@@ -5,7 +5,6 @@ import { StyleSheet, Image } from "react-native";
 import { color as themeColor } from "theme";
 
 interface CustomMarkerProps {
-  participantCount: number | undefined;
   image: string | undefined;
   type?: "activity" | "field" | "tournament";
 }
@@ -13,7 +12,7 @@ interface CustomMarkerProps {
 const ICON_SIZE = 60;
 
 export function CustomMarker(props: CustomMarkerProps) {
-  const { type, participantCount, image } = props;
+  const { type, image } = props;
   const pinType = type ? `pin-${type}` : "pin-activity";
 
   return (

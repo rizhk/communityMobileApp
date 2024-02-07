@@ -14,10 +14,12 @@ import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { useEffect, useState, useRef } from "react";
 import { ActivityIndicator, View } from "react-native";
 import MapView, { Region } from "react-native-maps";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 
 import { fetchActivities, populateActivity } from "api/activity-request";
 import { ActivitiesData } from "types/activity";
+import { fetchAxiosAPI } from "api/request";
+import { LocationQueryParams } from "types/location";
 
 type Props = NativeStackScreenProps<MainStackParamList, "map">;
 
@@ -64,38 +66,34 @@ export function MapScreen({ navigation }: Props) {
     setRegion(newRegion);
   };
 
-  const handleRefetch = () => {
-    mutate();
-    // mutate("activities"); // Force a revalidation
-  };
-
-  //TODO: Better styling and way to show refetch button
-  const ShowRefetchButton = () => {
-    return (
-      <View style={{ position: "absolute", top: 0, left: 0, zIndex: 100 }}>
-        <Button onPress={handleRefetch} text="Refetch" />
-      </View>
-    );
-  };
-
-  //TODO: Add clusters to map
-
   // console.log(data, "data");
   // if (!isLocationFetched) {
   //   return <ActivityIndicator />;
   // }
 
-  const {
-    data: activities,
-    error,
-    isLoading,
-    mutate,
-  } = useSWR<ActivitiesData>(["activities", filters], () => fetchActivities({ filters, populate: populateActivity }));
+  //FETCHING AND FILTERS
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
 
-  if (isLoading) {
+  //Fetch Activities
+  const restQueryParams: LocationQueryParams = {
+    filters: filters,
+    populate: "*",
+    pagination: {
+      page,
+      pageSize,
+    },
+    sort: "startDate:desc",
+  };
+
+  const { data: locations, isLoading: isLoadingActivities } = useSWR(["locations", filters], () =>
+    fetchAxiosAPI("/locations", restQueryParams)
+  );
+
+  if (isLoadingActivities) {
     return <ActivityIndicator></ActivityIndicator>;
   }
-  if (!activities) {
+  if (!locations) {
     return <Text>error...</Text>;
   }
 
@@ -121,7 +119,7 @@ export function MapScreen({ navigation }: Props) {
       <MapComponent
         maxDistance={maxDistance}
         mapRef={mapRef}
-        activities={activities}
+        locations={locations}
         region={region}
         onRegionChangeComplete={handleRegionChangeComplete}
         navigation={navigation}

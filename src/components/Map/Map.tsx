@@ -9,6 +9,7 @@ import { hexToRGBA } from "utils/helper";
 import { CustomMarker } from "./components/Marker";
 import { MapPresets, presets } from "./map.presets";
 import { useNavigation } from "@react-navigation/native";
+import { LocationData } from "types/location";
 
 //TODO: - Display fields on the map
 
@@ -18,7 +19,7 @@ interface MapProps {
   initialRegion?: Region;
   style?: any;
   preset?: MapPresets;
-  activities: ActivitiesData;
+  locations: LocationData;
   mapRef?: any;
   onRegionChangeComplete?: (newRegion: Region) => void; // Add this line
   navigation: any;
@@ -30,7 +31,7 @@ function MapComponent(props: MapProps) {
     region,
     onRegionChangeComplete,
     mapRef,
-    activities,
+    locations,
     maxDistance,
     style,
     navigation,
@@ -55,8 +56,8 @@ function MapComponent(props: MapProps) {
         initialRegion={rest.initialRegion}
         {...rest}
       >
-        {activities?.data &&
-          activities.data.map((activity, index) => {
+        {locations?.data &&
+          locations.data.map((activity, index) => {
             const cloudinaryUrl = activity?.cover?.url;
             if (activity?.latitude !== null && activity?.longitude !== null) {
               return (

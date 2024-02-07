@@ -34,8 +34,6 @@ export function ActualitiesScreen({ navigation }: Props) {
     fetchAxiosAPI("/actualities", restQueryParams)
   );
 
-  console.log(actualities, "actualities");
-
   if (isLoadingActivities) {
     return <Text>Loading...</Text>;
   }
