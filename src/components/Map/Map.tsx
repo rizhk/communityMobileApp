@@ -55,23 +55,12 @@ function MapComponent(props: MapProps) {
         initialRegion={rest.initialRegion}
         {...rest}
       >
-        <Circle
-          center={{ latitude: region.latitude, longitude: region.longitude }}
-          radius={radius || maxDistance}
-          strokeColor={color.primary}
-          fillColor={hexToRGBA(color.primary, 0.2)}
-        />
-
         {activities?.data &&
           activities.data.map((activity, index) => {
-            const participantsCount = activity?.participants?.length;
-            const cloudinaryUrl = activity?.sport?.icon?.url;
-            if (activity?.latitude !== null && activity?.longitude !== null)
-            {
+            const cloudinaryUrl = activity?.cover?.url;
+            if (activity?.latitude !== null && activity?.longitude !== null) {
               return (
-
-              <Marker
-
+                <Marker
                   key={index}
                   coordinate={{
                     latitude: activity.latitude,
@@ -84,7 +73,7 @@ function MapComponent(props: MapProps) {
                       });
                   }}
                 >
-                  <CustomMarker participantCount={participantsCount} image={cloudinaryUrl} type="activity" />
+                  <CustomMarker image={cloudinaryUrl} type="activity" />
                 </Marker>
               );
             }

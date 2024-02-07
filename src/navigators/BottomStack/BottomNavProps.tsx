@@ -54,7 +54,7 @@ export const BottomNavProps: BottomNavPropsType[] = [
     label: `Official`,
     icon: Official,
     iconSize: 26,
-    component: OfficialScreen,
+    component: TestScreen,
   },
 
   {

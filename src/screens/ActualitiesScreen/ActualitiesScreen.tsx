@@ -10,7 +10,7 @@ import { ActualityFilters, ActualityItem, ActualityQueryParams } from "types/act
 import ActualityCard from "./components/ActualityCard";
 import { XStack, YStack } from "components/containers";
 
-type Props = NativeStackScreenProps<MainStackParamList, "actualities">;
+type Props = NativeStackScreenProps<MainStackParamList>;
 
 export function ActualitiesScreen({ navigation }: Props) {
   const [filters, setFilters] = useState<ActualityFilters>({});
@@ -48,9 +48,9 @@ export function ActualitiesScreen({ navigation }: Props) {
         {/* <SearchBar /> */}
         {/* <FilterComponent onApply={handleApplyFilter} currentFilters={filters} /> */}
 
-        {/* {actualities?.data.map((actuality: ActualityItem) => {
+        {actualities?.data.map((actuality: ActualityItem) => {
           return <ActualityCard key={actuality.id} navigation={navigation} actuality={actuality} />;
-        })} */}
+        })}
       </YStack>
     </ScrollView>
   );
