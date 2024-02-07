@@ -26,7 +26,6 @@ export const palette = {
   communityPrimary800: "#050b1b",
   communityPrimary900: "#02050d",
   communityBlack: "#010206",
-
   communityOrange: "#FF851B",
   communityGreen: "#429570",
   communityLightRed: "#c67464",

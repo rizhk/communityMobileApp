@@ -39,7 +39,11 @@ export function ActualitiesScreen({ navigation }: Props) {
   return (
     <ScrollView>
       <YStack pa="sm" gap="sm">
-        <Text>ActualitiesScreen</Text>
+        {/* TODO: Header avec logo */}
+        {/* Component Search based on useSwr to refresh the data correctly */}
+        {/* <SearchBar /> */}
+        {/* <FilterComponent onApply={handleApplyFilter} currentFilters={filters} /> */}
+
         {actualities?.data.map((actuality: ActualityItem) => {
           // Add type annotation for 'actuality'
           return <ActualityCard key={actuality.id} navigation={navigation} actuality={actuality} />;
