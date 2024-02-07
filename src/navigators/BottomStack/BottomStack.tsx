@@ -14,10 +14,10 @@ export function BottomStack() {
         headerTintColor: color.white,
         headerTitleStyle: { fontWeight: "bold", fontSize: text.lg },
         tabBarStyle: {
-          backgroundColor: color.backgroundLight,
+          backgroundColor: color.primary,
           height: 72,
           borderTopWidth: 0.5,
-          borderTopColor: color.grey600,
+          borderTopColor: color.primaryDark,
         },
       })}
     >

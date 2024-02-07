@@ -10,9 +10,23 @@ export const palette = {
   /**
    * CommunityApp theme
    */
-  communityPrimary200: "#C0D3FF",
+
+  communityBackground: "#e5edff",
+
+  communityPrimary100: "#f8faff",
+  communityPrimary200: "#e5edff",
+  communityPrimary300: "#d9e4ff",
+  communityPrimary400: "#ccdbff",
   communityPrimary: "#264796",
+
+  communityPrimary600: "#99a8cc",
+
   communityPrimary700: "#152F6F",
+
+  communityPrimary800: "#050b1b",
+  communityPrimary900: "#02050d",
+  communityBlack: "#010206",
+
   communityOrange: "#FF851B",
   communityGreen: "#429570",
   communityLightRed: "#c67464",

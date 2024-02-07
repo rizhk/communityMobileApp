@@ -20,16 +20,17 @@ export const color = {
    */
   transparent: "rgba(0, 0, 0, 0)",
 
-  background: palette.communityGrey900,
-  backgroundLight: palette.communityGrey800,
+  background: palette.communityPrimary400,
+  backgroundLight: palette.communityPrimary100,
+  backgroundCard: palette.communityPrimary200,
   primary: palette.communityPrimary,
   primaryLight: palette.communityPrimary200,
   secondary: palette.communityOrange,
   tertiary: palette.communityGreen,
   primaryDark: palette.communityPrimary700,
 
-  line: palette.offWhite,
-  text: palette.white,
+  line: palette.communityPrimary200,
+  text: palette.black,
   placeholder: palette.communityGrey100,
 
   grey100: palette.communityGrey100,
