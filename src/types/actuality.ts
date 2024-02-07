@@ -1,17 +1,24 @@
-import { PaginationMeta, baseSchema, restQueryParams } from "./global";
+import { BaseItem, PaginationMeta, baseSchema, restQueryParams } from "./global";
 
 import { object, string, number, date, InferType, array, mixed } from "yup";
-import { mediaItemSchema } from "./user";
+import { MediaItem, mediaItemSchema } from "./user";
 
-//****** ACTUALITY ******\\
 export type ActualityQueryParams = restQueryParams & {
   filters?: ActualityFilters;
 };
-
-//export type ActualityByRegionQueryParams = ActualityQueryParams & { maxDistance?: number; region: Region | null };
-
 export interface ActualityFilters {
   startDate?: Date;
+}
+
+export type ActualityItem = BaseItem & {
+  type: "news" | "jobs";
+  cover: MediaItem;
+  document: MediaItem;
+};
+
+export interface ActualityData {
+  data: ActualityItem[];
+  meta: PaginationMeta;
 }
 
 const actualitiesSchema = baseSchema.concat(
@@ -22,9 +29,4 @@ const actualitiesSchema = baseSchema.concat(
   })
 );
 
-export type ActualityItem = InferType<typeof actualitiesSchema>;
-
-export interface ActualityData {
-  data: ActualityItem[];
-  meta: PaginationMeta;
-}
+export type ActualityItemYup = InferType<typeof actualitiesSchema>;

@@ -13,6 +13,16 @@ export const baseSchema = object({
   endDate: date(),
 });
 
+export type BaseItem = {
+  id: number;
+  title: string;
+  content: string;
+  contentRtM: string;
+  contentRtB: string;
+  startDate: Date;
+  endDate: Date;
+};
+
 export type ItemType = {
   value: ValueType;
   label: I18n.Scope;

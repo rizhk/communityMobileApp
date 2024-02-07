@@ -1,16 +1,27 @@
-import { PaginationMeta, baseSchema, restQueryParams } from "./global";
+import { BaseItem, PaginationMeta, baseSchema, restQueryParams } from "./global";
 
 import { object, string, number, date, InferType, array, mixed } from "yup";
-import { mediaItemSchema } from "./user";
+import { MediaItem, mediaItemSchema } from "./user";
 
 export type IncidentQueryParams = restQueryParams & {
   filters?: IncidentFilters;
 };
-
-//export type IncidentByRegionQueryParams = IncidentQueryParams & { maxDistance?: number; region: Region | null };
-
 export interface IncidentFilters {
   startDate?: Date;
+}
+
+export type IncidentItem = BaseItem & {
+  type: "news" | "jobs";
+  cover?: MediaItem;
+  address?: string;
+  longitude: number;
+  latitude: number;
+  category: "culture" | "sport" | "kids";
+};
+
+export interface IncidentData {
+  data: IncidentItem[];
+  meta: PaginationMeta;
 }
 
 const incidentsSchema = baseSchema.concat(
@@ -18,15 +29,8 @@ const incidentsSchema = baseSchema.concat(
     address: string(),
     longitude: number().required(),
     latitude: number().required(),
-    // category: mixed().oneOf(['culture', 'sport', 'kids', /* add more categories as needed */]).required(),
     cover: mediaItemSchema,
-    //TODO: Add tags insead of category ?
   })
 );
 
-export type IncidentItem = InferType<typeof incidentsSchema>;
-
-export interface IncidentData {
-  data: IncidentItem[];
-  meta: PaginationMeta;
-}
+export type IncidentItemYup = InferType<typeof incidentsSchema>;
