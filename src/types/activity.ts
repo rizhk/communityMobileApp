@@ -12,6 +12,8 @@ export interface ActivityFilters {
 
 export type ActivityItem = BaseItem & {
   type: "news" | "jobs";
+  latitude?: number;
+  longitude?: number;
   cover: MediaItem;
   document: MediaItem;
 };

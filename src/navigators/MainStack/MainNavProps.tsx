@@ -3,17 +3,18 @@ import { ActivityScreen } from "screens";
 
 import { BottomTabParamList } from "../BottomStack/BottomNavProps";
 import { ActivityItem } from "types/activity";
+import { ActualityItem } from "types/actuality";
+import { ActualityScreen } from "screens/ActualityScreen/ActualityScreen";
 export interface MainNavPropsType extends NavType<MainStackParamList> {
   noHeader?: boolean;
 }
 
 export type MainStackParamList = BottomTabParamList & {
-  actualities: undefined;
-  calendar: undefined;
-  map: undefined;
-  offical: undefined;
-  info: undefined;
   activity: { activity: ActivityItem };
+  actuality: { actuality: ActualityItem };
+
+  // actuality: { actuality: ActualityItem };
+  // activity: { activity: ActivityItem };
   //   activities: undefined;
   //   "create-activity": { coordinate: Region | null; fieldId: number | null };
   //   "edit-profile": any;
@@ -33,5 +34,9 @@ export const MainNavProps: MainNavPropsType[] = [
   {
     route: "activity",
     component: ActivityScreen,
+  },
+  {
+    route: "actuality",
+    component: ActualityScreen,
   },
 ];

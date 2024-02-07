@@ -5,7 +5,6 @@ import { NavType } from "navigators/NavType";
 import { SVGAttributes } from "react";
 import { ActivitiesScreen, ActualitiesScreen, CalendarScreen, InfoScreen, MapScreen, OfficialScreen } from "screens";
 import TestScreen from "screens/TestScreen/TestScreen";
-import { ChannelUserItem } from "types/message";
 
 export interface BottomNavPropsType extends NavType<BottomTabParamList> {
   icon: React.FunctionComponent<SVGAttributes<SVGElement>>;
@@ -16,7 +15,7 @@ export interface BottomNavPropsType extends NavType<BottomTabParamList> {
 export type BottomTabParamList = {
   activities: undefined;
   profile: { user: any };
-  messages: { channelUser: ChannelUserItem };
+
   test: undefined;
   actualities: undefined;
   agenda: undefined;

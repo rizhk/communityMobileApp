@@ -21,17 +21,17 @@ export function ActualityCard({ navigation, actuality }: ActualityCardProps) {
         padding="md"
         br="md"
         gap="xs"
-        // onPress={() => {
-        //   navigation.navigate("actuality", {
-        //     actuality,
-        //   });
-        // }}
+        onPress={() => {
+          navigation.navigate("actuality", {
+            actuality,
+          });
+        }}
       >
         <Text text={formatDateFromToday(startDate ?? new Date(), "dd MMM")} size="xs" color="grey400" />
         <Text size="lg" text={title} preset="bold" color="primary" />
 
         <XStack ai="center" jc="space-between" w={100}>
-          {cover && <QuickImage width={240} height={120} source={{ uri: cover.url }} style={{ borderRadius: 16 }} />}
+          {cover && <QuickImage width={120} height={120} source={{ uri: cover.url }} style={{ borderRadius: 16 }} />}
           {content && <Text text={content} />}
         </XStack>
       </YStack>
