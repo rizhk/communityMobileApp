@@ -36,6 +36,10 @@ export function ActualitiesScreen({ navigation }: Props) {
 
   console.log(actualities, "actualities");
 
+  if (isLoadingActivities) {
+    return <Text>Loading...</Text>;
+  }
+
   return (
     <ScrollView>
       <YStack pa="sm" gap="sm">
@@ -45,7 +49,6 @@ export function ActualitiesScreen({ navigation }: Props) {
         {/* <FilterComponent onApply={handleApplyFilter} currentFilters={filters} /> */}
 
         {actualities?.data.map((actuality: ActualityItem) => {
-          // Add type annotation for 'actuality'
           return <ActualityCard key={actuality.id} navigation={navigation} actuality={actuality} />;
         })}
       </YStack>

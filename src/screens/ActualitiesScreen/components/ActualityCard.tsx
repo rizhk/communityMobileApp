@@ -13,23 +13,19 @@ type ActualityCardProps = {
 };
 
 export function ActualityCard({ navigation, actuality }: ActualityCardProps) {
-  const { title, content, endDate, startDate, cover } = actuality;
-
-  const [formatDate, setFormatDate] = useState("");
-  const textSize = formatDate.length > 6 ? "md" : "lg";
+  const { title, content, startDate, cover } = actuality;
 
   return (
     <Stack br="xs" bc="backgroundCard" overflow="hidden">
-      {/* <ImageBackground source={cover ? { uri: cover.url } : require("assets/image/tileCard/1.png")}> */}
       <YStack
         padding="md"
         br="md"
         gap="xs"
-        onPress={() => {
-          navigation.navigate("actuality", {
-            actuality,
-          });
-        }}
+        // onPress={() => {
+        //   navigation.navigate("actuality", {
+        //     actuality,
+        //   });
+        // }}
       >
         <Text text={formatDateFromToday(startDate ?? new Date(), "dd MMM")} size="xs" color="grey400" />
         <Text size="lg" text={title} preset="bold" color="primary" />
@@ -38,9 +34,7 @@ export function ActualityCard({ navigation, actuality }: ActualityCardProps) {
           {cover && <QuickImage width={240} height={120} source={{ uri: cover.url }} style={{ borderRadius: 16 }} />}
           {content && <Text text={content} />}
         </XStack>
-        <YStack flexGrow jc="space-around"></YStack>
       </YStack>
-      {/* </ImageBackground> */}
     </Stack>
   );
 }

@@ -16,7 +16,7 @@ export type ActualityItem = BaseItem & {
   document: MediaItem;
 };
 
-export interface ActualityData {
+export interface ActualitiesData {
   data: ActualityItem[];
   meta: PaginationMeta;
 }
