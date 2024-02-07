@@ -1,6 +1,7 @@
 // @ts-ignore
-import { API_URL } from "@env";
+// import { API_URL } from "@env";
 // const API_URL = "http://127.0.0.1:1337"; //for local request.test.tsx
+const API_URL = "https://community-strapi-8301883e8a6f.herokuapp.com";
 import axios, { AxiosRequestHeaders } from "axios";
 
 import { Data, ImageUpload, restQueryParams } from "types/global";
