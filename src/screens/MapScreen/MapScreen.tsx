@@ -15,8 +15,7 @@ import { useEffect, useState, useRef } from "react";
 import { View } from "react-native";
 import MapView, { Region } from "react-native-maps";
 import useSWR from "swr";
-import CreateActivity from "screens/ActivitiesScreen/components/CreateActivity";
-import { fetchSports } from "api/sport-request";
+
 import { fetchActivities, populateActivity } from "api/activity-request";
 
 type Props = NativeStackScreenProps<MainStackParamList, "map">;
@@ -103,7 +102,6 @@ export function MapScreen({ navigation }: Props) {
 
   return (
     <YStack full>
-      <CreateActivity open={openActivity} setOpen={setOpenActivity} />
       {/* <ActivityFilter
         isVisible={isFilterVisible}
         onClose={handleCloseFilter}
