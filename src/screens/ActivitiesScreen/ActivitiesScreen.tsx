@@ -11,7 +11,6 @@ import { ActivityIndicator, FlatList, ScrollView, View } from "react-native";
 import useSWR from "swr";
 import { ActivityFilters, ActivityQueryParams } from "types/activity";
 import ActivityCard from "./components/ActivityCard";
-import CreateActivity from "./components/CreateActivity";
 import { useHeaderMenu } from "hooks/useHeaderMenu";
 import { Filter } from "assets/svg";
 import { MenuType } from "components/Menu/Menu.types";
@@ -62,7 +61,6 @@ export function ActivitiesScreen({ navigation }: Props) {
   return (
     <YStack full>
       <Text preset="header">{activities?.meta?.pagination?.total} Activities found </Text>
-      <CreateActivity open={openActivity} setOpen={setOpenActivity} />
       <Button
         tx="createActivity.button"
         onPress={() => setOpenActivity(true)}
@@ -88,7 +86,6 @@ export function ActivitiesScreen({ navigation }: Props) {
           </ScrollView>
         </>
       )}
-      <CreateActivity open={openActivity} setOpen={setOpenActivity} />
       <Button
         tx="createActivity.button"
         onPress={() => setOpenActivity(true)}
