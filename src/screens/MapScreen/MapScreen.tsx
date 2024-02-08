@@ -76,7 +76,7 @@ export function MapScreen({ navigation }: Props) {
   const [pageSize, setPageSize] = useState(10);
 
   //Fetch Activities
-  const restQueryParams: LocationQueryParams = {
+  const locationQueryParams: LocationQueryParams = {
     filters: filters,
     populate: "*",
     pagination: {
@@ -86,16 +86,16 @@ export function MapScreen({ navigation }: Props) {
     sort: "startDate:desc",
   };
 
-  const { data: locations, isLoading: isLoadingActivities } = useSWR(["locations", filters], () =>
-    fetchAxiosAPI("/locations", restQueryParams)
+  const { data: locations, isLoading: isLoadingLocations } = useSWR(["locations", filters], () =>
+    fetchAxiosAPI("/locations", locationQueryParams)
   );
 
-  if (isLoadingActivities) {
+  if (isLoadingLocations) {
     return <ActivityIndicator></ActivityIndicator>;
   }
-  if (!locations) {
-    return <Text>error...</Text>;
-  }
+  // if (!locations) {
+  //   return <Text>error...</Text>;
+  // }
 
   // const menu: MenuType = {
   //   type: "element",

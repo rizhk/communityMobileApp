@@ -10,6 +10,7 @@ import { CustomMarker } from "./components/Marker";
 import { MapPresets, presets } from "./map.presets";
 import { useNavigation } from "@react-navigation/native";
 import { LocationData } from "types/location";
+import { IncidentData } from "types/incident";
 
 //TODO: - Display fields on the map
 
@@ -19,7 +20,8 @@ interface MapProps {
   initialRegion?: Region;
   style?: any;
   preset?: MapPresets;
-  locations: LocationData;
+  locations?: LocationData;
+  incidents?: IncidentData;
   mapRef?: any;
   onRegionChangeComplete?: (newRegion: Region) => void; // Add this line
   navigation: any;
