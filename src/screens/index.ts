@@ -1,6 +1,6 @@
 export { ActivityScreen } from "screens/ActivityScreen/ActivityScreen";
 
-//community
+//communityApp
 export { ActualitiesScreen } from "./ActualitiesScreen/ActualitiesScreen";
 
 export { ActivitiesScreen } from "./ActivitiesScreen/ActivitiesScreen";
