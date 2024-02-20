@@ -2,8 +2,8 @@ import "dotenv/config";
 
 export default {
   expo: {
-    name: "community",
-    slug: "community",
+    name: "communityApp",
+    slug: "communityapp",
     owner: "kaherdin",
     version: "0.1",
     entrypoint: "./src/app.tsx",
@@ -55,15 +55,15 @@ export default {
       API_URL: process.env.API_URL,
       GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
       eas: {
-        projectId: "b3ccd5df-7c22-473c-9984-d395ba471854",
+        projectId: "b479b2c4-c244-4997-a083-5b96d3c41088",
       },
     },
 
     updates: {
-      url: "https://u.expo.dev/b3ccd5df-7c22-473c-9984-d395ba471854",
+      url: "https://u.expo.dev/b479b2c4-c244-4997-a083-5b96d3c41088",
     },
     runtimeVersion: {
-      policy: "appVersion",
+      policy: "sdkVersion",
     },
   },
 };

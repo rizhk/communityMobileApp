@@ -22,7 +22,7 @@
     "@types/google.maps": "^3.54.10",
     "axios": "^1.6.0",
     "date-fns": "^2.30.0",
-    "expo": "~49.0.15",
+    "expo": "~50.0.7",
     "expo-app-loading": "^2.1.1",
     "expo-blur": "~12.4.1",
     "expo-font": "~11.4.0",
