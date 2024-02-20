@@ -12,13 +12,15 @@
       "env": {
         "GOOGLE_API_KEY": "AIzaSyDHvSOnWzsHZW9u-txq7-9R9fTZcCYBkmk",
         "API_URL": "https://community-strapi-8301883e8a6f.herokuapp.com"
-      }
+      },
+      "channel": "development"
     },
     "preview": {
       "distribution": "internal",
       "ios": {
         "resourceClass": "m1-medium"
-      }
+      },
+      "channel": "preview"
     },
     "production": {
       "ios": {
@@ -27,7 +29,8 @@
       "env": {
         "GOOGLE_API_KEY": "AIzaSyDHvSOnWzsHZW9u-txq7-9R9fTZcCYBkmk",
         "API_URL": "https://community-strapi.herokuapp.com/"
-      }
+      },
+      "channel": "production"
     }
   },
   "submit": {

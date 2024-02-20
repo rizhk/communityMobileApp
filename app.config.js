@@ -54,9 +54,16 @@ export default {
     extra: {
       API_URL: process.env.API_URL,
       GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
-      // eas: {
-      //   projectId: "622f7be2-6dd2-444b-9f42-44114a6abdee",
-      // },
+      eas: {
+        projectId: "b3ccd5df-7c22-473c-9984-d395ba471854",
+      },
+    },
+
+    updates: {
+      url: "https://u.expo.dev/b3ccd5df-7c22-473c-9984-d395ba471854",
+    },
+    runtimeVersion: {
+      policy: "appVersion",
     },
   },
 };
