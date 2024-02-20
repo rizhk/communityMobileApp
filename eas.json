@@ -20,6 +20,10 @@
       "ios": {
         "resourceClass": "m1-medium"
       },
+      "env": {
+        "GOOGLE_API_KEY": "AIzaSyDHvSOnWzsHZW9u-txq7-9R9fTZcCYBkmk",
+        "API_URL": "https://community-strapi-8301883e8a6f.herokuapp.com"
+      },
       "channel": "preview"
     },
     "production": {
