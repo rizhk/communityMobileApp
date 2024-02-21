@@ -33,43 +33,18 @@ export function MapScreen({ navigation }: Props) {
 
   const mapRef = useRef<MapView>(null);
 
-  const [isFilterVisible, setIsFilterVisible] = useState(false);
-
-  const handleOpenFilter = () => {
-    setIsFilterVisible(true);
-  };
-
-  const handleCloseFilter = () => {
-    setIsFilterVisible(false);
-  };
-
-  const handleApplyFilter = () => {
-    // Update filters and fetch new data
-    handleCloseFilter();
-  };
-
-  const filters = {
-    // sport: {
-    //   name: "Basketball",
-    // },
-    // date: "2023-07-19",
-  };
+  const filters = {};
 
   //Move the map to user Location
-  useEffect(() => {
-    if (userRegion) {
-      setRegion(userRegion);
-    }
-  }, [isLocationFetched]);
+  // useEffect(() => {
+  //   if (userRegion) {
+  //     setRegion(userRegion);
+  //   }
+  // }, [isLocationFetched]);
 
   const handleRegionChangeComplete = (newRegion: Region) => {
     setRegion(newRegion);
   };
-
-  // console.log(data, "data");
-  // if (!isLocationFetched) {
-  //   return <ActivityIndicator />;
-  // }
 
   //FETCHING AND FILTERS
   const [page, setPage] = useState(1);
@@ -90,6 +65,8 @@ export function MapScreen({ navigation }: Props) {
     fetchAxiosAPI("/locations", locationQueryParams)
   );
 
+  console.log(locations, "locations");
+
   if (isLoadingLocations) {
     return <ActivityIndicator></ActivityIndicator>;
   }
@@ -97,25 +74,8 @@ export function MapScreen({ navigation }: Props) {
   //   return <Text>error...</Text>;
   // }
 
-  // const menu: MenuType = {
-  //   type: "element",
-  //   icon: Filter,
-  //   element: <ActivityFilter onApply={handleApplyFilter} currentFilters={filters} />,
-  // };
-  // useHeaderMenu({ navigation, ...menu });
-
   return (
     <YStack full>
-      {/* <ActivityFilter
-        isVisible={isFilterVisible}
-        onClose={handleCloseFilter}
-        onApply={handleApplyFilter}
-        // sportItems={dataSports}
-        // filters={filters}
-        // setFilters={setFilters} // If you want to lift state up
-      /> */}
-      {/* <ShowRefetchButton /> */}
-
       <MapComponent
         maxDistance={maxDistance}
         mapRef={mapRef}
@@ -123,11 +83,6 @@ export function MapScreen({ navigation }: Props) {
         region={region}
         onRegionChangeComplete={handleRegionChangeComplete}
         navigation={navigation}
-      />
-      <Button
-        tx="createActivity.button"
-        onPress={() => setOpenActivity(true)}
-        style={{ alignSelf: "center", bottom: 10, position: "absolute" }}
       />
     </YStack>
   );

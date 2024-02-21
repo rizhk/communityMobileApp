@@ -76,7 +76,7 @@ function MapComponent(props: MapProps) {
                       });
                   }}
                 >
-                  <CustomMarker image={cloudinaryUrl} type="activity" />
+                  {/* <CustomMarker image={cloudinaryUrl} type="activity" /> */}
                 </Marker>
               );
             }
