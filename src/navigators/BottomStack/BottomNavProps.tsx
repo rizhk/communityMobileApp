@@ -16,11 +16,6 @@ export type BottomTabParamList = {
   home: undefined;
   calendar: undefined;
   map: { region?: { latitude: number; longitude: number } };
-  official: undefined;
-  info: undefined;
-
-  test: undefined;
-
   officials: undefined;
   infos: undefined;
 };

@@ -1,5 +1,5 @@
 import { NavType } from "navigators/NavType";
-import { ActivityScreen, LocationScreen, ActualityScreen } from "screens";
+import { ActivityScreen, LocationScreen, ActualityScreen, InfoScreen } from "screens";
 
 import { BottomTabParamList } from "../BottomStack/BottomNavProps";
 import { ActivityItem } from "types/activity";
@@ -17,23 +17,6 @@ export type MainStackParamList = BottomTabParamList & {
   location: { location: LocationItem };
   actuality: { actuality: ActualityItem };
   info: { info: InfoItem };
-  // actuality: any;
-
-  // actuality: { actuality: ActualityItem };
-  // activity: { activity: ActivityItem };
-  //   activities: undefined;
-  //   "create-activity": { coordinate: Region | null; fieldId: number | null };
-  //   "edit-profile": any;
-  //   "follower-screen": any;
-  //   home: any;
-  //   field: { field: FieldItemStrapi };
-  //   "create-field": { coordinate: Region | null };
-  //   "choose-location-screen": undefined;
-  //   "create-tournament": undefined;
-  //   "tournament-screen": undefined;
-  //   "team-screen": undefined;
-  //   "team-participant-screen": undefined;
-  //   "create-team": undefined;
 };
 
 export const MainNavProps: MainNavPropsType[] = [
@@ -51,6 +34,6 @@ export const MainNavProps: MainNavPropsType[] = [
   },
   {
     route: "info",
-    component: ActualityScreen,
+    component: InfoScreen,
   },
 ];
