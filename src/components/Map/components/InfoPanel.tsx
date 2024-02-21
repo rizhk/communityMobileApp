@@ -1,3 +1,5 @@
+import { QuickImage } from "components/ImageComponent";
+import { Image } from "expo-image";
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import MapView, { Marker, Callout } from "react-native-maps";
@@ -12,11 +14,17 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({ location }) => {
     return null; // Handle cases where location data is missing
   }
 
-  const { title, address, ...otherInfo } = location; // Destructure relevant fields
+  const { title, address, cover } = location; // Destructure relevant fields
+
+  console.log(cover, "cover");
 
   return (
     <Callout style={styles.infoPanel}>
       <View>
+        {/* {cover && <QuickImage width={120} height={120} source={{ uri: cover.url }} style={{ borderRadius: 16 }} />} */}
+        {/* //TODO Fix image width and height ratio */}
+        {cover && <Image source={{ uri: cover.url }} style={{ width: 120, height: 120, borderRadius: 16 }} />}
+
         <Text style={styles.infoPanelTitle}>{title}</Text>
         <Text style={styles.infoPanelItem}>{address}</Text>
       </View>

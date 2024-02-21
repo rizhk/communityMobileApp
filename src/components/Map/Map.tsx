@@ -10,6 +10,7 @@ import { LocationData, LocationItem } from "types/location";
 import { IncidentData } from "types/incident";
 import { useState } from "react";
 import { InfoPanel } from "./components/InfoPanel";
+import { View } from "react-native";
 
 //TODO: - Display fields on the map
 
@@ -65,9 +66,8 @@ function MapComponent(props: MapProps) {
 
             if (location?.latitude !== null && location?.longitude !== null) {
               return (
-                <>
+                <View key={index}>
                   <Marker
-                    key={index}
                     coordinate={{
                       latitude: location.latitude,
                       longitude: location.longitude,
@@ -85,7 +85,7 @@ function MapComponent(props: MapProps) {
                     {/* <CustomMarker image={cloudinaryUrl} type="location" /> */}
                     {selectedLocation && <InfoPanel location={selectedLocation} />}
                   </Marker>
-                </>
+                </View>
               );
             }
           })}
