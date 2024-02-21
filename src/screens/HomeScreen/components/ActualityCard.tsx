@@ -8,6 +8,7 @@ import { QuickImage } from "components/ImageComponent";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { createEditorJsViewer } from "editorjs-viewer-native";
+import { format } from "date-fns";
 
 type ActualityCardProps = {
   actuality: ActualityItem;
@@ -34,12 +35,13 @@ export function ActualityCard({ navigation, actuality }: ActualityCardProps) {
           });
         }}
       >
-        <Text text={formatDateFromToday(startDate ?? new Date(), "dd MMM")} size="xs" color="grey400" />
+        <Text text={formatDateFromToday(startDate ?? new Date(), "dd MMMM yyyy")} size="xs" color="grey400" />
         <Text size="lg" text={title} preset="bold" color="primary" />
 
         <XStack ai="center" jc="space-between" w={100}>
           {cover && <QuickImage width={120} height={120} source={{ uri: cover.url }} style={{ borderRadius: 16 }} />}
           {content && <Text text={content} />}
+
           {contentRTE && <EditorJsViewerNative data={JSON.parse(contentRTE)} />}
         </XStack>
       </YStack>
