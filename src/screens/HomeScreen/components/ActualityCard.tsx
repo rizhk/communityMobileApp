@@ -7,6 +7,7 @@ import { ActualityItem } from "types/actuality";
 import { QuickImage } from "components/ImageComponent";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
+import { createEditorJsViewer } from "editorjs-viewer-native";
 
 type ActualityCardProps = {
   actuality: ActualityItem;
@@ -14,7 +15,11 @@ type ActualityCardProps = {
 };
 
 export function ActualityCard({ navigation, actuality }: ActualityCardProps) {
-  const { title, content, startDate, cover } = actuality;
+  const { title, content, contentRTE, startDate, cover } = actuality;
+
+  const EditorJsViewerNative = createEditorJsViewer();
+
+  console.log(contentRTE, "contentRTE");
 
   return (
     <Stack br="xs" bc="backgroundCard" overflow="hidden">
@@ -23,6 +28,7 @@ export function ActualityCard({ navigation, actuality }: ActualityCardProps) {
         br="md"
         gap="xs"
         onPress={() => {
+          // @ts-ignore
           navigation.navigate("actuality", {
             actuality,
           });
@@ -34,6 +40,7 @@ export function ActualityCard({ navigation, actuality }: ActualityCardProps) {
         <XStack ai="center" jc="space-between" w={100}>
           {cover && <QuickImage width={120} height={120} source={{ uri: cover.url }} style={{ borderRadius: 16 }} />}
           {content && <Text text={content} />}
+          {contentRTE && <EditorJsViewerNative data={JSON.parse(contentRTE)} />}
         </XStack>
       </YStack>
     </Stack>

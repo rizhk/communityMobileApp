@@ -12,8 +12,9 @@ export interface MainNavPropsType extends NavType<MainStackParamList> {
 
 export type MainStackParamList = BottomTabParamList & {
   activity: { activity: ActivityItem };
-  actuality: { actuality: ActualityItem };
+  // actuality: { actuality: ActualityItem };
   info: { info: InfoItem };
+  actuality: any;
 
   // actuality: { actuality: ActualityItem };
   // activity: { activity: ActivityItem };

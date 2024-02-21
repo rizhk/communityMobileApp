@@ -17,7 +17,8 @@ export type BaseItem = {
   id: number;
   title: string;
   content: string;
-  contentRtM: string;
+  contentRtM: any;
+  contentRTE: any;
   contentRtB: string;
   startDate: Date;
   endDate: Date;
