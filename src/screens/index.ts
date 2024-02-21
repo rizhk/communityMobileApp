@@ -1,4 +1,6 @@
 export { ActivityScreen } from "screens/ActivityScreen/ActivityScreen";
+export { LocationScreen } from "screens/LocationScreen/LocationScreen";
+export { ActualityScreen } from "screens/ActualityScreen/ActualityScreen";
 
 //communityApp
 export { HomeScreen } from "./HomeScreen/HomeScreen";

@@ -1,20 +1,23 @@
 import { NavType } from "navigators/NavType";
-import { ActivityScreen } from "screens";
+import { ActivityScreen, LocationScreen, ActualityScreen } from "screens";
 
 import { BottomTabParamList } from "../BottomStack/BottomNavProps";
 import { ActivityItem } from "types/activity";
 import { ActualityItem } from "types/actuality";
-import { ActualityScreen } from "screens/ActualityScreen/ActualityScreen";
+
 import { InfoItem } from "types/info";
+import { LocationItem } from "types/location";
+
 export interface MainNavPropsType extends NavType<MainStackParamList> {
   noHeader?: boolean;
 }
 
 export type MainStackParamList = BottomTabParamList & {
   activity: { activity: ActivityItem };
-  // actuality: { actuality: ActualityItem };
+  location: { location: LocationItem };
+  actuality: { actuality: ActualityItem };
   info: { info: InfoItem };
-  actuality: any;
+  // actuality: any;
 
   // actuality: { actuality: ActualityItem };
   // activity: { activity: ActivityItem };
@@ -37,6 +40,10 @@ export const MainNavProps: MainNavPropsType[] = [
   {
     route: "activity",
     component: ActivityScreen,
+  },
+  {
+    route: "location",
+    component: LocationScreen,
   },
   {
     route: "actuality",

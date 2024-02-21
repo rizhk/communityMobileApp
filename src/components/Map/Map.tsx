@@ -2,13 +2,10 @@ import { Text } from "components/Text";
 import { KM_PER_DEGREE_LATITUDE } from "constants/global";
 import useCurrentPosition from "hooks/useCurrentPosition";
 import MapView, { Marker, Region, Circle } from "react-native-maps";
-import { color } from "theme";
-import { ActivitiesData } from "types/activity";
-import { hexToRGBA } from "utils/helper";
 
 import { CustomMarker } from "./components/Marker";
 import { MapPresets, presets } from "./map.presets";
-import { useNavigation } from "@react-navigation/native";
+
 import { LocationData } from "types/location";
 import { IncidentData } from "types/incident";
 
@@ -59,24 +56,24 @@ function MapComponent(props: MapProps) {
         {...rest}
       >
         {locations?.data &&
-          locations.data.map((activity, index) => {
-            const cloudinaryUrl = activity?.cover?.url;
-            if (activity?.latitude !== null && activity?.longitude !== null) {
+          locations.data.map((location, index) => {
+            const cloudinaryUrl = location?.cover?.url;
+            if (location?.latitude !== null && location?.longitude !== null) {
               return (
                 <Marker
                   key={index}
                   coordinate={{
-                    latitude: activity.latitude,
-                    longitude: activity.longitude,
+                    latitude: location.latitude,
+                    longitude: location.longitude,
                   }}
                   onPress={(e) => {
                     e.stopPropagation(),
-                      navigation.navigate("activity", {
-                        activity,
+                      navigation.navigate("location", {
+                        location,
                       });
                   }}
                 >
-                  {/* <CustomMarker image={cloudinaryUrl} type="activity" /> */}
+                  {/* <CustomMarker image={cloudinaryUrl} type="location" /> */}
                 </Marker>
               );
             }

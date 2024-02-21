@@ -13,11 +13,12 @@ import { LocationType } from "types/global";
 import AvatarSlider, { AvatarUser } from "components/Avatar/AvatarSlider";
 import { ActivityItem } from "types/activity";
 import { UserItem } from "types/user";
+import { LocationItem } from "types/location";
 
-type Props = NativeStackScreenProps<MainStackParamList, "activity">;
+type Props = NativeStackScreenProps<MainStackParamList, "location">;
 
-export function ActivityScreen({ navigation, route }: Props) {
-  const { startDate, content }: ActivityItem = route.params.activity;
+export function LocationScreen({ navigation, route }: Props) {
+  const { startDate, content }: LocationItem = route.params.location as LocationItem;
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -31,8 +32,26 @@ export function ActivityScreen({ navigation, route }: Props) {
               navigation.goBack();
             }}
           />
-
-          <YStack h={150} jc="space-evenly"></YStack>
+          {/* <Stack jc="center" ai="center" h={200}>
+            <Image source={{ uri: sport.icon.url }} resizeMode="contain" style={iconStyle} />
+          </Stack> */}
+          <YStack h={150} jc="space-evenly">
+            {/* <YStack jc="center">
+              <AddressField
+                textProps={{ size: "sm" }}
+                coord={coord}
+                format={"%city% (%state%), %street% %streetNb%"}
+                color="white"
+              />
+              {distance ? (
+                <Text>{distance}</Text>
+              ) : (
+                <Stack ai="flex-start">
+                  <ActivityIndicator animating={true} hidesWhenStopped={true} />
+                </Stack>
+              )}
+            </YStack> */}
+          </YStack>
           <Stack h={1} bc="grey600"></Stack>
 
           {content && (
@@ -42,10 +61,6 @@ export function ActivityScreen({ navigation, route }: Props) {
               <Stack h={1} bc="grey600"></Stack>
             </YStack>
           )}
-          {/* TODO ajouter logique */}
-          <Stack ai="center" h={40} jc="center">
-            <Text color="error" text="Supprimé l'activité" />
-          </Stack>
         </YStack>
       </ScrollView>
     </SafeAreaView>

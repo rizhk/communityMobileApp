@@ -6,7 +6,7 @@ import { color as themeColor } from "theme";
 
 interface CustomMarkerProps {
   image: string | undefined;
-  type?: "activity" | "field" | "tournament";
+  type?: "sportif" | "refuge" | "religion";
 }
 
 const ICON_SIZE = 60;
