@@ -1,5 +1,5 @@
 import { NavType } from "navigators/NavType";
-import { ActivityScreen, LocationScreen, ActualityScreen, InfoScreen } from "screens";
+import { ActivityScreen, LocationScreen, ActualityScreen, InfosScreen } from "screens";
 
 import { BottomTabParamList } from "../BottomStack/BottomNavProps";
 import { ActivityItem } from "types/activity";
@@ -34,6 +34,6 @@ export const MainNavProps: MainNavPropsType[] = [
   },
   {
     route: "info",
-    component: InfoScreen,
+    component: InfosScreen,
   },
 ];

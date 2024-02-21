@@ -19,8 +19,6 @@ export function ActualityCard({ navigation, actuality }: ActualityCardProps) {
 
   const EditorJsViewerNative = createEditorJsViewer();
 
-  console.log(contentRTE, "contentRTE");
-
   return (
     <Stack br="xs" bc="backgroundCard" overflow="hidden">
       <YStack

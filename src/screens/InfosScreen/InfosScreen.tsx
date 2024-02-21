@@ -6,11 +6,14 @@ import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { useState } from "react";
 import { View } from "react-native";
 import useSWR from "swr";
-import { InfoFilters, InfoQueryParams } from "types/info";
+import { InfoFilters, InfoItem, InfoQueryParams } from "types/info";
+import { InfoCard } from "./components/InfoCard";
+import { ScrollView } from "react-native";
+import { YStack } from "components/containers";
 
 type Props = NativeStackScreenProps<MainStackParamList, "info">;
 
-export function InfoScreen({ navigation }: Props) {
+export function InfosScreen({ navigation }: Props) {
   const [filters, setFilters] = useState<InfoFilters>({});
 
   //TODO: Pagination
@@ -25,16 +28,20 @@ export function InfoScreen({ navigation }: Props) {
       page,
       pageSize,
     },
-    sort: "startDate:desc",
+    sort: "title:asc",
   };
 
   const { data: infos, isLoading: isLoadingActivities } = useSWR(["infos", filters], () =>
     fetchAxiosAPI("/infos", restQueryParams)
   );
-  console.log("infos: ", infos);
+
   return (
-    <View>
-      <Text>InfoScreen</Text>
-    </View>
+    <ScrollView>
+      <YStack pa="sm" gap="sm">
+        {infos?.data.map((info: InfoItem) => {
+          return <InfoCard key={info.id} navigation={navigation} info={info} />;
+        })}
+      </YStack>
+    </ScrollView>
   );
 }

@@ -7,6 +7,7 @@ import { formatDateFromToday } from "utils/Date";
 import { QuickImage } from "components/ImageComponent";
 import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
+import { createEditorJsViewer } from "editorjs-viewer-native";
 
 type InfoCardProps = {
   info: InfoItem;
@@ -14,7 +15,9 @@ type InfoCardProps = {
 };
 
 export function InfoCard({ navigation, info }: InfoCardProps) {
-  const { title, content, startDate, cover } = info;
+  const { title, contentRTE, startDate, cover } = info;
+
+  const EditorJsViewerNative = createEditorJsViewer();
 
   return (
     <Stack br="xs" bc="backgroundCard" overflow="hidden">
@@ -23,17 +26,18 @@ export function InfoCard({ navigation, info }: InfoCardProps) {
         br="md"
         gap="xs"
         onPress={() => {
-          navigation.navigate("info", {
-            info,
-          });
+          // navigation.navigate("info", {
+          //   info,
+          // });
         }}
       >
         {/* <Text text={formatDateFromToday(startDate ?? new Date(), "dd MMM")} size="xs" color="grey400" /> */}
         <Text size="lg" text={title} preset="bold" color="primary" />
 
-        <XStack ai="center" jc="space-between" w={100}>
+        <XStack ai="center" jc="space-between">
           {cover && <QuickImage width={120} height={120} source={{ uri: cover.url }} style={{ borderRadius: 16 }} />}
-          {content && <Text text={content} />}
+
+          {contentRTE && <EditorJsViewerNative data={JSON.parse(contentRTE)} />}
         </XStack>
       </YStack>
     </Stack>
