@@ -6,8 +6,10 @@ import MapView, { Marker, Region, Circle } from "react-native-maps";
 import { CustomMarker } from "./components/Marker";
 import { MapPresets, presets } from "./map.presets";
 
-import { LocationData } from "types/location";
+import { LocationData, LocationItem } from "types/location";
 import { IncidentData } from "types/incident";
+import { useState } from "react";
+import { InfoPanel } from "./components/InfoPanel";
 
 //TODO: - Display fields on the map
 
@@ -45,6 +47,8 @@ function MapComponent(props: MapProps) {
   };
   const radius = calculateRadius(region.latitudeDelta);
 
+  const [selectedLocation, setSelectedLocation] = useState<LocationItem | undefined>();
+
   return (
     <>
       <MapView
@@ -58,23 +62,30 @@ function MapComponent(props: MapProps) {
         {locations?.data &&
           locations.data.map((location, index) => {
             const cloudinaryUrl = location?.cover?.url;
+
             if (location?.latitude !== null && location?.longitude !== null) {
               return (
-                <Marker
-                  key={index}
-                  coordinate={{
-                    latitude: location.latitude,
-                    longitude: location.longitude,
-                  }}
-                  onPress={(e) => {
-                    e.stopPropagation(),
-                      navigation.navigate("location", {
-                        location,
-                      });
-                  }}
-                >
-                  {/* <CustomMarker image={cloudinaryUrl} type="location" /> */}
-                </Marker>
+                <>
+                  <Marker
+                    key={index}
+                    coordinate={{
+                      latitude: location.latitude,
+                      longitude: location.longitude,
+                    }}
+                    onPress={() => {
+                      setSelectedLocation(location);
+                    }}
+                    // onPress={(e) => {
+                    //   e.stopPropagation(),
+                    //     navigation.navigate("location", {
+                    //       location,
+                    //     });
+                    // }}
+                  >
+                    {/* <CustomMarker image={cloudinaryUrl} type="location" /> */}
+                    {selectedLocation && <InfoPanel location={selectedLocation} />}
+                  </Marker>
+                </>
               );
             }
           })}
