@@ -8,7 +8,6 @@ import { QuickImage } from "components/ImageComponent";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { createEditorJsViewer } from "editorjs-viewer-native";
-import { format } from "date-fns";
 
 type ActualityCardProps = {
   actuality: ActualityItem;

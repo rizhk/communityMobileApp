@@ -1,65 +1,52 @@
 import { Text } from "components/Text";
 import { Stack, XStack, YStack } from "components/containers/Stack/Stack";
-import { useState } from "react";
-import { Image, ImageBackground, StyleProp, ImageStyle } from "react-native";
-
-import { INFINIT_PARTICIPANTS } from "constants/global";
-import { ActivityItem } from "types/activity";
 
 import { formatDateFromToday } from "utils/Date";
-import AddressField from "components/AddressField";
+
+import { QuickImage } from "components/ImageComponent";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { MainStackParamList } from "navigators/MainStack/MainNavProps";
+import { createEditorJsViewer } from "editorjs-viewer-native";
+import { ActivityItem } from "types/activity";
 
 type ActivityCardProps = {
   activity: ActivityItem;
-  navigation: any;
+  navigation: NativeStackNavigationProp<MainStackParamList>; // Consider using a more specific type for navigation if possible
 };
 
-export function ActivityCard(props: ActivityCardProps) {
-  const { navigation, activity } = props;
-  const { latitude, longitude, sport, participants, maxParticipants, startDate } = activity;
-  const nbmaxParticipants = maxParticipants === INFINIT_PARTICIPANTS ? "∞" : maxParticipants;
-  const [formatDate, setFormatDate] = useState("");
-  const textSize = formatDate.length > 6 ? "md" : "lg";
+export function ActivityCard({ navigation, activity }: ActivityCardProps) {
+  const { title, content, contentRTE, startDate, cover } = activity;
+
+  const EditorJsViewerNative = createEditorJsViewer();
+
+  console.log(contentRTE, "contentRTE");
 
   return (
-    <Stack h={90} br="xs" bc="backgroundLight" overflow="hidden">
-      <ImageBackground source={require("assets/image/tileCard/1.png")}>
-        <XStack
-          pa="xxs"
-          br="md"
-          gap="xs"
-          onPress={() => {
-            navigation.navigate("activity", {
-              activity: activity,
-            });
-          }}
-        >
-          <YStack ai="center" jc="space-between" w={100}>
-            <Image source={{ uri: sport?.icon?.url }} resizeMode="contain" style={iconStyle} />
-            <Text
-              text={formatDateFromToday(startDate ?? new Date(), "dd MMM")}
-              preset="bold"
-              color="primary"
-              size={textSize}
-            />
-          </YStack>
-          <YStack flexGrow jc="space-around">
-            <Text text={sport?.name} preset="bold" size="xl" />
-            <AddressField coord={{ longitude: longitude, latitude: latitude }} format={"%city%, %state%"} />
-            {/* <XStack w="100%" gap="xs">
-              <User color={color.white} />
-              <Text text={`${participants.length} / ${nbmaxParticipants}`} preset="bold" size="xs" />
-            </XStack> */}
-          </YStack>
+    <Stack br="xs" bc="backgroundCard" overflow="hidden">
+      <YStack
+        padding="md"
+        br="md"
+        gap="xs"
+        onPress={() => {
+          // @ts-ignore
+          navigation.navigate("activity", {
+            activity,
+          });
+        }}
+      >
+        <Text text={formatDateFromToday(startDate ?? new Date(), "dd MMMM yyyy")} size="xs" color="grey400" />
+        <Text size="lg" text={title} preset="bold" color="primary" />
+
+        <XStack ai="center" jc="space-between" w={100}>
+          {cover && <QuickImage width={120} height={120} source={{ uri: cover.url }} style={{ borderRadius: 16 }} />}
+          {content && <Text text={content} />}
+          {/* <AddressField coord={{ longitude: longitude, latitude: latitude }} format={"%city%, %state%"} /> */}
+
+          {contentRTE && <EditorJsViewerNative data={JSON.parse(contentRTE)} />}
         </XStack>
-      </ImageBackground>
+      </YStack>
     </Stack>
   );
 }
 
 export default ActivityCard;
-
-const iconStyle = {
-  height: "65%",
-  width: "65%",
-} as StyleProp<ImageStyle>;

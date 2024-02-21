@@ -16,7 +16,7 @@ import { Filter } from "assets/svg";
 import { MenuType } from "components/Menu/Menu.types";
 import { fetchActivities, populateActivity } from "api/activity-request";
 
-type Props = NativeStackScreenProps<MainStackParamList, "activities">;
+type Props = NativeStackScreenProps<MainStackParamList>;
 
 export function CalendarScreen({ navigation }: Props) {
   const handleApplyFilter = (newFilters: ActivityFilters) => {
@@ -67,7 +67,6 @@ export function CalendarScreen({ navigation }: Props) {
           /> */}
         {/* <FlatList data={activities} renderItem={({item}) => <ActivityCard activity={item} key={item?.id} />}/> */}
         <ScrollView>
-          <Text>Calendar</Text>
           <YStack gap={"md"} mb={76} pa={"md"}>
             {activities?.data?.map((activity: any) => (
               <ActivityCard activity={activity} navigation={navigation} key={activity?.id} />
