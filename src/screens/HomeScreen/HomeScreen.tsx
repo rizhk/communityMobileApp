@@ -12,7 +12,7 @@ import { XStack, YStack } from "components/containers";
 
 type Props = NativeStackScreenProps<MainStackParamList>;
 
-export function ActualitiesScreen({ navigation }: Props) {
+export function HomeScreen({ navigation }: Props) {
   const [filters, setFilters] = useState<ActualityFilters>({});
 
   //TODO: Pagination

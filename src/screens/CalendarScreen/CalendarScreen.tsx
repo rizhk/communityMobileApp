@@ -18,7 +18,7 @@ import { fetchActivities, populateActivity } from "api/activity-request";
 
 type Props = NativeStackScreenProps<MainStackParamList, "activities">;
 
-export function ActivitiesScreen({ navigation }: Props) {
+export function CalendarScreen({ navigation }: Props) {
   const [openActivity, setOpenActivity] = useState(false);
   const [userRegion] = useCurrentPosition();
   const [maxDistance, setMaxDistance] = useState(50000);

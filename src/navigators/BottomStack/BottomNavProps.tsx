@@ -3,7 +3,7 @@ import Joker from "assets/svg/joker.svg";
 import { translate } from "i18n";
 import { NavType } from "navigators/NavType";
 import { SVGAttributes } from "react";
-import { ActivitiesScreen, ActualitiesScreen, InfoScreen, MapScreen, OfficialScreen } from "screens";
+import { CalendarScreen, HomeScreen, InfoScreen, MapScreen, OfficialScreen } from "screens";
 import TestScreen from "screens/TestScreen/TestScreen";
 
 export interface BottomNavPropsType extends NavType<BottomTabParamList> {
@@ -13,13 +13,14 @@ export interface BottomNavPropsType extends NavType<BottomTabParamList> {
 }
 
 export type BottomTabParamList = {
-  activities: undefined;
-  profile: { user: any };
+  home: undefined;
+  calendar: undefined;
+  map: { region?: { latitude: number; longitude: number } };
+  official: undefined;
+  info: undefined;
 
   test: undefined;
-  actualities: undefined;
-  agenda: undefined;
-  map: { region?: { latitude: number; longitude: number } };
+
   officials: undefined;
   infos: undefined;
 };
@@ -29,18 +30,18 @@ export type BottomRoute = keyof BottomTabParamList;
 //TODO: change icons from png to svg
 export const BottomNavProps: BottomNavPropsType[] = [
   {
-    route: "actualities",
+    route: "home",
     label: `${translate("screenTitle.community")}`,
     icon: News,
     iconSize: 26,
-    component: ActualitiesScreen,
+    component: HomeScreen,
   },
   {
-    route: "agenda",
-    label: `Agenda`,
+    route: "calendar",
+    label: `Calendar`,
     icon: Calendar,
     iconSize: 26,
-    component: ActivitiesScreen,
+    component: CalendarScreen,
   },
   {
     route: "map",
@@ -77,7 +78,7 @@ export const BottomNavProps: BottomNavPropsType[] = [
   //   label: `${translate("screenTitle.activity")}`,
   //   icon: PinOutline,
   //   iconSize: 26,
-  //   component: ActivitiesScreen,
+  //   component: CalendarScreen,
   // },
   // {
   //   route: "messages",
