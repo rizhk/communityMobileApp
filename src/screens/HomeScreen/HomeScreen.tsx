@@ -41,11 +41,11 @@ export function HomeScreen({ navigation }: Props) {
   return (
     <ScrollView>
       <YStack pa="sm" gap="sm">
-        {/* TODO: Header avec logo */}
-        {/* Component Search based on useSwr to refresh the data correctly */}
+        {/* TODO: Component Search based on useSwr to refresh the data correctly */}
         {/* <SearchBar /> */}
         {/* <FilterComponent onApply={handleApplyFilter} currentFilters={filters} /> */}
 
+        {/* TODO: Replace by a component FlatList */}
         {actualities?.data.map((actuality: ActualityItem) => {
           return <ActualityCard key={actuality.id} navigation={navigation} actuality={actuality} />;
         })}

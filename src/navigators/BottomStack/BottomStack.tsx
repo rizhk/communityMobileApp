@@ -12,7 +12,7 @@ export function BottomStack() {
     <Bottom.Navigator
       initialRouteName="map"
       screenOptions={(route) => ({
-        header: () => <CustomHeader />,
+        header: () => <CustomHeader />, //TODO: If enable, filter Menu is not working
         headerTintColor: color.white,
         headerTitleStyle: { fontWeight: "bold", fontSize: text.lg },
         tabBarStyle: {

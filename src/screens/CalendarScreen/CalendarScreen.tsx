@@ -19,15 +19,8 @@ import { fetchActivities, populateActivity } from "api/activity-request";
 type Props = NativeStackScreenProps<MainStackParamList, "activities">;
 
 export function CalendarScreen({ navigation }: Props) {
-  const [openActivity, setOpenActivity] = useState(false);
-  const [userRegion] = useCurrentPosition();
-  const [maxDistance, setMaxDistance] = useState(50000);
-
-  const [isFilterVisible, setIsFilterVisible] = useState(false);
-
   const handleApplyFilter = (newFilters: ActivityFilters) => {
     setFilters(newFilters);
-    setIsFilterVisible(false);
   };
 
   const [filters, setFilters] = useState<ActivityFilters>({});
@@ -59,34 +52,29 @@ export function CalendarScreen({ navigation }: Props) {
   };
   useHeaderMenu({ navigation, ...menu });
 
+  if (isLoadingActivities) {
+    return <ActivityIndicator />;
+  }
+
   return (
     <YStack full>
-      <Text preset="header">{activities?.meta?.pagination?.total} Activities found </Text>
-      <Button
-        tx="createActivity.button"
-        onPress={() => setOpenActivity(true)}
-        style={{ alignSelf: "center", bottom: 10, position: "absolute" }}
-      />
-      {isLoadingActivities ? (
-        <ActivityIndicator />
-      ) : (
-        <>
-          {/* <ActivityFilter
+      <>
+        {/* <ActivityFilter
             isVisible={isFilterVisible}
             // onClose={handleCloseFilter}
             onApply={handleApplyFilter}
             currentFilters={filters}
           /> */}
-          {/* <FlatList data={activities} renderItem={({item}) => <ActivityCard activity={item} key={item?.id} />}/> */}
-          <ScrollView>
-            <YStack gap={"md"} mb={76} pa={"md"}>
-              {activities?.data?.map((activity: any) => (
-                <ActivityCard activity={activity} navigation={navigation} key={activity?.id} />
-              ))}
-            </YStack>
-          </ScrollView>
-        </>
-      )}
+        {/* <FlatList data={activities} renderItem={({item}) => <ActivityCard activity={item} key={item?.id} />}/> */}
+        <ScrollView>
+          <Text>Calendar</Text>
+          <YStack gap={"md"} mb={76} pa={"md"}>
+            {activities?.data?.map((activity: any) => (
+              <ActivityCard activity={activity} navigation={navigation} key={activity?.id} />
+            ))}
+          </YStack>
+        </ScrollView>
+      </>
     </YStack>
   );
 }
