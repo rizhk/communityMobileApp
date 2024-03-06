@@ -10,7 +10,9 @@ import { LocationsData, LocationItem } from "types/location";
 import { IncidentData } from "types/incident";
 import { useState } from "react";
 import { InfoPanel } from "./components/InfoPanel";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { Warehouse } from "lucide-react-native";
+import { color } from "theme";
 
 //TODO: - Display fields on the map
 
@@ -57,12 +59,23 @@ function MapComponent(props: MapProps) {
         onRegionChangeComplete={onRegionChangeComplete}
         region={region}
         ref={mapRef}
+        tintColor="#fff"
         initialRegion={rest.initialRegion}
         {...rest}
       >
         {locations?.data &&
           locations.data.map((location, index) => {
             const cloudinaryUrl = location?.cover?.url;
+
+            {
+              /* <FolderArchive color="red" size={48} />
+            <AlertTriangle color="red" size={48} />
+            <Church color="red" size={48} />
+            <HeartPulse color="red" size={48} />
+            <Dumbbell color="red" size={48} />
+            <Theater color="red" size={48} />
+            <Warehouse color="red" size={48} /> */
+            }
 
             if (location?.latitude !== null && location?.longitude !== null) {
               return (
@@ -82,6 +95,9 @@ function MapComponent(props: MapProps) {
                     //     });
                     // }}
                   >
+                    <View style={iconStyles.container}>
+                      <Warehouse color="red" size={36} />
+                    </View>
                     {/* <CustomMarker image={cloudinaryUrl} type="location" /> */}
                     {selectedLocation && <InfoPanel location={selectedLocation} />}
                   </Marker>
@@ -95,3 +111,14 @@ function MapComponent(props: MapProps) {
 }
 
 export default MapComponent;
+
+const iconStyles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: color.primary,
+    borderRadius: 20,
+    padding: 8,
+  },
+  // Additional styling if needed
+});
