@@ -55,8 +55,6 @@ export function HomeScreen({ navigation }: Props) {
   //   refreshInterval: 60000, // 60 seconds
   // });
 
-  // // console.log(actualities, "actualities");
-
   // if (isLoadingActivities) {
   //   return <Text>Loading...</Text>;
   // }

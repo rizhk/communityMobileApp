@@ -48,7 +48,6 @@ export default function GFormTab() {
   const [popup, setPopup] = useState(false);
   const [values, setValues] = useState(initialValues);
   const handleSubmit = (values: any) => {
-    console.log(values);
     setValues(values);
     setPopup(true);
   };

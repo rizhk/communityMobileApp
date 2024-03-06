@@ -2,7 +2,7 @@ import React from "react";
 import { Text, View, Image } from "react-native";
 import RenderHtml from "react-native-render-html";
 
-const EditorJsParser = ({ content }) => {
+const EditorJsParser = ({ content, contentWidth }) => {
   // if (!content) return null;
 
   const { blocks } = JSON.parse(content) || {};
@@ -13,7 +13,7 @@ const EditorJsParser = ({ content }) => {
         return <Text style={{ fontSize: 5 * block.data.level }}>{block.data.text}</Text>;
 
       case "paragraph":
-        return <RenderHtml source={{ html: block.data.text }} />;
+        return <RenderHtml contentWidth={contentWidth} source={{ html: block.data.text }} />;
 
       case "image":
         return (

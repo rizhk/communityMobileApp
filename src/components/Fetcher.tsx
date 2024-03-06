@@ -29,8 +29,6 @@ function Fetcher<T>({ url, children, params = defaultQueryParams }: FetcherProps
       </View>
     );
 
-  console.log(data, "date in fetchesr");
-
   return <>{children(data, mutate)}</>;
 }
 

@@ -20,9 +20,9 @@ type TabItem = {
 };
 
 const menuTest = [
-  { text: "test1", onPress: () => console.log("test1") },
-  { text: "test2", onPress: () => console.log("test2") },
-  { text: "test3", onPress: () => console.log("test3") },
+  { text: "test1", onPress: () => console.warn("test1") },
+  { text: "test2", onPress: () => console.warn("test2") },
+  { text: "test3", onPress: () => console.warn("test3") },
 ];
 
 const TabsItems: TabItem[] = [

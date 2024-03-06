@@ -16,7 +16,7 @@ const fetchDistance = async (origin: string, destination: string): Promise<strin
       return distanceText;
     })
     .catch((erro) => {
-      console.log(erro);
+      console.error(erro);
       return "Distance not found";
     });
 };

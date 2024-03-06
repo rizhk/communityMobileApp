@@ -16,7 +16,7 @@ const useCurrentPosition = (): [Region, boolean] => {
         return;
       }
 
-      console.log("Permission to access location was granted");
+      console.warn("Permission to access location was granted");
       const location = await Location.getCurrentPositionAsync({});
       setRegion({
         latitudeDelta: 0.1,

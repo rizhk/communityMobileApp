@@ -18,10 +18,6 @@ type ActivityCardProps = {
 export function ActivityCard({ navigation, activity }: ActivityCardProps) {
   const { title, content, contentRTE, publishedAt, cover } = activity;
 
-  const EditorJsViewerNative = createEditorJsViewer();
-
-  console.log(contentRTE, "contentRTE");
-
   return (
     <Stack br="xs" bc="backgroundCard" overflow="hidden">
       <YStack

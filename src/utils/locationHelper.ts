@@ -16,7 +16,7 @@ export async function fetchSuggestions(input: string) {
 
   let response = null;
   if (status !== "granted") {
-    console.log("Permission to access location was denied");
+    console.error("Permission to access location was denied");
     response = await axios.get(
       `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&rankBy=distance&language=${I18n.locale}&key=${GOOGLE_ADDRESS_KEY}`
     );
@@ -40,7 +40,7 @@ export async function fetchLocalPosition() {
   const { status } = await Location.requestForegroundPermissionsAsync();
 
   if (status !== "granted") {
-    console.log("Permission to access location was denied");
+    console.error("Permission to access location was denied");
     return null;
   }
 
@@ -53,7 +53,6 @@ export async function fetchAddressFromCoords(coords: { latitude: number; longitu
   const response = await axios.get(
     `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.latitude},${coords.longitude}&key=${GOOGLE_API_KEY}`
   );
-  // console.log(response.data.results[0], "ressullts");
   return response.data.results[0].formatted_address;
 }
 

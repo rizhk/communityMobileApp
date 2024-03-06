@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View } from "react-native";
+import { View, useWindowDimensions } from "react-native";
 import Accordion from "react-native-collapsible/Accordion";
 import { InfoItem } from "types/info";
 import { QuickImage } from "components/ImageComponent";
@@ -27,8 +27,7 @@ type InfoCardProps = {
 export const InfoCard = ({ navigation, info }: InfoCardProps) => {
   const [activeSections, setActiveSections] = useState<number[]>([]);
   const sections = convertInfoToSections(info);
-
-  console.log(info, "info");
+  const { width } = useWindowDimensions();
 
   const _renderHeader = (section: any) => (
     <View>
@@ -42,7 +41,7 @@ export const InfoCard = ({ navigation, info }: InfoCardProps) => {
         <QuickImage width={120} height={120} source={{ uri: section.cover.url }} style={{ borderRadius: 16 }} />
       )}
 
-      {section?.contentRTE && <EditorJsParser content={section.contentRTE} />}
+      {section?.contentRTE && <EditorJsParser contentWidth={width} content={section.contentRTE} />}
       {/* <Text size="lg" text={section.title} preset="bold" color="primary" /> */}
     </View>
   );

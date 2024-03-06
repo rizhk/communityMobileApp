@@ -72,9 +72,6 @@ export function ActualityScreen({ navigation, route }: Props) {
     version: "2.29.0",
   };
 
-  console.log(contentRTE, "contentRTE");
-  console.log(typeof contentRTE, "typeof contentRTE");
-
   return (
     <CustomScreen navigation={navigation}>
       {/* <YStack h={150} jc="space-evenly">

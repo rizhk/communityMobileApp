@@ -16,8 +16,6 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({ location }) => {
 
   const { title, address, cover } = location; // Destructure relevant fields
 
-  console.log(cover, "cover");
-
   return (
     <Callout style={styles.infoPanel}>
       <View>

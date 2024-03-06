@@ -39,7 +39,7 @@ const fetchAddrComponent = async (lt: number, lg: number) => {
     .get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lt},${lg}&key=${GOOGLE_API_KEY}`)
     .then((res) => res?.data?.results[0]?.address_components)
     .catch((erro) => {
-      console.log(erro);
+      console.error(erro);
       return undefined;
     });
 };

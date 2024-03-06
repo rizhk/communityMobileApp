@@ -65,8 +65,6 @@ export function MapScreen({ navigation }: Props) {
     fetchAxiosAPI("/locations", locationQueryParams)
   );
 
-  console.log(locations, "locations");
-
   if (isLoadingLocations) {
     return <ActivityIndicator></ActivityIndicator>;
   }
