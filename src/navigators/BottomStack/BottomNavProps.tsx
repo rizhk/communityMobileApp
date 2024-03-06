@@ -16,7 +16,7 @@ export type BottomTabParamList = {
   home: undefined;
   calendar: undefined;
   map: { region?: { latitude: number; longitude: number } };
-  officials: undefined;
+  official: undefined;
   infos: undefined;
 };
 
@@ -46,7 +46,7 @@ export const BottomNavProps: BottomNavPropsType[] = [
     component: MapScreen,
   },
   {
-    route: "officials",
+    route: "official",
     label: `Official`,
     icon: Official,
     iconSize: 26,

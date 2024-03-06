@@ -37,10 +37,16 @@ export function CalendarScreen({ navigation }: Props) {
       page,
       pageSize,
     },
+    sort: "publishedAt:desc",
   };
 
-  const { data: activities, isLoading: isLoadingActivities } = useSWR(["activities", filters], () =>
-    fetchActivities(restQueryParams)
+  const { data: activities, isLoading: isLoadingActivities } = useSWR(
+    ["activities", filters],
+    () => fetchActivities(restQueryParams),
+    {
+      // refreshInterval: 60000, // 60 seconds
+      refreshInterval: 30000, // 6 seconds
+    }
   );
 
   //TODO: Check why filter are not showing in the header

@@ -42,7 +42,7 @@ export function ActivityCard({ navigation, activity }: ActivityCardProps) {
           {content && <Text text={content} />}
           {/* <AddressField coord={{ longitude: longitude, latitude: latitude }} format={"%city%, %state%"} /> */}
 
-          {contentRTE && <EditorJsViewerNative data={JSON.parse(contentRTE)} />}
+          {/* {contentRTE && <EditorJsViewerNative data={JSON.parse(contentRTE)} />} */}
         </XStack>
       </YStack>
     </Stack>
