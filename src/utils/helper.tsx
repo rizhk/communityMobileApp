@@ -14,23 +14,6 @@ export const hexToRGBA = (hex: string, alpha: number) => {
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 };
 
-export const mapSportsDataToDropPickerItems = (sportsData: SportsData) => {
-  return sportsData?.data?.map((sport) => ({
-    icon: () => (
-      <Image
-        source={{ uri: sport?.icon?.url }}
-        resizeMode="contain"
-        style={{
-          width: 24,
-          height: 24,
-        }}
-      />
-    ),
-    label: sport?.name,
-    value: String(sport.id),
-  }));
-};
-
 export type GravityType =
   | "auto"
   | "center"
@@ -122,7 +105,7 @@ export function formatDate(date: Date): string {
       formattedDate = Format(newDate, "dd MMMM yyyy", { locale: it });
       break;
     default:
-      formattedDate = Format(newDate, "dd MMMM yyyy", { locale: en });
+      formattedDate = Format(newDate, "dd MMMM yyyy", { locale: fr });
       break;
   }
   return formattedDate;

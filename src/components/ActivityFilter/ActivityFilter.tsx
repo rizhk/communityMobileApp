@@ -12,7 +12,6 @@ import { View } from "react-native";
 import useSWR from "swr";
 import { color } from "theme";
 import { ActivityFilters } from "types/activity";
-import { mapSportsDataToDropPickerItems } from "utils/helper";
 
 //TODO: Add button create activity s'il y pas de données
 //TODO: Pouvoir filter par adresse et rediriger dessus sur la map

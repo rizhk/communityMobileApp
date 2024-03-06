@@ -10,6 +10,7 @@ import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { createEditorJsViewer } from "editorjs-viewer-native";
 import { View } from "react-native";
 import EditorJsParser from "components/EditorJsParser";
+import { formatDate } from "utils/helper";
 
 type ActualityCardProps = {
   actuality: ActualityItem;
@@ -17,7 +18,7 @@ type ActualityCardProps = {
 };
 
 export function ActualityCard({ navigation, actuality }: ActualityCardProps) {
-  const { title, content, contentRTE, startDate, cover } = actuality;
+  const { title, content, contentRTE, publishedAt, cover } = actuality;
 
   const EditorJsViewerNative = createEditorJsViewer();
 
@@ -34,7 +35,7 @@ export function ActualityCard({ navigation, actuality }: ActualityCardProps) {
           });
         }}
       >
-        <Text text={formatDateFromToday(startDate ?? new Date(), "dd MMMM yyyy")} size="xs" color="grey400" />
+        <Text text={formatDate(publishedAt)} size="xs" color="grey400" />
         <Text size="lg" text={title} preset="bold" color="primary" />
 
         <XStack ai="center" jc="space-between" w={100}>

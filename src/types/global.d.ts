@@ -20,8 +20,9 @@ export type BaseItem = {
   contentRtM: any;
   contentRTE: string; //Change to editorJSJSON
   contentRtB: string;
-  startDate: Date;
-  endDate: Date;
+  // startDate: Date;
+  // endDate: Date;
+  publishedAt: Date;
 };
 
 export type ItemType = {

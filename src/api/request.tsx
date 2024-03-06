@@ -10,9 +10,14 @@ axios.defaults.baseURL = `${API_URL}/api`;
 
 export const defaultQueryParams: RestQueryParams = {
   populate: "*",
+  sort: "publishedAt:desc",
 };
 
-export async function fetchAxiosAPI(path: string, params?: RestQueryParams, userToken?: string | null): Promise<Data> {
+export async function fetchAxiosAPI(
+  path: string,
+  params = defaultQueryParams,
+  userToken?: string | null
+): Promise<Data> {
   const headers: any = {};
 
   if (userToken) {

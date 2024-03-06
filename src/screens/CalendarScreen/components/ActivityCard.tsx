@@ -8,6 +8,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { createEditorJsViewer } from "editorjs-viewer-native";
 import { ActivityItem } from "types/activity";
+import { formatDate } from "utils/helper";
 
 type ActivityCardProps = {
   activity: ActivityItem;
@@ -15,7 +16,7 @@ type ActivityCardProps = {
 };
 
 export function ActivityCard({ navigation, activity }: ActivityCardProps) {
-  const { title, content, contentRTE, startDate, cover } = activity;
+  const { title, content, contentRTE, publishedAt, cover } = activity;
 
   const EditorJsViewerNative = createEditorJsViewer();
 
@@ -34,7 +35,7 @@ export function ActivityCard({ navigation, activity }: ActivityCardProps) {
           });
         }}
       >
-        <Text text={formatDateFromToday(startDate ?? new Date(), "dd MMMM yyyy")} size="xs" color="grey400" />
+        <Text text={formatDate(publishedAt)} size="xs" color="grey400" />
         <Text size="lg" text={title} preset="bold" color="primary" />
 
         <XStack ai="center" jc="space-between" w={100}>

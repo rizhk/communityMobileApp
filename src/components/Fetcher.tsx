@@ -12,7 +12,9 @@ interface FetcherProps<T> {
 }
 
 function Fetcher<T>({ url, children, params = defaultQueryParams }: FetcherProps<T>): JSX.Element {
-  const { data, error, mutate } = useSWR<T>(url, (url: string) => fetchAxiosAPI(url, params));
+  const { data, error, mutate } = useSWR<any>(url, (url: string) => fetchAxiosAPI(url, params), {
+    refreshInterval: 60000,
+  });
 
   if (error)
     return (
@@ -26,6 +28,8 @@ function Fetcher<T>({ url, children, params = defaultQueryParams }: FetcherProps
         <Text>Chargement...</Text>
       </View>
     );
+
+  console.log(data, "date in fetchesr");
 
   return <>{children(data, mutate)}</>;
 }

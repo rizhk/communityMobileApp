@@ -4,7 +4,7 @@ import { translate } from "i18n";
 import { NavType } from "navigators/NavType";
 import { SVGAttributes } from "react";
 import { CalendarScreen, HomeScreen, InfosScreen, MapScreen, OfficialScreen } from "screens";
-import TestScreen from "screens/TestScreen/TestScreen";
+// import TestScreen from "screens/TestScreen/TestScreen";
 
 export interface BottomNavPropsType extends NavType<BottomTabParamList> {
   icon: React.FunctionComponent<SVGAttributes<SVGElement>>;
@@ -50,7 +50,7 @@ export const BottomNavProps: BottomNavPropsType[] = [
     label: `Official`,
     icon: Official,
     iconSize: 26,
-    component: TestScreen,
+    component: OfficialScreen,
   },
 
   {
