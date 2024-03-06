@@ -11,7 +11,7 @@ import { IncidentData } from "types/incident";
 import { useState } from "react";
 import { InfoPanel } from "./components/InfoPanel";
 import { StyleSheet, View } from "react-native";
-import { Warehouse } from "lucide-react-native";
+import { Pin, Warehouse } from "lucide-react-native";
 import { color } from "theme";
 
 //TODO: - Display fields on the map
@@ -85,21 +85,21 @@ function MapComponent(props: MapProps) {
                       latitude: location.latitude,
                       longitude: location.longitude,
                     }}
+                    // style={{ width: 36, height: 36 }}
                     onPress={() => {
                       setSelectedLocation(location);
                     }}
-                    // onPress={(e) => {
-                    //   e.stopPropagation(),
-                    //     navigation.navigate("location", {
-                    //       location,
-                    //     });
-                    // }}
                   >
                     <View style={iconStyles.container}>
-                      <Warehouse color="red" size={36} />
+                      <Warehouse color="white" size={24} />
                     </View>
+
+                    {/* <Pin color="red" size={72}>
+                      <Warehouse color="red" size={36} />
+                    </Pin> */}
+
                     {/* <CustomMarker image={cloudinaryUrl} type="location" /> */}
-                    {selectedLocation && <InfoPanel location={selectedLocation} />}
+                    {location && <InfoPanel location={location} />}
                   </Marker>
                 </View>
               );
@@ -117,7 +117,7 @@ const iconStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: color.primary,
-    borderRadius: 20,
+    borderRadius: 75,
     padding: 8,
   },
   // Additional styling if needed
