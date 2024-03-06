@@ -20,6 +20,17 @@ import { fetchActivities, populateActivity } from "api/activity-request";
 import { ActivitiesData } from "types/activity";
 import { fetchAxiosAPI } from "api/request";
 import { LocationQueryParams } from "types/location";
+import {
+  AlertTriangle,
+  Camera,
+  Church,
+  Dumbbell,
+  FolderArchive,
+  Heart,
+  HeartPulse,
+  Theater,
+  Warehouse,
+} from "lucide-react-native";
 
 type Props = NativeStackScreenProps<MainStackParamList, "map">;
 
@@ -74,6 +85,13 @@ export function MapScreen({ navigation }: Props) {
 
   return (
     <YStack full>
+      {/* <FolderArchive color="red" size={48} />
+      <AlertTriangle color="red" size={48} />
+      <Church color="red" size={48} />
+      <HeartPulse color="red" size={48} />
+      <Dumbbell color="red" size={48} />
+      <Theater color="red" size={48} />
+      <Warehouse color="red" size={48} /> */}
       <MapComponent
         maxDistance={maxDistance}
         mapRef={mapRef}

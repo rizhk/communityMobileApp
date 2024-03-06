@@ -37,6 +37,7 @@
     "formik": "^2.4.5",
     "i": "^0.3.7",
     "i18n-js": "3.9.2",
+    "lucide-react-native": "^0.344.0",
     "mobx-react-lite": "^4.0.5",
     "prettier": "^3.1.0",
     "qs": "^6.11.2",
