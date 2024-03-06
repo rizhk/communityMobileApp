@@ -13,6 +13,7 @@ import { UserItem } from "types/user";
 import { ActualityItem } from "types/actuality";
 import CustomScreen from "components/CustomScreen";
 import { createEditorJsViewer } from "editorjs-viewer-native";
+import EditorJsParser from "components/EditorJsParser";
 
 type Props = NativeStackScreenProps<MainStackParamList, "actuality">;
 
@@ -89,12 +90,14 @@ export function ActualityScreen({ navigation, route }: Props) {
       <Stack h={1} bc="grey600"></Stack>
 
       {/* {contentRTE && <EditorJsViewerNative data={contentRTE} />} */}
+
       {/* {contentRTE && <EditorJsViewerNative data={JSON.parse(contentRTE)} />} */}
-      {contentRTE && (
+      {contentRTE && <EditorJsParser content={contentRTE} />}
+      {/* {contentRTE && (
         <View>
           <Text>Meeemamsadmqamd </Text>
         </View>
-      )}
+      )} */}
 
       {content && (
         <YStack mt={10}>
