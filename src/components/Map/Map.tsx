@@ -99,7 +99,7 @@ function MapComponent(props: MapProps) {
                     </Pin> */}
 
                     {/* <CustomMarker image={cloudinaryUrl} type="location" /> */}
-                    {location && <InfoPanel location={location} />}
+                    {selectedLocation && <InfoPanel style={{ width: 272 }} location={selectedLocation} />}
                   </Marker>
                 </View>
               );
