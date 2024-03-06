@@ -61,8 +61,6 @@ function MapComponent(props: MapProps) {
     return deltaInKm * 1000;
   };
 
-  const [selectedLocation, setSelectedLocation] = useState<LocationItem | undefined>();
-
   const getIconForLocationType = (type: LocationType) => {
     switch (type) {
       case "Sportif":
@@ -101,16 +99,6 @@ function MapComponent(props: MapProps) {
           locations.data.map((location, index) => {
             const cloudinaryUrl = location?.cover?.url;
 
-            {
-              /* <FolderArchive color="red" size={48} />
-            <AlertTriangle color="red" size={48} />
-            <Church color="red" size={48} />
-            <HeartPulse color="red" size={48} />
-            <Dumbbell color="red" size={48} />
-            <Theater color="red" size={48} />
-            <Warehouse color="red" size={48} /> */
-            }
-
             if (location?.latitude !== null && location?.longitude !== null) {
               return (
                 <View key={index}>
@@ -119,23 +107,11 @@ function MapComponent(props: MapProps) {
                       latitude: location.latitude,
                       longitude: location.longitude,
                     }}
-                    // style={{ width: 36, height: 36 }}
-                    // onPress={() => {
-                    //   setSelectedLocation(location);
-                    // }}
                   >
-                    <View style={iconStyles.container}>
-                      {getIconForLocationType(location.type)}
-                      {/* <Warehouse color="white" size={24} /> */}
-                    </View>
-
-                    {/* <Pin color="red" size={72}>
-                      <Warehouse color="red" size={36} />
-                    </Pin> */}
+                    <View style={iconStyles.container}>{getIconForLocationType(location.type)}</View>
 
                     {/* <CustomMarker image={cloudinaryUrl} type="location" /> */}
                     <InfoPanel style={{ width: 272 }} location={location} />
-                    {/* {location && <InfoPanel style={{ width: 272 }} location={location} />} */}
                   </Marker>
                 </View>
               );
