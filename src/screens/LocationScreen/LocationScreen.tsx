@@ -9,7 +9,7 @@ import AddressField from "components/AddressField";
 import { formatDateFromToday } from "utils/Date";
 import { ScrollView } from "react-native-gesture-handler";
 import { useDistance } from "hooks/useDistance";
-import { LocationType } from "types/global";
+import { LocationMapType } from "types/global";
 import AvatarSlider, { AvatarUser } from "components/Avatar/AvatarSlider";
 import { ActivityItem } from "types/activity";
 import { UserItem } from "types/user";

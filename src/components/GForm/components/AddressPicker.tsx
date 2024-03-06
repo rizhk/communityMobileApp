@@ -2,7 +2,7 @@ import { Button } from "components/Button";
 import { AddressPicker as AppAddressPicker } from "components/Inputs/AddressPicker";
 import I18n from "i18n-js";
 import { View } from "react-native";
-import { LocationType } from "types/global";
+import { LocationMapType } from "types/global";
 import { fetchLocalPosition } from "utils/locationHelper";
 
 import { BaseField } from "./BaseField";
@@ -35,7 +35,7 @@ export default function AddressPicker(props: AdressPickerProps) {
         />
       </View>
       <AppAddressPicker
-        value={values[valName] as LocationType}
+        value={values[valName] as LocationMapType}
         setValue={(val: any) => setFieldValue(valName, val)}
         color={themeColor}
         placeholderTx={placeholderTx}

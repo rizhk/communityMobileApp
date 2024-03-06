@@ -8,11 +8,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Text } from "./Text";
 import { color as themeColor } from "theme";
-import { LocationType } from "types/global";
+import { LocationMapType } from "types/global";
 
 export type AddressFieldProps = {
   format: string;
-  coord: LocationType;
+  coord: LocationMapType;
   textProps?: TextProps;
   color?: ThemeColorType;
 };

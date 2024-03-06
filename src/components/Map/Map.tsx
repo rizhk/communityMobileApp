@@ -6,13 +6,25 @@ import MapView, { Marker, Region, Circle } from "react-native-maps";
 import { CustomMarker } from "./components/Marker";
 import { MapPresets, presets } from "./map.presets";
 
-import { LocationsData, LocationItem } from "types/location";
+import { LocationsData, LocationItem, LocationTypeA } from "types/location";
 import { IncidentData } from "types/incident";
 import { useState } from "react";
 import { InfoPanel } from "./components/InfoPanel";
 import { StyleSheet, View } from "react-native";
-import { Pin, Warehouse } from "lucide-react-native";
+import {
+  AlertTriangle,
+  Building,
+  Building2,
+  Church,
+  Dumbbell,
+  HeartPulse,
+  Pin,
+  Rainbow,
+  Theater,
+  Warehouse,
+} from "lucide-react-native";
 import { color } from "theme";
+import { LocationMapType } from "types/global";
 
 //TODO: - Display fields on the map
 
@@ -48,9 +60,31 @@ function MapComponent(props: MapProps) {
     const deltaInKm = latitudeDelta * 0.4 * KM_PER_DEGREE_LATITUDE;
     return deltaInKm * 1000;
   };
-  const radius = calculateRadius(region.latitudeDelta);
 
   const [selectedLocation, setSelectedLocation] = useState<LocationItem | undefined>();
+
+  const getIconForLocationType = (type: LocationTypeA) => {
+    switch (type) {
+      case "Sportif":
+        return <Dumbbell color="red" size={48} />;
+      case "Salle":
+        return <Warehouse color="red" size={48} />;
+      case "Administration":
+        return <Building color="red" size={48} />;
+      case "Incident":
+        return <AlertTriangle color="red" size={48} />;
+      case "Santé":
+        return <HeartPulse color="red" size={48} />;
+      case "Culture":
+        return <Theater color="red" size={48} />;
+      case "Religion":
+        return <Church color="red" size={48} />;
+      case "Divers":
+        return <Rainbow color="red" size={48} />;
+      default:
+        return null; // ou une icône par défaut si vous en avez une
+    }
+  };
 
   return (
     <>

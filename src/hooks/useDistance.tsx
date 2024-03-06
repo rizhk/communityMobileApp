@@ -1,4 +1,4 @@
-import { LocationType } from "types/global";
+import { LocationMapType } from "types/global";
 //@ts-ignore
 import { GOOGLE_API_KEY } from "@env";
 import useCurrentPosition from "./useCurrentPosition";
@@ -21,7 +21,7 @@ const fetchDistance = async (origin: string, destination: string): Promise<strin
     });
 };
 
-export function useDistance(destination: LocationType, origin?: LocationType): string {
+export function useDistance(destination: LocationMapType, origin?: LocationMapType): string {
   const [distance, setDistance] = useState("");
   const originFormatted = origin
     ? `${origin.latitude.toString()},${origin.longitude.toString()}`

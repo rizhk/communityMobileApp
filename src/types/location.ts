@@ -10,8 +10,19 @@ export interface LocationFilters {
   startDate?: Date;
 }
 
+export enum LocationTypeA {
+  Sportif = "Sportif",
+  Salle = "Salle",
+  Administration = "Administration",
+  Incident = "Incident",
+  Santé = "Santé",
+  Culture = "Culture",
+  Religion = "Religion",
+  Divers = "Divers",
+}
+
 export type LocationItem = BaseItem & {
-  type: "news" | "jobs";
+  type: LocationTypeA;
   cover: MediaItem;
   latitude: number;
   longitude: number;

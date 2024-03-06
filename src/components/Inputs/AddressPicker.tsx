@@ -7,7 +7,7 @@ import { useState } from "react";
 import { TextInput, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native";
 import { ThemeColorType, color as themeColor, spacing } from "theme";
 import { inputFieldStyle, shadowFocus } from "theme/styles";
-import { LocationType } from "types/global";
+import { LocationMapType } from "types/global";
 import {
   AddressSuggestions,
   fetchAddressFromCoords,
@@ -17,8 +17,8 @@ import {
 } from "utils/locationHelper";
 
 export interface AddressPickerProps {
-  value: LocationType;
-  setValue: (value: LocationType) => void;
+  value: LocationMapType;
+  setValue: (value: LocationMapType) => void;
   placeholderTx?: I18n.Scope;
   placeholder?: string;
   style?: ViewStyle;

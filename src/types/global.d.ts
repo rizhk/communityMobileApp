@@ -1,6 +1,6 @@
 type ImageUpload = { uri: string } | string | null | any;
 
-export type LocationType = {
+export type LocationMapType = {
   longitude: number;
   latitude: number;
 };
