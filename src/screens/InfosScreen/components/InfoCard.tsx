@@ -41,7 +41,7 @@ export const InfoCard = ({ navigation, info }: InfoCardProps) => {
         <QuickImage width={120} height={120} source={{ uri: section.cover.url }} style={{ borderRadius: 16 }} />
       )}
 
-      {section?.contentRTE && <EditorJsParser contentWidth={width} content={section.contentRTE} />}
+      {section?.contentRTE && <EditorJsParser content={section.contentRTE} />}
       {/* <Text size="lg" text={section.title} preset="bold" color="primary" /> */}
     </View>
   );

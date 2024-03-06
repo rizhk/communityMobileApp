@@ -1,3 +1,4 @@
+import EditorJsParser from "components/EditorJsParser";
 import { Image } from "expo-image";
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
@@ -14,7 +15,7 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({ location, style }) => {
     return null; // Handle cases where location data is missing
   }
 
-  const { title, address, cover } = location; // Destructure relevant fields
+  const { title, address, cover, contentRTE } = location; // Destructure relevant fields
 
   return (
     <Callout style={[styles.infoPanel, style]}>
@@ -24,7 +25,10 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({ location, style }) => {
         {cover && <Image source={{ uri: cover.url }} style={{ width: 120, height: 120, borderRadius: 16 }} />}
 
         <Text style={styles.infoPanelTitle}>{title}</Text>
-        <Text style={styles.infoPanelItem}>{address}</Text>
+
+        {contentRTE && <EditorJsParser content={contentRTE} />}
+
+        {/* <Text style={styles.infoPanelItem}>{address}</Text> */}
       </View>
     </Callout>
   );

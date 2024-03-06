@@ -1,9 +1,10 @@
 import React from "react";
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, useWindowDimensions } from "react-native";
 import RenderHtml from "react-native-render-html";
 
-const EditorJsParser = ({ content, contentWidth }) => {
+const EditorJsParser = ({ content }) => {
   // if (!content) return null;
+  const { width } = useWindowDimensions();
 
   const { blocks } = JSON.parse(content) || {};
 
@@ -13,7 +14,7 @@ const EditorJsParser = ({ content, contentWidth }) => {
         return <Text style={{ fontSize: 5 * block.data.level }}>{block.data.text}</Text>;
 
       case "paragraph":
-        return <RenderHtml contentWidth={contentWidth} source={{ html: block.data.text }} />;
+        return <RenderHtml contentWidth={width} source={{ html: block.data.text }} />;
 
       case "image":
         return (
