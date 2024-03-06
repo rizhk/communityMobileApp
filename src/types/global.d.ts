@@ -55,7 +55,7 @@ export type FieldValidation = {
 };
 
 //****** REQUEST ******\\
-export interface restQueryParams {
+export interface RestQueryParams {
   fields?: string | string[];
   filters?: object;
   pagination?: {

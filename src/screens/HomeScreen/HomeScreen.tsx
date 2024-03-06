@@ -20,7 +20,7 @@ export function HomeScreen({ navigation }: Props) {
   const [pageSize, setPageSize] = useState(10);
 
   //Fetch Activities
-  const restQueryParams: ActualityQueryParams = {
+  const RestQueryParams: ActualityQueryParams = {
     filters: filters,
     populate: "*",
     sort: "publishedAt:desc",
@@ -35,7 +35,7 @@ export function HomeScreen({ navigation }: Props) {
     error,
     isLoading: isLoadingActivities,
     mutate: refetchActualities,
-  } = useSWR("/actualities", () => fetchAxiosAPI("/actualities", restQueryParams), {
+  } = useSWR("/actualities", () => fetchAxiosAPI("/actualities", RestQueryParams), {
     refreshInterval: 60000, // 60 seconds
   });
 

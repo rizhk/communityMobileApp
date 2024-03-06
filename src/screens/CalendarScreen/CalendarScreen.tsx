@@ -30,7 +30,7 @@ export function CalendarScreen({ navigation }: Props) {
   const [pageSize, setPageSize] = useState(10);
 
   //Fetch Activities
-  const restQueryParams: ActivityQueryParams = {
+  const RestQueryParams: ActivityQueryParams = {
     filters: filters,
     populate: populateActivity,
     pagination: {
@@ -42,7 +42,7 @@ export function CalendarScreen({ navigation }: Props) {
 
   const { data: activities, isLoading: isLoadingActivities } = useSWR(
     ["activities", filters],
-    () => fetchActivities(restQueryParams),
+    () => fetchActivities(RestQueryParams),
     {
       // refreshInterval: 60000, // 60 seconds
       refreshInterval: 30000, // 6 seconds

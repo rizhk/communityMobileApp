@@ -1,9 +1,9 @@
-import { BaseItem, PaginationMeta, baseSchema, restQueryParams } from "./global";
+import { BaseItem, PaginationMeta, baseSchema, RestQueryParams } from "./global";
 
 import { object, string, number, date, InferType, array, mixed } from "yup";
 import { MediaItem, mediaItemSchema } from "./user";
 
-export type ActivityQueryParams = restQueryParams & {
+export type ActivityQueryParams = RestQueryParams & {
   filters?: ActivityFilters;
 };
 export interface ActivityFilters {

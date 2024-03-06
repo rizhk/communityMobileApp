@@ -21,7 +21,7 @@ export function InfosScreen({ navigation }: Props) {
   const [pageSize, setPageSize] = useState(10);
 
   //Fetch Activities
-  const restQueryParams: InfoQueryParams = {
+  const RestQueryParams: InfoQueryParams = {
     filters: filters,
     populate: "*",
     pagination: {
@@ -32,7 +32,7 @@ export function InfosScreen({ navigation }: Props) {
   };
 
   const { data: infos, isLoading: isLoadingActivities } = useSWR(["infos", filters], () =>
-    fetchAxiosAPI("/infos", restQueryParams)
+    fetchAxiosAPI("/infos", RestQueryParams)
   );
 
   return (

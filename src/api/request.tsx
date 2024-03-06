@@ -4,11 +4,15 @@
 const API_URL = "https://community-strapi-8301883e8a6f.herokuapp.com";
 import axios, { AxiosRequestHeaders } from "axios";
 
-import { Data, ImageUpload, restQueryParams } from "types/global";
+import { Data, ImageUpload, RestQueryParams } from "types/global";
 
 axios.defaults.baseURL = `${API_URL}/api`;
 
-export async function fetchAxiosAPI(path: string, params?: restQueryParams, userToken?: string | null): Promise<Data> {
+export const defaultQueryParams: RestQueryParams = {
+  populate: "*",
+};
+
+export async function fetchAxiosAPI(path: string, params?: RestQueryParams, userToken?: string | null): Promise<Data> {
   const headers: any = {};
 
   if (userToken) {
