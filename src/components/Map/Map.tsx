@@ -6,7 +6,7 @@ import MapView, { Marker, Region, Circle } from "react-native-maps";
 import { CustomMarker } from "./components/Marker";
 import { MapPresets, presets } from "./map.presets";
 
-import { LocationsData, LocationItem, LocationTypeA } from "types/location";
+import { LocationsData, LocationItem, LocationType } from "types/location";
 import { IncidentData } from "types/incident";
 import { useState } from "react";
 import { InfoPanel } from "./components/InfoPanel";
@@ -63,24 +63,24 @@ function MapComponent(props: MapProps) {
 
   const [selectedLocation, setSelectedLocation] = useState<LocationItem | undefined>();
 
-  const getIconForLocationType = (type: LocationTypeA) => {
+  const getIconForLocationType = (type: LocationType) => {
     switch (type) {
       case "Sportif":
-        return <Dumbbell color="red" size={48} />;
+        return <Dumbbell color="white" size={24} />;
       case "Salle":
-        return <Warehouse color="red" size={48} />;
+        return <Warehouse color="white" size={24} />;
       case "Administration":
-        return <Building color="red" size={48} />;
+        return <Building color="white" size={24} />;
       case "Incident":
-        return <AlertTriangle color="red" size={48} />;
+        return <AlertTriangle color="white" size={24} />;
       case "Santé":
-        return <HeartPulse color="red" size={48} />;
+        return <HeartPulse color="white" size={24} />;
       case "Culture":
-        return <Theater color="red" size={48} />;
+        return <Theater color="white" size={24} />;
       case "Religion":
-        return <Church color="red" size={48} />;
+        return <Church color="white" size={24} />;
       case "Divers":
-        return <Rainbow color="red" size={48} />;
+        return <Rainbow color="white" size={24} />;
       default:
         return null; // ou une icône par défaut si vous en avez une
     }
@@ -120,12 +120,13 @@ function MapComponent(props: MapProps) {
                       longitude: location.longitude,
                     }}
                     // style={{ width: 36, height: 36 }}
-                    onPress={() => {
-                      setSelectedLocation(location);
-                    }}
+                    // onPress={() => {
+                    //   setSelectedLocation(location);
+                    // }}
                   >
                     <View style={iconStyles.container}>
-                      <Warehouse color="white" size={24} />
+                      {getIconForLocationType(location.type)}
+                      {/* <Warehouse color="white" size={24} /> */}
                     </View>
 
                     {/* <Pin color="red" size={72}>
@@ -133,7 +134,8 @@ function MapComponent(props: MapProps) {
                     </Pin> */}
 
                     {/* <CustomMarker image={cloudinaryUrl} type="location" /> */}
-                    {selectedLocation && <InfoPanel style={{ width: 272 }} location={selectedLocation} />}
+                    <InfoPanel style={{ width: 272 }} location={location} />
+                    {/* {location && <InfoPanel style={{ width: 272 }} location={location} />} */}
                   </Marker>
                 </View>
               );

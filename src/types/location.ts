@@ -10,7 +10,7 @@ export interface LocationFilters {
   startDate?: Date;
 }
 
-export enum LocationTypeA {
+export enum LocationType {
   Sportif = "Sportif",
   Salle = "Salle",
   Administration = "Administration",
@@ -22,7 +22,7 @@ export enum LocationTypeA {
 }
 
 export type LocationItem = BaseItem & {
-  type: LocationTypeA;
+  type: LocationType;
   cover: MediaItem;
   latitude: number;
   longitude: number;
