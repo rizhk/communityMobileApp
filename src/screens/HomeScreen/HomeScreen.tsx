@@ -27,16 +27,21 @@ export function HomeScreen({ navigation }: Props) {
       page,
       pageSize,
     },
-    sort: "startDate:desc",
   };
 
-  const { data: actualities, isLoading: isLoadingActivities } = useSWR(["actualities", filters], () =>
-    fetchAxiosAPI("/actualities", restQueryParams)
-  );
+  const {
+    data: actualities,
+    error,
+    isLoading: isLoadingActivities,
+  } = useSWR("/actualities", () => fetchAxiosAPI("/actualities", restQueryParams));
+
+  // console.log(actualities, "actualities");
 
   if (isLoadingActivities) {
     return <Text>Loading...</Text>;
   }
+
+  if (error) return <Text>Erreur lors du chargement des données...</Text>;
 
   return (
     <ScrollView>
@@ -46,9 +51,10 @@ export function HomeScreen({ navigation }: Props) {
         {/* <FilterComponent onApply={handleApplyFilter} currentFilters={filters} /> */}
 
         {/* TODO: Replace by a component FlatList */}
-        {actualities?.data.map((actuality: ActualityItem) => {
-          return <ActualityCard key={actuality.id} navigation={navigation} actuality={actuality} />;
-        })}
+        {actualities?.data &&
+          actualities?.data.map((actuality: ActualityItem) => {
+            return <ActualityCard key={actuality.id} navigation={navigation} actuality={actuality} />;
+          })}
       </YStack>
     </ScrollView>
   );

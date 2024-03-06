@@ -7,7 +7,6 @@ import { Region } from "react-native-maps";
 export const populateActivity = ["cover"];
 
 export const defaultActivityQueryParams: ActivityQueryParams = {
-  sort: "startDate:desc",
   populate: populateActivity,
 };
 

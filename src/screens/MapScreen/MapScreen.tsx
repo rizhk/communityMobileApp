@@ -58,7 +58,6 @@ export function MapScreen({ navigation }: Props) {
       page,
       pageSize,
     },
-    sort: "startDate:desc",
   };
 
   const { data: locations, isLoading: isLoadingLocations } = useSWR(["locations", filters], () =>

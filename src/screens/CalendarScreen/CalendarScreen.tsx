@@ -37,7 +37,6 @@ export function CalendarScreen({ navigation }: Props) {
       page,
       pageSize,
     },
-    sort: "startDate:desc",
   };
 
   const { data: activities, isLoading: isLoadingActivities } = useSWR(["activities", filters], () =>

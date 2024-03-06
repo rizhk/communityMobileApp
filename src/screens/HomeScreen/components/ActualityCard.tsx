@@ -8,6 +8,7 @@ import { QuickImage } from "components/ImageComponent";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { createEditorJsViewer } from "editorjs-viewer-native";
+import { View } from "react-native";
 
 type ActualityCardProps = {
   actuality: ActualityItem;
@@ -39,7 +40,9 @@ export function ActualityCard({ navigation, actuality }: ActualityCardProps) {
           {cover && <QuickImage width={120} height={120} source={{ uri: cover.url }} style={{ borderRadius: 16 }} />}
           {content && <Text text={content} />}
 
-          {contentRTE && <EditorJsViewerNative data={JSON.parse(contentRTE)} />}
+          {/* {contentRTE && <EditorJsViewerNative data={JSON.parse(contentRTE)} />} */}
+
+          {/* {contentRTE && contentRTE != "" && <EditorJsViewerNative data={JSON.parse(contentRTE)} />} */}
         </XStack>
       </YStack>
     </Stack>

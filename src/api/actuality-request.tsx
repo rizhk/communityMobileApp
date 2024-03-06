@@ -6,7 +6,6 @@ import { ActualitiesData, ActualityQueryParams } from "types/actuality";
 export const populateActuality = ["cover"];
 
 export const defaultActualityQueryParams: ActualityQueryParams = {
-  sort: "startDate:desc",
   populate: populateActuality,
 };
 
