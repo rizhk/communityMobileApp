@@ -8,14 +8,35 @@ import { QuickImage } from "components/ImageComponent";
 import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { createEditorJsViewer } from "editorjs-viewer-native";
+import Collapsible from "react-native-collapsible";
+import { useState } from "react";
+import { TouchableOpacity } from "react-native";
+import { is } from "ramda";
 
 type InfoCardProps = {
   info: InfoItem;
   navigation: NativeStackNavigationProp<MainStackParamList>; // Consider using a more specific type for navigation if possible
 };
 
+function CollapsibleFunc({ children }: any) {
+  const [isCollapsed, setIsCollapsed] = useState(true);
+  console.log(isCollapsed, "isCollapsed");
+  return (
+    <TouchableOpacity onPress={() => setIsCollapsed(!isCollapsed)}>
+      <Collapsible
+        // onPress={() => {
+        //   setIsCollapsed(!isCollapsed);
+        // }}
+        collapsed={isCollapsed}
+      >
+        {children}
+      </Collapsible>
+    </TouchableOpacity>
+  );
+}
+
 export function InfoCard({ navigation, info }: InfoCardProps) {
-  const { title, contentRTE, startDate, cover } = info;
+  const { title, contentRTE, cover } = info;
 
   const EditorJsViewerNative = createEditorJsViewer();
 
@@ -25,20 +46,18 @@ export function InfoCard({ navigation, info }: InfoCardProps) {
         padding="md"
         br="md"
         gap="xs"
-        onPress={() => {
-          // navigation.navigate("info", {
-          //   info,
-          // });
-        }}
+        // onPress={() => {
+        //   setIsCollapsed(!isCollapsed);
+        // }}
       >
-        {/* <Text text={formatDateFromToday(startDate ?? new Date(), "dd MMM")} size="xs" color="grey400" /> */}
         <Text size="lg" text={title} preset="bold" color="primary" />
-
-        <XStack ai="center" jc="space-between">
-          {cover && <QuickImage width={120} height={120} source={{ uri: cover.url }} style={{ borderRadius: 16 }} />}
-
-          {contentRTE && <EditorJsViewerNative data={JSON.parse(contentRTE)} />}
-        </XStack>
+        <CollapsibleFunc>
+          <XStack ai="center" jc="space-between">
+            {cover && <QuickImage width={120} height={120} source={{ uri: cover.url }} style={{ borderRadius: 16 }} />}
+            <Text size="sm" text="du text" />
+            {contentRTE && <EditorJsViewerNative data={JSON.parse(contentRTE)} />}
+          </XStack>
+        </CollapsibleFunc>
       </YStack>
     </Stack>
   );
