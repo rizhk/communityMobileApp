@@ -1,64 +1,57 @@
-import { InfoData, InfoItem } from "types/info";
-import { Text } from "components/Text";
-import { Stack, XStack, YStack } from "components/containers/Stack/Stack";
-
-import { formatDateFromToday } from "utils/Date";
-
+import React, { useState } from "react";
+import { View } from "react-native";
+import Accordion from "react-native-collapsible/Accordion";
+import { InfoItem } from "types/info";
 import { QuickImage } from "components/ImageComponent";
-import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
-import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { createEditorJsViewer } from "editorjs-viewer-native";
-import Collapsible from "react-native-collapsible";
-import { useState } from "react";
+
+// import { InfoData, InfoItem } from "types/info";
+import { Text } from "components/Text";
+
 import { TouchableOpacity } from "react-native";
 import { is } from "ramda";
 
-type InfoCardProps = {
-  info: InfoItem;
-  navigation: NativeStackNavigationProp<MainStackParamList>; // Consider using a more specific type for navigation if possible
-};
+// Vous devrez adapter cette partie pour correspondre à la structure de vos données
+const convertInfoToSections = (info: InfoItem) => [
+  {
+    title: info.title,
+    content: info.contentRTE,
+    cover: info.cover,
+  },
+];
 
-function CollapsibleFunc({ children }: any) {
-  const [isCollapsed, setIsCollapsed] = useState(true);
-  console.log(isCollapsed, "isCollapsed");
-  return (
-    <TouchableOpacity onPress={() => setIsCollapsed(!isCollapsed)}>
-      <Collapsible
-        // onPress={() => {
-        //   setIsCollapsed(!isCollapsed);
-        // }}
-        collapsed={isCollapsed}
-      >
-        {children}
-      </Collapsible>
-    </TouchableOpacity>
-  );
-}
-
-export function InfoCard({ navigation, info }: InfoCardProps) {
-  const { title, contentRTE, cover } = info;
-
+export const InfoCard = ({ info }: { info: any }) => {
+  const [activeSections, setActiveSections] = useState<number[]>([]);
+  const sections = convertInfoToSections(info);
   const EditorJsViewerNative = createEditorJsViewer();
 
-  return (
-    <Stack br="xs" bc="backgroundCard" overflow="hidden">
-      <YStack
-        padding="md"
-        br="md"
-        gap="xs"
-        // onPress={() => {
-        //   setIsCollapsed(!isCollapsed);
-        // }}
-      >
-        <Text size="lg" text={title} preset="bold" color="primary" />
-        <CollapsibleFunc>
-          <XStack ai="center" jc="space-between">
-            {cover && <QuickImage width={120} height={120} source={{ uri: cover.url }} style={{ borderRadius: 16 }} />}
-            <Text size="sm" text="du text" />
-            {contentRTE && <EditorJsViewerNative data={JSON.parse(contentRTE)} />}
-          </XStack>
-        </CollapsibleFunc>
-      </YStack>
-    </Stack>
+  const _renderHeader = (section: any) => (
+    <View>
+      <Text size="lg" text={section.title} preset="bold" color="primary" />
+    </View>
   );
-}
+
+  const _renderContent = (section: any) => (
+    <View>
+      {section.cover && (
+        <QuickImage width={120} height={120} source={{ uri: section.cover.url }} style={{ borderRadius: 16 }} />
+      )}
+
+      <Text size="lg" text={section.title} preset="bold" color="primary" />
+      {section.content && <EditorJsViewerNative data={JSON.parse(section.content)} />}
+    </View>
+  );
+
+  return (
+    // <View>
+    //   <Text>asa</Text>
+    // </View>
+    <Accordion
+      sections={sections}
+      activeSections={activeSections}
+      renderHeader={_renderHeader}
+      renderContent={_renderContent}
+      onChange={setActiveSections}
+    />
+  );
+};
