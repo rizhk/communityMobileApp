@@ -1,25 +1,15 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-import { Filter } from "assets/svg";
-import ActivityFilter from "components/ActivityFilter/ActivityFilter";
-import { Button } from "components/Button";
-import MapComponent from "components/Map/Map";
-import { MenuType } from "components/Menu/Menu.types";
-import { Text } from "components/Text";
-import { YStack } from "components/containers/Stack/Stack";
-import { INITIAL_REGION_DAILLENS } from "constants/global";
-import useCurrentPosition from "hooks/useCurrentPosition";
-import { useHeaderMenu } from "hooks/useHeaderMenu";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
-import { useEffect, useState, useRef } from "react";
-import { ActivityIndicator, View } from "react-native";
-import MapView, { Region } from "react-native-maps";
-import useSWR, { mutate } from "swr";
+import { useRef, useState } from "react";
+import { ScrollView } from "react-native";
 
-import { fetchActivities, populateActivity } from "api/activity-request";
-import { ActivitiesData } from "types/activity";
-import { fetchAxiosAPI } from "api/request";
-import { LocationQueryParams } from "types/location";
+import { LocationsData, LocationFilters, LocationItem, LocationQueryParams } from "types/location";
+
+import { YStack } from "components/containers";
+import Fetcher from "components/Fetcher";
+import MapComponent from "components/Map/Map";
+import MapView, { Region } from "react-native-maps";
 import {
   AlertTriangle,
   Camera,
@@ -31,75 +21,61 @@ import {
   Theater,
   Warehouse,
 } from "lucide-react-native";
+import { INITIAL_REGION_DAILLENS } from "constants/global";
+import useCurrentPosition from "hooks/useCurrentPosition";
 
-type Props = NativeStackScreenProps<MainStackParamList, "map">;
+type Props = NativeStackScreenProps<MainStackParamList>;
 
 export function MapScreen({ navigation }: Props) {
+  const [filters, setFilters] = useState<LocationFilters>({});
   const [region, setRegion] = useState<Region>(INITIAL_REGION_DAILLENS);
   const [userRegion, isLocationFetched] = useCurrentPosition();
   const [maxDistance, setMaxDistance] = useState(30000); // 30km
   const [openActivity, setOpenActivity] = useState(false);
-
-  //TODO: must fetch incidents and locations
+  //TODO: Pagination
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
 
   const mapRef = useRef<MapView>(null);
-
-  const filters = {};
-
-  //Move the map to user Location
-  // useEffect(() => {
-  //   if (userRegion) {
-  //     setRegion(userRegion);
-  //   }
-  // }, [isLocationFetched]);
-
   const handleRegionChangeComplete = (newRegion: Region) => {
     setRegion(newRegion);
   };
 
-  //FETCHING AND FILTERS
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
-
   //Fetch Activities
-  const locationQueryParams: LocationQueryParams = {
+  const queryParams: LocationQueryParams = {
     filters: filters,
     populate: "*",
+    sort: "publishedAt:desc",
     pagination: {
       page,
       pageSize,
     },
-    sort: "publishedAt:desc",
   };
 
-  const { data: locations, isLoading: isLoadingLocations } = useSWR(["locations", filters], () =>
-    fetchAxiosAPI("/locations", locationQueryParams)
-  );
-
-  if (isLoadingLocations) {
-    return <ActivityIndicator></ActivityIndicator>;
-  }
-  // if (!locations) {
-  //   return <Text>error...</Text>;
-  // }
-
   return (
-    <YStack full>
-      {/* <FolderArchive color="red" size={48} />
-      <AlertTriangle color="red" size={48} />
-      <Church color="red" size={48} />
-      <HeartPulse color="red" size={48} />
-      <Dumbbell color="red" size={48} />
-      <Theater color="red" size={48} />
-      <Warehouse color="red" size={48} /> */}
-      <MapComponent
-        maxDistance={maxDistance}
-        mapRef={mapRef}
-        locations={locations}
-        region={region}
-        onRegionChangeComplete={handleRegionChangeComplete}
-        navigation={navigation}
-      />
-    </YStack>
+    <Fetcher<LocationsData> url="/locations">
+      {(locations, mutate) => (
+        <>
+          <YStack pa="sm" gap="sm">
+            <MapComponent
+              maxDistance={maxDistance}
+              mapRef={mapRef}
+              locations={locations}
+              region={region}
+              onRegionChangeComplete={handleRegionChangeComplete}
+              navigation={navigation}
+            />
+
+            {/* <FolderArchive color="red" size={48} />
+            <AlertTriangle color="red" size={48} />
+            <Church color="red" size={48} />
+            <HeartPulse color="red" size={48} />
+            <Dumbbell color="red" size={48} />
+            <Theater color="red" size={48} />
+            <Warehouse color="red" size={48} /> */}
+          </YStack>
+        </>
+      )}
+    </Fetcher>
   );
 }

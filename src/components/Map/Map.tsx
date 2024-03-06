@@ -6,7 +6,7 @@ import MapView, { Marker, Region, Circle } from "react-native-maps";
 import { CustomMarker } from "./components/Marker";
 import { MapPresets, presets } from "./map.presets";
 
-import { LocationData, LocationItem } from "types/location";
+import { LocationsData, LocationItem } from "types/location";
 import { IncidentData } from "types/incident";
 import { useState } from "react";
 import { InfoPanel } from "./components/InfoPanel";
@@ -20,7 +20,7 @@ interface MapProps {
   initialRegion?: Region;
   style?: any;
   preset?: MapPresets;
-  locations?: LocationData;
+  locations?: LocationsData;
   incidents?: IncidentData;
   mapRef?: any;
   onRegionChangeComplete?: (newRegion: Region) => void; // Add this line

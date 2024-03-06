@@ -1,14 +1,12 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { fetchAxiosAPI } from "api/request";
-import { Text } from "components/Text/Text";
 
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { useState } from "react";
-import { ScrollView, View } from "react-native";
-import useSWR from "swr";
+import { ScrollView } from "react-native";
+
 import { ActualitiesData, ActualityFilters, ActualityItem, ActualityQueryParams } from "types/actuality";
 import ActualityCard from "./components/ActualityCard";
-import { XStack, YStack } from "components/containers";
+import { YStack } from "components/containers";
 import Fetcher from "components/Fetcher";
 
 type Props = NativeStackScreenProps<MainStackParamList>;
@@ -45,35 +43,4 @@ export function HomeScreen({ navigation }: Props) {
       )}
     </Fetcher>
   );
-
-  // const {
-  //   data: actualities,
-  //   error,
-  //   isLoading: isLoadingActivities,
-  //   mutate: refetchActualities,
-  // } = useSWR("/actualities", () => fetchAxiosAPI("/actualities", RestQueryParams), {
-  //   refreshInterval: 60000, // 60 seconds
-  // });
-
-  // if (isLoadingActivities) {
-  //   return <Text>Loading...</Text>;
-  // }
-
-  // if (error) return <Text>Erreur lors du chargement des données...</Text>;
-
-  // return (
-  //   <ScrollView>
-  //     <YStack pa="sm" gap="sm">
-  //       {/* TODO: Component Search based on useSwr to refresh the data correctly */}
-  //       {/* <SearchBar /> */}
-  //       {/* <FilterComponent onApply={handleApplyFilter} currentFilters={filters} /> */}
-
-  //       {/* TODO: Replace by a component FlatList */}
-  //       {actualities?.data &&
-  //         actualities?.data.map((actuality: ActualityItem) => {
-  //           return <ActualityCard key={actuality.id} navigation={navigation} actuality={actuality} />;
-  //         })}
-  //     </YStack>
-  //   </ScrollView>
-  // );
 }

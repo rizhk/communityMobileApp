@@ -18,8 +18,12 @@ export type LocationItem = BaseItem & {
   address?: string;
 };
 
-export interface LocationData {
+export interface LocationsData {
   data: LocationItem[];
+  meta: PaginationMeta;
+}
+export interface LocationData {
+  data: LocationItem;
   meta: PaginationMeta;
 }
 
