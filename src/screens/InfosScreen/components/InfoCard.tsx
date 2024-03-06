@@ -1,15 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { View } from "react-native";
 import Accordion from "react-native-collapsible/Accordion";
 import { InfoItem } from "types/info";
 import { QuickImage } from "components/ImageComponent";
-import { createEditorJsViewer } from "editorjs-viewer-native";
 
-// import { InfoData, InfoItem } from "types/info";
 import { Text } from "components/Text";
 
-import { TouchableOpacity } from "react-native";
-import { is } from "ramda";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import EditorJsParser from "components/EditorJsParser";
@@ -31,7 +27,6 @@ type InfoCardProps = {
 export const InfoCard = ({ navigation, info }: InfoCardProps) => {
   const [activeSections, setActiveSections] = useState<number[]>([]);
   const sections = convertInfoToSections(info);
-  const EditorJsViewerNative = createEditorJsViewer();
 
   console.log(info, "info");
 
