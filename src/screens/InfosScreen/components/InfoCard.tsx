@@ -10,20 +10,30 @@ import { Text } from "components/Text";
 
 import { TouchableOpacity } from "react-native";
 import { is } from "ramda";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { MainStackParamList } from "navigators/MainStack/MainNavProps";
+import EditorJsParser from "components/EditorJsParser";
 
 // Vous devrez adapter cette partie pour correspondre à la structure de vos données
 const convertInfoToSections = (info: InfoItem) => [
   {
     title: info.title,
-    content: info.contentRTE,
+    contentRTE: info.contentRTE || null,
     cover: info.cover,
   },
 ];
 
-export const InfoCard = ({ info }: { info: any }) => {
+type InfoCardProps = {
+  info: InfoItem;
+  navigation: NativeStackNavigationProp<MainStackParamList>; // Consider using a more specific type for navigation if possible
+};
+
+export const InfoCard = ({ navigation, info }: InfoCardProps) => {
   const [activeSections, setActiveSections] = useState<number[]>([]);
   const sections = convertInfoToSections(info);
   const EditorJsViewerNative = createEditorJsViewer();
+
+  console.log(info, "info");
 
   const _renderHeader = (section: any) => (
     <View>
@@ -37,8 +47,8 @@ export const InfoCard = ({ info }: { info: any }) => {
         <QuickImage width={120} height={120} source={{ uri: section.cover.url }} style={{ borderRadius: 16 }} />
       )}
 
-      <Text size="lg" text={section.title} preset="bold" color="primary" />
-      {section.content && <EditorJsViewerNative data={JSON.parse(section.content)} />}
+      {section?.contentRTE && <EditorJsParser content={section.contentRTE} />}
+      {/* <Text size="lg" text={section.title} preset="bold" color="primary" /> */}
     </View>
   );
 
@@ -52,6 +62,7 @@ export const InfoCard = ({ info }: { info: any }) => {
       renderHeader={_renderHeader}
       renderContent={_renderContent}
       onChange={setActiveSections}
+      underlayColor="transparent"
     />
   );
 };

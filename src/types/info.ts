@@ -16,7 +16,7 @@ export type InfoItem = BaseItem & {
   document: MediaItem;
 };
 
-export interface InfoData {
+export interface InfosData {
   data: InfoItem[];
   meta: PaginationMeta;
 }

@@ -6,10 +6,11 @@ import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { useState } from "react";
 import { View } from "react-native";
 import useSWR from "swr";
-import { InfoFilters, InfoItem, InfoQueryParams } from "types/info";
+import { InfoFilters, InfoItem, InfoQueryParams, InfosData } from "types/info";
 import { InfoCard } from "./components/InfoCard";
 import { ScrollView } from "react-native";
 import { YStack } from "components/containers";
+import Fetcher from "components/Fetcher";
 
 type Props = NativeStackScreenProps<MainStackParamList, "info">;
 
@@ -21,7 +22,7 @@ export function InfosScreen({ navigation }: Props) {
   const [pageSize, setPageSize] = useState(10);
 
   //Fetch Activities
-  const RestQueryParams: InfoQueryParams = {
+  const queryParams: InfoQueryParams = {
     filters: filters,
     populate: "*",
     pagination: {
@@ -32,16 +33,21 @@ export function InfosScreen({ navigation }: Props) {
   };
 
   const { data: infos, isLoading: isLoadingActivities } = useSWR(["infos", filters], () =>
-    fetchAxiosAPI("/infos", RestQueryParams)
+    fetchAxiosAPI("/infos", queryParams)
   );
 
   return (
-    <ScrollView>
-      <YStack pa="sm" gap="sm">
-        {infos?.data.map((info: InfoItem) => {
-          return <InfoCard key={info.id} navigation={navigation} info={info} />;
-        })}
-      </YStack>
-    </ScrollView>
+    <Fetcher<InfosData> url="/infos">
+      {(infos, mutate) => (
+        <ScrollView>
+          <YStack pa="sm" gap="sm">
+            {infos?.data &&
+              infos?.data.map((info: InfoItem) => {
+                return <InfoCard key={info.id} navigation={navigation} info={info} />;
+              })}
+          </YStack>
+        </ScrollView>
+      )}
+    </Fetcher>
   );
 }

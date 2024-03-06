@@ -18,7 +18,7 @@ import EditorJsParser from "components/EditorJsParser";
 type Props = NativeStackScreenProps<MainStackParamList, "actuality">;
 
 export function ActualityScreen({ navigation, route }: Props) {
-  const { startDate, content, title, contentRTE }: ActualityItem = route.params.actuality;
+  const { content, title, contentRTE }: ActualityItem = route.params.actuality;
 
   const EditorJsViewerNative = createEditorJsViewer();
 
