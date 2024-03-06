@@ -32,10 +32,6 @@ export function InfosScreen({ navigation }: Props) {
     sort: "title:asc",
   };
 
-  const { data: infos, isLoading: isLoadingActivities } = useSWR(["infos", filters], () =>
-    fetchAxiosAPI("/infos", queryParams)
-  );
-
   return (
     <Fetcher<InfosData> url="/infos">
       {(infos, mutate) => (

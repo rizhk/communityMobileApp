@@ -9,12 +9,13 @@ import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { useState } from "react";
 import { ActivityIndicator, FlatList, ScrollView, View } from "react-native";
 import useSWR from "swr";
-import { ActivityFilters, ActivityQueryParams } from "types/activity";
+import { ActivitiesData, ActivityFilters, ActivityQueryParams } from "types/activity";
 import ActivityCard from "./components/ActivityCard";
 import { useHeaderMenu } from "hooks/useHeaderMenu";
 import { Filter } from "assets/svg";
 import { MenuType } from "components/Menu/Menu.types";
 import { fetchActivities, populateActivity } from "api/activity-request";
+import Fetcher from "components/Fetcher";
 
 type Props = NativeStackScreenProps<MainStackParamList>;
 
@@ -30,7 +31,7 @@ export function CalendarScreen({ navigation }: Props) {
   const [pageSize, setPageSize] = useState(10);
 
   //Fetch Activities
-  const RestQueryParams: ActivityQueryParams = {
+  const queryParams: ActivityQueryParams = {
     filters: filters,
     populate: populateActivity,
     pagination: {
@@ -40,37 +41,9 @@ export function CalendarScreen({ navigation }: Props) {
     sort: "publishedAt:desc",
   };
 
-  const { data: activities, isLoading: isLoadingActivities } = useSWR(
-    ["activities", filters],
-    () => fetchActivities(RestQueryParams),
-    {
-      // refreshInterval: 60000, // 60 seconds
-      refreshInterval: 30000, // 6 seconds
-    }
-  );
-
-  //TODO: Check why filter are not showing in the header
-  const menu: MenuType = {
-    type: "element",
-    icon: Filter,
-    element: <ActivityFilter onApply={handleApplyFilter} currentFilters={filters} />,
-  };
-  useHeaderMenu({ navigation, ...menu });
-
-  if (isLoadingActivities) {
-    return <ActivityIndicator />;
-  }
-
   return (
-    <YStack full>
-      <>
-        {/* <ActivityFilter
-            isVisible={isFilterVisible}
-            // onClose={handleCloseFilter}
-            onApply={handleApplyFilter}
-            currentFilters={filters}
-          /> */}
-        {/* <FlatList data={activities} renderItem={({item}) => <ActivityCard activity={item} key={item?.id} />}/> */}
+    <Fetcher<ActivitiesData> url="/activities" params={queryParams}>
+      {(activities, mutate) => (
         <ScrollView>
           <YStack gap={"md"} mb={76} pa={"md"}>
             {activities?.data?.map((activity: any) => (
@@ -78,7 +51,25 @@ export function CalendarScreen({ navigation }: Props) {
             ))}
           </YStack>
         </ScrollView>
-      </>
-    </YStack>
+      )}
+    </Fetcher>
+    // <YStack full>
+    //   <>
+    //     {/* <ActivityFilter
+    //         isVisible={isFilterVisible}
+    //         // onClose={handleCloseFilter}
+    //         onApply={handleApplyFilter}
+    //         currentFilters={filters}
+    //       /> */}
+    //     {/* <FlatList data={activities} renderItem={({item}) => <ActivityCard activity={item} key={item?.id} />}/> */}
+    //     <ScrollView>
+    //       <YStack gap={"md"} mb={76} pa={"md"}>
+    //         {activities?.data?.map((activity: any) => (
+    //           <ActivityCard activity={activity} navigation={navigation} key={activity?.id} />
+    //         ))}
+    //       </YStack>
+    //     </ScrollView>
+    //   </>
+    // </YStack>
   );
 }
