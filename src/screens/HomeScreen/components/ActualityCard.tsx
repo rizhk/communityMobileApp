@@ -8,9 +8,11 @@ import { QuickImage } from "components/ImageComponent";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { createEditorJsViewer } from "editorjs-viewer-native";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import EditorJsParser from "components/EditorJsParser";
 import { formatDate } from "utils/helper";
+import { Image, ImageBackground } from "expo-image";
+import { palette } from "theme";
 
 type ActualityCardProps = {
   actuality: ActualityItem;
@@ -18,33 +20,74 @@ type ActualityCardProps = {
 };
 
 export function ActualityCard({ navigation, actuality }: ActualityCardProps) {
-  const { title, content, contentRTE, publishedAt, cover } = actuality;
+  const { title, publishedAt, cover } = actuality;
 
-  const EditorJsViewerNative = createEditorJsViewer();
+  const isFeatured = false;
 
-  return (
+  const onPressHandler = () => {
+    navigation.navigate("actuality", {
+      actuality,
+    });
+  };
+
+  const featuredCard = (
+    <View style={styles.featuredCard}>
+      {cover && (
+        <ImageBackground source={{ uri: cover.url }} style={styles.background}>
+          <View style={styles.overlay}>
+            <Text text={formatDate(publishedAt)} size="xs" color="white" />
+            <Text size="lg" text={title} preset="bold" color="white" />
+            {/* <Text style={styles.featuredInfoText}>Plus d'informations</Text> */}
+          </View>
+        </ImageBackground>
+      )}
+    </View>
+  );
+
+  const regularCard = (
     <Stack br="xs" bc="backgroundCard" overflow="hidden">
-      <YStack
-        padding="md"
-        br="md"
-        gap="xs"
-        onPress={() => {
-          // @ts-ignore
-          navigation.navigate("actuality", {
-            actuality,
-          });
-        }}
-      >
+      <YStack padding="md" br="md" gap="xs" onPress={onPressHandler}>
         <Text text={formatDate(publishedAt)} size="xs" color="grey400" />
         <Text size="lg" text={title} preset="bold" color="primary" />
-
-        <XStack ai="center" jc="space-between" w={100}>
-          {cover && <QuickImage width={120} height={120} source={{ uri: cover.url }} style={{ borderRadius: 16 }} />}
-          {content && <Text text={content} />}
-        </XStack>
       </YStack>
     </Stack>
   );
+
+  return isFeatured ? featuredCard : regularCard;
 }
+
+const styles = StyleSheet.create({
+  featuredCard: {
+    borderRadius: 8,
+    overflow: "hidden",
+  },
+  background: {
+    width: "100%",
+    height: 250,
+  },
+  overlay: {
+    padding: 16,
+    bottom: 0,
+    position: "absolute",
+    width: "100%",
+
+    backgroundColor: palette.communityPrimary, // Adjust the opacity as needed
+  },
+  featuredDateText: {
+    fontSize: 16,
+    color: "white",
+    marginBottom: 8,
+  },
+  featuredTitleText: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "white",
+    marginBottom: 8,
+  },
+  featuredInfoText: {
+    fontSize: 18,
+    color: "white",
+  },
+});
 
 export default ActualityCard;
