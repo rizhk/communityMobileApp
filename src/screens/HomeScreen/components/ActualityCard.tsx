@@ -70,8 +70,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     position: "absolute",
     width: "100%",
-
-    backgroundColor: palette.communityPrimary, // Adjust the opacity as needed
+    backgroundColor: palette.communityPrimary,
   },
   featuredDateText: {
     fontSize: 16,
