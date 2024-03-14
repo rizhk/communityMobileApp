@@ -31,12 +31,11 @@
     "verifyEmail": "Vérifiez votre e-mail (et votre SPAM) pour confirmer votre inscription."
   },
   "screenTitle": {
-    "activity": "Activité",
-    "profil": "Profile",
-    "chat": "Chat",
-    "community": "CommunityApp",
-    "messages": "Messages",
-    "designSystem": "Design System"
+    "news": "News",
+    "calendar": "Agenda",
+    "map": "Carte",
+    "official": "Officiel",
+    "infos": "Info"
   },
   "loginScreen": {
     "title": "Se Connecter",

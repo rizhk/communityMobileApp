@@ -6,6 +6,7 @@ import { buttonSize, color } from "theme";
 import { hexToRGBA } from "utils/helper";
 
 import { BottomNavPropsType } from "./BottomNavProps";
+import { Text } from "components/Text";
 
 export interface TabButtonProps {
   tab: BottomNavPropsType;
@@ -52,9 +53,12 @@ export default function TabButton({ tab, onPress, accessibilityState, isLast }: 
       <TouchableOpacity onPress={onPress} style={button}>
         <Animated.View style={[{ backgroundColor: bgColor }, button]}>
           <Icon icon={tab.icon} color="white" size={30} />
+          <Text size="xs" color="white">
+            {tab.label}
+          </Text>
         </Animated.View>
       </TouchableOpacity>
-      {!isLast && <Stack bc="grey600" h={24} w={2} position="absolute" right={-1} top={20} br="sm" />}
+      {/* {!isLast && <Stack bc="grey600" h={24} w={2} position="absolute" right={-1} top={20} br="sm" />} */}
     </Stack>
   );
 }
@@ -62,9 +66,10 @@ export default function TabButton({ tab, onPress, accessibilityState, isLast }: 
 const button = {
   alignItems: "center",
   justifyContent: "center",
-  height: buttonSize.xxl,
+  // height: buttonSize.xxl,
   width: "100%",
-  paddingHorizontal: "15%",
-  borderBottomLeftRadius: 25,
-  borderBottomRightRadius: 25,
+  height: "100%",
+  // paddingHorizontal: "15%",
+  // paddingVertical: 4,
+  borderRadius: 8,
 } as ViewStyle;

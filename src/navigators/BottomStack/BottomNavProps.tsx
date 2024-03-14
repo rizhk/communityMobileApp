@@ -26,28 +26,28 @@ export type BottomRoute = keyof BottomTabParamList;
 export const BottomNavProps: BottomNavPropsType[] = [
   {
     route: "home",
-    label: `${translate("screenTitle.community")}`,
+    label: `${translate("screenTitle.news")}`,
     icon: News,
     iconSize: 26,
     component: HomeScreen,
   },
   {
     route: "calendar",
-    label: `Calendar`,
+    label: `${translate("screenTitle.calendar")}`,
     icon: Calendar,
     iconSize: 26,
     component: CalendarScreen,
   },
   {
     route: "map",
-    label: `Map`,
+    label: `${translate("screenTitle.map")}`,
     icon: Map,
     iconSize: 26,
     component: MapScreen,
   },
   {
     route: "official",
-    label: `Official`,
+    label: `${translate("screenTitle.official")}`,
     icon: Official,
     iconSize: 26,
     component: OfficialScreen,
@@ -55,7 +55,7 @@ export const BottomNavProps: BottomNavPropsType[] = [
 
   {
     route: "infos",
-    label: `Info`,
+    label: `${translate("screenTitle.infos")}`,
     icon: Info,
     iconSize: 26,
     component: InfosScreen,
