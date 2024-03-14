@@ -4,16 +4,17 @@ import { Stack, XStack, YStack } from "components/containers/Stack/Stack";
 import { QuickImage } from "components/ImageComponent";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
-import { ActivityItem } from "types/activity";
-import { formatDate } from "utils/helper";
 
-type ActivityCardProps = {
-  activity: ActivityItem;
+import { formatDate } from "utils/helper";
+import { UserItem } from "types/user";
+
+type OfficialCardProps = {
+  official: UserItem;
   navigation: NativeStackNavigationProp<MainStackParamList>; // Consider using a more specific type for navigation if possible
 };
 
-export function ActivityCard({ navigation, activity }: ActivityCardProps) {
-  const { title, type, startDate, endDate, cover } = activity;
+export function OfficialCard({ navigation, official }: OfficialCardProps) {
+  const { title, type, startDate, endDate, cover } = official;
 
   return (
     <Stack br="xs" bc="backgroundCard" overflow="hidden">
@@ -22,8 +23,8 @@ export function ActivityCard({ navigation, activity }: ActivityCardProps) {
         br="md"
         gap="xs"
         onPress={() => {
-          navigation.navigate("activity", {
-            activity,
+          navigation.navigate("official", {
+            official,
           });
         }}
       >
@@ -44,4 +45,4 @@ export function ActivityCard({ navigation, activity }: ActivityCardProps) {
   );
 }
 
-export default ActivityCard;
+export default OfficialCard;

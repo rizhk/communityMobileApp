@@ -10,7 +10,7 @@ import { Text } from "components/Text";
 
 type Props = NativeStackScreenProps<MainStackParamList>;
 
-export function OfficialScreen({ navigation }: Props) {
+export function OfficialsScreen({ navigation }: Props) {
   // const [filters, setFilters] = useState<ActualityFilters>({});
 
   //TODO: Pagination

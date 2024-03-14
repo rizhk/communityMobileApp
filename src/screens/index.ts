@@ -7,5 +7,5 @@ export { HomeScreen } from "./HomeScreen/HomeScreen";
 
 export { CalendarScreen } from "./CalendarScreen/CalendarScreen";
 export { MapScreen } from "./MapScreen/MapScreen";
-export { OfficialScreen } from "./OfficialScreen/OfficialScreen";
+export { OfficialsScreen as OfficialScreen } from "./OfficialsScreen/OfficialsScreen";
 export { InfosScreen } from "./InfosScreen/InfosScreen";
