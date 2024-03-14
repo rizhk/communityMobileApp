@@ -16,6 +16,8 @@ export type ActivityItem = BaseItem & {
   longitude?: number;
   cover: MediaItem;
   document: MediaItem;
+  startDate: Date;
+  endDate: Date;
 };
 
 export interface ActivitiesData {

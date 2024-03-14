@@ -16,7 +16,7 @@ type ActivityCardProps = {
 };
 
 export function ActivityCard({ navigation, activity }: ActivityCardProps) {
-  const { title, content, contentRTE, publishedAt, cover } = activity;
+  const { title, type, startDate, endDate, cover } = activity;
 
   return (
     <Stack br="xs" bc="backgroundCard" overflow="hidden">
@@ -25,21 +25,22 @@ export function ActivityCard({ navigation, activity }: ActivityCardProps) {
         br="md"
         gap="xs"
         onPress={() => {
-          // @ts-ignore
           navigation.navigate("activity", {
             activity,
           });
         }}
       >
-        <Text text={formatDate(publishedAt)} size="xs" color="grey400" />
-        <Text size="lg" text={title} preset="bold" color="primary" />
-
-        <XStack ai="center" jc="space-between" w={100}>
+        <XStack ai="flex-start" jc="flex-start">
           {cover && <QuickImage width={120} height={120} source={{ uri: cover.url }} style={{ borderRadius: 16 }} />}
-          {content && <Text text={content} />}
-          {/* <AddressField coord={{ longitude: longitude, latitude: latitude }} format={"%city%, %state%"} /> */}
-
-          {/* {contentRTE && <EditorJsViewerNative data={JSON.parse(contentRTE)} />} */}
+          <YStack gap="xs" flex={1} ml="sm">
+            <Text size="xs" text={type} color="grey300" />
+            <Text size="lg" text={title} preset="bold" color="primary" />
+            <XStack>
+              {/* //STYLE: Change to badge like figma */}
+              <Text text={formatDate(startDate)} size="xs" color="grey400" />
+              {endDate && <Text text={` - ${formatDate(endDate)}`} size="xs" color="grey400" />}
+            </XStack>
+          </YStack>
         </XStack>
       </YStack>
     </Stack>
