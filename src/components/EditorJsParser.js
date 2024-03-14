@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, Image, useWindowDimensions } from "react-native";
 import RenderHtml from "react-native-render-html";
-
+//TODO: IN TS !!!!
 const EditorJsParser = ({ content }) => {
   // if (!content) return null;
   const { width } = useWindowDimensions();
