@@ -36,7 +36,7 @@ export function OfficialScreen({ navigation }: Props) {
             {teams?.data &&
               teams?.data.map((team: any) => {
                 return (
-                  <View>
+                  <View key={team.id}>
                     <Text>{team.name}</Text>
                   </View>
                 );
