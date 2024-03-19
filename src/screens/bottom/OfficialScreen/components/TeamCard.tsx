@@ -1,7 +1,7 @@
 import { Text } from "components/Text";
 import { Stack, XStack, YStack } from "components/containers/Stack/Stack";
 
-import { QuickImage } from "components/ImageComponent";
+import { QuickImage } from "components/Images/QuickImage";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 

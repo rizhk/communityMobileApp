@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { QuickImage } from "./ImageComponent";
+import { QuickImage } from "./Images/QuickImage";
 
 const CustomHeader = () => {
   return (

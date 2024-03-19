@@ -4,7 +4,7 @@ import { Stack, XStack, YStack } from "components/containers/Stack/Stack";
 import { formatDateFromToday } from "utils/Date";
 
 import { ActualityItem } from "types/actuality";
-import { QuickImage } from "components/ImageComponent";
+import { QuickImage } from "components/Images/QuickImage";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { createEditorJsViewer } from "editorjs-viewer-native";

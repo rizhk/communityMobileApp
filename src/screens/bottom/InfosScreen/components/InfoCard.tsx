@@ -2,7 +2,7 @@ import { useState } from "react";
 import { View, useWindowDimensions } from "react-native";
 import Accordion from "react-native-collapsible/Accordion";
 import { InfoItem } from "types/info";
-import { QuickImage } from "components/ImageComponent";
+import { QuickImage } from "components/Images/QuickImage";
 
 import { Text } from "components/Text";
 

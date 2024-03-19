@@ -3,7 +3,7 @@ import { BottomNav } from "navigators/BottomNav/BottomNav";
 
 import { MainNavProps, MainNavPropsType } from "./MainNavProps";
 import { Text } from "components/Text";
-import { QuickImage } from "components/ImageComponent";
+import { QuickImage } from "components/Images/QuickImage";
 import { Image } from "react-native";
 import { color } from "theme";
 
