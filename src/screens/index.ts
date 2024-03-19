@@ -1,9 +1,9 @@
 //Main Navigation
-export { HomeScreen } from "./HomeScreen/HomeScreen";
-export { CalendarScreen } from "./CalendarScreen/CalendarScreen";
-export { MapScreen } from "./MapScreen/MapScreen";
-export { OfficialScreen } from "./OfficialScreen/OfficialScreen";
-export { InfosScreen } from "./InfosScreen/InfosScreen";
+export { HomeScreen } from "./main/HomeScreen/HomeScreen";
+export { CalendarScreen } from "./main/CalendarScreen/CalendarScreen";
+export { MapScreen } from "./main/MapScreen/MapScreen";
+export { OfficialScreen } from "./main/OfficialScreen/OfficialScreen";
+export { InfosScreen } from "./main/InfosScreen/InfosScreen";
 
 //Stack Navigation
 export { ActivityScreen } from "screens/ActivityScreen/ActivityScreen";
