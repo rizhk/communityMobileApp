@@ -25,6 +25,11 @@ export type BaseItem = {
   publishedAt: Date;
 };
 
+export interface BasesData {
+  data: BaseItem[];
+  meta: PaginationMeta;
+}
+
 export type ItemType = {
   value: ValueType;
   label: I18n.Scope;
