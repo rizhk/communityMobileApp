@@ -3,15 +3,24 @@ import { Image, View, StyleSheet, ImageSourcePropType } from "react-native";
 
 type QuickImageProps = {
   source: ImageSourcePropType;
-  width?: number;
-  height?: number;
+  width: number;
+  height: number;
   style?: object;
+  imgStyle?: object;
+  resizeMode?: "cover" | "contain" | "stretch" | "repeat" | "center";
 };
 
-export const QuickImage: React.FC<QuickImageProps> = ({ source, width = 100, height = 100, style }) => {
+export const QuickImage: React.FC<QuickImageProps> = ({
+  source,
+  width,
+  height,
+  imgStyle,
+  style,
+  resizeMode = "cover",
+}) => {
   return (
-    <View style={[styles.container, { width, height }]}>
-      <Image source={source} style={[styles.image, style]} resizeMode="cover" />
+    <View style={[styles.container, style, { width, height }]}>
+      <Image source={source} style={[styles.image, imgStyle]} resizeMode={resizeMode} />
     </View>
   );
 };

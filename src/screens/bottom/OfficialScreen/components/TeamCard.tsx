@@ -29,7 +29,7 @@ export function TeamCard({ navigation, team }: TeamCardProps) {
           });
         }}
       >
-        {avatar && <QuickImage width={96} height={96} source={{ uri: avatar.url }} style={{ borderRadius: 75 }} />}
+        {avatar && <QuickImage width={96} height={96} source={{ uri: avatar.url }} imgStyle={{ borderRadius: 75 }} />}
         <Text size="lg" text={name + " " + surname} preset="bold" color="primary" />
         <Text size="xs" text={type} color="grey300" />
       </YStack>

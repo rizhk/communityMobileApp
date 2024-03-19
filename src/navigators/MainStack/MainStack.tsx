@@ -2,9 +2,9 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { BottomNav } from "navigators/BottomNav/BottomNav";
 
 import { MainNavProps, MainNavPropsType } from "./MainNavProps";
-import { Text } from "components/Text";
+
 import { QuickImage } from "components/Images/QuickImage";
-import { Image } from "react-native";
+
 import { color } from "theme";
 
 const Main = createNativeStackNavigator();
@@ -23,12 +23,19 @@ export function MainStack() {
             headerStyle: {
               backgroundColor: color.primaryLight,
             },
-            // headerTitle: () => <Image source={require("assets/image/logo-daillens.png")} width={188} height={62} />,
+            contentStyle: {
+              padding: 20,
+            },
+            headerTitleAlign: "center",
             headerTitle: () => (
-              <QuickImage source={require("assets/image/logo-daillens.png")} width={188} height={62} />
+              <QuickImage
+                source={require("assets/image/logo-daillens.png")}
+                height={64}
+                width={160}
+                resizeMode="contain"
+              />
             ),
             title: "",
-            // headerLeft: () => <Text style={{ color: "white", marginLeft: 10 }}>Back</Text>,
           }}
         />
       ))}

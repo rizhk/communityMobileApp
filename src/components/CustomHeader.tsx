@@ -5,7 +5,7 @@ import { QuickImage } from "./Images/QuickImage";
 const CustomHeader = () => {
   return (
     <View style={styles.headerContainer}>
-      <QuickImage source={require("../assets/image/logo-daillens.png")} width={188} height={62} style={styles.logo} />
+      <QuickImage source={require("assets/image/logo-daillens.png")} width={188} height={62} style={styles.logo} />
     </View>
   );
 };
