@@ -15,7 +15,7 @@ interface FetcherProps<T> {
 function Fetcher<T>({ url, children, params = defaultQueryParams }: FetcherProps<T>): JSX.Element {
   const queryString = qs.stringify(params, { encode: false, arrayFormat: "brackets", allowDots: false });
 
-  const { data, error, mutate } = useSWR<any>(`${url}?${queryString}`, (fetchUrl: string) => fetchUseSWR(fetchUrl), {
+  const { data, error, mutate } = useSWR<any>(`${url}?${queryString}`, fetchUseSWR, {
     refreshInterval: 60000,
   });
 
