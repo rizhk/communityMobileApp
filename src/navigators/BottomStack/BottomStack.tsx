@@ -10,7 +10,7 @@ const Bottom = createBottomTabNavigator();
 export function BottomStack() {
   return (
     <Bottom.Navigator
-      initialRouteName="map"
+      initialRouteName="home"
       screenOptions={(route) => ({
         header: () => <CustomHeader />, //TODO: If enable, filter Menu is not working
         headerTintColor: color.white,

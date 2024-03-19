@@ -2,22 +2,17 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Button } from "components/Button";
 import { Stack, YStack } from "components/containers";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
-import { ActivityIndicator, Image, ImageStyle, SafeAreaView, StyleProp, View } from "react-native";
+import { SafeAreaView, ScrollView, View } from "react-native";
 import { Text } from "components/Text";
 import { LeftArrow } from "assets/svg";
-import AddressField from "components/AddressField";
-import { formatDateFromToday } from "utils/Date";
-import { ScrollView } from "react-native-gesture-handler";
-import { useDistance } from "hooks/useDistance";
-import { LocationMapType } from "types/global";
-import AvatarSlider, { AvatarUser } from "components/Avatar/AvatarSlider";
-import { ActivityItem } from "types/activity";
-import { UserItem } from "types/user";
 
-type Props = NativeStackScreenProps<MainStackParamList, "activity">;
+import { TeamItem } from "types/official";
 
-export function ActivityScreen({ navigation, route }: Props) {
-  const { content }: ActivityItem = route.params.activity;
+type Props = NativeStackScreenProps<MainStackParamList, "team">;
+
+export function TeamScreen({ navigation, route }: Props) {
+  const { content }: TeamItem = route.params.team;
+  console.log("ici");
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -34,6 +29,7 @@ export function ActivityScreen({ navigation, route }: Props) {
 
           <YStack h={150} jc="space-evenly"></YStack>
           <Stack h={1} bc="grey600"></Stack>
+          <Text preset="bold" size="md" style={{ marginBottom: 10 }} text="Info : " />
 
           {content && (
             <YStack mt={10}>

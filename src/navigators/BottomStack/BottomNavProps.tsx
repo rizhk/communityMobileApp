@@ -3,7 +3,7 @@ import Joker from "assets/svg/joker.svg";
 import { translate } from "i18n";
 import { NavType } from "navigators/NavType";
 import { SVGAttributes } from "react";
-import { CalendarScreen, HomeScreen, InfosScreen, MapScreen, OfficialScreen as OfficialsScreen } from "screens/stack";
+import { CalendarScreen, HomeScreen, InfosScreen, MapScreen, OfficialScreen } from "screens";
 // import TestScreen from "screens/TestScreen/TestScreen";
 
 export interface BottomNavPropsType extends NavType<BottomTabParamList> {
@@ -16,7 +16,7 @@ export type BottomTabParamList = {
   home: undefined;
   calendar: undefined;
   map: { region?: { latitude: number; longitude: number } };
-  officials: undefined;
+  official: undefined;
   infos: undefined;
 };
 
@@ -46,11 +46,11 @@ export const BottomNavProps: BottomNavPropsType[] = [
     component: MapScreen,
   },
   {
-    route: "officials",
+    route: "official",
     label: `${translate("screenTitle.official")}`,
     icon: Official,
     iconSize: 26,
-    component: OfficialsScreen,
+    component: OfficialScreen,
   },
 
   {

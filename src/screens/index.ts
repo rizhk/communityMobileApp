@@ -9,3 +9,4 @@ export { InfosScreen } from "screens/main/InfosScreen/InfosScreen";
 export { ActivityScreen } from "screens/stack/ActivityScreen/ActivityScreen";
 export { LocationScreen } from "screens/stack/LocationScreen/LocationScreen";
 export { ActualityScreen } from "screens/stack/ActualityScreen/ActualityScreen";
+export { TeamScreen } from "screens/stack/TeamScreen/TeamScreen";

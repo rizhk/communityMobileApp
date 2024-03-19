@@ -1,5 +1,5 @@
 import { NavType } from "navigators/NavType";
-import { ActivityScreen, LocationScreen, ActualityScreen, InfosScreen, OfficialScreen } from "screens/stack";
+import { ActivityScreen, LocationScreen, ActualityScreen, InfosScreen, OfficialScreen, TeamScreen } from "screens";
 
 import { BottomTabParamList } from "../BottomStack/BottomNavProps";
 import { ActivityItem } from "types/activity";
@@ -28,7 +28,7 @@ export const MainNavProps: MainNavPropsType[] = [
   },
   {
     route: "team",
-    component: OfficialScreen,
+    component: TeamScreen,
   },
   {
     route: "location",
