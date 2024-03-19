@@ -8,6 +8,7 @@ import {
   Church,
   Rainbow,
   Newspaper,
+  ClipboardList,
 } from "lucide-react-native";
 import { LocationType } from "types/location";
 import { ActualityType } from "types/actuality";
@@ -34,9 +35,11 @@ export const IconForType: React.FC<{ type: LocationType | ActualityType; color?:
       return <Church color={color} size={size} />;
     case "Actualités":
       return <Newspaper color={color} size={size} />;
+    case "Pilier public":
+      return <ClipboardList color={color} size={size} />;
     case "Divers":
       return <Rainbow color={color} size={size} />;
     default:
-      return <Newspaper color={color} size={size} />;
+      return null;
   }
 };
