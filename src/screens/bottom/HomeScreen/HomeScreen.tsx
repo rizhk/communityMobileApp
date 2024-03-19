@@ -12,7 +12,7 @@ import Fetcher from "components/Fetcher";
 type Props = NativeStackScreenProps<MainStackParamList>;
 
 export function HomeScreen({ navigation }: Props) {
-  const [filters, setFilters] = useState<ActualityFilters>({});
+  const [filters, setFilters] = useState<ActualityFilters>({ type: "Pilier public" });
 
   //TODO: Pagination
   const [page, setPage] = useState(1);
@@ -22,15 +22,17 @@ export function HomeScreen({ navigation }: Props) {
   const queryParams: ActualityQueryParams = {
     filters: filters,
     populate: "*",
-    sort: "publishedAt:desc",
+    sort: "publishedAt:asc",
     pagination: {
       page,
       pageSize,
     },
   };
 
+  // const type = "actualities";
+
   return (
-    <Fetcher<ActualitiesData> url="/actualities">
+    <Fetcher<ActualitiesData> url="/actualities" params={queryParams}>
       {(actualities) => (
         <ScrollView>
           <YStack pa="sm" gap="sm">

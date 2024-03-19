@@ -8,6 +8,7 @@ export type ActualityQueryParams = RestQueryParams & {
 };
 export interface ActualityFilters {
   startDate?: Date;
+  type?: ActualityType;
 }
 
 export type ActualityType = "Pilier public" | "Actualités" | "Emplois";
