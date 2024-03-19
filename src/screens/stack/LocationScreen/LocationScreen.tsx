@@ -18,7 +18,7 @@ import { LocationItem } from "types/location";
 type Props = NativeStackScreenProps<MainStackParamList, "location">;
 
 export function LocationScreen({ navigation, route }: Props) {
-  const { startDate, content }: LocationItem = route.params.location as LocationItem;
+  const { content }: LocationItem = route.params.location as LocationItem;
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

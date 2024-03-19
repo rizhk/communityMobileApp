@@ -3,7 +3,7 @@ import Joker from "assets/svg/joker.svg";
 import { translate } from "i18n";
 import { NavType } from "navigators/NavType";
 import { SVGAttributes } from "react";
-import { CalendarScreen, HomeScreen, InfosScreen, MapScreen, OfficialScreen as OfficialsScreen } from "screens";
+import { CalendarScreen, HomeScreen, InfosScreen, MapScreen, OfficialScreen as OfficialsScreen } from "screens/stack";
 // import TestScreen from "screens/TestScreen/TestScreen";
 
 export interface BottomNavPropsType extends NavType<BottomTabParamList> {

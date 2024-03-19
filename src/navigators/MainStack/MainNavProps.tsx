@@ -1,5 +1,5 @@
 import { NavType } from "navigators/NavType";
-import { ActivityScreen, LocationScreen, ActualityScreen, InfosScreen, OfficialScreen } from "screens";
+import { ActivityScreen, LocationScreen, ActualityScreen, InfosScreen, OfficialScreen } from "screens/stack";
 
 import { BottomTabParamList } from "../BottomStack/BottomNavProps";
 import { ActivityItem } from "types/activity";
