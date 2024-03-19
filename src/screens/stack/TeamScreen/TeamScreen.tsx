@@ -12,20 +12,19 @@ type Props = NativeStackScreenProps<MainStackParamList, "team">;
 
 export function TeamScreen({ navigation, route }: Props) {
   const { content }: TeamItem = route.params.team;
-  console.log("ici");
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <YStack flex={1} pa={"md"}>
-          <Button
+          {/* <Button
             icon={LeftArrow}
             iconScale={3}
             rounded
             onPress={() => {
               navigation.goBack();
             }}
-          />
+          /> */}
 
           <YStack h={150} jc="space-evenly"></YStack>
           <Stack h={1} bc="grey600"></Stack>

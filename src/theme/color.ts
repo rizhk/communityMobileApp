@@ -24,7 +24,7 @@ export const color = {
   backgroundLight: palette.communityPrimary100,
   backgroundCard: palette.communityPrimary200,
   primary: palette.communityPrimary,
-  primaryLight: palette.communityPrimary200,
+  primaryLight: palette.communityPrimary300,
   secondary: palette.communityOrange,
   tertiary: palette.communityGreen,
   primaryDark: palette.communityPrimary700,
