@@ -13,6 +13,21 @@ export const defaultQueryParams: RestQueryParams = {
   sort: "publishedAt:desc",
 };
 
+export async function fetchUseSWR(path: string, userToken?: string | null): Promise<Data> {
+  const headers: any = {};
+
+  if (userToken) {
+    headers.Authorization = `Bearer ${userToken}`;
+  }
+  try {
+    const response = await axios.get(`${path}`, { headers });
+    return response.data;
+  } catch (err) {
+    console.error(err, "fetchUseSWR fetching error, path:", path);
+    throw err;
+  }
+}
+
 export async function fetchAxiosAPI(
   path: string,
   params = defaultQueryParams,
