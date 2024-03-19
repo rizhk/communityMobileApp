@@ -12,8 +12,10 @@ export interface OfficialFilters {
 
 export type OfficialItem = BaseItem & {
   type: "news" | "jobs";
+  name: string;
+  surname: string;
 
-  cover: MediaItem;
+  avatar: MediaItem;
   document: MediaItem;
 };
 

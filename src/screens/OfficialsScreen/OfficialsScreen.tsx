@@ -7,6 +7,7 @@ import { ScrollView, View } from "react-native";
 import { XStack, YStack } from "components/containers";
 import Fetcher from "components/Fetcher";
 import { Text } from "components/Text";
+import OfficialCard from "./components/OfficialCard";
 
 type Props = NativeStackScreenProps<MainStackParamList>;
 
@@ -31,17 +32,13 @@ export function OfficialsScreen({ navigation }: Props) {
   return (
     <Fetcher<any> url="/teams">
       {(teams, mutate) => (
-        <ScrollView>
-          <YStack pa="sm" gap="sm">
+        <ScrollView horizontal>
+          <XStack pa="sm" gap="sm">
             {teams?.data &&
               teams?.data.map((team: any) => {
-                return (
-                  <View key={team.id}>
-                    <Text>{team.name}</Text>
-                  </View>
-                );
+                return <OfficialCard key={team.id} navigation={navigation} official={team} />;
               })}
-          </YStack>
+          </XStack>
         </ScrollView>
       )}
     </Fetcher>
