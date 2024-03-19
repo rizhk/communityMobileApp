@@ -37,6 +37,6 @@ export const IconForType: React.FC<{ type: LocationType | ActualityType; color?:
     case "Divers":
       return <Rainbow color={color} size={size} />;
     default:
-      return null; // ou une icône par défaut si vous en avez une
+      return <Newspaper color={color} size={size} />;
   }
 };

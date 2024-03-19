@@ -12,7 +12,9 @@ import { StyleSheet, View } from "react-native";
 import EditorJsParser from "components/EditorJsParser";
 import { formatDate } from "utils/helper";
 import { Image, ImageBackground } from "expo-image";
-import { palette } from "theme";
+import { color, palette } from "theme";
+import { IconForType } from "components/Images/IconType";
+import { X } from "lucide-react-native";
 
 type ActualityCardProps = {
   actuality: ActualityItem;
@@ -36,6 +38,7 @@ export function ActualityCard({ navigation, actuality }: ActualityCardProps) {
       {cover && (
         <ImageBackground source={{ uri: cover.url }} style={styles.background}>
           <View style={styles.overlay}>
+            <IconForType type={type} color="white" />
             <Text text={formatDate(publishedAt)} size="xs" color="white" />
             <Text size="lg" text={title} preset="bold" color="white" />
             {/* <Text style={styles.featuredInfoText}>Plus d'informations</Text> */}
@@ -48,7 +51,11 @@ export function ActualityCard({ navigation, actuality }: ActualityCardProps) {
   const regularCard = (
     <Stack br="xs" bc="backgroundCard" overflow="hidden">
       <YStack padding="md" br="md" gap="xs" onPress={onPressHandler}>
-        <Text text={formatDate(publishedAt)} size="xs" color="grey400" />
+        <XStack gap="xs" ai="center">
+          <IconForType type={type} color={color.grey400} />
+          <Text text={formatDate(publishedAt)} size="xs" color="grey400" />
+        </XStack>
+
         <Text size="lg" text={title} preset="bold" color="primary" />
       </YStack>
     </Stack>
