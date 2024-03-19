@@ -4,45 +4,6 @@ import { fr, enUS as en, de, it } from "date-fns/locale";
 import i18n from "i18n-js";
 import { LatLng } from "react-native-maps";
 
-import {
-  Dumbbell,
-  Warehouse,
-  Building,
-  AlertTriangle,
-  HeartPulse,
-  Theater,
-  Church,
-  Rainbow,
-  Newspaper,
-} from "lucide-react-native";
-import { LocationType } from "types/location";
-import { ActualityType } from "types/actuality";
-
-export const getIconForType = (type: LocationType | ActualityType, color = "black") => {
-  switch (type) {
-    case "Sportif":
-      return <Dumbbell color={color} size={24} />;
-    case "Salle":
-      return <Warehouse color={color} size={24} />;
-    case "Administration":
-      return <Building color={color} size={24} />;
-    case "Incident":
-      return <AlertTriangle color={color} size={24} />;
-    case "Santé":
-      return <HeartPulse color={color} size={24} />;
-    case "Culture":
-      return <Theater color={color} size={24} />;
-    case "Religion":
-      return <Church color={color} size={24} />;
-    case "Actualités":
-      return <Newspaper color={color} size={24} />;
-    case "Divers":
-      return <Rainbow color={color} size={24} />;
-    default:
-      return null; // ou une icône par défaut si vous en avez une
-  }
-};
-
 export const hexToRGBA = (hex: string, alpha: number) => {
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
