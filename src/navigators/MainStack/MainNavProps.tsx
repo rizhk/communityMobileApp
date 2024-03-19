@@ -1,7 +1,7 @@
 import { NavType } from "navigators/NavType";
 import { ActivityScreen, LocationScreen, ActualityScreen, InfosScreen, OfficialScreen, TeamScreen } from "screens";
 
-import { BottomTabParamList } from "../BottomStack/BottomNavProps";
+import { BottomTabParamList } from "../BottomNav/BottomNavProps";
 import { ActivityItem } from "types/activity";
 import { ActualityItem } from "types/actuality";
 

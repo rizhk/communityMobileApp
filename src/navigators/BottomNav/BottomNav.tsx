@@ -7,7 +7,7 @@ import CustomHeader from "components/CustomHeader";
 
 const Bottom = createBottomTabNavigator();
 
-export function BottomStack() {
+export function BottomNav() {
   return (
     <Bottom.Navigator
       initialRouteName="home"

@@ -6,7 +6,6 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 
 import { formatDate } from "utils/helper";
-import { UserItem } from "types/user";
 import { TeamItem } from "types/official";
 
 type TeamCardProps = {
