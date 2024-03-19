@@ -7,15 +7,15 @@ import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 
 import { formatDate } from "utils/helper";
 import { UserItem } from "types/user";
-import { OfficialItem } from "types/official";
+import { MemberItem } from "types/official";
 
-type OfficialCardProps = {
-  official: OfficialItem;
+type MemberCardProps = {
+  member: MemberItem;
   navigation: NativeStackNavigationProp<MainStackParamList>; // Consider using a more specific type for navigation if possible
 };
 
-export function OfficialCard({ navigation, official }: OfficialCardProps) {
-  const { title, name, surname, type, avatar } = official;
+export function MemberCard({ navigation, member }: MemberCardProps) {
+  const { title, name, surname, type, avatar } = member;
 
   return (
     <Stack br="xs" overflow="hidden">
@@ -25,8 +25,8 @@ export function OfficialCard({ navigation, official }: OfficialCardProps) {
         jc="center"
         ai="center"
         onPress={() => {
-          navigation.navigate("official", {
-            official,
+          navigation.navigate("member", {
+            member,
           });
         }}
       >
@@ -38,4 +38,4 @@ export function OfficialCard({ navigation, official }: OfficialCardProps) {
   );
 }
 
-export default OfficialCard;
+export default MemberCard;

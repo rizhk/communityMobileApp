@@ -7,11 +7,11 @@ import { ScrollView, View } from "react-native";
 import { XStack, YStack } from "components/containers";
 import Fetcher from "components/Fetcher";
 import { Text } from "components/Text";
-import OfficialCard from "./components/OfficialCard";
+import MemberCard from "./components/MemberCard";
 
 type Props = NativeStackScreenProps<MainStackParamList>;
 
-export function OfficialsScreen({ navigation }: Props) {
+export function OfficialScreen({ navigation }: Props) {
   // const [filters, setFilters] = useState<ActualityFilters>({});
 
   //TODO: Pagination
@@ -36,7 +36,7 @@ export function OfficialsScreen({ navigation }: Props) {
           <XStack pa="sm" gap="sm">
             {teams?.data &&
               teams?.data.map((team: any) => {
-                return <OfficialCard key={team.id} navigation={navigation} official={team} />;
+                return <MemberCard key={team.id} navigation={navigation} member={team} />;
               })}
           </XStack>
         </ScrollView>

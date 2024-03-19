@@ -10,8 +10,8 @@ export interface OfficialFilters {
   startDate?: Date;
 }
 
-export type OfficialItem = BaseItem & {
-  type: "news" | "jobs";
+export type MemberItem = BaseItem & {
+  type: string; //TS: add types
   name: string;
   surname: string;
 
@@ -19,8 +19,8 @@ export type OfficialItem = BaseItem & {
   document: MediaItem;
 };
 
-export interface OfficialsData {
-  data: OfficialItem[];
+export interface MembersData {
+  data: MemberItem[];
   meta: PaginationMeta;
 }
 
