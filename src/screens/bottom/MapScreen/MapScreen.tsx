@@ -10,17 +10,7 @@ import { YStack } from "components/containers";
 import Fetcher from "components/Fetcher";
 import MapComponent from "components/Map/Map";
 import MapView, { Region } from "react-native-maps";
-import {
-  AlertTriangle,
-  Camera,
-  Church,
-  Dumbbell,
-  FolderArchive,
-  Heart,
-  HeartPulse,
-  Theater,
-  Warehouse,
-} from "lucide-react-native";
+
 import { INITIAL_REGION_DAILLENS } from "constants/global";
 import useCurrentPosition from "hooks/useCurrentPosition";
 
@@ -65,14 +55,6 @@ export function MapScreen({ navigation }: Props) {
               onRegionChangeComplete={handleRegionChangeComplete}
               navigation={navigation}
             />
-
-            {/* <FolderArchive color="red" size={48} />
-            <AlertTriangle color="red" size={48} />
-            <Church color="red" size={48} />
-            <HeartPulse color="red" size={48} />
-            <Dumbbell color="red" size={48} />
-            <Theater color="red" size={48} />
-            <Warehouse color="red" size={48} /> */}
           </YStack>
         </>
       )}

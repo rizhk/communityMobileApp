@@ -31,7 +31,7 @@ export function HomeScreen({ navigation }: Props) {
 
   return (
     <Fetcher<ActualitiesData> url="/actualities">
-      {(actualities, mutate) => (
+      {(actualities) => (
         <ScrollView>
           <YStack pa="sm" gap="sm">
             {actualities?.data &&

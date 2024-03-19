@@ -20,7 +20,8 @@ type ActualityCardProps = {
 };
 
 export function ActualityCard({ navigation, actuality }: ActualityCardProps) {
-  const { title, publishedAt, cover } = actuality;
+  const { title, publishedAt, cover, type } = actuality;
+  console.log(type, "type in ActualityCard");
 
   const isFeatured = false;
 

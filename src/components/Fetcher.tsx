@@ -25,6 +25,7 @@ function Fetcher<T>({ url, children, params = defaultQueryParams }: FetcherProps
   if (!data)
     return (
       <View>
+        {/* TODO: Add a spinner */}
         <Text>Chargement...</Text>
       </View>
     );
