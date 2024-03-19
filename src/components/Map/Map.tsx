@@ -25,6 +25,7 @@ import {
 } from "lucide-react-native";
 import { color } from "theme";
 import { LocationMapType } from "types/global";
+import { getIconForType } from "utils/helper";
 
 //TODO: - Display fields on the map
 
@@ -61,28 +62,28 @@ function MapComponent(props: MapProps) {
     return deltaInKm * 1000;
   };
 
-  const getIconForLocationType = (type: LocationType) => {
-    switch (type) {
-      case "Sportif":
-        return <Dumbbell color="white" size={24} />;
-      case "Salle":
-        return <Warehouse color="white" size={24} />;
-      case "Administration":
-        return <Building color="white" size={24} />;
-      case "Incident":
-        return <AlertTriangle color="white" size={24} />;
-      case "Santé":
-        return <HeartPulse color="white" size={24} />;
-      case "Culture":
-        return <Theater color="white" size={24} />;
-      case "Religion":
-        return <Church color="white" size={24} />;
-      case "Divers":
-        return <Rainbow color="white" size={24} />;
-      default:
-        return null; // ou une icône par défaut si vous en avez une
-    }
-  };
+  // const getIconForLocationType = (type: LocationType) => {
+  //   switch (type) {
+  //     case "Sportif":
+  //       return <Dumbbell color="white" size={24} />;
+  //     case "Salle":
+  //       return <Warehouse color="white" size={24} />;
+  //     case "Administration":
+  //       return <Building color="white" size={24} />;
+  //     case "Incident":
+  //       return <AlertTriangle color="white" size={24} />;
+  //     case "Santé":
+  //       return <HeartPulse color="white" size={24} />;
+  //     case "Culture":
+  //       return <Theater color="white" size={24} />;
+  //     case "Religion":
+  //       return <Church color="white" size={24} />;
+  //     case "Divers":
+  //       return <Rainbow color="white" size={24} />;
+  //     default:
+  //       return null; // ou une icône par défaut si vous en avez une
+  //   }
+  // };
 
   return (
     <>
@@ -108,7 +109,7 @@ function MapComponent(props: MapProps) {
                       longitude: location.longitude,
                     }}
                   >
-                    <View style={iconStyles.container}>{getIconForLocationType(location.type)}</View>
+                    <View style={iconStyles.container}>{getIconForType(location.type)}</View>
 
                     {/* <CustomMarker image={cloudinaryUrl} type="location" /> */}
                     <InfoPanel style={{ width: 272 }} location={location} />

@@ -10,16 +10,15 @@ export interface LocationFilters {
   startDate?: Date;
 }
 
-export enum LocationType {
-  Sportif = "Sportif",
-  Salle = "Salle",
-  Administration = "Administration",
-  Incident = "Incident",
-  Santé = "Santé",
-  Culture = "Culture",
-  Religion = "Religion",
-  Divers = "Divers",
-}
+export type LocationType =
+  | "Sportif"
+  | "Salle"
+  | "Administration"
+  | "Incident"
+  | "Santé"
+  | "Culture"
+  | "Religion"
+  | "Divers";
 
 export type LocationItem = BaseItem & {
   type: LocationType;

@@ -10,8 +10,11 @@ export interface ActualityFilters {
   startDate?: Date;
 }
 
+export type ActualityType = "Pilier public" | "Actualités" | "Emplois";
+// export type ActualityType = typeof ActualityType[number];
+
 export type ActualityItem = BaseItem & {
-  type: "news" | "jobs";
+  type: ActualityType;
   cover: MediaItem;
   document: MediaItem;
 };
