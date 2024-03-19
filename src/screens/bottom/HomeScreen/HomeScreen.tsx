@@ -16,7 +16,6 @@ type Props = NativeStackScreenProps<MainStackParamList>;
 
 export function HomeScreen({ navigation }: Props) {
   const [filters, setFilters] = useState<ActualityFilters>({});
-  const [type, setType] = useState<ActualityType>("Actualités"); // Initial state for filters
 
   //TODO: Pagination
   const [page, setPage] = useState(1);
@@ -35,21 +34,9 @@ export function HomeScreen({ navigation }: Props) {
     // },
   };
 
-  // const queryString = qs.stringify(queryParams, { encode: false, arrayFormat: "brackets", allowDots: false });
-
-  // console.log(queryString, "queryString");
-
-  //Create component to filter Activity with a radio button
-
-  // const ActualityFilter = ({ data, mutate }: { data: ActualitiesData; mutate: Function }) => {
   const ActualityFilter = () => {
     const handleFilter = (type: ActualityType) => {
       setFilters({ type });
-      // setType(type);
-      // mutate("/actualities", true);
-      // mutate({ ...data, type: type }, false);
-      // mutate({ ...data, filters: { type: "Pilier public" } });
-      // mutate("/actualities", { ...data, filters: { type: "Pilier public" } });
     };
 
     return (
@@ -60,10 +47,6 @@ export function HomeScreen({ navigation }: Props) {
       </YStack>
     );
   };
-  //   <Fetcher<ActualitiesData>
-  //   url={`/actualities?sort[0]=publishedAt:asc&filters[type][$eq]=Pilier public`}
-  //   params={queryParams}
-  // >
 
   return (
     <>
