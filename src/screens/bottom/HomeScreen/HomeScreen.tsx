@@ -35,9 +35,9 @@ export function HomeScreen({ navigation }: Props) {
     // },
   };
 
-  const queryString = qs.stringify(queryParams, { encode: false, arrayFormat: "brackets", allowDots: false });
+  // const queryString = qs.stringify(queryParams, { encode: false, arrayFormat: "brackets", allowDots: false });
 
-  console.log(queryString, "queryString");
+  // console.log(queryString, "queryString");
 
   //Create component to filter Activity with a radio button
 
@@ -45,7 +45,7 @@ export function HomeScreen({ navigation }: Props) {
   const ActualityFilter = () => {
     const handleFilter = (type: ActualityType) => {
       setFilters({ type });
-      setType(type);
+      // setType(type);
       // mutate("/actualities", true);
       // mutate({ ...data, type: type }, false);
       // mutate({ ...data, filters: { type: "Pilier public" } });
@@ -68,7 +68,7 @@ export function HomeScreen({ navigation }: Props) {
   return (
     <>
       <ActualityFilter />
-      <Fetcher<ActualitiesData> url={`/actualities?${queryString}`} params={queryParams}>
+      <Fetcher<ActualitiesData> url={`/actualities`} params={queryParams}>
         {(actualities) => (
           <View>
             <ScrollView>
