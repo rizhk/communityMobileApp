@@ -7,14 +7,14 @@ import { ActualityItem } from "types/actuality";
 
 import { InfoItem } from "types/info";
 import { LocationItem } from "types/location";
-import { MemberItem } from "types/official";
+import { TeamItem } from "types/official";
 
 export interface MainNavPropsType extends NavType<MainStackParamList> {
   noHeader?: boolean;
 }
 
 export type MainStackParamList = BottomTabParamList & {
-  member: { member: MemberItem };
+  team: { team: TeamItem };
   activity: { activity: ActivityItem };
   location: { location: LocationItem };
   actuality: { actuality: ActualityItem };
@@ -27,7 +27,7 @@ export const MainNavProps: MainNavPropsType[] = [
     component: ActivityScreen,
   },
   {
-    route: "member",
+    route: "team",
     component: OfficialScreen,
   },
   {
