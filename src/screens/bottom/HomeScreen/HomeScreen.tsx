@@ -19,19 +19,17 @@ export function HomeScreen({ navigation }: Props) {
 
   //TODO: Pagination
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
-
-  const { mutate } = useSWRConfig();
+  const [pageSize, setPageSize] = useState(2);
 
   //Fetch Activities
   const queryParams: ActualityQueryParams = {
     filters: filters,
     populate: "*",
     sort: "publishedAt:asc",
-    // pagination: {
-    //   page,
-    //   pageSize,
-    // },
+    pagination: {
+      page,
+      pageSize,
+    },
   };
 
   const ActualityFilter = () => {
@@ -53,16 +51,14 @@ export function HomeScreen({ navigation }: Props) {
       <ActualityFilter />
       <Fetcher<ActualitiesData> url={`/actualities`} params={queryParams}>
         {(actualities) => (
-          <View>
-            <ScrollView>
-              <YStack pa="sm" gap="sm">
-                {actualities?.data &&
-                  actualities?.data.map((actuality: ActualityItem) => {
-                    return <ActualityCard key={actuality.id} navigation={navigation} actuality={actuality} />;
-                  })}
-              </YStack>
-            </ScrollView>
-          </View>
+          <ScrollView>
+            <YStack pa="sm" gap="sm">
+              {actualities?.data &&
+                actualities?.data.map((actuality: ActualityItem) => {
+                  return <ActualityCard key={actuality.id} navigation={navigation} actuality={actuality} />;
+                })}
+            </YStack>
+          </ScrollView>
         )}
       </Fetcher>
     </>

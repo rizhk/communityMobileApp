@@ -1,6 +1,6 @@
 import { defaultQueryParams, fetchAxiosAPI, fetchUseSWR } from "api/request";
 import React, { ReactNode } from "react";
-import { View } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import useSWR, { KeyedMutator } from "swr";
 import { RestQueryParams } from "types/global";
 import { Text } from "./Text";
@@ -25,13 +25,13 @@ function Fetcher<T>({ url, children, params = defaultQueryParams }: FetcherProps
         <Text>Erreur lors du chargement des données...</Text>
       </View>
     );
-  if (!data)
+  if (!data) {
     return (
-      <View>
-        {/* TODO: Add a spinner */}
-        <Text>Chargement...</Text>
+      <View style={{ flex: 1, alignItems: "center" }}>
+        <ActivityIndicator size="large" />
       </View>
     );
+  }
 
   return <>{children(data, mutate)}</>;
 }
