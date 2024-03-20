@@ -86,5 +86,6 @@ export interface PaginationMeta {
 
 export interface Data {
   data: any;
+  enum?: any;
   meta: PaginationMeta;
 }

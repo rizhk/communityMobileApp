@@ -9,13 +9,16 @@ import ActualityCard from "./components/ActualityCard";
 import { XStack, YStack } from "components/containers";
 import Fetcher from "components/Fetcher";
 import { Button } from "components/Button";
-import { useSWRConfig } from "swr";
-import qs from "qs";
+import useTypes from "hooks/useTypes";
 
 type Props = NativeStackScreenProps<MainStackParamList>;
 
 export function HomeScreen({ navigation }: Props) {
   const [filters, setFilters] = useState<ActualityFilters>({});
+
+  const { types, isLoading, error } = useTypes({ url: "actualities" });
+
+  console.log(types, "typessss");
 
   //TODO: Pagination
   const [page, setPage] = useState(1);
@@ -39,9 +42,15 @@ export function HomeScreen({ navigation }: Props) {
 
     return (
       <XStack pa="sm" gap="xs">
-        <Button size="xs" preset="outlined" text="Pilier public" onPress={() => handleFilter("Pilier public")} />
-        <Button size="xs" preset="outlined" text="Actualités" onPress={() => handleFilter("Actualités")} />
-        <Button size="xs" preset="outlined" text="Emplois" onPress={() => handleFilter("Emplois")} />
+        {types?.map((type: { value: ActualityType; label: string }) => (
+          <Button
+            key={type.value}
+            size="xs"
+            preset="outlined"
+            text={type.label}
+            onPress={() => handleFilter(type.value)}
+          />
+        ))}
       </XStack>
     );
   };
