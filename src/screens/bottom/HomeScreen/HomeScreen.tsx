@@ -19,7 +19,7 @@ export function HomeScreen({ navigation }: Props) {
 
   //TODO: Pagination
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(2);
+  const [pageSize, setPageSize] = useState(10);
 
   //Fetch Activities
   const queryParams: ActualityQueryParams = {
