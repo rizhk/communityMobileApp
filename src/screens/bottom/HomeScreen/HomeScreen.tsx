@@ -6,7 +6,7 @@ import { ScrollView, View } from "react-native";
 
 import { ActualitiesData, ActualityFilters, ActualityItem, ActualityQueryParams, ActualityType } from "types/actuality";
 import ActualityCard from "./components/ActualityCard";
-import { YStack } from "components/containers";
+import { XStack, YStack } from "components/containers";
 import Fetcher from "components/Fetcher";
 import { Button } from "components/Button";
 import { useSWRConfig } from "swr";
@@ -38,11 +38,11 @@ export function HomeScreen({ navigation }: Props) {
     };
 
     return (
-      <YStack pa="sm" gap="sm">
-        <Button text="Pilier public" onPress={() => handleFilter("Pilier public")} />
-        <Button text="Actualités" onPress={() => handleFilter("Actualités")} />
-        <Button text="Emplois" onPress={() => handleFilter("Emplois")} />
-      </YStack>
+      <XStack pa="sm" gap="xs">
+        <Button size="xs" preset="outlined" text="Pilier public" onPress={() => handleFilter("Pilier public")} />
+        <Button size="xs" preset="outlined" text="Actualités" onPress={() => handleFilter("Actualités")} />
+        <Button size="xs" preset="outlined" text="Emplois" onPress={() => handleFilter("Emplois")} />
+      </XStack>
     );
   };
 
