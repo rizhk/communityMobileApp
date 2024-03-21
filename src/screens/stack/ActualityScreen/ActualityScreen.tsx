@@ -6,6 +6,7 @@ import { Text } from "components/Text";
 import { ActualityItem } from "types/actuality";
 import EditorJsParser from "components/EditorJsParser";
 import { formatDate } from "utils/helper";
+
 import RenderHtml from "react-native-render-html";
 
 type Props = NativeStackScreenProps<MainStackParamList, "actuality">;
