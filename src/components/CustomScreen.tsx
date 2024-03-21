@@ -20,14 +20,14 @@ const CustomScreen = ({
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <YStack flex={1} pa={"md"} pt="xxxl">
-          <Button
+          {/* <Button
             icon={LeftArrow}
             iconScale={3}
             rounded
             onPress={() => {
               navigation.goBack();
             }}
-          />
+          /> */}
 
           {/* <Stack h={1} bc="grey600"></Stack> */}
 

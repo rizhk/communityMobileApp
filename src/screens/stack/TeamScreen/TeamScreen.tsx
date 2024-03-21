@@ -17,15 +17,6 @@ export function TeamScreen({ navigation, route }: Props) {
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <YStack flex={1} pa={"md"}>
-          {/* <Button
-            icon={LeftArrow}
-            iconScale={3}
-            rounded
-            onPress={() => {
-              navigation.goBack();
-            }}
-          /> */}
-
           <YStack h={150} jc="space-evenly"></YStack>
           <Stack h={1} bc="grey600"></Stack>
           <Text preset="bold" size="md" style={{ marginBottom: 10 }} text="Info : " />
