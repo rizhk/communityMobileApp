@@ -18,6 +18,7 @@ export type BaseItem = {
   title: string;
   content: string;
   contentRtM: any;
+  contentQuill: any;
   contentRTE: string; //Change to editorJSJSON
   contentRtB: string;
   // startDate: Date;
