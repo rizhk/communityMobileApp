@@ -10,6 +10,7 @@ import {
 } from "lucide-react-native";
 import { PropsWithChildren } from "react";
 import { View, ViewStyle, Linking } from "react-native";
+//TODO: Use custom FloatingAction
 import { FloatingAction } from "react-native-floating-action";
 
 export function MainLayout({ children }: PropsWithChildren) {
