@@ -1,39 +1,37 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Button } from "components/Button";
-import { Stack, YStack } from "components/containers";
+import { Stack, XStack, YStack } from "components/containers";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
-import { ImageStyle, SafeAreaView, StyleProp, ScrollView } from "react-native";
+import { ImageStyle, SafeAreaView, StyleProp, ScrollView, useWindowDimensions } from "react-native";
 import { Text } from "components/Text";
 import { LeftArrow } from "assets/svg";
 
 import { LocationItem } from "types/location";
+import { formatDate } from "utils/helper";
+import EditorJsParser from "components/EditorJsParser";
+import RenderHTML from "react-native-render-html";
+import { IconForType } from "components/Images/IconType";
 
 type Props = NativeStackScreenProps<MainStackParamList, "location">;
 
 export function LocationScreen({ navigation, route }: Props) {
-  const { content }: LocationItem = route.params.location as LocationItem;
-
+  const { title, contentRTE, contentQuill, publishedAt, type }: LocationItem = route.params.location as LocationItem;
+  const { width } = useWindowDimensions();
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <YStack flex={1} pa={"md"}>
-          <Button
-            icon={LeftArrow}
-            iconScale={3}
-            rounded
-            onPress={() => {
-              navigation.goBack();
-            }}
-          />
-          <Stack h={1} bc="grey600"></Stack>
-
-          {content && (
-            <YStack mt={10}>
-              <Text preset="bold" size="md" style={{ marginBottom: 10 }} text="Info : " />
-              <Text style={{ marginBottom: 10 }} color="dim" text={content} />
-              <Stack h={1} bc="grey600"></Stack>
-            </YStack>
-          )}
+    <SafeAreaView>
+      <ScrollView>
+        <YStack jc="space-evenly">
+          <YStack jc="center">
+            <XStack jc="space-between" ai="center">
+              <IconForType type={type} color="white" />
+              <Text text={formatDate(publishedAt)} size="xs" color="grey400" />
+            </XStack>
+            <Text color="primary" size="lg" preset="bold">
+              {title}
+            </Text>
+            {contentRTE && <EditorJsParser content={contentRTE} />}
+            {contentQuill && <RenderHTML contentWidth={width} source={{ html: contentQuill }} />}
+          </YStack>
         </YStack>
       </ScrollView>
     </SafeAreaView>

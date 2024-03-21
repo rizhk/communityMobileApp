@@ -1,47 +1,41 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Button } from "components/Button";
-import { Stack, YStack } from "components/containers";
+import { XStack, YStack } from "components/containers";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
-import { ActivityIndicator, Image, ImageStyle, SafeAreaView, StyleProp, View } from "react-native";
+import { SafeAreaView, useWindowDimensions } from "react-native";
 import { Text } from "components/Text";
-import { LeftArrow } from "assets/svg";
-import AddressField from "components/AddressField";
-import { formatDateFromToday } from "utils/Date";
+
 import { ScrollView } from "react-native-gesture-handler";
-import { useDistance } from "hooks/useDistance";
-import { LocationMapType } from "types/global";
-import AvatarSlider, { AvatarUser } from "components/Avatar/AvatarSlider";
+
 import { ActivityItem } from "types/activity";
-import { UserItem } from "types/user";
+import EditorJsParser from "components/EditorJsParser";
+import RenderHTML from "react-native-render-html";
+import { formatDate } from "utils/helper";
+import { IconForType } from "components/Images/IconType";
+import { color } from "theme";
 
 type Props = NativeStackScreenProps<MainStackParamList, "activity">;
 
-export function ActivityScreen({ navigation, route }: Props) {
-  const { content }: ActivityItem = route.params.activity;
-
+export function ActivityScreen({ route }: Props) {
+  const { title, contentRTE, contentQuill, publishedAt, startDate, endDate, type }: ActivityItem =
+    route.params.activity;
+  const { width } = useWindowDimensions();
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <YStack flex={1} pa={"md"}>
-          <Button
-            icon={LeftArrow}
-            iconScale={3}
-            rounded
-            onPress={() => {
-              navigation.goBack();
-            }}
-          />
-
-          <YStack h={150} jc="space-evenly"></YStack>
-          <Stack h={1} bc="grey600"></Stack>
-
-          {content && (
-            <YStack mt={10}>
-              <Text preset="bold" size="md" style={{ marginBottom: 10 }} text="Info : " />
-              <Text style={{ marginBottom: 10 }} color="dim" text={content} />
-              <Stack h={1} bc="grey600"></Stack>
-            </YStack>
-          )}
+    <SafeAreaView>
+      <ScrollView>
+        <YStack jc="space-evenly">
+          <YStack jc="center">
+            <XStack gap="xs">
+              <IconForType type={type} color={color.grey400} />
+              <Text text={formatDate(publishedAt)} size="xs" color="grey400" />
+            </XStack>
+            <Text color="primary" size="lg" preset="bold">
+              {title}
+            </Text>
+            <Text text={formatDate(startDate)} size="xs" color="grey400" />
+            {endDate && <Text text={` - ${formatDate(endDate)}`} size="xs" color="grey400" />}
+            {contentRTE && <EditorJsParser content={contentRTE} />}
+            {contentQuill && <RenderHTML contentWidth={width} source={{ html: contentQuill }} />}
+          </YStack>
         </YStack>
       </ScrollView>
     </SafeAreaView>

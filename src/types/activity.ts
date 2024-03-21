@@ -2,6 +2,7 @@ import { BaseItem, PaginationMeta, baseSchema, RestQueryParams } from "./global"
 
 import { object, string, number, date, InferType, array, mixed } from "yup";
 import { MediaItem, mediaItemSchema } from "./user";
+import { LocationType } from "./location";
 
 export type ActivityQueryParams = RestQueryParams & {
   filters?: ActivityFilters;
@@ -11,7 +12,7 @@ export interface ActivityFilters {
 }
 
 export type ActivityItem = BaseItem & {
-  type: "news" | "jobs";
+  type: LocationType;
   latitude?: number;
   longitude?: number;
   cover: MediaItem;
