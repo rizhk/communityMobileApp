@@ -10,6 +10,7 @@ import { XStack, YStack } from "components/containers";
 import Fetcher from "components/Fetcher";
 import { Button } from "components/Button";
 import useTypes from "hooks/useTypes";
+import { MainLayout } from "layouts";
 
 type Props = NativeStackScreenProps<MainStackParamList>;
 
@@ -57,7 +58,7 @@ export function HomeScreen({ navigation }: Props) {
   };
 
   return (
-    <>
+    <MainLayout>
       <ActualityFilter />
       <Fetcher<ActualitiesData> url={`/actualities`} params={queryParams}>
         {(actualities) => (
@@ -71,6 +72,6 @@ export function HomeScreen({ navigation }: Props) {
           </ScrollView>
         )}
       </Fetcher>
-    </>
+    </MainLayout>
   );
 }
