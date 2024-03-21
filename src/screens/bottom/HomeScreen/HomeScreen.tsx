@@ -16,29 +16,30 @@ type Props = NativeStackScreenProps<MainStackParamList>;
 export function HomeScreen({ navigation }: Props) {
   const [filters, setFilters] = useState<ActualityFilters>({});
 
-  const { types, isLoading, error } = useTypes({ url: "actualities" });
-
-  console.log(types, "typessss");
-
   //TODO: Pagination
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(50);
 
-  //Fetch Activities
   const queryParams: ActualityQueryParams = {
     filters: filters,
     populate: "*",
-    sort: "publishedAt:asc",
+    sort: "publishedAt:desc",
     pagination: {
       page,
       pageSize,
     },
   };
 
+  const { types } = useTypes({ url: "actualities" });
+
   const ActualityFilter = () => {
     const handleFilter = (type: ActualityType) => {
       setFilters({ type });
     };
+
+    if (!types) {
+      return null;
+    }
 
     return (
       <XStack pa="sm" gap="xs">
