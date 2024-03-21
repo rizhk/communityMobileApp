@@ -1,17 +1,21 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Stack, YStack } from "components/containers";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, useWindowDimensions } from "react-native";
 import { Text } from "components/Text";
 import { ActualityItem } from "types/actuality";
 import EditorJsParser from "components/EditorJsParser";
 import { formatDate } from "utils/helper";
+import parse from "html-react-parser";
+import RenderHtml from "react-native-render-html";
 
 type Props = NativeStackScreenProps<MainStackParamList, "actuality">;
 
 export function ActualityScreen({ navigation, route }: Props) {
-  const { title, contentRTE, publishedAt }: ActualityItem = route.params.actuality;
+  const { title, contentRTE, contentQuill, publishedAt }: ActualityItem = route.params.actuality;
 
+  console.log(contentQuill, "contentQuill");
+  const { width } = useWindowDimensions();
   return (
     <SafeAreaView>
       <YStack jc="space-evenly">
@@ -21,6 +25,9 @@ export function ActualityScreen({ navigation, route }: Props) {
             {title}
           </Text>
           {contentRTE && <EditorJsParser content={contentRTE} />}
+          {/* {contentQuill && parse(contentQuill)} */}
+          {/* {contentQuill && <RenderHtml contentWidth={width} source={JSON.parse(contentQuill)} />} */}
+          {contentQuill && <RenderHtml contentWidth={width} source={{ html: contentQuill }} />}
         </YStack>
       </YStack>
     </SafeAreaView>
