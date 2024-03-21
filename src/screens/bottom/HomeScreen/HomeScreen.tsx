@@ -63,7 +63,7 @@ export function HomeScreen({ navigation }: Props) {
       <Fetcher<ActualitiesData> url={`/actualities`} params={queryParams}>
         {(actualities) => (
           <ScrollView>
-            <YStack pa="sm" gap="sm">
+            <YStack mb={128} pa="sm" gap="sm">
               {actualities?.data &&
                 actualities?.data.map((actuality: ActualityItem) => {
                   return <ActualityCard key={actuality.id} navigation={navigation} actuality={actuality} />;

@@ -8,22 +8,38 @@ import { QuickImage } from "components/Images/QuickImage";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { MainStackParamList } from "navigators/MainStack/MainNavProps";
 import { createEditorJsViewer } from "editorjs-viewer-native";
-import { StyleSheet, View } from "react-native";
+import { Share, StyleSheet, View } from "react-native";
 import EditorJsParser from "components/EditorJsParser";
 import { formatDate } from "utils/helper";
 import { Image, ImageBackground } from "expo-image";
 import { color, palette } from "theme";
 import { IconForType } from "components/Images/IconType";
-import { X } from "lucide-react-native";
+import { Share2Icon, X } from "lucide-react-native";
 
 type ActualityCardProps = {
   actuality: ActualityItem;
   navigation: NativeStackNavigationProp<MainStackParamList>; // Consider using a more specific type for navigation if possible
 };
 
+const onShare = async (message: any) => {
+  try {
+    const result = await Share.share({
+      message: message,
+    });
+
+    if (result.action === Share.sharedAction) {
+    } else if (result.action === Share.dismissedAction) {
+      // dismissed
+    }
+  } catch (error: any) {
+    alert(error.message);
+  }
+};
+
 export function ActualityCard({ navigation, actuality }: ActualityCardProps) {
   const { title, publishedAt, cover, type } = actuality;
-  console.log(type, "type in ActualityCard");
+
+  const message = `${title}`;
 
   const isFeatured = false;
 
@@ -49,8 +65,8 @@ export function ActualityCard({ navigation, actuality }: ActualityCardProps) {
   );
 
   const regularCard = (
-    <Stack br="xs" bc="backgroundCard" overflow="hidden">
-      <YStack padding="md" br="md" gap="xs" onPress={onPressHandler}>
+    <XStack jc="space-between" gap="lg" ai="center" bc="backgroundCard">
+      <YStack padding="md" flexShrink onPress={onPressHandler}>
         <XStack gap="xs" ai="center">
           <IconForType type={type} color={color.grey400} />
           <Text text={formatDate(publishedAt)} size="xs" color="grey400" />
@@ -58,7 +74,10 @@ export function ActualityCard({ navigation, actuality }: ActualityCardProps) {
 
         <Text size="lg" text={title} preset="bold" color="primary" />
       </YStack>
-    </Stack>
+      <Stack padding="md" gap="xs" ai="center">
+        <Share2Icon onPress={() => onShare(message)} title="Share" color="black"></Share2Icon>
+      </Stack>
+    </XStack>
   );
 
   return isFeatured ? featuredCard : regularCard;
