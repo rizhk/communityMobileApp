@@ -19,6 +19,15 @@ export const presets = {
 
   secondary: { ...BASE, fontSize: 9, color: color.dim } as TextStyle,
 
+  teamTitle: {
+    ...BASE,
+    fontSize: text.md,
+    fontWeight: "bold",
+    margin: 0,
+    padding: 0,
+    color: color.primary,
+  } as TextStyle,
+
   fieldLabel: {
     ...BASE,
     fontFamily: typography.secondary,

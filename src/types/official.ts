@@ -14,9 +14,14 @@ export type TeamItem = BaseItem & {
   type: string; //TS: add types
   name: string;
   surname: string;
-
+  fonction: string;
+  dicastere: string;
+  phone: string;
+  title: string;
+  descriptionDicastere: string;
+  suppleant: string;
+  mail: string;
   avatar: MediaItem;
-  document: MediaItem;
 };
 
 export interface TeamsData {
